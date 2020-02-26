@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-   }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
