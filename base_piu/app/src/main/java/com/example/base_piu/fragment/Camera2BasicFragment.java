@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.base_piu;
+package com.example.base_piu.fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -61,10 +61,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.example.base_piu.R;
+import com.example.base_piu.view.AutoFitTextureView;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -253,15 +253,21 @@ public class Camera2BasicFragment extends Fragment
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
      * still image is ready to be saved.
      */
-    private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
-            = new ImageReader.OnImageAvailableListener() {
+//    private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
+//            = new ImageReader.OnImageAvailableListener() {
+//
+//        @Override
+//        public void onImageAvailable(ImageReader reader) {
+//            mBackgroundHandler.post(new ImageUpLoader(reader.acquireNextImage()));
+//        }
+//
+//    };
 
-        @Override
-        public void onImageAvailable(ImageReader reader) {
-            mBackgroundHandler.post(new ImageUpLoader(reader.acquireNextImage()));
-        }
+    private ImageReader.OnImageAvailableListener mOnImageAvailableListener;
 
-    };
+    public void setmOnImageAvailableListener(ImageReader.OnImageAvailableListener mOnImageAvailableListener) {
+        this.mOnImageAvailableListener = mOnImageAvailableListener;
+    }
 
     /**
      * {@link CaptureRequest.Builder} for the camera preview
@@ -646,7 +652,7 @@ public class Camera2BasicFragment extends Fragment
     /**
      * Closes the current {@link CameraDevice}.
      */
-    private void closeCamera() {
+    public void closeCamera() {
         try {
             mCameraOpenCloseLock.acquire();
             if (null != mCaptureSession) {
@@ -981,7 +987,6 @@ public class Camera2BasicFragment extends Fragment
 
     }
     private static class ImageUpLoader implements Runnable {
-
         /**
          * The JPEG image
          */

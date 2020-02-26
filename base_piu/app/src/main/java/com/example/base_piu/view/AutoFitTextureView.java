@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.base_piu;
+package com.example.base_piu.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

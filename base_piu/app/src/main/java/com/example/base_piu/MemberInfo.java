@@ -5,6 +5,15 @@ public class MemberInfo {
     String phoneNumber;
     String birthday;
     String address;
+    String downloadUri;
+
+    public MemberInfo(String name, String phoneNumber, String birthday, String address, String downloadUri) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
+        this.address = address;
+        this.downloadUri = downloadUri;
+    }
 
     public MemberInfo(String name, String phoneNumber, String birthday, String address) {
         this.name = name;
