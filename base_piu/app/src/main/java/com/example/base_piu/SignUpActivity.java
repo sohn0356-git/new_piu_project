@@ -27,7 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        et_email = findViewById(R.id.et_email);
+        et_email = (EditText)findViewById(R.id.et_email);
         et_pw = (EditText)findViewById(R.id.et_pw);
         et_pw2 = (EditText)findViewById(R.id.et_pw2);
         findViewById(R.id.bt_signup).setOnClickListener(onClickListener);
@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }
-    
+
     private void signUp() {
         String email = et_email.getText().toString();
         String password = et_pw.getText().toString();
@@ -76,6 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     startToast("회원가입을 성공했습니다.");
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    myStartActivity(MainActivity.class);
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     if (task.getException() != null) {

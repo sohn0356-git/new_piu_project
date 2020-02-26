@@ -16,33 +16,27 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class PasswordResetActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "PasswordResetActivity";
     EditText et_email;
-    EditText et_pw;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_password_reset);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        et_email = (EditText)findViewById(R.id.et_email);
-        et_pw = (EditText)findViewById(R.id.et_pw);
-        findViewById(R.id.bt_login).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_pwReset).setOnClickListener(onClickListener);
+        et_email = findViewById(R.id.et_email);
+        findViewById(R.id.bt_send).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.bt_login:
+                case R.id.bt_send:
                     login();
 //                    Log.e("click","click");
-                    break;
-                case R.id.bt_pwReset:
-                    myStartActivity(PasswordResetActivity.class);
                     break;
             }
         }
@@ -56,30 +50,20 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login() {
         String email = et_email.getText().toString();
-        String password = et_pw.getText().toString();
-        if (email.length() > 0 && password.length() > 0) {
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        if(email.length()>0) {
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
-                                startToast("로그인에 성공했습니다!");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                myStartActivity(MainActivity.class);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                startToast("로그인에 실패했습니다!");
+                                Log.d(TAG, "Email sent.");
+                                startToast("이메일을 보냈습니다");
+                                finish();
                             }
-
-                            // ...
                         }
                     });
-
-        } else {
-            startToast("이메일 또는 비밀번호를 입력해주세요!");
+        }else{
+            startToast("이메일을 입력해주세요");
         }
     }
 
