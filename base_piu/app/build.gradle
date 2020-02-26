@@ -6,8 +6,9 @@ android {
 
     defaultConfig {
         applicationId "com.example.base_piu"
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 26
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -33,5 +34,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
 }

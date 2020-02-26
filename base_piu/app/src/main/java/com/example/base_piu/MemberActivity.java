@@ -12,11 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MemberActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -61,22 +64,24 @@ public class MemberActivity extends AppCompatActivity {
         String phoneNumber = et_phoneNumber.getText().toString();
         String birthday = et_birthday.getText().toString();
         String address = et_address.getText().toString();
-        if (name.length() > 0) {
+        if (name.length() > 0 && phoneNumber.length() > 9 && birthday.length() > 5 && address.length() > 0 ) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name)
-                    .build();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            MemberInfo memberInfo = new MemberInfo(name, phoneNumber,birthday,address);
             if(user!=null) {
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                db.collection("users").document(user.getUid()).set(memberInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        startToast("회원정보 등록을 성공했습니다.");
+                        finish();
+                    }
+                })
+                        .addOnFailureListener(new OnFailureListener() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "User profile updated.");
-                                    startToast("회원정보 등록을 성공했습니다!");
-                                    finish();
-                                }
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error writing document", e);
+                                startToast("회원정보 등록을 실패했습니다.");
                             }
                         });
             }
