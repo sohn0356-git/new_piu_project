@@ -1,7 +1,7 @@
 package com.example.base_piu;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
         et_pw = (EditText)findViewById(R.id.et_pw);
         et_pw2 = (EditText)findViewById(R.id.et_pw2);
         findViewById(R.id.bt_signup).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_goLogin).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -41,6 +42,9 @@ public class SignUpActivity extends AppCompatActivity {
                     signUp();
 //                    Log.e("click","click");
                     break;
+                case R.id.bt_goLogin:
+                    myStartActivity(LoginActivity.class);
+                    break;
             }
         }
     };
@@ -50,7 +54,14 @@ public class SignUpActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
    }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+    
     private void signUp() {
         String email = et_email.getText().toString();
         String password = et_pw.getText().toString();
@@ -83,5 +94,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
