@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "4282146235",
+    "firebase_url": "https://base-piu.firebaseio.com",
+    "project_id": "base-piu",
+    "storage_bucket": "base-piu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4282146235:android:e69158aa2f7d41c75a389e",
+        "android_client_info": {
+          "package_name": "com.example.base_piu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4282146235-97c62nttoocdk7baejm340rib7kkn1nq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEaRhXoY34AYSJf4P6HrjTGe1ZO_v7Wx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4282146235-97c62nttoocdk7baejm340rib7kkn1nq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
