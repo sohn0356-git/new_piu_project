@@ -1,4 +1,4 @@
-package com.example.piu_project;
+package com.example.piu_project.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
@@ -8,6 +8,8 @@ import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.piu_project.R;
 
 public class BasicActivity extends AppCompatActivity {
 
