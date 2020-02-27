@@ -1,8 +1,11 @@
 package com.example.base_piu.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -92,7 +95,6 @@ public class MemberActivity extends AppCompatActivity {
                                 1);
                         if (ActivityCompat.shouldShowRequestPermissionRationale(MemberActivity.this,
                                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
                         } else {
                         }
                     } else {
@@ -128,7 +130,12 @@ public class MemberActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 0:
-                profilePath = data.getStringExtra("path");
+                if(resultCode== Activity.RESULT_OK){
+                    profilePath = data.getStringExtra("path");
+                    Bitmap bmp = BitmapFactory.decodeFile(profilePath);
+                    profileImageView.setImageBitmap(bmp);
+                    buttonBackgroundLayout.setVisibility(View.GONE);
+                }
                 break;
         }
     }
