@@ -49,61 +49,8 @@ public class MainActivity extends BasicActivity {
         settingBackgroundLayout.setOnClickListener(onClickListener);
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser == null) {
-            myStartActivity(SignUpActivity.class);
+            myStartActivity(LoginActivity.class);
         } else {
-//        } else {
-//            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseUser.getUid());
-//            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        DocumentSnapshot document = task.getResult();
-//                        if (document != null) {
-//                            if (document.exists()) {
-//                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                            } else {
-//                                Log.d(TAG, "No such document");
-//                                myStartActivity(MemberInitActivity.class);
-//                            }
-//                        }
-//                    } else {
-//                        Log.d(TAG, "get failed with ", task.getException());
-//                    }
-//                }
-//            });
-//
-//            HomeFragment homeFragment = new HomeFragment();
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.container, homeFragment)
-//                    .commit();
-//
-//            BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-//            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                    switch (item.getItemId()) {
-//                        case R.id.home:
-//                            HomeFragment homeFragment = new HomeFragment();
-//                            getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.container, homeFragment)
-//                                    .commit();
-//                            return true;
-//                        case R.id.myInfo:
-//                            UserInfoFragment userInfoFragment = new UserInfoFragment();
-//                            getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.container, userInfoFragment)
-//                                    .commit();
-//                            return true;
-//                        case R.id.userList:
-//                            UserListFragment userListFragment = new UserListFragment();
-//                            getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.container, userListFragment)
-//                                    .commit();
-//                            return true;
-//                    }
-//                    return false;
-//                }
-//            });
             DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseUser.getUid());
             documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override

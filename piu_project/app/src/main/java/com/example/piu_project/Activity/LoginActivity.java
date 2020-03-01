@@ -29,7 +29,16 @@ public class LoginActivity extends BasicActivity {
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
+        findViewById(R.id.signUpButton).setOnClickListener(onClickListener);
         findViewById(R.id.gotoPasswordResetButton).setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -38,6 +47,9 @@ public class LoginActivity extends BasicActivity {
             switch (v.getId()) {
                 case R.id.loginButton:
                     login();
+                    break;
+                case R.id.signUpButton:
+                    myStartActivity(SignUpActivity.class);
                     break;
                 case R.id.gotoPasswordResetButton:
                     myStartActivity(PasswordResetActivity.class);

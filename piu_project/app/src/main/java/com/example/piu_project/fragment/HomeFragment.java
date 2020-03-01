@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.piu_project.Activity.LoginActivity;
 import com.example.piu_project.Activity.SignUpActivity;
 import com.example.piu_project.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -75,7 +76,7 @@ public class HomeFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.bt_logout:
                     FirebaseAuth.getInstance().signOut();
-                    myStartActivity(SignUpActivity.class);
+                    myStartActivity(LoginActivity.class);
                     break;
             }
         }
