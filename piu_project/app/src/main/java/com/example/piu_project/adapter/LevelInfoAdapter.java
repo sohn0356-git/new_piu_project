@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,7 +52,8 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myStartActivity(ShowInfoActivity.class, mDataset.get(mainViewHolder.getAdapterPosition()));
+                //v.findViewById(R.id.settingBackgroundLayout).setVisibility(View.VISIBLE);
+//                myStartActivity(ShowInfoActivity.class, mDataset.get(mainViewHolder.getAdapterPosition()));
             }
         });
 
@@ -63,13 +65,11 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         CardView cardView = holder.cardView;
         ImageView photoImageVIew = cardView.findViewById(R.id.photoImageVIew);
         TextView nameTextView = cardView.findViewById(R.id.nameTextView);
-        TextView addressTextView = cardView.findViewById(R.id.addressTextView);
         SongInfo songInfo = mDataset.get(position);
         if(mDataset.get(position).getAlbum() != null){
             Glide.with(activity).load(mDataset.get(position).getAlbum()).centerCrop().override(500).into(photoImageVIew);
         }
         nameTextView.setText(songInfo.getTitle());
-        addressTextView.setText(songInfo.getArtist());
     }
 
     @Override

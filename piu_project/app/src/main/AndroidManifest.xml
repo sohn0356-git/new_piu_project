@@ -25,6 +25,7 @@
         <activity android:name=".Activity.MemberInitActivity"/>
         <activity android:name=".Activity.PasswordResetActivity"/>
         <activity android:name=".Activity.ShowInfoActivity"/>
+        <activity android:name=".Activity.LevelInfoActivity"/>
     </application>
 
 </manifest>

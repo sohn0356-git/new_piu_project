@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_group_black_24dp"
         android:title="사용자 목록" />
     <item
-        android:id="@+id/level"
+        android:id="@+id/bt_level"
         android:icon="@drawable/ic_flag_black_24dp"
         android:title="레벨" />
     <item

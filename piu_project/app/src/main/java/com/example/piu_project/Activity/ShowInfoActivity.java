@@ -54,9 +54,7 @@ public class ShowInfoActivity extends BasicActivity {
         List<Pair<String, String>> user_Achievement = new ArrayList<>();
         Glide.with(this).load(album).centerCrop().override(500).into(profileImageVIew);
         String[] level_s = level.split(String.valueOf(','));
-        int[] num_s = new int[level_s.length];
         for(int i=0;i<level_s.length; i++){
-            num_s[i] = Integer.parseInt(level_s[i]);
             user_Achievement.add(new Pair<>(level_s[i],"A"));
         }
 

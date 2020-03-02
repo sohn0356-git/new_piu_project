@@ -16,8 +16,31 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigationView"
         android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="level" />
+
+            <Button
+                android:id="@+id/bt_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="category" />
+
+            <Button
+                android:id="@+id/bt_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="logout" />
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/settingBackgroundLayout"
@@ -36,29 +59,65 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Level : " />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
-                    <EditText
-                        android:id="@+id/et_set_level"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <ListView
+                            android:id="@+id/listview1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:fastScrollEnabled="true" />
 
-                    <Button
-                        android:id="@+id/bt_set_level"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="확인" />
+                        <ListView
+                            android:id="@+id/listview2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:fastScrollEnabled="true" />
 
+                        <Button
+                            android:id="@+id/bt_set_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="확인" />
+
+                    </LinearLayout>
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:orientation="horizontal"-->
+                    <!--                        android:padding="5dp">-->
+
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:text="Level : " />-->
+
+                    <!--                        <EditText-->
+                    <!--                            android:id="@+id/et_set_level"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:ems="10"-->
+                    <!--                            android:inputType="number" />-->
+
+                    <!--                        <Button-->
+                    <!--                            android:id="@+id/bt_set_level"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:text="확인" />-->
+
+                    <!--                    </LinearLayout>-->
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -66,13 +125,5 @@
         </RelativeLayout>
 
     </FrameLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

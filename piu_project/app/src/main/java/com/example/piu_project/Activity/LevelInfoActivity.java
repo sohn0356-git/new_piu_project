@@ -1,28 +1,20 @@
-package com.example.piu_project.fragment;
+package com.example.piu_project.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.example.piu_project.R;
+import com.example.piu_project.SongInfo;
+import com.example.piu_project.adapter.LevelInfoAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-//import com.example.piu_project.PostInfo;
-import com.example.piu_project.R;
-import com.example.piu_project.SongInfo;
-//import com.example.piu_project.activity.WritePostActivity;
-import com.example.piu_project.adapter.LevelInfoAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,42 +22,37 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LevelInfoFragment extends Fragment {
-    private static final String TAG = "LevelInfoFragment";
+public class LevelInfoActivity extends BasicActivity {
+    private static final String TAG = "LevelInfoActivity";
     private FirebaseFirestore firebaseFirestore;
     private LevelInfoAdapter levelInfoAdapter;
     private ArrayList<SongInfo> levelInfo;
     private boolean updating;
     private int setLevel;
+    private String level;
+    private String mode;
     private boolean topScrolled;
 
-    public LevelInfoFragment() {
-        // Required empty public constructor
-    }
-
-    public void SetLevel(int setLevel) {
-        this.setLevel = setLevel;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_levelinfo);
+        setToolbarTitle("LEVEL");
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        level = intent.getStringExtra("setLevel");
+        mode = intent.getStringExtra("setMode");
+
         final int numberOfColumns = 3;
-        View view = inflater.inflate(R.layout.activity_levelinfo, container, false);
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfoAdapter = new LevelInfoAdapter(getActivity(), levelInfo);
+        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo);
 
-        final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         recyclerView.setAdapter(levelInfoAdapter);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -95,49 +82,22 @@ public class LevelInfoFragment extends Fragment {
                 int firstVisibleItemPosition = ((LinearLayoutManager)layoutManager).findFirstVisibleItemPosition();
                 int lastVisibleItemPosition = ((LinearLayoutManager)layoutManager).findLastVisibleItemPosition();
 
-//                if(totalItemCount - 3 <= lastVisibleItemPosition && !updating){
-//                    postsUpdate(false);
-//                }
+                if(totalItemCount - 3 <= lastVisibleItemPosition && !updating){
+                    postsUpdate(false);
+                }
 
                 if(0 < firstVisibleItemPosition){
                     topScrolled = false;
                 }
             }
         });
-
         postsUpdate(false);
-
-        return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     @Override
     public void onPause(){
         super.onPause();
     }
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                /*
-                case R.id.logoutButton:
-                    FirebaseAuth.getInstance().signOut();
-                    myStartActivity(SignUpActivity.class);
-                    break;
-                */
-            }
-        }
-    };
 
     private void postsUpdate(final boolean clear) {
         updating = true;
@@ -153,10 +113,8 @@ public class LevelInfoFragment extends Fragment {
                     boolean isHere = false;
                     HashMap<String,String> h = (HashMap<String, String>)snapshot.getValue();
                     String[] level_s = h.get("level").split(String.valueOf(','));
-                    int[] num_s = new int[level_s.length];
                     for(int i=0;i<level_s.length; i++){
-                        num_s[i] = Integer.parseInt(level_s[i]);
-                        if(num_s[i]==setLevel){
+                        if(level_s[i].equals(mode+level)){
                             isHere = true;
                         }
                     }
@@ -206,7 +164,7 @@ public class LevelInfoFragment extends Fragment {
     }
 
     private void myStartActivity(Class c) {
-        Intent intent = new Intent(getActivity(), c);
+        Intent intent = new Intent(this, c);
         startActivityForResult(intent, 0);
     }
 }
