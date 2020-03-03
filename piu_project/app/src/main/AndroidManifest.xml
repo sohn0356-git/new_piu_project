@@ -26,6 +26,7 @@
         <activity android:name=".Activity.PasswordResetActivity"/>
         <activity android:name=".Activity.ShowInfoActivity"/>
         <activity android:name=".Activity.LevelInfoActivity"/>
+        <activity android:name=".Activity.CategoryInfoActivity"/>
     </application>
 
 </manifest>

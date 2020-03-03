@@ -43,7 +43,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/settingBackgroundLayout"
+            android:id="@+id/settingBackgroundLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#91646464"
@@ -51,7 +51,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_alignParentBottom="true"
                 android:elevation="10dp"
                 app:cardCornerRadius="15dp">
@@ -64,6 +64,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal"
                         android:padding="5dp">
 
@@ -81,15 +82,92 @@
                             android:layout_weight="8"
                             android:fastScrollEnabled="true" />
 
-                        <Button
-                            android:id="@+id/bt_set_level"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:text="확인" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/bt_set_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="확인" />
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:orientation="horizontal"-->
+                    <!--                        android:padding="5dp">-->
+
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:text="Level : " />-->
+
+                    <!--                        <EditText-->
+                    <!--                            android:id="@+id/et_set_level"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:ems="10"-->
+                    <!--                            android:inputType="number" />-->
+
+                    <!--                        <Button-->
+                    <!--                            android:id="@+id/bt_set_level"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:text="확인" />-->
+
+                    <!--                    </LinearLayout>-->
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/settingBackgroundLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#91646464"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_alignParentBottom="true"
+                android:elevation="10dp"
+                app:cardCornerRadius="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ListView
+                            android:id="@+id/listview3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:fastScrollEnabled="true" />
+
 
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/bt_set_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="확인" />
 
                     <!--                    <LinearLayout-->
                     <!--                        android:layout_width="match_parent"-->

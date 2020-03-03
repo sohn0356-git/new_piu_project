@@ -6,13 +6,25 @@ public class SongInfo {
     private String bpm;
     private String level;
     private String title;
+    private String category;
 
-    public SongInfo(String album, String artist, String bpm, String level, String title) {
+
+
+    public SongInfo(String album, String artist, String bpm, String level, String title, String category) {
         this.album = album;
         this.artist = artist;
         this.bpm = bpm;
         this.level = level;
         this.title = title;
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getAlbum() {
