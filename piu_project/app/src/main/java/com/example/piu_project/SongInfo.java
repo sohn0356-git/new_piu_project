@@ -7,8 +7,18 @@ public class SongInfo {
     private String level;
     private String title;
     private String category;
+    private String userLevel;
 
 
+    public SongInfo(String album, String artist, String bpm, String level, String title, String category, String userLevel) {
+        this.album = album;
+        this.artist = artist;
+        this.bpm = bpm;
+        this.level = level;
+        this.title = title;
+        this.category = category;
+        this.userLevel = userLevel;
+    }
 
     public SongInfo(String album, String artist, String bpm, String level, String title, String category) {
         this.album = album;
@@ -17,6 +27,19 @@ public class SongInfo {
         this.level = level;
         this.title = title;
         this.category = category;
+        this.userLevel="";
+    }
+
+    public int getUserLevel() {
+        if(userLevel.equals("")){
+            return -1;
+        }else {
+            return Integer.parseInt(userLevel);
+        }
+    }
+
+    public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
     }
 
     public String getCategory() {
