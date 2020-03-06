@@ -61,12 +61,16 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
     public void onBindViewHolder(@NonNull final MainViewHolder holder, int position) {
         CardView cardView = holder.cardView;
         ImageView photoImageVIew = cardView.findViewById(R.id.photoImageVIew);
-        TextView nameTextView = cardView.findViewById(R.id.nameTextView);
+        TextView tv_title = cardView.findViewById(R.id.tv_title);
+        TextView tv_artist = cardView.findViewById(R.id.tv_artist);
+        TextView tv_bpm = cardView.findViewById(R.id.tv_bpm);
         SongInfo songInfo = mDataset.get(position);
         if(mDataset.get(position).getAlbum() != null){
             Glide.with(activity).load(mDataset.get(position).getAlbum()).centerCrop().override(500).into(photoImageVIew);
         }
-        nameTextView.setText(songInfo.getTitle());
+        tv_title.setText(songInfo.getTitle());
+        tv_artist.setText(songInfo.getArtist());
+        tv_bpm.setText(songInfo.getBpm());
     }
 
     @Override

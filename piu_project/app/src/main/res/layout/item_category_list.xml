@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/photoImageVIew"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:adjustViewBounds="true"
                 app:srcCompat="@mipmap/ic_launcher_round" />
         </androidx.cardview.widget.CardView>
@@ -36,19 +36,19 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/nameTextView"
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="title" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tv_artist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="artist" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tv_bpm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="bpm" />

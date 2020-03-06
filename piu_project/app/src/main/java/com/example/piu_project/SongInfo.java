@@ -27,11 +27,10 @@ public class SongInfo {
         this.level = level;
         this.title = title;
         this.category = category;
-        this.userLevel="";
     }
 
     public int getUserLevel() {
-        if(userLevel.equals("")){
+        if(userLevel==null){
             return -1;
         }else {
             return Integer.parseInt(userLevel);

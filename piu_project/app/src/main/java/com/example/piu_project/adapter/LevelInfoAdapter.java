@@ -77,7 +77,8 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private FirebaseFirestore firebaseFirestore;
     private Spinner spinner_level;
     private RelativeLayout settingBackgroundLayout;
-    private ImageView[] iv_rank = new ImageView[13];
+    private ImageView iv_rank;
+    private int[] img_rank = {R.drawable.level_s,R.drawable.level_s,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a};
     private String[] rank =  {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
 
 
@@ -119,19 +120,6 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                 et2 = (EditText)(activity).findViewById(R.id.editText2);
                 et3 = (EditText)(activity).findViewById(R.id.editText3);
                 et4 = (EditText)(activity).findViewById(R.id.editText4);
-                iv_rank[0]=(ImageView)(cardView.findViewById(R.id.iv_r0));
-                iv_rank[1]=(ImageView)(cardView.findViewById(R.id.iv_r1));
-                iv_rank[2]=(ImageView)(cardView.findViewById(R.id.iv_r2));
-                iv_rank[3]=(ImageView)(cardView.findViewById(R.id.iv_r3));
-                iv_rank[4]=(ImageView)(cardView.findViewById(R.id.iv_r4));
-                iv_rank[5]=(ImageView)(cardView.findViewById(R.id.iv_r5));
-                iv_rank[6]=(ImageView)(cardView.findViewById(R.id.iv_r6));
-                iv_rank[7]=(ImageView)(cardView.findViewById(R.id.iv_r7));
-                iv_rank[8]=(ImageView)(cardView.findViewById(R.id.iv_r8));;
-                iv_rank[9]=(ImageView)(cardView.findViewById(R.id.iv_r9));
-                iv_rank[10]=(ImageView)(cardView.findViewById(R.id.iv_r10));
-                iv_rank[11]=(ImageView)(cardView.findViewById(R.id.iv_r11));
-                iv_rank[12]=(ImageView)(cardView.findViewById(R.id.iv_r12));
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 et1.setText("");
                 et2.setText("");
@@ -149,6 +137,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         settingBackgroundLayout.setVisibility(View.GONE);
                     }
                 });
+                iv_rank = (ImageView)cardView.findViewById(R.id.iv_rank);
                 (activity.findViewById(R.id.settingBackgroundLayout)).bringToFront();
                 (activity.findViewById(R.id.bt_gotoInfo)).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -183,13 +172,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         return mainViewHolder;
     }
     public void setRank(int selected_idx) {
-        for(int i=0;i<13;i++){
-            if(i!=selected_idx){
-                iv_rank[i].setVisibility(View.GONE);
-            }
-            else{
-                iv_rank[i].setVisibility(View.VISIBLE);
-            }
+        if(selected_idx==-1){
+            iv_rank.setVisibility(View.GONE);
+        }
+        else{
+            Glide.with(activity).load(img_rank[selected_idx]).centerCrop().override(500).into(iv_rank);
+            iv_rank.setVisibility(View.VISIBLE);
         }
     }
     private void findPicture(String title) {
@@ -218,7 +206,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("user_info").document(user.getUid()+mode+level+title);
+        DocumentReference docRef = db.collection(user.getUid()).document(mode+level+title);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -243,22 +231,11 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     @Override
     public void onBindViewHolder(@NonNull final MainViewHolder holder, int position) {
         CardView cardView = holder.cardView;
-        iv_rank[0]=(ImageView)(cardView.findViewById(R.id.iv_r0));
-        iv_rank[1]=(ImageView)(cardView.findViewById(R.id.iv_r1));
-        iv_rank[2]=(ImageView)(cardView.findViewById(R.id.iv_r2));
-        iv_rank[3]=(ImageView)(cardView.findViewById(R.id.iv_r3));
-        iv_rank[4]=(ImageView)(cardView.findViewById(R.id.iv_r4));
-        iv_rank[5]=(ImageView)(cardView.findViewById(R.id.iv_r5));
-        iv_rank[6]=(ImageView)(cardView.findViewById(R.id.iv_r6));
-        iv_rank[7]=(ImageView)(cardView.findViewById(R.id.iv_r7));
-        iv_rank[8]=(ImageView)(cardView.findViewById(R.id.iv_r8));;
-        iv_rank[9]=(ImageView)(cardView.findViewById(R.id.iv_r9));
-        iv_rank[10]=(ImageView)(cardView.findViewById(R.id.iv_r10));
-        iv_rank[11]=(ImageView)(cardView.findViewById(R.id.iv_r11));
-        iv_rank[12]=(ImageView)(cardView.findViewById(R.id.iv_r12));
+        iv_rank = (ImageView)cardView.findViewById(R.id.iv_rank);
         ImageView photoImageVIew = cardView.findViewById(R.id.photoImageVIew);
         TextView nameTextView = cardView.findViewById(R.id.nameTextView);
         SongInfo songInfo = mDataset.get(position);
+
         int t = songInfo.getUserLevel();
         setRank(t);
 

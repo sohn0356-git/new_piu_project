@@ -85,10 +85,11 @@ public class LevelInfoActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levelinfo);
-        setToolbarTitle("LEVEL");
+
         Intent intent = getIntent();
         level = intent.getStringExtra("setLevel");
         mode = intent.getStringExtra("setMode");
+        setToolbarTitle("LEVEL_"+mode+"_"+level);
         tv_title = (TextView)findViewById(R.id.tv_title);
         et1 = (EditText)findViewById(R.id.editText1);
         et2 = (EditText)findViewById(R.id.editText2);
@@ -141,8 +142,6 @@ public class LevelInfoActivity extends BasicActivity {
                     topScrolled = true;
                 }
                 if(newState == 0 && topScrolled){
-                    postsUpdate(true);
-                    songInfoUpdate(true);
                     topScrolled = false;
                 }
             }
@@ -159,7 +158,6 @@ public class LevelInfoActivity extends BasicActivity {
 
                 if(totalItemCount - 3 <= lastVisibleItemPosition && !updating){
                     postsUpdate(false);
-                    songInfoUpdate(false);
                 }
 
                 if(0 < firstVisibleItemPosition){
@@ -169,6 +167,16 @@ public class LevelInfoActivity extends BasicActivity {
         });
         postsUpdate(false);
         songInfoUpdate(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(settingBackgroundLayout.getVisibility()==View.VISIBLE) {
+            settingBackgroundLayout.setVisibility(View.GONE);
+        }else {
+            super.onBackPressed();
+            finish();
+        }
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -251,7 +259,7 @@ public class LevelInfoActivity extends BasicActivity {
 
     private void infoUploader(AchievementInfo achievementInfo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("user_info").document(user.getUid()+mode+level+title).set(achievementInfo)
+        db.collection(user.getUid()).document(mode+level+title).set(achievementInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -280,7 +288,6 @@ public class LevelInfoActivity extends BasicActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase database의 data를 GET
-                levelInfo.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
                     boolean isHere = false;
                     HashMap<String,String> h = (HashMap<String, String>)snapshot.getValue();
@@ -297,8 +304,8 @@ public class LevelInfoActivity extends BasicActivity {
                                 h.get("bpm"),
                                 h.get("level"),
                                 h.get("title"),
-                                h.get("category"), ""));
-                        //songInfoUpdate(true);
+                                h.get("category")));
+                        songInfoUpdate(true);
 
                     }
                 }
@@ -334,7 +341,7 @@ public class LevelInfoActivity extends BasicActivity {
     private void songInfoUpdate(final boolean clear) {
         updating = true;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("user_info")
+        db.collection(user.getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -31,108 +31,13 @@
                     android:adjustViewBounds="true" />
 
                 <ImageView
-                    android:id="@+id/iv_r0"
+                    android:id="@+id/iv_rank"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="right|top"
                     app:srcCompat="@drawable/level_s"
                     tools:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/iv_r1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r5"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r6"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r7"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r8"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r9"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r10"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r11"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_r12"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_a"
-                    tools:visibility="gone" />
             </FrameLayout>
 
         </androidx.cardview.widget.CardView>
