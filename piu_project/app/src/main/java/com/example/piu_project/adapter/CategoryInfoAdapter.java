@@ -2,6 +2,8 @@ package com.example.piu_project.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapter.MainViewHolder> {
     private ArrayList<SongInfo> mDataset;
     private Activity activity;
+    private Resources resources;
+    private TypedArray album_info;
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
@@ -31,9 +35,11 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
         }
     }
 
-    public CategoryInfoAdapter(Activity activity, ArrayList<SongInfo> myDataset) {
+    public CategoryInfoAdapter(Activity activity, ArrayList<SongInfo> myDataset, Resources resources) {
+        this.resources = resources;
         this.mDataset = myDataset;
         this.activity = activity;
+        album_info =resources.obtainTypedArray(R.array.album);
     }
 
     @Override
@@ -65,8 +71,9 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
         TextView tv_artist = cardView.findViewById(R.id.tv_artist);
         TextView tv_bpm = cardView.findViewById(R.id.tv_bpm);
         SongInfo songInfo = mDataset.get(position);
-        if(mDataset.get(position).getAlbum() != null){
-            Glide.with(activity).load(mDataset.get(position).getAlbum()).centerCrop().override(500).into(photoImageVIew);
+        int song_id =mDataset.get(position).getSong_id();
+        if(song_id != 0){
+            Glide.with(activity).load(album_info.getResourceId(song_id-1,-1)).centerCrop().override(500).into(photoImageVIew);
         }
         tv_title.setText(songInfo.getTitle());
         tv_artist.setText(songInfo.getArtist());
@@ -80,7 +87,6 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
 
     private void myStartActivity(Class c, SongInfo songInfo) {
         Intent intent = new Intent(activity, c);
-        intent.putExtra("album", songInfo.getAlbum());
         intent.putExtra("artist", songInfo.getArtist());
         intent.putExtra("bpm", songInfo.getBpm());
         intent.putExtra("level", songInfo.getLevel());

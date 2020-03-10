@@ -2,6 +2,7 @@ package com.example.piu_project.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,12 +48,17 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
@@ -95,17 +101,15 @@ public class LevelInfoActivity extends BasicActivity {
         et2 = (EditText)findViewById(R.id.editText2);
         et3 = (EditText)findViewById(R.id.editText3);
         et4 = (EditText)findViewById(R.id.editText4);
-        spinner = (Spinner)findViewById(R.id.spinner);
         iv_profile =(ImageView)(findViewById(R.id.iv_profile));
         iv_profile.setOnClickListener(onClickListener);
         settingBackgroundLayout = (findViewById(R.id.settingBackgroundLayout));
-        findViewById(R.id.bt_photo).setOnClickListener(onClickListener);
         findViewById(R.id.bt_check).setOnClickListener(onClickListener);
 
-        final int numberOfColumns = 3;
+        final int numberOfColumns = 5;
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level);
+        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources());
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
 
@@ -120,7 +124,18 @@ public class LevelInfoActivity extends BasicActivity {
         spinner_level.setAdapter(customSpinnerAdapter);
         // 스피너에서 아이템 선택시 호출하도록 합니다.
 
+        spinner_level = (Spinner)findViewById(R.id.spinner_level);
+        spinner_level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selected_idx = spinner_level.getSelectedItemPosition();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
@@ -140,6 +155,7 @@ public class LevelInfoActivity extends BasicActivity {
 
                 if(newState == 1 && firstVisibleItemPosition == 0){
                     topScrolled = true;
+                    postsUpdate(false);
                 }
                 if(newState == 0 && topScrolled){
                     topScrolled = false;
@@ -183,14 +199,12 @@ public class LevelInfoActivity extends BasicActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.bt_photo:
-                    myStartActivity(GalleryActivity.class);
-                    break;
                 case R.id.iv_profile:
                     myStartActivity(GalleryActivity.class);
                     break;
                 case R.id.bt_check:
                     photoUploader();
+                    levelInfoAdapter.setRank(selected_idx);
                     settingBackgroundLayout.setVisibility(View.GONE);
                     break;
             }
@@ -222,7 +236,7 @@ public class LevelInfoActivity extends BasicActivity {
         StorageReference storageRef = storage.getReference();
 
         title= tv_title.getText().toString();
-        selected_idx = spinner_level.getSelectedItemPosition();
+
         final StorageReference mountainImagesRef = storageRef.child("users/" + user.getUid()+"/" + mode+level+title+"/profile.jpg");
         if (profilePath != null) {
             try {
@@ -298,13 +312,21 @@ public class LevelInfoActivity extends BasicActivity {
                         }
                     }
                     if(isHere) {
+                        HashMap<String,HashMap<String, HashMap<String,String>>> h2 = (HashMap<String,HashMap<String, HashMap<String,String>>>)snapshot.getValue();
+                        HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
+                        HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
+                        HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
+                        String s = h3.get("song_id").toString();
                         levelInfo.add(new SongInfo(
-                                h.get("album"),
+                                s,
                                 h.get("artist"),
-                                h.get("bpm"),
-                                h.get("level"),
                                 h.get("title"),
-                                h.get("category")));
+                                h.get("level"),
+                                h.get("bpm"),
+                                h.get("category"),
+                                h.get("version"),
+                                stepmaker,
+                                youtubelink));
                         songInfoUpdate(true);
 
                     }

@@ -45,7 +45,7 @@ public class CategoryInfoActivity extends BasicActivity {
         final int numberOfColumns = 1;
         firebaseFirestore = FirebaseFirestore.getInstance();
         categoryInfo = new ArrayList<>();
-        categoryInfoAdapter = new CategoryInfoAdapter(this, categoryInfo);
+        categoryInfoAdapter = new CategoryInfoAdapter(this, categoryInfo,getResources());
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
@@ -111,14 +111,20 @@ public class CategoryInfoActivity extends BasicActivity {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
                     HashMap<String,String> h = (HashMap<String, String>)snapshot.getValue();
                     String h_category = h.get("category");
+                    HashMap<String,HashMap<String, HashMap<String,String>>> h2 = (HashMap<String,HashMap<String, HashMap<String,String>>>)snapshot.getValue();
+                    HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
+                    HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
                     if(h_category.equals(category)) {
                         categoryInfo.add(new SongInfo(
-                                h.get("album"),
+                                h.get("song_id").toString(),
                                 h.get("artist"),
-                                h.get("bpm"),
-                                h.get("level"),
                                 h.get("title"),
-                                h.get("category")));
+                                h.get("level"),
+                                h.get("bpm"),
+                                h.get("category"),
+                                h.get("version"),
+                                stepmaker,
+                                youtubelink));
                     }
                 }
                 categoryInfoAdapter.notifyDataSetChanged();                         //리스트 저장 및 새로고침

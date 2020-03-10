@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/photoImageVIew"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:adjustViewBounds="true"
                 app:srcCompat="@mipmap/ic_launcher_round" />
         </androidx.cardview.widget.CardView>

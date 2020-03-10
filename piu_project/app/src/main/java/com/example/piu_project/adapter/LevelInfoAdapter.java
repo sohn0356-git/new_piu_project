@@ -3,6 +3,8 @@ package com.example.piu_project.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.media.Image;
 import android.net.Uri;
 import android.util.Log;
@@ -78,9 +80,10 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private Spinner spinner_level;
     private RelativeLayout settingBackgroundLayout;
     private ImageView iv_rank;
+    private Resources resources;
     private int[] img_rank = {R.drawable.level_s,R.drawable.level_s,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a};
     private String[] rank =  {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
-
+    private TypedArray album_info;
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
@@ -92,11 +95,13 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 
     }
 
-    public LevelInfoAdapter(Activity activity, ArrayList<SongInfo> myDataset, String mode, String level) {
+    public LevelInfoAdapter(Activity activity, ArrayList<SongInfo> myDataset, String mode, String level, Resources resources) {
+        this.resources = resources;
         this.mDataset = myDataset;
         this.activity = activity;
         this.mode = mode;
         this.level = level;
+        album_info =resources.obtainTypedArray(R.array.album);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -150,18 +155,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                 infoUpdate(title);
                 findPicture(title);
 
-                spinner_level = (Spinner)(activity).findViewById(R.id.spinner_level);
-                spinner_level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        setRank(spinner_level.getSelectedItemPosition());
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
 
 
                 //v.findViewById(R.id.settingBackgroundLayout).setVisibility(View.VISIBLE);
@@ -177,7 +171,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         }
         else{
             Glide.with(activity).load(img_rank[selected_idx]).centerCrop().override(500).into(iv_rank);
-            iv_rank.setVisibility(View.VISIBLE);
+            iv_rank.setVisibility(View.GONE);
         }
     }
     private void findPicture(String title) {
@@ -239,8 +233,9 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         int t = songInfo.getUserLevel();
         setRank(t);
 
-        if(mDataset.get(position).getAlbum() != null){
-            Glide.with(activity).load(mDataset.get(position).getAlbum()).centerCrop().override(500).into(photoImageVIew);
+        int song_id =mDataset.get(position).getSong_id();
+        if(song_id != 0){
+            Glide.with(activity).load(album_info.getResourceId(song_id-1,0)).centerCrop().override(500).into(photoImageVIew);
         }
         nameTextView.setText(songInfo.getTitle());
     }
@@ -256,12 +251,17 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     }
     private void myStartActivity(Class c, SongInfo songInfo) {
         Intent intent = new Intent(activity, c);
-        intent.putExtra("album", songInfo.getAlbum());
+        intent.putExtra("song_id",songInfo.getSong_id());
         intent.putExtra("artist", songInfo.getArtist());
         intent.putExtra("bpm", songInfo.getBpm());
         intent.putExtra("level", songInfo.getLevel());
         intent.putExtra("title", songInfo.getTitle());
         intent.putExtra("category",songInfo.getCategory());
+        for( HashMap.Entry<String,HashMap<String,String>> elem : songInfo.getYoutubeLink().entrySet() ){
+            for( HashMap.Entry<String,String> yLink : elem.getValue().entrySet() ) {
+                intent.putExtra(elem.getKey()+yLink.getKey(),yLink.getValue());
+            }
+        }
         activity.startActivityForResult(intent, 0);
     }
 }

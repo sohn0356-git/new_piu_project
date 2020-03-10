@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="s_btn_on">
+        <item>@drawable/on_s01</item>
+        <item>@drawable/on_s02</item>
+        <item>@drawable/on_s03</item>
+        <item>@drawable/on_s04</item>
+        <item>@drawable/on_s05</item>
+        <item>@drawable/on_s06</item>
+        <item>@drawable/on_s07</item>
+        <item>@drawable/on_s08</item>
+        <item>@drawable/on_s09</item>
+        <item>@drawable/on_s10</item>
+        <item>@drawable/on_s11</item>
+        <item>@drawable/on_s12</item>
+        <item>@drawable/on_s13</item>
+        <item>@drawable/on_s14</item>
+        <item>@drawable/on_s15</item>
+        <item>@drawable/on_s16</item>
+        <item>@drawable/on_s17</item>
+        <item>@drawable/on_s18</item>
+        <item>@drawable/on_s19</item>
+        <item>@drawable/on_s20</item>
+        <item>@drawable/on_s21</item>
+        <item>@drawable/on_s22</item>
+        <item>@drawable/on_s23</item>
+        <item>@drawable/on_s24</item>
+        <item>@drawable/on_s25</item>
+        <item>@drawable/on_s26</item>
+    </array>
+</resources>

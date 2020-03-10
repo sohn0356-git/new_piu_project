@@ -53,19 +53,11 @@
 
                             <Spinner
                                 android:id="@+id/spinner_level"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="20dp"
-                                android:spinnerMode="dropdown" />
-
-                            <Spinner
-                                android:id="@+id/spinner"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginTop="20dp"
-                                android:entries="@array/levelarray" />
+                                android:spinnerMode="dropdown" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -196,22 +188,13 @@
                                     android:text="곡 정보" />
 
                                 <Button
-                                    android:id="@+id/bt_photo"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_margin="10dp"
-                                    android:layout_weight="1"
-                                    android:padding="5dp"
-                                    android:text="사진첨부" />
-
-                                <Button
                                     android:id="@+id/bt_check"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_margin="10dp"
                                     android:layout_weight="1"
                                     android:padding="5dp"
-                                    android:text="확인" />
+                                    android:text="업데이트" />
 
                             </LinearLayout>
 

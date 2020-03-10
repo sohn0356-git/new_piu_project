@@ -61,7 +61,7 @@ public class LevelInfoFragment extends Fragment {
         String b = "";
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfoAdapter = new LevelInfoAdapter(getActivity(), levelInfo,a,b);
+        levelInfoAdapter = new LevelInfoAdapter(getActivity(), levelInfo,a,b,getResources());
 
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
@@ -162,13 +162,18 @@ public class LevelInfoFragment extends Fragment {
                         }
                     }
                     if(isHere) {
-                        levelInfo.add(new SongInfo(
-                                h.get("album"),
-                                h.get("artist"),
-                                h.get("bpm"),
-                                h.get("level"),
-                                h.get("title"),
-                                h.get("category")));
+                        HashMap<String,HashMap<String, HashMap<String,String>>> h2 = (HashMap<String,HashMap<String, HashMap<String,String>>>)snapshot.getValue();
+                        HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
+                        HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
+//                        levelInfo.add(new SongInfo(
+//                                h.get("album"),
+//                                h.get("artist"),
+//                                h.get("bpm"),
+//                                h.get("level"),
+//                                h.get("title"),
+//                                h.get("category"),
+//                                youtubelink,
+//                                stepmaker));
                     }
                 }
                 levelInfoAdapter.notifyDataSetChanged();                         //리스트 저장 및 새로고침

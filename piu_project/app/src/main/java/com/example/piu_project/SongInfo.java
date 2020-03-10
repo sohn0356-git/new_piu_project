@@ -1,40 +1,70 @@
 package com.example.piu_project;
 
+import java.util.HashMap;
+
 public class SongInfo {
-    private String album;
+    private int song_id;
     private String artist;
-    private String bpm;
-    private String level;
     private String title;
+    private String level;
+    private String bpm;
     private String category;
+    private String version;
     private String userLevel;
+    private HashMap<String, HashMap<String,String>> stepmaker;
+    private HashMap<String, HashMap<String,String>> youtubeLink;
 
-
-    public SongInfo(String album, String artist, String bpm, String level, String title, String category, String userLevel) {
-        this.album = album;
-        this.artist = artist;
-        this.bpm = bpm;
-        this.level = level;
-        this.title = title;
-        this.category = category;
-        this.userLevel = userLevel;
+    public String getVersion() {
+        return version;
     }
 
-    public SongInfo(String album, String artist, String bpm, String level, String title, String category) {
-        this.album = album;
-        this.artist = artist;
-        this.bpm = bpm;
-        this.level = level;
-        this.title = title;
-        this.category = category;
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public int getUserLevel() {
-        if(userLevel==null){
+        if(userLevel==null || userLevel.equals("")){
             return -1;
         }else {
             return Integer.parseInt(userLevel);
         }
+    }
+
+    public SongInfo(String song_id, String artist, String title, String level, String bpm, String category, String version, HashMap<String, HashMap<String, String>> stepmaker, HashMap<String, HashMap<String, String>> youtubeLink) {
+        this.song_id = Integer.parseInt(song_id);
+        this.artist = artist;
+        this.title = title;
+        this.level = level;
+        this.bpm = bpm;
+        this.category = category;
+        this.version = version;
+        this.userLevel = "";
+        this.stepmaker = stepmaker;
+        this.youtubeLink = youtubeLink;
+    }
+
+    public int getSong_id() {
+        return song_id;
+    }
+
+    public void setSong_id(int song_id) {
+        this.song_id = song_id;
+    }
+
+    public HashMap<String, HashMap<String, String>> getYoutubeLink() {
+        return youtubeLink;
+    }
+
+    public void setYoutubeLink(HashMap<String, HashMap<String, String>> youtubeLink) {
+        this.youtubeLink = youtubeLink;
+    }
+
+    public HashMap<String, HashMap<String, String>> getStepmaker() {
+        return stepmaker;
+    }
+
+    public void setStepmaker(HashMap<String, HashMap<String, String>> stepmaker) {
+        this.stepmaker = stepmaker;
     }
 
     public void setUserLevel(String userLevel) {
@@ -49,9 +79,7 @@ public class SongInfo {
         this.category = category;
     }
 
-    public String getAlbum() {
-        return album;
-    }
+
 
     public String getArtist() {
         return artist;
@@ -69,9 +97,6 @@ public class SongInfo {
         return title;
     }
 
-    public void setAlbum(String album) {
-        this.album = album;
-    }
 
     public void setArtist(String artist) {
         this.artist = artist;

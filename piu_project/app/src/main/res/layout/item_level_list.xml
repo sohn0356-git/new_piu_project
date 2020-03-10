@@ -2,40 +2,38 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="75dp"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="10dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="30dp">
+            android:layout_height="wrap_content">
 
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/photoImageVIew"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:adjustViewBounds="true" />
 
                 <ImageView
                     android:id="@+id/iv_rank"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="right|top"
-                    app:srcCompat="@drawable/level_s"
+                    android:layout_gravity="bottom|right"
                     tools:visibility="gone" />
 
             </FrameLayout>
@@ -44,16 +42,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/nameTextView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="10sp"
                 android:textStyle="bold"
                 tools:text="Title" />
 
