@@ -81,7 +81,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private RelativeLayout settingBackgroundLayout;
     private ImageView iv_rank;
     private Resources resources;
-    private int[] img_rank = {R.drawable.level_s,R.drawable.level_s,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a,R.drawable.level_a};
+    private TypedArray img_rank;
     private String[] rank =  {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
     private TypedArray album_info;
 
@@ -102,7 +102,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         this.mode = mode;
         this.level = level;
         album_info =resources.obtainTypedArray(R.array.album);
-
+        img_rank = resources.obtainTypedArray(R.array.rank_img);
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
@@ -170,7 +170,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             iv_rank.setVisibility(View.GONE);
         }
         else{
-            Glide.with(activity).load(img_rank[selected_idx]).centerCrop().override(500).into(iv_rank);
+            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
             iv_rank.setVisibility(View.VISIBLE);
         }
     }

@@ -94,7 +94,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         this.title = title;
         s_button_on = resources.obtainTypedArray(R.array.s_btn_on);
         s_button_off = resources.obtainTypedArray(R.array.s_btn_off);
-        img_rank = resources.obtainTypedArray(R.array.rank);
+        img_rank = resources.obtainTypedArray(R.array.rank_img);
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
 

@@ -2,6 +2,7 @@ package com.example.piu_project.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,12 +40,12 @@ public class MainActivity extends BasicActivity {
     private String level="";
     private String mode="";
     private String category="";
-    ListView listview1;
-    ListView listview2;
-    ListView listview3;
-    ListViewAdapter listViewAdapter1;
-    ListViewAdapter listViewAdapter2;
-    ListViewAdapter listViewAdapter3;
+    private ListView listview1;
+    private ListView listview2;
+    private ListView listview3;
+    private ListViewAdapter listViewAdapter1;
+    private ListViewAdapter listViewAdapter2;
+    private ListViewAdapter listViewAdapter3;
     private ArrayList<ListItem> itemList1 = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList2 = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
@@ -175,49 +176,18 @@ public class MainActivity extends BasicActivity {
     }
 
     private void listSetup(){
-        listViewAdapter1.addItem("Single");
-        listViewAdapter1.addItem("Double");
-        listViewAdapter1.addItem("Coop");
-        listViewAdapter1.addItem("SinglePerformance");
-        listViewAdapter1.addItem("DoublePerformance");
-        listViewAdapter2.addItem("01");
-        listViewAdapter2.addItem("02");
-        listViewAdapter2.addItem("03");
-        listViewAdapter2.addItem("04");
-        listViewAdapter2.addItem("05");
-        listViewAdapter2.addItem("06");
-        listViewAdapter2.addItem("07");
-        listViewAdapter2.addItem("08");
-        listViewAdapter2.addItem("09");
-        listViewAdapter2.addItem("10");
-        listViewAdapter2.addItem("11");
-        listViewAdapter2.addItem("12");
-        listViewAdapter2.addItem("13");
-        listViewAdapter2.addItem("14");
-        listViewAdapter2.addItem("15");
-        listViewAdapter2.addItem("16");
-        listViewAdapter2.addItem("17");
-        listViewAdapter2.addItem("18");
-        listViewAdapter2.addItem("19");
-        listViewAdapter2.addItem("20");
-        listViewAdapter2.addItem("21");
-        listViewAdapter2.addItem("22");
-        listViewAdapter2.addItem("23");
-        listViewAdapter2.addItem("24");
-        listViewAdapter2.addItem("25");
-        listViewAdapter2.addItem("26");
-        listViewAdapter2.addItem("27");
-        listViewAdapter2.addItem("28");
-        listViewAdapter2.addItem("29");
-        listViewAdapter3.addItem("K-Pop");
-        listViewAdapter3.addItem("Original");
-        listViewAdapter3.addItem("World Music");
-        listViewAdapter3.addItem("J-Music");
-        listViewAdapter3.addItem("XROSS");
-        listViewAdapter3.addItem("Shortcut");
-        listViewAdapter3.addItem("Remix");
-        listViewAdapter3.addItem("Full Songs");
-        listViewAdapter3.addItem("Co op");
+        String[] mode_string = getResources().getStringArray(R.array.mode_string);
+        for(int i=0;i<mode_string.length;i++){
+            listViewAdapter1.addItem(mode_string[i]);
+        }
+        String[] level_string = getResources().getStringArray(R.array.level_string);
+        for(int i=0;i<level_string.length;i++){
+            listViewAdapter2.addItem(level_string[i]);
+        }
+        String[] category_string = getResources().getStringArray(R.array.category_string);
+        for(int i=0;i<category_string.length;i++){
+            listViewAdapter3.addItem(category_string[i]);
+        }
 
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -381,5 +351,15 @@ public class MainActivity extends BasicActivity {
         intent.putExtra("setLevel", level);
         intent.putExtra("setMode", mode);
         startActivityForResult(intent, 1);
+    }
+    @Override
+    public void onBackPressed() {
+        if(settingBackgroundLayout1.getVisibility()==View.VISIBLE) {
+            settingBackgroundLayout1.setVisibility(View.GONE);
+        }else if(settingBackgroundLayout2.getVisibility()==View.VISIBLE) {
+            settingBackgroundLayout2.setVisibility(View.GONE);
+        }else {
+            super.onBackPressed();
+        }
     }
 }

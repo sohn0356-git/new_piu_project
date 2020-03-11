@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="rank">
+    <array name="rank_img">
         <item>@drawable/level_s</item>
         <item>@drawable/level_s</item>
         <item>@drawable/level_a</item>

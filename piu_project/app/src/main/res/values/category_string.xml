@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_string">
+        <item>K-Pop</item>
+        <item>Original</item>
+        <item>World Music</item>
+        <item>J-Music</item>
+        <item>XROSS</item>
+        <item>Shortcut</item>
+        <item>Remix</item>
+        <item>Full Songs</item>
+        <item>Co op</item>
+    </string-array>
+</resources>
