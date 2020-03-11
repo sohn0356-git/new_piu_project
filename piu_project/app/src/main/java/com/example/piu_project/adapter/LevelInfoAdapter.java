@@ -171,7 +171,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         }
         else{
             Glide.with(activity).load(img_rank[selected_idx]).centerCrop().override(500).into(iv_rank);
-            iv_rank.setVisibility(View.GONE);
+            iv_rank.setVisibility(View.VISIBLE);
         }
     }
     private void findPicture(String title) {

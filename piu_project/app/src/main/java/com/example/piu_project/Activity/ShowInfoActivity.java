@@ -78,7 +78,7 @@ public class ShowInfoActivity extends BasicActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView_level);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        RecyclerView.Adapter mAdapter = new ShowInfoAdapter(this, userDetail,iv_info,resources);
+        RecyclerView.Adapter mAdapter = new ShowInfoAdapter(this, userDetail,iv_info,title,resources);
         recyclerView.setAdapter(mAdapter);
 
     }

@@ -31,8 +31,8 @@
 
                 <ImageView
                     android:id="@+id/iv_rank"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="bottom|right"
                     tools:visibility="gone" />
 

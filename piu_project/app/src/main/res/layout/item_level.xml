@@ -34,7 +34,7 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_gravity="bottom|center"
-            app:srcCompat="@drawable/level_s" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_level"
