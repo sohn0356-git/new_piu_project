@@ -115,8 +115,10 @@ public class CategoryInfoActivity extends BasicActivity {
                     HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
                     HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
                     if(h_category.equals(category)) {
+                        HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
+                        String s = h3.get("song_id").toString();
                         categoryInfo.add(new SongInfo(
-                                h.get("song_id").toString(),
+                                s,
                                 h.get("artist"),
                                 h.get("title"),
                                 h.get("level"),

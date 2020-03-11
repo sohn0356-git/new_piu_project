@@ -20,6 +20,7 @@ import com.example.piu_project.R;
 import com.example.piu_project.SongInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapter.MainViewHolder> {
     private ArrayList<SongInfo> mDataset;
@@ -87,10 +88,17 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
 
     private void myStartActivity(Class c, SongInfo songInfo) {
         Intent intent = new Intent(activity, c);
+        intent.putExtra("song_id",songInfo.getSong_id());
         intent.putExtra("artist", songInfo.getArtist());
         intent.putExtra("bpm", songInfo.getBpm());
         intent.putExtra("level", songInfo.getLevel());
         intent.putExtra("title", songInfo.getTitle());
+        intent.putExtra("category",songInfo.getCategory());
+        for( HashMap.Entry<String,HashMap<String,String>> elem : songInfo.getYoutubeLink().entrySet() ){
+            for( HashMap.Entry<String,String> yLink : elem.getValue().entrySet() ) {
+                intent.putExtra(elem.getKey()+yLink.getKey(),yLink.getValue());
+            }
+        }
         activity.startActivityForResult(intent, 0);
     }
 }
