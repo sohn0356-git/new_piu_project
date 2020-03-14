@@ -3,6 +3,9 @@ package com.example.piu_project.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.piu_project.R;
 import com.example.piu_project.SongInfo;
 import com.example.piu_project.adapter.CategoryInfoAdapter;
+import com.example.piu_project.adapter.CustomSpinnerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +32,12 @@ public class CategoryInfoActivity extends BasicActivity {
     private CategoryInfoAdapter categoryInfoAdapter;
     private ArrayList<SongInfo> categoryInfo;
     private boolean updating;
-    private String category;
+    private String category="All";
+    private String version = "All";
+    private Spinner spinner_version;
+    private Spinner spinner_category;
+    private String[] categoryList = new String[]{"All","New tunes","K-pop", "Original", "World music", "J-music", "Xross", "Shortcut", "Remix", "Full song"};
+    private String[] versionList = new String[]{"1st", "2nd", "OBG3", "OBGS", "Perf", "Extra", "Rebirth", "Premiere3", "Prex3", "Exceed", "Exceed2", "Zero", "NX", "NX2","NXA", "Fiesta", "FiestaEX", "Fiesta2", "Prime", "Prime2", "XX"};
     private boolean topScrolled;
 
 
@@ -38,14 +47,46 @@ public class CategoryInfoActivity extends BasicActivity {
         setContentView(R.layout.activity_categoryinfo);
         setToolbarTitle("CATEGORY");
 
-        Intent intent = getIntent();
-        category = intent.getStringExtra("setCategory");
-
 
         final int numberOfColumns = 1;
         firebaseFirestore = FirebaseFirestore.getInstance();
         categoryInfo = new ArrayList<>();
         categoryInfoAdapter = new CategoryInfoAdapter(this, categoryInfo,getResources());
+        spinner_category = (Spinner)findViewById(R.id.spinner_category);
+        spinner_version = (Spinner)findViewById(R.id.spinner_version);
+
+        int[] si_category = new int[]{R.drawable.ct_nt00, R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
+        int[] si_version = new int[]{R.drawable.ct_fs00, R.drawable.ct_jm00, R.drawable.ct_kp00, R.drawable.ct_nt00,R.drawable.ct_or00, R.drawable.ct_re00, R.drawable.ct_sc00, R.drawable.ct_wm00,R.drawable.ct_xr00};
+        CustomSpinnerAdapter csa_category = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_category);
+        spinner_category.setAdapter(csa_category);
+        // 스피너에서 아이템 선택시 호출하도록 합니다.
+
+        spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                category = categoryList[spinner_category.getSelectedItemPosition()];
+                postsUpdate(true);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        CustomSpinnerAdapter csa_version = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_version);
+        spinner_version.setAdapter(csa_version);
+        // 스피너에서 아이템 선택시 호출하도록 합니다.
+        spinner_version.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                version = versionList[spinner_version.getSelectedItemPosition()];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
@@ -107,14 +148,29 @@ public class CategoryInfoActivity extends BasicActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase database의 data를 GET
-                categoryInfo.clear();
+                if(clear) {
+                    categoryInfo.clear();
+                }
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
                     HashMap<String,String> h = (HashMap<String, String>)snapshot.getValue();
                     String h_category = h.get("category");
                     HashMap<String,HashMap<String, HashMap<String,String>>> h2 = (HashMap<String,HashMap<String, HashMap<String,String>>>)snapshot.getValue();
                     HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
                     HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
-                    if(h_category.equals(category)) {
+                    if(category.equals("All")){
+                        HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
+                        String s = h3.get("song_id").toString();
+                        categoryInfo.add(new SongInfo(
+                                s,
+                                h.get("artist"),
+                                h.get("title"),
+                                h.get("level"),
+                                h.get("bpm"),
+                                h.get("category"),
+                                h.get("version"),
+                                stepmaker,
+                                youtubelink));
+                    }else if(h_category.equals(category)) {
                         HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
                         String s = h3.get("song_id").toString();
                         categoryInfo.add(new SongInfo(

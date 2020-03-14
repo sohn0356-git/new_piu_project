@@ -293,8 +293,9 @@ public class MainActivity extends BasicActivity {
                     page = 1;
                     break;
                 case R.id.bt_category:
-                    settingBackgroundLayout2.setVisibility(View.VISIBLE);
-                    page = 2;
+                    myStartActivity(CategoryInfoActivity.class);
+//                    settingBackgroundLayout2.setVisibility(View.VISIBLE);
+//                    page = 2;
                     break;
                 case R.id.bt_logout:
                     FirebaseAuth.getInstance().signOut();
@@ -319,21 +320,22 @@ public class MainActivity extends BasicActivity {
                             break;
 
                 case R.id.bt_set_category:
-                            if(category.equals("")){
-                                showToast(MainActivity.this, "정보를 다 입력해주세요!");
-                            } else {
-                                settingBackgroundLayout2.setVisibility(View.GONE);
-                                myStartActivity(CategoryInfoActivity.class);
-                                category="";
-                            }
-                            break;
+
+//                            if(category.equals("")){
+//                                showToast(MainActivity.this, "정보를 다 입력해주세요!");
+//                            } else {
+//                                settingBackgroundLayout2.setVisibility(View.GONE);
+//
+//                                category="";
+//                            }
+//                            break;
 //                    LevelInfoFragment levelInfoFragment = new LevelInfoFragment();
 //                    levelInfoFragment.SetLevel(setLevel);
 //                    curFragment = levelInfoFragment;
 //                    getSupportFragmentManager().beginTransaction()
 //                            .replace(R.id.container, levelInfoFragment)
 //                            .commit();
-//                    break;
+                    break;
             }
         }
     };

@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/imageview_spinner_image"
-        android:layout_width="32dp"
-        android:layout_height="32dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
 
 </RelativeLayout>
