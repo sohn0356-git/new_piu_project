@@ -117,6 +117,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 if (selectedLevel.charAt(0) == 'S') {
                     Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                 }
+                boolean newPick = !selectedLevel.equals(((TextView)v.findViewById(R.id.tv_level)).getText().toString());
                 selectedImg = v.findViewById(R.id.imageView);
                 String eLink = ((TextView)v.findViewById(R.id.tv_eLink)).getText().toString();
                 String jLink = ((TextView)v.findViewById(R.id.tv_jLink)).getText().toString();
@@ -126,35 +127,43 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 ImageView iv_jLink = (activity).findViewById(R.id.iv_jLink);
                 ImageView iv_nLink = (activity).findViewById(R.id.iv_nLink);
                 loaderLayout = activity.findViewById(R.id.loaderLyaout);
-                loaderLayout.setVisibility(View.VISIBLE);
-                findPicture();
+                if(newPick) {
+                    loaderLayout.setVisibility(View.VISIBLE);
+                    findPicture();
 
-                level_i = 1;
-                if (selectedLevel.charAt(0) == 'S') {
-                    level_i = parseInt(selectedLevel.substring(1));
-                } else {
-                    if (selectedLevel.charAt(0) == 'D' && selectedLevel.charAt(1) != 'P') {
+                    level_i = 1;
+                    if (selectedLevel.charAt(0) == 'S') {
                         level_i = parseInt(selectedLevel.substring(1));
+                    } else {
+                        if (selectedLevel.charAt(0) == 'D' && selectedLevel.charAt(1) != 'P') {
+                            level_i = parseInt(selectedLevel.substring(1));
+                        }
                     }
-                }
-                if (selectedLevel.charAt(0) == 'S') {
-                    Glide.with(activity).load(s_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
-                }
+                    if (selectedLevel.charAt(0) == 'S') {
+                        Glide.with(activity).load(s_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    }
 
 
-                if(!eLink.equals("")) {
-                    iv_eLink.setVisibility(View.VISIBLE);
-                }else{
+                    if (!eLink.equals("")) {
+                        iv_eLink.setVisibility(View.VISIBLE);
+                    } else {
+                        iv_eLink.setVisibility(View.GONE);
+                    }
+                    if (!jLink.equals("")) {
+                        iv_jLink.setVisibility(View.VISIBLE);
+                    } else {
+                        iv_jLink.setVisibility(View.GONE);
+                    }
+                    if (!nLink.equals("")) {
+                        iv_nLink.setVisibility(View.VISIBLE);
+                    } else {
+                        iv_nLink.setVisibility(View.GONE);
+                    }
+                } else {
+                    selectedLevel="None";
+                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_info);
                     iv_eLink.setVisibility(View.GONE);
-                }
-                if(!jLink.equals("")) {
-                    iv_jLink.setVisibility(View.VISIBLE);
-                }else{
                     iv_jLink.setVisibility(View.GONE);
-                }
-                if(!nLink.equals("")) {
-                    iv_nLink.setVisibility(View.VISIBLE);
-                }else{
                     iv_nLink.setVisibility(View.GONE);
                 }
             }
@@ -221,9 +230,6 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         if (level.charAt(0) == 'S') {
             Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
         }
-
-
-        String ab = mDataset.get(position).getAchivement();
 
         ((TextView)cardView.findViewById(R.id.tv_eLink)).setText(mDataset.get(position).getYoutubeLinkE());
         ((TextView)cardView.findViewById(R.id.tv_jLink)).setText(mDataset.get(position).getYoutubeLinkJ());

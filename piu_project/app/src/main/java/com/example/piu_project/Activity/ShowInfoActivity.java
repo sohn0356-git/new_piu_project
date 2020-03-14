@@ -59,11 +59,13 @@ public class ShowInfoActivity extends BasicActivity {
         tv_bpm.setText("BPM : "+bpm);
         ArrayList<UserDetail> userDetail = new ArrayList<>();;
         List<Pair<String, String>> user_Achievement = new ArrayList<>();
+
+
 //        if(!song_id.equals("")&&!(song_id==null)) {
 //            Glide.with(this).load(album_info.getResourceId(Integer.parseInt(song_id), 0)).centerCrop().override(500).into(profileImageVIew);
 //        }else{
             int temp = intent.getIntExtra("song_id",-1);
-            Glide.with(this).load(album_info.getResourceId(temp-1,0)).centerCrop().override(500).into(profileImageVIew);
+            Glide.with(this).load(album_info.getResourceId(temp,0)).centerCrop().override(500).into(profileImageVIew);
 //        }
         String[] level_s = level.split(String.valueOf(','));
         for(int i=0;i<level_s.length; i++){
