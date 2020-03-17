@@ -24,22 +24,55 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
 
                 <Spinner
                     android:id="@+id/spinner_category"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_margin="5dp"
-                    android:spinnerMode="dropdown" />
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/spinner_background"
+                    android:dropDownWidth="150dp"
+
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="@drawable/spinner_background"
+                    android:theme="@style/SpinnerTheme" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000" />
+
 
                 <Spinner
                     android:id="@+id/spinner_version"
-                    android:layout_width="100dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:spinnerMode="dropdown" />
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/spinner_background"
+                    android:popupBackground="@drawable/spinner_background"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:theme="@style/SpinnerTheme" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

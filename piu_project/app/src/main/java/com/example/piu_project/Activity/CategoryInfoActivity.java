@@ -1,8 +1,10 @@
 package com.example.piu_project.Activity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -36,10 +38,9 @@ public class CategoryInfoActivity extends BasicActivity {
     private String version = "All";
     private Spinner spinner_version;
     private Spinner spinner_category;
-    private String[] categoryList = new String[]{"All","New tunes","K-pop", "Original", "World music", "J-music", "Xross", "Shortcut", "Remix", "Full song"};
+    private String[] categoryList = new String[]{"All","K-pop", "Original", "World music", "J-music", "Xross", "Shortcut", "Remix", "Full song"};
     private String[] versionList = new String[]{"1st", "2nd", "OBG3", "OBGS", "Perf", "Extra", "Rebirth", "Premiere3", "Prex3", "Exceed", "Exceed2", "Zero", "NX", "NX2","NXA", "Fiesta", "FiestaEX", "Fiesta2", "Prime", "Prime2", "XX"};
     private boolean topScrolled;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +48,15 @@ public class CategoryInfoActivity extends BasicActivity {
         setContentView(R.layout.activity_categoryinfo);
         setToolbarTitle("CATEGORY");
 
-
         final int numberOfColumns = 1;
         firebaseFirestore = FirebaseFirestore.getInstance();
         categoryInfo = new ArrayList<>();
         categoryInfoAdapter = new CategoryInfoAdapter(this, categoryInfo,getResources());
         spinner_category = (Spinner)findViewById(R.id.spinner_category);
         spinner_version = (Spinner)findViewById(R.id.spinner_version);
-
-        int[] si_category = new int[]{R.drawable.ct_nt00, R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
-        int[] si_version = new int[]{R.drawable.ct_fs00, R.drawable.ct_jm00, R.drawable.ct_kp00, R.drawable.ct_nt00,R.drawable.ct_or00, R.drawable.ct_re00, R.drawable.ct_sc00, R.drawable.ct_wm00,R.drawable.ct_xr00};
+        int[] si_category = new int[]{R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
+//        int[] si_category = new int[]{R.drawable.ct_nt00, R.drawable.ct_kp00};
+        int[] si_version = new int[]{R.drawable.ct_fs00, R.drawable.ct_jm00, R.drawable.ct_kp00, R.drawable.ct_nt00,R.drawable.ct_or00, R.drawable.ct_re00, R.drawable.ct_sc00, R.drawable.ct_wm00,R.drawable.ct_xr00,R.drawable.ct_fs00, R.drawable.ct_jm00, R.drawable.ct_kp00, R.drawable.ct_nt00,R.drawable.ct_or00, R.drawable.ct_re00, R.drawable.ct_sc00, R.drawable.ct_wm00,R.drawable.ct_xr00};
         CustomSpinnerAdapter csa_category = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_category);
         spinner_category.setAdapter(csa_category);
         // 스피너에서 아이템 선택시 호출하도록 합니다.
