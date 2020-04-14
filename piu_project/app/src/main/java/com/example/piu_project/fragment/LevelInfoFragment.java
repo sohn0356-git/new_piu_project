@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -59,9 +60,10 @@ public class LevelInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_levelinfo, container, false);
         String a="";
         String b = "";
+        RelativeLayout settingBackgroundLayout = getActivity().findViewById(R.id.settingBackgroundLayout);
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfoAdapter = new LevelInfoAdapter(getActivity(), levelInfo,a,b,getResources());
+        levelInfoAdapter = new LevelInfoAdapter(getActivity(), levelInfo,a,b,getResources(),settingBackgroundLayout);
 
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 

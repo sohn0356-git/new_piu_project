@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 
@@ -55,7 +56,8 @@ public class MainActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setToolbarTitle(getResources().getString(R.string.app_name));
+        setToolbarTitle("piu project");
+
         init();
 
     }

@@ -1,10 +1,8 @@
 package com.example.piu_project.Activity;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -61,6 +59,7 @@ public class CategoryInfoActivity extends BasicActivity {
         spinner_category.setAdapter(csa_category);
         // 스피너에서 아이템 선택시 호출하도록 합니다.
 
+
         spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -75,6 +74,7 @@ public class CategoryInfoActivity extends BasicActivity {
         });
         CustomSpinnerAdapter csa_version = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_version);
         spinner_version.setAdapter(csa_version);
+
         // 스피너에서 아이템 선택시 호출하도록 합니다.
         spinner_version.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 

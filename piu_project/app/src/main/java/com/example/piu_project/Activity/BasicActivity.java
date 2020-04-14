@@ -3,6 +3,7 @@ package com.example.piu_project.Activity;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.ActionBar;
@@ -12,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.piu_project.R;
 
 public class BasicActivity extends AppCompatActivity {
-
+    private TextView tv_title;
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class BasicActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
+        tv_title = (TextView)findViewById(R.id.toolbar_title);
         setSupportActionBar(myToolbar);
     }
 
@@ -33,6 +35,7 @@ public class BasicActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){
             actionBar.setTitle(title);
+            tv_title.setText(title);
         }
     }
 }

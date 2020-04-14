@@ -2,7 +2,6 @@ package com.example.piu_project.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.example.piu_project.AchievementInfo;
 import com.example.piu_project.R;
 import com.example.piu_project.SongInfo;
-import com.example.piu_project.UserInfo;
 import com.example.piu_project.adapter.CustomSpinnerAdapter;
 import com.example.piu_project.adapter.LevelInfoAdapter;
 import com.google.android.gms.tasks.Continuation;
@@ -38,9 +36,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,17 +43,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
@@ -86,6 +76,8 @@ public class LevelInfoActivity extends BasicActivity {
     private String profilePath;
     private TextView tv_title;
     private int selected_idx;
+    private int col_cnt;
+    private final int numberOfColumns = 5;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,10 +98,10 @@ public class LevelInfoActivity extends BasicActivity {
         settingBackgroundLayout = (findViewById(R.id.settingBackgroundLayout));
         findViewById(R.id.bt_check).setOnClickListener(onClickListener);
 
-        final int numberOfColumns = 5;
+
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources());
+        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
 
@@ -155,7 +147,6 @@ public class LevelInfoActivity extends BasicActivity {
 
                 if(newState == 1 && firstVisibleItemPosition == 0){
                     topScrolled = true;
-                    postsUpdate(false);
                 }
                 if(newState == 0 && topScrolled){
                     topScrolled = false;
@@ -173,7 +164,10 @@ public class LevelInfoActivity extends BasicActivity {
                 int lastVisibleItemPosition = ((LinearLayoutManager)layoutManager).findLastVisibleItemPosition();
 
                 if(totalItemCount - 3 <= lastVisibleItemPosition && !updating){
-                    postsUpdate(false);
+//                    for(int i=7;i>=0;i--) {
+//                        postsUpdate(false,i);
+//                    }
+//                    postsUpdate(false,7);
                 }
 
                 if(0 < firstVisibleItemPosition){
@@ -181,9 +175,14 @@ public class LevelInfoActivity extends BasicActivity {
                 }
             }
         });
-        postsUpdate(false);
+        for(int i=7;i>=0;i--) {
+            postsUpdate(false,i);
+        }
+
         songInfoUpdate(false);
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -293,7 +292,7 @@ public class LevelInfoActivity extends BasicActivity {
 
 
 
-    private void postsUpdate(final boolean clear) {
+    private void postsUpdate(final boolean clear, int _detailDifficulty) {
         updating = true;
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
         FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
@@ -304,6 +303,7 @@ public class LevelInfoActivity extends BasicActivity {
                 //firebase database의 data를 GET
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
                     boolean isHere = false;
+
                     HashMap<String,String> h = (HashMap<String, String>)snapshot.getValue();
                     String[] level_s = h.get("level").split(String.valueOf(','));
                     for(int i=0;i<level_s.length; i++){
@@ -312,26 +312,37 @@ public class LevelInfoActivity extends BasicActivity {
                         }
                     }
                     if(isHere) {
-                        HashMap<String,HashMap<String, HashMap<String,String>>> h2 = (HashMap<String,HashMap<String, HashMap<String,String>>>)snapshot.getValue();
-                        HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
-                        HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
-                        HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
-                        String s = h3.get("song_id").toString();
-                        levelInfo.add(new SongInfo(
-                                s,
-                                h.get("artist"),
-                                h.get("title"),
-                                h.get("level"),
-                                h.get("bpm"),
-                                h.get("category"),
-                                h.get("version"),
-                                stepmaker,
-                                youtubelink));
-                        songInfoUpdate(true);
+                        int difficulty=0;
+                        HashMap<String, HashMap<String, HashMap<String, String>>> h2 = (HashMap<String, HashMap<String, HashMap<String, String>>>) snapshot.getValue();
+                        HashMap<String, HashMap<String, String>> youtubelink = h2.get("youtubeLink");
+                        HashMap<String, HashMap<String, String>> stepmaker = h2.get("stepmaker");
 
+
+                        HashMap<String, HashMap<String, String>> h3 =(HashMap<String, HashMap<String, String>>)snapshot.getValue();
+                        HashMap<String, String> detailDifficulty = h3.get("detailDifficulty");
+                        Log.e("Msg","error : "+h.get("title"));
+                        difficulty = Integer.parseInt(detailDifficulty.get(mode+level));
+
+                        if (difficulty == _detailDifficulty) {
+                            col_cnt++;
+                            HashMap<String, Long> h4 = (HashMap<String, Long>) snapshot.getValue();
+                            String s = h4.get("song_id").toString();
+                            levelInfo.add(new SongInfo(
+                                    s,
+                                    h.get("artist"),
+                                    h.get("title"),
+                                    h.get("level"),
+                                    h.get("bpm"),
+                                    h.get("category"),
+                                    h.get("version"),
+                                    stepmaker,
+                                    youtubelink,
+                                    String.valueOf(difficulty)));
+                            songInfoUpdate(true);
+                            levelInfoAdapter.notifyDataSetChanged();
+                        }
                     }
-                }
-                levelInfoAdapter.notifyDataSetChanged();                         //리스트 저장 및 새로고침
+                }                       //리스트 저장 및 새로고침
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

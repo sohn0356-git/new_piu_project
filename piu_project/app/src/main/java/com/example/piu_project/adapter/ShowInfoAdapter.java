@@ -132,14 +132,14 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                     findPicture();
 
                     level_i = 1;
-                    if (selectedLevel.charAt(0) == 'S') {
+                    if (selectedLevel.charAt(0) == 'S' && selectedLevel.charAt(1)!='P') {
                         level_i = parseInt(selectedLevel.substring(1));
                     } else {
                         if (selectedLevel.charAt(0) == 'D' && selectedLevel.charAt(1) != 'P') {
                             level_i = parseInt(selectedLevel.substring(1));
                         }
                     }
-                    if (selectedLevel.charAt(0) == 'S') {
+                    if (selectedLevel.charAt(0) == 'S' && selectedLevel.charAt(1)!='P') {
                         Glide.with(activity).load(s_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                     }
 
@@ -220,14 +220,14 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
             selectedLevel=level;
         }
         int level_i = 1;
-        if (level.charAt(0) == 'S') {
-            level_i = parseInt(level.substring(1));
+        if (level.charAt(0) == 'S' && level.charAt(1)!='P') {
+                level_i = parseInt(level.substring(1));
         } else {
             if (level.charAt(0) == 'D' && level.charAt(1) != 'P') {
                 level_i = parseInt(level.substring(1));
             }
         }
-        if (level.charAt(0) == 'S') {
+        if (level.charAt(0) == 'S' && level.charAt(1)!='P') {
             Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
         }
 
