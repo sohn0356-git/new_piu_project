@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.media.Image;
 import android.net.Uri;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -63,9 +66,10 @@ import java.util.HashMap;
 import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
 
-public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.MainViewHolder> {
+public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.MainViewHolder> implements Filterable {
     private static final String TAG = "LevelInfoActivity";
-    private ArrayList<SongInfo> mDataset;
+    private ArrayList<SongInfo> mUFDataset;
+    private ArrayList<SongInfo> mFDataset;
     private Activity activity;
     private EditText et1;
     private EditText et2;
@@ -81,13 +85,13 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private FirebaseFirestore firebaseFirestore;
     private Spinner spinner_level;
     private RelativeLayout settingBackgroundLayout;
-    private ImageView iv_rank;
+    private ImageView[] iv_rank = new ImageView[13];
     private Resources resources;
     private TypedArray img_rank;
     private String[] rank =  {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
     private TypedArray album_info;
     private int [] difficultyCount={0,0,0,0,0,0,0,0};
-    private int [] difficultyColor={Color.parseColor("#14148C"),Color.parseColor("#7878E1"),Color.parseColor("#73E1E1"),Color.parseColor("#5CEEE6"),
+    private int [] difficultyColor={Color.parseColor("#808080"),Color.parseColor("#7878E1"),Color.parseColor("#73E1E1"),Color.parseColor("#5CEEE6"),
             Color.parseColor("#73EA88"),Color.parseColor("#63CC63"),Color.parseColor("#FFD732"),Color.parseColor("#FFFF0000"),};
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
@@ -101,8 +105,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     }
 
     public LevelInfoAdapter(Activity activity, ArrayList<SongInfo> myDataset, String mode, String level, Resources resources, RelativeLayout settingBackgroundLayout) {
+
+        ArrayList<SongInfo> _myDataset = myDataset;
+
         this.resources = resources;
-        this.mDataset = myDataset;
+        this.mUFDataset = _myDataset;
+        this.mFDataset = _myDataset;
         this.activity = activity;
         this.mode = mode;
         this.level = level;
@@ -126,8 +134,21 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                title = ((TextView) (v.findViewById(R.id.nameTextView))).getText().toString();
+                title = ((TextView) (v.findViewById(R.id.original_name))).getText().toString();
                 if (!title.equals("")) {
+                    iv_rank[0] = (ImageView)v.findViewById(R.id.iv_rank_ts);
+                    iv_rank[1] = (ImageView)v.findViewById(R.id.iv_rank_ds);
+                    iv_rank[2] = (ImageView)v.findViewById(R.id.iv_rank_ss);
+                    iv_rank[3] = (ImageView)v.findViewById(R.id.iv_rank_an);
+                    iv_rank[4] = (ImageView)v.findViewById(R.id.iv_rank_af);
+                    iv_rank[5] = (ImageView)v.findViewById(R.id.iv_rank_bn);
+                    iv_rank[6] = (ImageView)v.findViewById(R.id.iv_rank_bf);
+                    iv_rank[7] = (ImageView)v.findViewById(R.id.iv_rank_cn);
+                    iv_rank[8] = (ImageView)v.findViewById(R.id.iv_rank_cf);
+                    iv_rank[9] = (ImageView)v.findViewById(R.id.iv_rank_dn);
+                    iv_rank[10] = (ImageView)v.findViewById(R.id.iv_rank_df);
+                    iv_rank[11] = (ImageView)v.findViewById(R.id.iv_rank_fn);
+                    iv_rank[12] = (ImageView)v.findViewById(R.id.iv_rank_ff);
                     et1 = (EditText) (activity).findViewById(R.id.editText1);
                     et2 = (EditText) (activity).findViewById(R.id.editText2);
                     et3 = (EditText) (activity).findViewById(R.id.editText3);
@@ -149,13 +170,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                             settingBackgroundLayout.setVisibility(View.GONE);
                         }
                     });
-                    iv_rank = (ImageView) cardView.findViewById(R.id.iv_rank);
                     settingBackgroundLayout.bringToFront();
                     settingBackgroundLayout.setGravity(Gravity.CENTER);
                     (activity.findViewById(R.id.bt_gotoInfo)).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            myStartActivity(ShowInfoActivity.class, mDataset.get(mainViewHolder.getAdapterPosition()));
+                            myStartActivity(ShowInfoActivity.class, mFDataset.get(mainViewHolder.getAdapterPosition()));
                         }
                     });
                     infoUpdate(title);
@@ -169,12 +189,21 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         return mainViewHolder;
     }
     public void setRank(int selected_idx) {
-        if(selected_idx==-1){
-            iv_rank.setVisibility(View.GONE);
-        }
-        else{
-            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
-            iv_rank.setVisibility(View.VISIBLE);
+//        if(selected_idx==-1){
+////            iv_rank.setVisibility(View.GONE);
+//        }
+//        else{
+//            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
+//            iv_rank.setVisibility(View.VISIBLE);
+//        }
+
+        for (int i = 0; i < 13; i++) {
+            if (selected_idx == i) {
+                iv_rank[i].setVisibility(View.VISIBLE);
+            } else {
+                iv_rank[i].setVisibility(View.GONE);
+            }
+
         }
     }
     private void findPicture(String title) {
@@ -199,6 +228,59 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             }
         });
     }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if(charString.isEmpty()) {
+                    mFDataset = mUFDataset;
+                } else {
+                    ArrayList<SongInfo> filteringList = new ArrayList<>();
+                    for(SongInfo songInfo : mUFDataset) {
+                        if(songInfo.getTitle().toLowerCase().contains(charString.toLowerCase())) {
+                            filteringList.add(songInfo);
+                        }
+                    }
+                    mFDataset = filteringList;
+                    for(int i=0;i<8;i++){
+                        difficultyCount[i]=0;
+                    }
+                    SongInfo songInfo = mFDataset.get(0);
+                    int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+                    difficultyCount[selected_difficulty]++;
+                    for(int i=1;i<mFDataset.size();i++){
+                        songInfo = mFDataset.get(i);
+                         if(selected_difficulty != Integer.parseInt(songInfo.getDifficulty())){
+                             for(int j=difficultyCount[selected_difficulty];j<5;j++) {
+                                 mFDataset.add(i, new SongInfo(String.valueOf(selected_difficulty)));
+                                 i++;
+                             }
+                             selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+                         }
+                         difficultyCount[selected_difficulty]++;
+                    }
+                    while(mFDataset.size()%5!=0){
+                        mFDataset.add(mFDataset.size(), new SongInfo(String.valueOf(selected_difficulty)));
+                    }
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFDataset;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mFDataset = (ArrayList<SongInfo>)results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
+
     private void infoUpdate(String title) {
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
 
@@ -227,38 +309,63 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 
     @Override
     public void onBindViewHolder(@NonNull final MainViewHolder holder, int position) {
+        if(position==0) {
+            for (int i = 0; i < 8; i++) {
+                difficultyCount[i] = 0;
+            }
+            for (int p = 0; p < mFDataset.size(); p++) {
+                SongInfo songInfo = mFDataset.get(p);
+                int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+                difficultyCount[selected_difficulty]++;
+                if (p + 1 != mFDataset.size() && (!mFDataset.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+                    mFDataset.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+                } else if (p + 1 == getItemCount()) {
+                    while (mFDataset.size() % 5 != 0) {
+                        mFDataset.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+                    }
+                }
+            }
+        }
+
         CardView cardView = holder.cardView;
-        SongInfo songInfo = mDataset.get(position);
+        SongInfo songInfo = mFDataset.get(position);
         int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
-        if(position==0){
-            for(int i=0;i<8;i++){
-                difficultyCount[i]=0;
-            }
-        }
-        difficultyCount[selected_difficulty]++;
-        if(position+1!=getItemCount() && (!mDataset.get(position+1).getDifficulty().equals(songInfo.getDifficulty())&&difficultyCount[selected_difficulty]%5!=0)){
-            mDataset.add(position+1,new SongInfo(String.valueOf(selected_difficulty)));
-        } else if(position+1==getItemCount()){
-            while(mDataset.size()%5!=0) {
-                mDataset.add(position + 1, new SongInfo(String.valueOf(selected_difficulty)));
-            }
-        }
         cardView.setBackgroundColor(difficultyColor[selected_difficulty]);
         if(songInfo.getTitle().equals("blank")){
             cardView.findViewById(R.id.linearLayout).setVisibility(View.GONE);
+            cardView.setClickable(false);
         } else {
+            cardView.findViewById(R.id.linearLayout).setVisibility(View.VISIBLE);
             TextView nameTextView = cardView.findViewById(R.id.nameTextView);
-            iv_rank = (ImageView)cardView.findViewById(R.id.iv_rank);
+            TextView original_name = cardView.findViewById(R.id.original_name);
+            iv_rank[0] = (ImageView)cardView.findViewById(R.id.iv_rank_ts);
+            iv_rank[1] = (ImageView)cardView.findViewById(R.id.iv_rank_ds);
+            iv_rank[2] = (ImageView)cardView.findViewById(R.id.iv_rank_ss);
+            iv_rank[3] = (ImageView)cardView.findViewById(R.id.iv_rank_an);
+            iv_rank[4] = (ImageView)cardView.findViewById(R.id.iv_rank_af);
+            iv_rank[5] = (ImageView)cardView.findViewById(R.id.iv_rank_bn);
+            iv_rank[6] = (ImageView)cardView.findViewById(R.id.iv_rank_bf);
+            iv_rank[7] = (ImageView)cardView.findViewById(R.id.iv_rank_cn);
+            iv_rank[8] = (ImageView)cardView.findViewById(R.id.iv_rank_cf);
+            iv_rank[9] = (ImageView)cardView.findViewById(R.id.iv_rank_dn);
+            iv_rank[10] = (ImageView)cardView.findViewById(R.id.iv_rank_df);
+            iv_rank[11] = (ImageView)cardView.findViewById(R.id.iv_rank_fn);
+            iv_rank[12] = (ImageView)cardView.findViewById(R.id.iv_rank_ff);
             ImageView photoImageVIew = cardView.findViewById(R.id.photoImageVIew);
 
             int t = songInfo.getUserLevel();
             setRank(t);
 
-            int song_id = mDataset.get(position).getSong_id();
-            if (song_id != 0) {
-                Glide.with(activity).load(album_info.getResourceId(song_id - 1, 0)).centerCrop().override(500).into(photoImageVIew);
-            }
+            int song_id = mFDataset.get(position).getSong_id();
+            String resName = "@drawable/a_"+String.valueOf(song_id);
+            String packName = activity.getPackageName(); // 패키지명
+            int resID = activity.getResources().getIdentifier(resName, "drawable", packName);
+            photoImageVIew.setImageResource(resID);
+//            if (song_id != 0) {
+//                Glide.with(activity).load(album_info.getResourceId(song_id - 1, 0)).centerCrop().override(500).into(photoImageVIew);
+//            }
             String songTitle = songInfo.getTitle();
+            original_name.setText(songTitle);
             boolean fullSongORshortCut = false;
             if(songInfo.getCategory().equals("Full Song") || songInfo.getCategory().equals("Short Cut") ){
                 songTitle = songTitle.substring(0,songTitle.length()-14);
@@ -278,7 +385,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         }
                         songTitleLength++;
                     }
-                    if (songTitleLength > 15) {
+                    if (songTitleLength > 17) {
                         songTitle = songTitle.substring(0, lastSpacePos) + "\n" + songTitle.substring(lastSpacePos + 1);
                         songTitleLength = 0;
                         newLineCnt++;
@@ -301,7 +408,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mFDataset.size();
     }
 
     private void myStartActivity(Class c) {

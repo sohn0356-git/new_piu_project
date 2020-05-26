@@ -348,6 +348,12 @@ public class MainActivity extends BasicActivity {
         } else if (mode.equals("Double")){
             mode="D";
         }
+        else if(mode.equals("SinglePerformance")){
+            mode = "SP";
+        }
+        else if(mode.equals("DoublePerformance")){
+            mode = "DP";
+        }
         else{
             mode = "C";
         }

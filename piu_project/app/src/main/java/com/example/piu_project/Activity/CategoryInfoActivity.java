@@ -37,7 +37,7 @@ public class CategoryInfoActivity extends BasicActivity {
     private Spinner spinner_version;
     private Spinner spinner_category;
     private String[] categoryList = new String[]{"All","K-pop", "Original", "World music", "J-music", "Xross", "Shortcut", "Remix", "Full song"};
-    private String[] versionList = new String[]{"1st", "2nd", "OBG3", "OBGS", "Perf", "Extra", "Rebirth", "Premiere3", "Prex3", "Exceed", "Exceed2", "Zero", "NX", "NX2","NXA", "Fiesta", "FiestaEX", "Fiesta2", "Prime", "Prime2", "XX"};
+    private String[] versionList = new String[]{"All","1st_to_perf", "Extra_to_prex3", "Exceed_to_zero", "Nx_to_nxa", "Fiesta_to_fiesta2", "Prime", "Prime2", "XX"};
     private boolean topScrolled;
 
     @Override
@@ -54,7 +54,8 @@ public class CategoryInfoActivity extends BasicActivity {
         spinner_version = (Spinner)findViewById(R.id.spinner_version);
         int[] si_category = new int[]{R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
 //        int[] si_category = new int[]{R.drawable.ct_nt00, R.drawable.ct_kp00};
-        int[] si_version = new int[]{R.drawable.ct_fs00, R.drawable.ct_jm00, R.drawable.ct_kp00, R.drawable.ct_nt00,R.drawable.ct_or00, R.drawable.ct_re00, R.drawable.ct_sc00, R.drawable.ct_wm00,R.drawable.ct_xr00,R.drawable.ct_fs00, R.drawable.ct_jm00, R.drawable.ct_kp00, R.drawable.ct_nt00,R.drawable.ct_or00, R.drawable.ct_re00, R.drawable.ct_sc00, R.drawable.ct_wm00,R.drawable.ct_xr00};
+        int[] si_version = new int[]{R.drawable.first_to_perf, R.drawable.extra_to_prex3, R.drawable.exceed_to_zero, R.drawable.nx_to_nxa, R.drawable.fiesta_to_fiesta2,
+                                R.drawable.prime, R.drawable.prime2, R.drawable.xx};
         CustomSpinnerAdapter csa_category = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_category);
         spinner_category.setAdapter(csa_category);
         // 스피너에서 아이템 선택시 호출하도록 합니다.
@@ -81,6 +82,7 @@ public class CategoryInfoActivity extends BasicActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 version = versionList[spinner_version.getSelectedItemPosition()];
+                postsUpdate(false);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -139,7 +141,7 @@ public class CategoryInfoActivity extends BasicActivity {
         super.onPause();
     }
 
-    private void postsUpdate(final boolean clear) {
+    private void postsUpdate(final boolean flag) {
         updating = true;
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
         FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
@@ -148,41 +150,227 @@ public class CategoryInfoActivity extends BasicActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase database의 data를 GET
-                if(clear) {
-                    categoryInfo.clear();
-                }
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
-                    HashMap<String,String> h = (HashMap<String, String>)snapshot.getValue();
+
+                categoryInfo.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    HashMap<String, String> h = (HashMap<String, String>) snapshot.getValue();
                     String h_category = h.get("category");
-                    HashMap<String,HashMap<String, HashMap<String,String>>> h2 = (HashMap<String,HashMap<String, HashMap<String,String>>>)snapshot.getValue();
-                    HashMap<String,HashMap<String,String>> youtubelink = h2.get("youtubeLink");
-                    HashMap<String,HashMap<String,String>> stepmaker = h2.get("stepmaker");
-                    if(category.equals("All")){
-                        HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
-                        String s = h3.get("song_id").toString();
-                        categoryInfo.add(new SongInfo(
-                                s,
-                                h.get("artist"),
-                                h.get("title"),
-                                h.get("level"),
-                                h.get("bpm"),
-                                h.get("category"),
-                                h.get("version"),
-                                stepmaker,
-                                youtubelink));
-                    }else if(h_category.equals(category)) {
-                        HashMap<String,Long> h3 = (HashMap<String, Long>)snapshot.getValue();
-                        String s = h3.get("song_id").toString();
-                        categoryInfo.add(new SongInfo(
-                                s,
-                                h.get("artist"),
-                                h.get("title"),
-                                h.get("level"),
-                                h.get("bpm"),
-                                h.get("category"),
-                                h.get("version"),
-                                stepmaker,
-                                youtubelink));
+                    String h_version = h.get("version");
+                    HashMap<String, HashMap<String, HashMap<String, String>>> h2 = (HashMap<String, HashMap<String, HashMap<String, String>>>) snapshot.getValue();
+                    HashMap<String, HashMap<String, String>> youtubelink = h2.get("youtubeLink");
+                    HashMap<String, HashMap<String, String>> stepmaker = h2.get("stepmaker");
+                    if (version.equals("All")) {
+                        if (category.equals("All")) {
+                            HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                            String s = h3.get("song_id").toString();
+                            categoryInfo.add(new SongInfo(
+                                    s,
+                                    h.get("artist"),
+                                    h.get("title"),
+                                    h.get("level"),
+                                    h.get("bpm"),
+                                    h.get("category"),
+                                    h.get("version"),
+                                    stepmaker,
+                                    youtubelink));
+                        } else if (h_category.equals(category)) {
+                            HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                            String s = h3.get("song_id").toString();
+                            categoryInfo.add(new SongInfo(
+                                    s,
+                                    h.get("artist"),
+                                    h.get("title"),
+                                    h.get("level"),
+                                    h.get("bpm"),
+                                    h.get("category"),
+                                    h.get("version"),
+                                    stepmaker,
+                                    youtubelink));
+                        }
+                    } else if (version.equals("1st_to_perf")) {
+                        if (h_version.equals("1st") || h_version.equals("2nd") || h_version.equals("OBG3") || h_version.equals("OBGS") || h_version.equals("Perf")) {
+                            if (category.equals("All")) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            } else if (h_category.equals(category)) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            }
+                        }
+                    } else if (version.equals("Extra_to_prex3")) {
+                        if (h_version.equals("Extra") || h_version.equals("Rebirth") || h_version.equals("Premiere3") || h_version.equals("Prex3")) {
+                            if (category.equals("All")) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            } else if (h_category.equals(category)) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            }
+                        }
+                    } else if (version.equals("Exceed_to_zero")) {
+                        if (h_version.equals("Exceed") || h_version.equals("Exceed2") || h_version.equals("Zero")) {
+                            if (category.equals("All")) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            } else if (h_category.equals(category)) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            }
+                        }
+                    } else if (version.equals("Nx_to_nxa")) {
+                        if (h_version.equals("NX") || h_version.equals("NX2") || h_version.equals("NXA")) {
+                            if (category.equals("All")) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            } else if (h_category.equals(category)) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            }
+                            Log.d(TAG, version + ": " + h_version + " " + h.get("title"));
+                        }
+                    } else if (version.equals("Fiesta_to_fiesta2")) {
+                        if (h_version.equals("Fiesta") || h_version.equals("FiestaEX") || h_version.equals("FIESTA2")) {
+                            if (category.equals("All")) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            } else if (h_category.equals(category)) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            }
+                            Log.d(TAG, version + ": " + h_version + " " + h.get("title"));
+                        }
+                    } else {
+                        if (h_version.equals(version)) {
+                            if (category.equals("All")) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            } else if (h_category.equals(category)) {
+                                HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
+                                String s = h3.get("song_id").toString();
+                                categoryInfo.add(new SongInfo(
+                                        s,
+                                        h.get("artist"),
+                                        h.get("title"),
+                                        h.get("level"),
+                                        h.get("bpm"),
+                                        h.get("category"),
+                                        h.get("version"),
+                                        stepmaker,
+                                        youtubelink));
+                            }
+                            Log.d(TAG, version + ": " + h_version + " " + h.get("title"));
+                        }
                     }
                 }
                 categoryInfoAdapter.notifyDataSetChanged();                         //리스트 저장 및 새로고침

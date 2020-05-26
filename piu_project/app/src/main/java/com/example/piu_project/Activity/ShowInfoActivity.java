@@ -64,8 +64,13 @@ public class ShowInfoActivity extends BasicActivity {
 //        if(!song_id.equals("")&&!(song_id==null)) {
 //            Glide.with(this).load(album_info.getResourceId(Integer.parseInt(song_id), 0)).centerCrop().override(500).into(profileImageVIew);
 //        }else{
-            int temp = intent.getIntExtra("song_id",-1);
-            Glide.with(this).load(album_info.getResourceId(temp-1,0)).centerCrop().override(500).into(profileImageVIew);
+        int temp = intent.getIntExtra("song_id",-1);
+        String resName = "@drawable/a_"+String.valueOf(song_id);
+        String packName = this.getPackageName(); // 패키지명
+        int resID = getResources().getIdentifier(resName, "drawable", packName);
+        profileImageVIew.setImageResource(resID);
+
+//            Glide.with(this).load(album_info.getResourceId(temp-1,0)).centerCrop().override(500).into(profileImageVIew);
 //        }
         String[] level_s = level.split(String.valueOf(','));
         for(int i=0;i<level_s.length; i++){

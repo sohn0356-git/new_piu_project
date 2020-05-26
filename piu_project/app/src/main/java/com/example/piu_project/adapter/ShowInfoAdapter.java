@@ -48,6 +48,10 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
     private RelativeLayout loaderLayout;
     private TypedArray s_button_on;
     private TypedArray s_button_off;
+    private TypedArray d_button_on;
+    private TypedArray d_button_off;
+    private TypedArray co_button_on;
+    private TypedArray co_button_off;
     private ImageView selectedImg;
     private String selectedLevel;
     private FirebaseUser user;

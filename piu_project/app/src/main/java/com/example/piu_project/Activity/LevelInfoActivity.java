@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -53,7 +56,7 @@ import java.util.HashMap;
 import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
 
-public class LevelInfoActivity extends BasicActivity {
+public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private static final String TAG = "LevelInfoActivity";
     private FirebaseFirestore firebaseFirestore;
     private LevelInfoAdapter levelInfoAdapter;
@@ -76,6 +79,7 @@ public class LevelInfoActivity extends BasicActivity {
     private String profilePath;
     private TextView tv_title;
     private int selected_idx;
+    private EditText ed_find;
     private int col_cnt;
     private final int numberOfColumns = 5;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
@@ -97,7 +101,8 @@ public class LevelInfoActivity extends BasicActivity {
         iv_profile.setOnClickListener(onClickListener);
         settingBackgroundLayout = (findViewById(R.id.settingBackgroundLayout));
         findViewById(R.id.bt_check).setOnClickListener(onClickListener);
-
+        ed_find = (EditText)findViewById(R.id.ed_find);
+        ed_find.addTextChangedListener(this);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
@@ -107,7 +112,8 @@ public class LevelInfoActivity extends BasicActivity {
 
 
         // 스피너에 보여줄 문자열과 이미지 목록을 작성합니다.
-       int[] spinnerImages = new int[]{R.drawable.level_s, R.drawable.level_s, R.drawable.level_a, R.drawable.level_a};
+       int[] spinnerImages = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_af00,R.drawable.rk_bn00,R.drawable.rk_bf00,
+                                        R.drawable.rk_cn00,R.drawable.rk_cf00,R.drawable.rk_dn00,R.drawable.rk_df00,R.drawable.rk_fn00,R.drawable.rk_ff00};
 
 
         // 어댑터와 스피너를 연결합니다.
@@ -179,7 +185,7 @@ public class LevelInfoActivity extends BasicActivity {
             postsUpdate(false,i);
         }
 
-        songInfoUpdate(false);
+        //songInfoUpdate(false);
     }
 
 
@@ -209,6 +215,22 @@ public class LevelInfoActivity extends BasicActivity {
             }
         }
     };
+
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        levelInfoAdapter.getFilter().filter(charSequence);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -338,6 +360,7 @@ public class LevelInfoActivity extends BasicActivity {
                                     stepmaker,
                                     youtubelink,
                                     String.valueOf(difficulty)));
+
                             songInfoUpdate(true);
                             levelInfoAdapter.notifyDataSetChanged();
                         }
@@ -384,6 +407,7 @@ public class LevelInfoActivity extends BasicActivity {
                                 for (SongInfo songInfo : levelInfo) {
                                     if (document.getData().get("songInfo").toString().equals(mode+level + songInfo.getTitle())) {
                                         songInfo.setUserLevel(document.getData().get("achievement").toString());
+                                        break;
                                     }
                                 }
                                 Log.d(TAG, document.getId() + " => " + document.getData());

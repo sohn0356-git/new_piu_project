@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="version_img">
+        <item>@drawable/first_to_perf</item>
+        <item>@drawable/extra_to_prex3</item>
+        <item>@drawable/exceed_to_zero</item>
+        <item>@drawable/nx_to_nxa</item>
+        <item>@drawable/fiesta_to_fiesta2</item>
+        <item>@drawable/prime</item>
+        <item>@drawable/prime2</item>
+        <item>@drawable/xx</item>
+
+
+    </array>
+</resources>

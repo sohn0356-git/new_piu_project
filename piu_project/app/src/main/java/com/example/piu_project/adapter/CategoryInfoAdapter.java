@@ -73,9 +73,13 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
         TextView tv_bpm = cardView.findViewById(R.id.tv_bpm);
         SongInfo songInfo = mDataset.get(position);
         int song_id =mDataset.get(position).getSong_id();
-        if(song_id != 0){
-            Glide.with(activity).load(album_info.getResourceId(song_id-1,-1)).centerCrop().override(500).into(photoImageVIew);
-        }
+        String resName = "@drawable/a_"+String.valueOf(song_id);
+        String packName = activity.getPackageName(); // 패키지명
+        int resID = activity.getResources().getIdentifier(resName, "drawable", packName);
+        photoImageVIew.setImageResource(resID);
+//        if(song_id != 0){
+//            Glide.with(activity).load(album_info.getResourceId(song_id-1,-1)).centerCrop().override(500).into(photoImageVIew);
+//        }
         tv_title.setText("Title : "+songInfo.getTitle());
         tv_artist.setText("Artist : "+songInfo.getArtist());
         tv_bpm.setText("BPM : "+songInfo.getBpm());

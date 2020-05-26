@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="rank_img">
-        <item>@drawable/level_s</item>
-        <item>@drawable/level_s</item>
-        <item>@drawable/level_a</item>
-        <item>@drawable/level_aa</item>
+        <item>@drawable/rk_ts00</item>
+        <item>@drawable/rk_ds00</item>
+        <item>@drawable/rk_ss00</item>
+        <item>@drawable/rk_an00</item>
+        <item>@drawable/rk_af00</item>
+        <item>@drawable/rk_bn00</item>
+        <item>@drawable/rk_bf00</item>
+        <item>@drawable/rk_cn00</item>
+        <item>@drawable/rk_cf00</item>
+        <item>@drawable/rk_dn00</item>
+        <item>@drawable/rk_df00</item>
+        <item>@drawable/rk_fn00</item>
+        <item>@drawable/rk_ff00</item>
+
 
     </array>
 </resources>
