@@ -88,26 +88,26 @@ public class MainActivity extends BasicActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser == null) {
             myStartActivity(LoginActivity.class);
-        } else {
-            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseUser.getUid());
-            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document != null) {
-                            if (document.exists()) {
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                            } else {
-                                Log.d(TAG, "No such document");
-                                myStartActivity(MemberInitActivity.class);
-                            }
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
-                }
-            });
+//        } else {
+//            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseUser.getUid());
+//            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document != null) {
+//                            if (document.exists()) {
+//                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                            } else {
+//                                Log.d(TAG, "No such document");
+//                                myStartActivity(MemberInitActivity.class);
+//                            }
+//                        }
+//                    } else {
+//                        Log.d(TAG, "get failed with ", task.getException());
+//                    }
+//                }
+//            });
 //            HomeFragment homeFragment = new HomeFragment();
 //            curFragment = homeFragment;
 //            getSupportFragmentManager().beginTransaction()

@@ -91,9 +91,10 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private String[] rank =  {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
     private TypedArray album_info;
     private int [] difficultyCount={0,0,0,0,0,0,0,0};
-    private int [] difficultyColor={Color.parseColor("#808080"),Color.parseColor("#7878E1"),Color.parseColor("#73E1E1"),Color.parseColor("#5CEEE6"),
-            Color.parseColor("#73EA88"),Color.parseColor("#63CC63"),Color.parseColor("#FFD732"),Color.parseColor("#FFFF0000"),};
-
+//    private int [] difficultyColor={Color.parseColor("#808080"),Color.parseColor("#7878E1"),Color.parseColor("#73E1E1"),Color.parseColor("#5CEEE6"),
+//            Color.parseColor("#73EA88"),Color.parseColor("#63CC63"),Color.parseColor("#FFD732"),Color.parseColor("#FFFF0000"),};
+    private int [] difficultyColor={Color.parseColor("#6c6c6c"),Color.parseColor("#eabeb4"),Color.parseColor("#d07b95"),Color.parseColor("#fb8cab"),
+            Color.parseColor("#e65c9c"),Color.parseColor("#af1281"),Color.parseColor("#6b0772"),Color.parseColor("#360167"),};
     static class MainViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         MainViewHolder(CardView v) {
@@ -179,7 +180,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         }
                     });
                     infoUpdate(title);
-                    findPicture(title);
+//                    findPicture(title);
                     //v.findViewById(R.id.settingBackgroundLayout).setVisibility(View.VISIBLE);
 //                myStartActivity(ShowInfoActivity.class, mDataset.get(mainViewHolder.getAdapterPosition()));
                 }
@@ -296,11 +297,21 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         et2.setText(document.get("n_Good").toString());
                         et3.setText(document.get("n_Bad").toString());
                         et4.setText(document.get("n_Miss").toString());
+                        if(!document.get("photoUrl").equals("")){
+//                            showToast(activity,document.get("photoUrl").toString() );
+                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
+//                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
+                        }
+                        loaderLayout.setVisibility(View.GONE);
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
+                        loaderLayout.setVisibility(View.GONE);
+                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_profile);
                         Log.d(TAG, "No such document");
                     }
                 } else {
+                    loaderLayout.setVisibility(View.GONE);
+                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_profile);
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
@@ -367,39 +378,59 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             String songTitle = songInfo.getTitle();
             original_name.setText(songTitle);
             boolean fullSongORshortCut = false;
-            if(songInfo.getCategory().equals("Full Song") || songInfo.getCategory().equals("Short Cut") ){
-                songTitle = songTitle.substring(0,songTitle.length()-14);
-                fullSongORshortCut=true;
-            }
-
-                int newLineCnt = 0;
-                int songTitleLength = 0;
-                int lastSpacePos = -1;
-
-                for (int i = 0; i < songTitle.length(); i++) {
-                    if (songTitle.charAt(i) > 'z') {
-                        songTitleLength += 2;
-                    } else {
-                        if (songTitle.charAt(i) == ' ') {
-                            lastSpacePos = i;
-                        }
-                        songTitleLength++;
-                    }
-                    if (songTitleLength > 17) {
-                        songTitle = songTitle.substring(0, lastSpacePos) + "\n" + songTitle.substring(lastSpacePos + 1);
-                        songTitleLength = 0;
-                        newLineCnt++;
-                    }
-                }
-                if(fullSongORshortCut){
-                    songTitle+="\ndfas";
-                }
-                if (newLineCnt > 2) {
-                    nameTextView.setText(songInfo.getTitle());
-                    nameTextView.setTextSize(8);
+            nameTextView.setText(songTitle);
+            int songTitleLength=0;
+            for (int i = 0; i < songTitle.length(); i++) {
+                if (songTitle.charAt(i) > 'z') {
+                    songTitleLength += 2;
                 } else {
-                    nameTextView.setText(songTitle);
+                    songTitleLength++;
                 }
+            }
+            if(songTitleLength>23){
+                nameTextView.setTextSize(8);
+            }else {
+                nameTextView.setTextSize(10);
+            }
+//
+//            if(songInfo.getCategory().equals("Full Song") || songInfo.getCategory().equals("Short Cut") ){
+//                songTitle = songTitle.substring(0,songTitle.length()-14);
+//                fullSongORshortCut=true;
+//            }
+//
+//                int newLineCnt = 0;
+//                int songTitleLength = 0;
+//                int lastSpacePos = -1;
+//
+//                for (int i = 0; i < songTitle.length(); i++) {
+//                    if (songTitle.charAt(i) > 'z') {
+//                        songTitleLength += 2;
+//                    } else {
+//                        if (songTitle.charAt(i) == ' ') {
+//                            lastSpacePos = i;
+//                        }
+//                        songTitleLength++;
+//                    }
+//                    if (songTitleLength > 17) {
+//                        if(lastSpacePos==-1) {
+//
+//                        }else{
+//                            songTitle = songTitle.substring(0, lastSpacePos) + "\n" + songTitle.substring(lastSpacePos + 1);
+//                            songTitleLength = 0;
+//                            newLineCnt++;
+//
+//                        }
+//                    }
+//                }
+//                if(fullSongORshortCut){
+//                    songTitle+="\ndfas";
+//                }
+//                if (newLineCnt > 2) {
+//                    nameTextView.setText(songInfo.getTitle());
+//                    nameTextView.setTextSize(8);
+//                } else {
+//                    nameTextView.setText(songTitle);
+//                }
 
 //            nameTextView.setText("포 시즌스 오브 론리네스 verβ (풀송)");
 //            nameTextView.setBreakStrategy()

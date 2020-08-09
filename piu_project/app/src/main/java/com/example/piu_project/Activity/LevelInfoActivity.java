@@ -1,12 +1,26 @@
 package com.example.piu_project.Activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,8 +29,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +65,10 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -58,6 +77,8 @@ import static com.example.piu_project.Util.showToast;
 
 public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private static final String TAG = "LevelInfoActivity";
+    private static final String CAPTURE_PATH = "/CAPTURE_TEST";
+    private static boolean isGrantStorage;
     private FirebaseFirestore firebaseFirestore;
     private LevelInfoAdapter levelInfoAdapter;
     private ArrayList<SongInfo> levelInfo;
@@ -68,10 +89,12 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private FirebaseUser user;
     private boolean topScrolled;
     private ImageView iv_profile;
+    private ImageView iv_capture;
     private EditText et1;
     private EditText et2;
     private EditText et3;
     private EditText et4;
+    private RecyclerView recyclerView;
     private Spinner spinner;
     private Spinner spinner_level;
     private RelativeLayout settingBackgroundLayout;
@@ -82,12 +105,14 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private EditText ed_find;
     private int col_cnt;
     private final int numberOfColumns = 5;
+    private RelativeLayout loaderLayout;
+    private HashMap<String, String> userLevelList=new HashMap<>();;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levelinfo);
-
+        isGrantStorage = grantExternalStoragePermission();
         Intent intent = getIntent();
         level = intent.getStringExtra("setLevel");
         mode = intent.getStringExtra("setMode");
@@ -97,19 +122,22 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         et2 = (EditText)findViewById(R.id.editText2);
         et3 = (EditText)findViewById(R.id.editText3);
         et4 = (EditText)findViewById(R.id.editText4);
+        iv_capture =(ImageView)(findViewById(R.id.iv_capture));
+        iv_capture.setOnClickListener(onClickListener);
         iv_profile =(ImageView)(findViewById(R.id.iv_profile));
         iv_profile.setOnClickListener(onClickListener);
         settingBackgroundLayout = (findViewById(R.id.settingBackgroundLayout));
         findViewById(R.id.bt_check).setOnClickListener(onClickListener);
         ed_find = (EditText)findViewById(R.id.ed_find);
         ed_find.addTextChangedListener(this);
+        loaderLayout = (RelativeLayout)findViewById(R.id.loaderLyaout2);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
         levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
-
+        userLevelListUpdate();
 
         // 스피너에 보여줄 문자열과 이미지 목록을 작성합니다.
        int[] spinnerImages = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_af00,R.drawable.rk_bn00,R.drawable.rk_bf00,
@@ -135,7 +163,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             }
         });
 
-        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
@@ -205,12 +233,24 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_profile:
-                    myStartActivity(GalleryActivity.class);
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    // 외부 저장소에 있는 이미지 파일들에 대한 모든 정보를 얻을 수 있다.
+                    intent.setType("image/*"); // image/* 형식의 Type 호출 -> 파일을 열 수 있는 앱들이 나열된다.
+                    startActivityForResult(intent, 5);
+
+//                    myStartActivity(PictureActivity.class);
+//                    myStartActivity(GalleryActivity.class);
+                    break;
+                case R.id.iv_capture:
+                    captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
                     break;
                 case R.id.bt_check:
-                    photoUploader();
+                    photoUploader2();
+                    userLevelList.put(mode + level + title,String.valueOf(selected_idx));
+                    loaderLayout.setVisibility(View.VISIBLE);
                     levelInfoAdapter.setRank(selected_idx);
-                    settingBackgroundLayout.setVisibility(View.GONE);
+//                    settingBackgroundLayout.setVisibility(View.GONE);
                     break;
             }
         }
@@ -231,20 +271,45 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     public void afterTextChanged(Editable editable) {
 
     }
-
+//    public void getPic(Uri imgUri) {
+//        String imgPath = getRealPathFromURI(imgUri);
+//        profilePath = imgPath;
+//        // SharedPreferences 관리 Class : 해당 내용은 블로그에 있으니 참조
+//
+//    }
+//    public String getRealPathFromURI(Uri uri) {
+//        int index = 0; String[] proj = {MediaStore.Images.Media.DATA}; // 이미지 경로로 해당 이미지에 대한 정보를 가지고 있는 cursor 호출
+//        Cursor cursor = getContentResolver().query(uri, proj, null, null, null); // 데이터가 있으면(가장 처음에 위치한 레코드를 가리킴)
+//        if (cursor.moveToFirst()) { // 해당 필드의 인덱스를 반환하고, 존재하지 않을 경우 예외를 발생시킨다.
+//            index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//        }
+//        Log.d("getRealPathFromURI", "getRealPathFromURI: " + cursor.getString(index));
+//        return cursor.getString(index);
+//    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 0: {
-                if (resultCode == Activity.RESULT_OK) {
-                    profilePath = data.getStringExtra(INTENT_PATH);
-                    Glide.with(this).load(profilePath).centerCrop().override(500).into(iv_profile);
+            if (resultCode == RESULT_OK) {
+                if (requestCode == 5) {
+                    profilePath = data.getDataString();
+//                    showToast(LevelInfoActivity.this,profilePath );
+                    Glide.with(this).load(data.getDataString()).centerCrop().override(500).into(iv_profile);
+                    Log.d("Picture Path", data.getDataString());
                 }
-                break;
-            }
-        }
+
+        };
+//        switch (requestCode) {
+//            case 0: {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    profilePath = data.getStringExtra(INTENT_PATH);
+//                    Glide.with(this).load(profilePath).centerCrop().override(500).into(iv_profile);
+//                }
+//                break;
+//            }
+//        }
     }
+
+
     @Override
     public void onPause(){
         super.onPause();
@@ -274,6 +339,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
+                        showToast(LevelInfoActivity.this, "정보를 수정중입니다.");
                         if (task.isSuccessful()) {
                             Uri downloadUri = task.getResult();
                             AchievementInfo achievementInfo = new AchievementInfo(mode + level + title, String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), profilePath,user.getUid());
@@ -287,9 +353,22 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 Log.e("로그", "에러: " + e.toString());
             }
         }else{
+            showToast(LevelInfoActivity.this, "정보를 등록중입니다.");
             AchievementInfo achievementInfo = new AchievementInfo(mode + level + title,String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), "",user.getUid());
             infoUploader(achievementInfo);
         }
+    }
+    private void photoUploader2() {
+
+//        loaderLayout.setVisibility(View.VISIBLE);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        title = tv_title.getText().toString();
+
+        AchievementInfo achievementInfo = new AchievementInfo(mode + level + title, String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), profilePath, user.getUid());
+        infoUploader(achievementInfo);
+
     }
 
     private void infoUploader(AchievementInfo achievementInfo) {
@@ -299,19 +378,141 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
+                        loaderLayout.setVisibility(View.GONE);
                         showToast(LevelInfoActivity.this, "정보 등록을 성공하였습니다.");
+                        settingBackgroundLayout.setVisibility(View.GONE);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error writing document", e);
+                        loaderLayout.setVisibility(View.GONE);
                         showToast(LevelInfoActivity.this, "정보 등록에 실패하였습니다.");
+                        settingBackgroundLayout.setVisibility(View.GONE);
                     }
                 });
     }
 
+    private void captureMyRecyclerView(RecyclerView view, int bgColor, int startPosition, int endPosition) {
+        if (isGrantStorage) {
+            RecyclerView.Adapter adapter = view.getAdapter();
+            Bitmap bigBitmap = null;
+            if (adapter != null) {
 
+                if (startPosition > endPosition) {
+                    int tmp = endPosition;
+                    endPosition = startPosition;
+                    startPosition = tmp;
+                }
+
+                int size = endPosition - startPosition;
+                int height = 0;
+                Paint paint = new Paint();
+                int iHeight = 0;
+                final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+
+                final int cacheSize = maxMemory / 8;
+                LruCache<String, Bitmap> bitmaCache = new LruCache<>(cacheSize);
+                for (int i = startPosition; i < endPosition + 1; i++) {
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(view, adapter.getItemViewType(i));
+                    adapter.onBindViewHolder(holder, i);
+                    holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                    holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth(), holder.itemView.getMeasuredHeight());
+                    holder.itemView.setDrawingCacheEnabled(true);
+                    holder.itemView.buildDrawingCache();
+                    if (bgColor != 0)
+                        holder.itemView.setBackgroundColor(bgColor);
+                    Bitmap drawingCache = holder.itemView.getDrawingCache();
+                    if (drawingCache != null) {
+
+                        bitmaCache.put(String.valueOf(i), drawingCache);
+                    }
+
+                    height += holder.itemView.getMeasuredHeight();
+                }
+
+                bigBitmap = Bitmap.createBitmap(view.getMeasuredWidth(), height, Bitmap.Config.ARGB_8888);
+                Canvas bigCanvas = new Canvas(bigBitmap);
+                bigCanvas.drawColor(Color.WHITE);
+
+                for (int i = 0; i < size + 1; i++) {
+                    Bitmap bitmap = bitmaCache.get(String.valueOf(i));
+                    bigCanvas.drawBitmap(bitmap, 0f, iHeight, paint);
+
+                    if(i%5==0){
+                        iHeight += bitmap.getHeight();
+                        bitmap.recycle();
+                    }
+                }
+
+            }
+
+        String strFolderPath = Environment.getExternalStorageDirectory().getAbsolutePath() + CAPTURE_PATH;
+//            String strFolderPath = Environment.DIRECTORY_DCIM + CAPTURE_PATH;
+            File folder = new File(strFolderPath);
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+
+            String strFilePath = strFolderPath + "/" + System.currentTimeMillis() + ".png";
+            File fileCacheItem = new File(strFilePath);
+            OutputStream out = null;
+            try {
+                fileCacheItem.createNewFile();
+                out = new FileOutputStream(fileCacheItem);
+                bigBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                Toast.makeText(this, "capture success", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(this, "capture fail", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } finally {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+    private boolean grantExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted");
+                return true;
+            }else{
+                Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+                return false;
+            }
+        }else{
+            Toast.makeText(this, "External Storage Permission is Grant", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "External Storage Permission is Grant ");
+            return true;
+        }
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (Build.VERSION.SDK_INT >= 23) {
+            if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+                //resume tasks needing this permission
+            }
+        }
+    }
 
 
     private void postsUpdate(final boolean clear, int _detailDifficulty) {
@@ -360,8 +561,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                                     stepmaker,
                                     youtubelink,
                                     String.valueOf(difficulty)));
+                            songInfoUpdate();
 
-                            songInfoUpdate(true);
                             levelInfoAdapter.notifyDataSetChanged();
                         }
                     }
@@ -394,8 +595,18 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                    }
 //                });
     }
-    private void songInfoUpdate(final boolean clear) {
-        updating = true;
+    private void songInfoUpdate() {
+        if (!userLevelList.isEmpty()) {
+            for (SongInfo songInfo : levelInfo) {
+                String cur = mode + level + songInfo.getTitle();
+                if (userLevelList.get(cur)!=null) {
+                    songInfo.setUserLevel(userLevelList.get(cur));
+                }
+            }
+        }
+    }
+    private void userLevelListUpdate() {
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(user.getUid())
                 .get()
@@ -404,11 +615,9 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                for (SongInfo songInfo : levelInfo) {
-                                    if (document.getData().get("songInfo").toString().equals(mode+level + songInfo.getTitle())) {
-                                        songInfo.setUserLevel(document.getData().get("achievement").toString());
-                                        break;
-                                    }
+                                String cur = document.getData().get("songInfo").toString();
+                                if (cur.substring(0, 3).equals(mode + level)) {
+                                    userLevelList.put(cur, document.getData().get("achievement").toString());
                                 }
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
@@ -418,7 +627,10 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                         levelInfoAdapter.notifyDataSetChanged();
                     }
                 });
+
+
     }
+
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);

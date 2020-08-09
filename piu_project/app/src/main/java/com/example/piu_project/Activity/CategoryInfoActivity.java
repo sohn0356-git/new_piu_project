@@ -157,6 +157,7 @@ public class CategoryInfoActivity extends BasicActivity {
                     HashMap<String, String> h = (HashMap<String, String>) snapshot.getValue();
                     String h_category = h.get("category");
                     String h_version = h.get("version");
+                    Log.d(TAG, version + ": " + h_version + " " + h.get("title"));
                     HashMap<String, HashMap<String, HashMap<String, String>>> h2 = (HashMap<String, HashMap<String, HashMap<String, String>>>) snapshot.getValue();
                     HashMap<String, HashMap<String, String>> youtubelink = h2.get("youtubeLink");
                     HashMap<String, HashMap<String, String>> stepmaker = h2.get("stepmaker");
@@ -203,6 +204,7 @@ public class CategoryInfoActivity extends BasicActivity {
                                         h.get("version"),
                                         stepmaker,
                                         youtubelink));
+                                Log.d(TAG, version + ": " + h_version + " " + h.get("title"));
                             } else if (h_category.equals(category)) {
                                 HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();
                                 String s = h3.get("song_id").toString();

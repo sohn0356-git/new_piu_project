@@ -48,7 +48,7 @@ public class ShowInfoActivity extends BasicActivity {
         String title = intent.getStringExtra("title");
         String level = intent.getStringExtra("level");
         String bpm = intent.getStringExtra("bpm");
-        String song_id = intent.getStringExtra("song_id");
+        int song_id = intent.getIntExtra("song_id",-1);
         tv_title = (TextView)findViewById(R.id.tv_title);
         tv_artist = (TextView)findViewById(R.id.tv_artist);
         tv_bpm = (TextView)findViewById(R.id.tv_bpm);
@@ -64,10 +64,16 @@ public class ShowInfoActivity extends BasicActivity {
 //        if(!song_id.equals("")&&!(song_id==null)) {
 //            Glide.with(this).load(album_info.getResourceId(Integer.parseInt(song_id), 0)).centerCrop().override(500).into(profileImageVIew);
 //        }else{
-        int temp = intent.getIntExtra("song_id",-1);
+//        int temp = intent.getIntExtra("song_id",-1);
+//        String resName = "@drawable/a_"+String.valueOf(song_id);
+//        String packName = this.getPackageName(); // 패키지명
+//        int resID = getResources().getIdentifier(resName, "drawable", packName);
+//
+
         String resName = "@drawable/a_"+String.valueOf(song_id);
         String packName = this.getPackageName(); // 패키지명
-        int resID = getResources().getIdentifier(resName, "drawable", packName);
+        int resID = this.getResources().getIdentifier(resName, "drawable", packName);
+
         profileImageVIew.setImageResource(resID);
 
 //            Glide.with(this).load(album_info.getResourceId(temp-1,0)).centerCrop().override(500).into(profileImageVIew);
