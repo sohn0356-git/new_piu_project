@@ -704,7 +704,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                                         stepmaker,
                                         youtubelink,
                                         String.valueOf(difficulty)));
-//                            songInfoUpdate();
+                            songInfoUpdate();
 
                                 levelInfoAdapter.notifyDataSetChanged();
                             }
