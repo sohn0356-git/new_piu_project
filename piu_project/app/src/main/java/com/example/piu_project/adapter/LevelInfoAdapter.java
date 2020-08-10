@@ -96,10 +96,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private int [] difficultyColor={Color.parseColor("#6c6c6c"),Color.parseColor("#eabeb4"),Color.parseColor("#d07b95"),Color.parseColor("#fb8cab"),
             Color.parseColor("#e65c9c"),Color.parseColor("#af1281"),Color.parseColor("#6b0772"),Color.parseColor("#360167"),};
     static class MainViewHolder extends RecyclerView.ViewHolder {
+        private int test_cnt=0;
         CardView cardView;
         MainViewHolder(CardView v) {
             super(v);
             cardView = v;
+            test_cnt++;
 
         }
 
@@ -320,24 +322,23 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 
     @Override
     public void onBindViewHolder(@NonNull final MainViewHolder holder, int position) {
-        if(position==0) {
-            for (int i = 0; i < 8; i++) {
-                difficultyCount[i] = 0;
-            }
-            for (int p = 0; p < mFDataset.size(); p++) {
-                SongInfo songInfo = mFDataset.get(p);
-                int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
-                difficultyCount[selected_difficulty]++;
-                if (p + 1 != mFDataset.size() && (!mFDataset.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
-                    mFDataset.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                } else if (p + 1 == getItemCount()) {
-                    while (mFDataset.size() % 5 != 0) {
-                        mFDataset.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                    }
-                }
-            }
-        }
-
+//        if(position==0) {
+//            for (int i = 0; i < 8; i++) {
+//                difficultyCount[i] = 0;
+//            }
+//            for (int p = 0; p < mFDataset.size(); p++) {
+//                SongInfo songInfo = mFDataset.get(p);
+//                int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+//                difficultyCount[selected_difficulty]++;
+//                if (p + 1 != mFDataset.size() && (!mFDataset.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+//                    mFDataset.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+//                } else if (p + 1 == getItemCount()) {
+//                    while (mFDataset.size() % 5 != 0) {
+//                        mFDataset.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+//                    }
+//                }
+//            }
+//        }
         CardView cardView = holder.cardView;
         SongInfo songInfo = mFDataset.get(position);
         int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
