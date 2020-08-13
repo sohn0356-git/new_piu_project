@@ -184,6 +184,12 @@
                     android:text="TextView"
                     android:textSize="0sp"/>
 
+                <TextView
+                    android:id="@+id/original_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
             </LinearLayout>
 
         </LinearLayout>

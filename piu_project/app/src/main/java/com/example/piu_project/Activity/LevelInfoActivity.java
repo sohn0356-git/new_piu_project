@@ -94,6 +94,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private FirebaseUser user;
     private boolean topScrolled;
     private ImageView iv_profile;
+    private int testcnt;
     private ImageView iv_capture;
     private EditText et1;
     private EditText et2;
@@ -119,6 +120,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        testcnt=0;
         setContentView(R.layout.activity_levelinfo);
         isGrantStorage = grantExternalStoragePermission();
         Intent intent = getIntent();
@@ -146,8 +148,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
-        userUpdate = true;
-        userLevelListUpdate();
+
 
         // 스피너에 보여줄 문자열과 이미지 목록을 작성합니다.
        int[] spinnerImages = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_af00,R.drawable.rk_bn00,R.drawable.rk_bf00,
@@ -158,6 +159,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
         CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(LevelInfoActivity.this, spinnerImages);
         spinner_level.setAdapter(customSpinnerAdapter);
+
         // 스피너에서 아이템 선택시 호출하도록 합니다.
 
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
@@ -219,10 +221,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 }
             }
         });
-        for(int i=7;i>=-1;i--) {
-            postsUpdate(false,i);
-        }
-
+        userLevelListUpdate(true);
 
         //songInfoUpdate(false);
     }
@@ -249,22 +248,18 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     // 외부 저장소에 있는 이미지 파일들에 대한 모든 정보를 얻을 수 있다.
                     intent.setType("image/*"); // image/* 형식의 Type 호출 -> 파일을 열 수 있는 앱들이 나열된다.
                     startActivityForResult(intent, 5);
-
-//                    myStartActivity(PictureActivity.class);
 //                    myStartActivity(GalleryActivity.class);
                     break;
                 case R.id.iv_capture:
                     showToast(LevelInfoActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + CAPTURE_PATH+"생성");
 //                    captureRecyclerView(recyclerView,0);
                     showToast(LevelInfoActivity.this, "capture success");
-
                     captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
                     break;
                 case R.id.bt_check:
-                    photoUploader2();
-                    userLevelList.put(mode + level + title,String.valueOf(selected_idx));
                     loaderLayout.setVisibility(View.VISIBLE);
-                    levelInfoAdapter.setRank(selected_idx);
+                    photoUploader2();
+
 //                    settingBackgroundLayout.setVisibility(View.GONE);
                     break;
             }
@@ -386,15 +381,23 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     }
 
     private void infoUploader(AchievementInfo achievementInfo) {
+        userUpdate = true;
+        userLevelList.clear();
+        levelInfoAdapter.setRank(selected_idx);
+        Log.d(TAG, "clear");
+        loaderLayout.setVisibility(View.GONE);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(user.getUid()).document(mode+level+title).set(achievementInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
-                        loaderLayout.setVisibility(View.GONE);
+                        profilePath="";
+                        spinner_level.setSelection(0);
                         showToast(LevelInfoActivity.this, "정보 등록을 성공하였습니다.");
                         settingBackgroundLayout.setVisibility(View.GONE);
+                        userLevelListUpdate(false);
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -650,26 +653,26 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase database의 data를 GET
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
-                    boolean isHere = false;
-                    if (_detailDifficulty == -1) {
-                        for (int j = 0; j < 8; j++) {
-                            difficultyCount[j] = 0;
-                        }
-                        for (int p = 0; p < levelInfo.size(); p++) {
-                            SongInfo songInfo = levelInfo.get(p);
-                            int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
-                            difficultyCount[selected_difficulty]++;
-                            if (p + 1 != levelInfo.size() && (!levelInfo.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+                if (_detailDifficulty == -1) {
+                    for (int j = 0; j < 8; j++) {
+                        difficultyCount[j] = 0;
+                    }
+                    for (int p = 0; p < levelInfo.size(); p++) {
+                        SongInfo songInfo = levelInfo.get(p);
+                        int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+                        difficultyCount[selected_difficulty]++;
+                        if (p + 1 != levelInfo.size() && (!levelInfo.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+                            levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+                        } else if (p + 1 == levelInfo.size()) {
+                            while (levelInfo.size() % 5 != 0) {
                                 levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                            } else if (p + 1 == levelInfo.size()) {
-                                while (levelInfo.size() % 5 != 0) {
-                                    levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                                }
                             }
                         }
-                        levelInfoAdapter.notifyDataSetChanged();
-                    } else {
+                    }
+                    levelInfoAdapter.notifyDataSetChanged();
+                } else {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        boolean isHere = false;
                         HashMap<String, String> h = (HashMap<String, String>) snapshot.getValue();
                         String[] level_s = h.get("level").split(String.valueOf(','));
                         for (int i = 0; i < level_s.length; i++) {
@@ -688,7 +691,6 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                             HashMap<String, String> detailDifficulty = h3.get("detailDifficulty");
                             Log.e("Msg", "error : " + h.get("title"));
                             difficulty = Integer.parseInt(detailDifficulty.get(mode + level));
-
                             if (difficulty == _detailDifficulty) {
                                 col_cnt++;
                                 HashMap<String, Long> h4 = (HashMap<String, Long>) snapshot.getValue();
@@ -704,8 +706,13 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                                         stepmaker,
                                         youtubelink,
                                         String.valueOf(difficulty)));
-                            songInfoUpdate();
-
+                                if (!userLevelList.isEmpty()){
+                                    String cur = mode + level + h.get("title").toString();
+                                    if (userLevelList.get(cur)!=null) {
+                                        levelInfo.get(levelInfo.size()-1).setUserLevel(userLevelList.get(cur));
+                                    }
+                                }
+                                Log.d("LevelInfoActivity", mode + level + h.get("title").toString()+String.valueOf(userLevelList.size()));
                                 levelInfoAdapter.notifyDataSetChanged();
                             }
                         }
@@ -747,41 +754,38 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     songInfo.setUserLevel(userLevelList.get(cur));
                 }
             }
-        }else{
-            userLevelListUpdate();
-            if (!userLevelList.isEmpty()) {
-                songInfoUpdate();
-                showToast(LevelInfoActivity.this, "Sorry");
-            }
         }
     }
-    private void userLevelListUpdate() {
-        if (userUpdate) {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection(user.getUid())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    String cur = document.getData().get("songInfo").toString();
-                                    if (cur.substring(0, 3).equals(mode + level)) {
-                                        userLevelList.put(cur, document.getData().get("achievement").toString());
-                                    }
-                                    Log.d(TAG, document.getId() + " => " + document.getData());
-                                    userUpdate=false;
+    private void userLevelListUpdate(boolean init) {
+        testcnt++;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection(user.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String cur = document.getData().get("songInfo").toString();
+                                if (cur.substring(0, 3).equals(mode + level)) {
+                                    userLevelList.put(cur, document.getData().get("achievement").toString());
                                 }
-                            } else {
-                                showToast(LevelInfoActivity.this, "reading fail");
-                                Log.d(TAG, "Error getting documents: ", task.getException());
+                                Log.d(TAG, "testcnt : " + String.valueOf(testcnt) + document.getId() + " => " + document.getData()+"size : "+String.valueOf(userLevelList.size()));
                             }
-//                            levelInfoAdapter.notifyDataSetChanged();
+                            if(init) {
+                                for (int i = 7; i >= -1; i--) {
+                                    postsUpdate(false, i);
+                                }
+                            }else{
+                                songInfoUpdate();
+                            }
+                        } else {
+                            showToast(LevelInfoActivity.this, user.getUid().toString() + "reading fail");
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                    });
-
-
-        }
+//                            levelInfoAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     private void myStartActivity(Class c) {

@@ -78,6 +78,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private String level;
     private String mode;
     private String title;
+    private String pos;
     private int target_rank;
     private ImageView iv_profile;
     private RelativeLayout loaderLayout;
@@ -138,7 +139,11 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             @Override
             public void onClick(View v) {
                 title = ((TextView) (v.findViewById(R.id.original_name))).getText().toString();
+                pos = ((TextView) (v.findViewById(R.id.original_position))).getText().toString();
                 if (!title.equals("")) {
+//                    spinner_level = (Spinner)((activity).findViewById(R.id.spinner_level));
+                    ((TextView)((activity).findViewById(R.id.tv_titleInfo))).setText(title);
+//                    spinner_level.setSelection(0);
                     iv_rank[0] = (ImageView)v.findViewById(R.id.iv_rank_ts);
                     iv_rank[1] = (ImageView)v.findViewById(R.id.iv_rank_ds);
                     iv_rank[2] = (ImageView)v.findViewById(R.id.iv_rank_ss);
@@ -175,6 +180,15 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                     });
                     settingBackgroundLayout.bringToFront();
                     settingBackgroundLayout.setGravity(Gravity.CENTER);
+                    (activity.findViewById(R.id.bt_delete)).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            infoDelete(title);
+                            setRank(-1);
+                            mFDataset.get(Integer.parseInt(pos)).setUserLevel("");
+                            settingBackgroundLayout.setVisibility(View.GONE);
+                        }
+                    });
                     (activity.findViewById(R.id.bt_gotoInfo)).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -282,7 +296,26 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         };
     }
 
+    private void infoDelete(String title) {
+        //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection(user.getUid()).document(mode+level+title);
+        docRef.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+
+                    }
+                });
+    }
 
     private void infoUpdate(String title) {
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
@@ -299,7 +332,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         et2.setText(document.get("n_Good").toString());
                         et3.setText(document.get("n_Bad").toString());
                         et4.setText(document.get("n_Miss").toString());
-                        if(!document.get("photoUrl").equals("")){
+                        if(document.get("photoUrl")!=null){
 //                            showToast(activity,document.get("photoUrl").toString() );
                             Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
 //                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
@@ -347,9 +380,11 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             cardView.findViewById(R.id.linearLayout).setVisibility(View.GONE);
             cardView.setClickable(false);
         } else {
+
             cardView.findViewById(R.id.linearLayout).setVisibility(View.VISIBLE);
             TextView nameTextView = cardView.findViewById(R.id.nameTextView);
             TextView original_name = cardView.findViewById(R.id.original_name);
+            TextView original_pos = cardView.findViewById(R.id.original_position);
             iv_rank[0] = (ImageView)cardView.findViewById(R.id.iv_rank_ts);
             iv_rank[1] = (ImageView)cardView.findViewById(R.id.iv_rank_ds);
             iv_rank[2] = (ImageView)cardView.findViewById(R.id.iv_rank_ss);
@@ -378,6 +413,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 //            }
             String songTitle = songInfo.getTitle();
             original_name.setText(songTitle);
+            original_pos.setText(String.valueOf(position));
             boolean fullSongORshortCut = false;
             nameTextView.setText(songTitle);
             int songTitleLength=0;

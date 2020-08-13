@@ -1,3 +1,6 @@
 1.01	- 사진 등록기능 개선
 1.011	- levelInfo upload 속도 개선
 1.012 	- 사진 5배수로 안나오는 버그 수정
+1.013	- RecyclerView 바로 갱신 안 되는 버그 수정
+1.014	- levelInfo 제거 기능 추가
+1.015	- firebase, database 우선순위 조정
