@@ -251,9 +251,6 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                    myStartActivity(GalleryActivity.class);
                     break;
                 case R.id.iv_capture:
-                    showToast(LevelInfoActivity.this, Environment.getExternalStorageDirectory().getAbsolutePath() + CAPTURE_PATH+"생성");
-//                    captureRecyclerView(recyclerView,0);
-                    showToast(LevelInfoActivity.this, "capture success");
                     captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
                     break;
                 case R.id.bt_check:
@@ -265,6 +262,15 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             }
         }
     };
+    public File getPrivateAlbumStorageDir(Context context, String albumName) {
+        // Get the directory for the app's private pictures directory.
+        File file = new File(context.getExternalFilesDir(
+                Environment.DIRECTORY_PICTURES), albumName);
+        if (!file.mkdirs()) {
+            Log.e(TAG, "Directory not created");
+        }
+        return file;
+    }
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -432,14 +438,20 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
             final int cacheSize = maxMemory / 8;
             LruCache<String, Bitmap> bitmaCache = new LruCache<>(cacheSize);
+            int constHeight = 0;
             for (int i = startPosition; i < endPosition + 1; i++) {
                 RecyclerView.ViewHolder holder = adapter.createViewHolder(view, adapter.getItemViewType(i));
+
                 adapter.onBindViewHolder(holder, i);
                 holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth() / 5, holder.itemView.getMeasuredHeight());
+                if(i==0){
+                    constHeight = holder.itemView.getMeasuredHeight();
+                }
+                holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth() / 5, constHeight);
                 holder.itemView.setDrawingCacheEnabled(true);
                 holder.itemView.buildDrawingCache();
+
                 if (bgColor != 0)
                     holder.itemView.setBackgroundColor(bgColor);
                 Bitmap drawingCache = holder.itemView.getDrawingCache();
@@ -447,7 +459,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
                     bitmaCache.put(String.valueOf(i), drawingCache);
                 }
-                height += holder.itemView.getMeasuredHeight();
+
+                height += constHeight;
 
             }
 
@@ -470,19 +483,27 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 ActivityCompat.requestPermissions(LevelInfoActivity.this,
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             } else {
-                String ex_storage =Environment.getExternalStorageDirectory().getAbsolutePath(); //Get Absolute Path in External Sdcard
-                String foler_name = "/"+CAPTURE_PATH+"/";
-                String file_name = mode+level+".jpg";
-                String string_path = ex_storage+foler_name;
-                File file_path = new File(string_path);
-                if(!file_path.isDirectory()){
-                    file_path.mkdirs();
-                    showToast(LevelInfoActivity.this, "폴더 생성.");
+                String sdPath = "";
+                String ext = Environment.getExternalStorageState();
+                if(ext.equals(Environment.MEDIA_MOUNTED)){
+                    sdPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+CAPTURE_PATH+"/";
+                    Log.d("TAG",sdPath);
+                }else{
+                    sdPath=getFilesDir()+"";
+                    showToast(LevelInfoActivity.this,sdPath);
                 }
-                try{
+                //디렉토리 없으면 생성
+                File dir = new File(sdPath);
+                if(!dir.exists()){
+                    dir.mkdir();
+                }
+                String file_name = mode+level+".jpg";
+                String string_path = sdPath+file_name;
 
-                    FileOutputStream out = new FileOutputStream(string_path+file_name);
+                try{
+                    FileOutputStream out = new FileOutputStream(string_path);
                     bigBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    showToast(LevelInfoActivity.this, "capture success");
                     out.close();
                 }catch(FileNotFoundException exception){
                     showToast(LevelInfoActivity.this, "die1.");
@@ -765,11 +786,18 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            boolean isHere = false;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String cur = document.getData().get("songInfo").toString();
                                 if (cur.substring(0, 3).equals(mode + level)) {
+                                    isHere = true;
                                     userLevelList.put(cur, document.getData().get("achievement").toString());
+                                } else {
+                                    if(isHere){
+                                        break;
+                                    }
                                 }
+
                                 Log.d(TAG, "testcnt : " + String.valueOf(testcnt) + document.getId() + " => " + document.getData()+"size : "+String.valueOf(userLevelList.size()));
                             }
                             if(init) {

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="120dp"
-    >
+    android:layout_height="120dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="75dp"
@@ -40,8 +39,8 @@
                         android:id="@+id/iv_rank_ts"
                         android:layout_width="50dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_ts00"
                         tools:visibility="gone" />
 
@@ -58,8 +57,8 @@
                         android:id="@+id/iv_rank_ss"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_ss00"
                         tools:visibility="gone" />
 
@@ -76,8 +75,8 @@
                         android:id="@+id/iv_rank_af"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_af00"
                         tools:visibility="gone" />
 
@@ -85,8 +84,8 @@
                         android:id="@+id/iv_rank_bf"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_bf00"
                         tools:visibility="gone" />
 
@@ -94,26 +93,26 @@
                         android:id="@+id/iv_rank_bn"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_bn00"
                         tools:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/iv_rank_cn"
                         android:layout_width="30dp"
-                        android:scaleType="fitXY"
                         android:layout_height="35dp"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_cn00"
                         tools:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/iv_rank_cf"
                         android:layout_width="30dp"
-                        android:scaleType="fitXY"
                         android:layout_height="35dp"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_cf00"
                         tools:visibility="gone" />
 
@@ -121,25 +120,26 @@
                         android:id="@+id/iv_rank_dn"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_dn00"
                         tools:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/iv_rank_df"
                         android:layout_width="30dp"
-                        android:scaleType="fitXY"
                         android:layout_height="35dp"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_df00"
                         tools:visibility="gone" />
+
                     <ImageView
                         android:id="@+id/iv_rank_fn"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_fn00"
                         tools:visibility="gone" />
 
@@ -147,8 +147,8 @@
                         android:id="@+id/iv_rank_ff"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
-                        android:scaleType="fitXY"
                         android:layout_gravity="bottom|right"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/rk_ff00"
                         tools:visibility="gone" />
 
@@ -170,11 +170,11 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
+                    android:gravity="center"
+                    android:lines="4"
                     android:textColor="#000000"
                     android:textSize="10sp"
-                    android:lines="4"
                     android:textStyle="bold"
-                    android:gravity="center"
                     tools:text="Title" />
 
                 <TextView
@@ -182,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView"
-                    android:textSize="0sp"/>
+                    android:textSize="0sp" />
 
                 <TextView
                     android:id="@+id/original_position"

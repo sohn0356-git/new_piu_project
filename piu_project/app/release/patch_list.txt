@@ -4,3 +4,5 @@
 1.013	- RecyclerView 바로 갱신 안 되는 버그 수정
 1.014	- levelInfo 제거 기능 추가
 1.015	- firebase, database 우선순위 조정
+
+1.1	- 사진 캡처기능 추가

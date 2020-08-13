@@ -372,11 +372,14 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 //                }
 //            }
 //        }
+
         CardView cardView = holder.cardView;
         SongInfo songInfo = mFDataset.get(position);
         int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
         cardView.setBackgroundColor(difficultyColor[selected_difficulty]);
         if(songInfo.getTitle().equals("blank")){
+            holder.itemView.setBackgroundColor(difficultyColor[selected_difficulty]);
+
             cardView.findViewById(R.id.linearLayout).setVisibility(View.GONE);
             cardView.setClickable(false);
         } else {
