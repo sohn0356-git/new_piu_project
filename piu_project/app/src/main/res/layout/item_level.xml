@@ -18,7 +18,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/tv_eLink"
+            android:id="@+id/tv_pLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone" />

@@ -2,6 +2,7 @@ package com.example.piu_project.adapter;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
@@ -98,6 +99,8 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         this.title = title;
         s_button_on = resources.obtainTypedArray(R.array.s_btn_on);
         s_button_off = resources.obtainTypedArray(R.array.s_btn_off);
+        d_button_on = resources.obtainTypedArray(R.array.d_btn_on);
+        d_button_off = resources.obtainTypedArray(R.array.d_btn_off);
         img_rank = resources.obtainTypedArray(R.array.rank_img);
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
@@ -111,23 +114,34 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
             @Override
             public void onClick(View v) {
                 int level_i = 1;
-                if (selectedLevel.charAt(0) == 'S') {
-                    level_i = parseInt(selectedLevel.substring(1));
-                } else {
-                    if (selectedLevel.charAt(0) == 'D' && selectedLevel.charAt(1) != 'P') {
+                if (selectedLevel.charAt(0) == 'S'){
+                    if(selectedLevel.charAt(1) != 'P') {
                         level_i = parseInt(selectedLevel.substring(1));
                     }
+                } else if (selectedLevel.charAt(0) == 'D'){
+                    if(selectedLevel.charAt(1) != 'P') {
+                        level_i = parseInt(selectedLevel.substring(1));
+                    }
+                }else{
+
                 }
                 if (selectedLevel.charAt(0) == 'S') {
-                    Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    if(selectedLevel.charAt(1) != 'P') {
+                        Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    }
+                }
+                if (selectedLevel.charAt(0) == 'D') {
+                    if(selectedLevel.charAt(1) != 'P') {
+                        Glide.with(activity).load(d_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    }
                 }
                 boolean newPick = !selectedLevel.equals(((TextView)v.findViewById(R.id.tv_level)).getText().toString());
                 selectedImg = v.findViewById(R.id.imageView);
-                String eLink = ((TextView)v.findViewById(R.id.tv_eLink)).getText().toString();
+                String pLink = ((TextView)v.findViewById(R.id.tv_pLink)).getText().toString();
                 String jLink = ((TextView)v.findViewById(R.id.tv_jLink)).getText().toString();
                 String nLink = ((TextView)v.findViewById(R.id.tv_nLink)).getText().toString();
                 selectedLevel = ((TextView)v.findViewById(R.id.tv_level)).getText().toString();
-                ImageView iv_eLink = (activity).findViewById(R.id.iv_eLink);
+                ImageView iv_pLink = (activity).findViewById(R.id.iv_pLink);
                 ImageView iv_jLink = (activity).findViewById(R.id.iv_jLink);
                 ImageView iv_nLink = (activity).findViewById(R.id.iv_nLink);
                 loaderLayout = activity.findViewById(R.id.loaderLyaout);
@@ -136,37 +150,69 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                     findPicture();
 
                     level_i = 1;
-                    if (selectedLevel.charAt(0) == 'S' && selectedLevel.charAt(1)!='P') {
-                        level_i = parseInt(selectedLevel.substring(1));
-                    } else {
-                        if (selectedLevel.charAt(0) == 'D' && selectedLevel.charAt(1) != 'P') {
+                    if (selectedLevel.charAt(0) == 'S'){
+                        if(selectedLevel.charAt(1)!='P') {
                             level_i = parseInt(selectedLevel.substring(1));
                         }
+                    } else if (selectedLevel.charAt(0) == 'D') {
+                        if (selectedLevel.charAt(1) != 'P') {
+                            level_i = parseInt(selectedLevel.substring(1));
+                        }
+                    }else{
+
                     }
-                    if (selectedLevel.charAt(0) == 'S' && selectedLevel.charAt(1)!='P') {
-                        Glide.with(activity).load(s_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    if (selectedLevel.charAt(0) == 'S'){
+                        if(selectedLevel.charAt(1)!='P') {
+                            Glide.with(activity).load(s_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                        }
+                    }
+                    if (selectedLevel.charAt(0) == 'D'){
+                        if(selectedLevel.charAt(1)!='P') {
+                            Glide.with(activity).load(d_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                        }
                     }
 
 
-                    if (!eLink.equals("")) {
-                        iv_eLink.setVisibility(View.VISIBLE);
+                    if (!pLink.equals("")) {
+                        iv_pLink.setVisibility(View.VISIBLE);
+                        iv_pLink.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(pLink));
+                                (activity).startActivity(intent);
+                            }
+                        });
                     } else {
-                        iv_eLink.setVisibility(View.GONE);
+                        iv_pLink.setVisibility(View.GONE);
                     }
                     if (!jLink.equals("")) {
                         iv_jLink.setVisibility(View.VISIBLE);
+                        iv_jLink.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(jLink));
+                                (activity).startActivity(intent);
+                            }
+                        });
                     } else {
                         iv_jLink.setVisibility(View.GONE);
                     }
                     if (!nLink.equals("")) {
                         iv_nLink.setVisibility(View.VISIBLE);
+                        iv_nLink.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(nLink));
+                                (activity).startActivity(intent);
+                            }
+                        });
                     } else {
                         iv_nLink.setVisibility(View.GONE);
                     }
                 } else {
                     selectedLevel="None";
                     Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_info);
-                    iv_eLink.setVisibility(View.GONE);
+                    iv_pLink.setVisibility(View.GONE);
                     iv_jLink.setVisibility(View.GONE);
                     iv_nLink.setVisibility(View.GONE);
                 }
@@ -217,6 +263,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         CardView cardView = holder.cardView;
         ImageView imageView = cardView.findViewById(R.id.imageView);
         ImageView iv_rank = cardView.findViewById(R.id.iv_rank);
+
         iv_rank.bringToFront();
         infoUpdate(iv_rank,level);
         if(position==0){
@@ -224,18 +271,29 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
             selectedLevel=level;
         }
         int level_i = 1;
-        if (level.charAt(0) == 'S' && level.charAt(1)!='P') {
-                level_i = parseInt(level.substring(1));
-        } else {
-            if (level.charAt(0) == 'D' && level.charAt(1) != 'P') {
+        if (level.charAt(0) == 'S'){
+            if(level.charAt(1)!='P') {
                 level_i = parseInt(level.substring(1));
             }
+        } else if (level.charAt(0) == 'D'){
+            if(level.charAt(1)!='P') {
+                level_i = parseInt(level.substring(1));
+            }
+        }else{
+
         }
-        if (level.charAt(0) == 'S' && level.charAt(1)!='P') {
-            Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
+        if (level.charAt(0) == 'S'){
+            if(level.charAt(1)!='P') {
+                Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
+            }
+        }
+        if (level.charAt(0) == 'D'){
+            if(level.charAt(1)!='P') {
+                Glide.with(activity).load(d_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
+            }
         }
 
-        ((TextView)cardView.findViewById(R.id.tv_eLink)).setText(mDataset.get(position).getYoutubeLinkE());
+        ((TextView)cardView.findViewById(R.id.tv_pLink)).setText(mDataset.get(position).getYoutubeLinkP());
         ((TextView)cardView.findViewById(R.id.tv_jLink)).setText(mDataset.get(position).getYoutubeLinkJ());
         ((TextView)cardView.findViewById(R.id.tv_nLink)).setText(mDataset.get(position).getYoutubeLinkN());
         ((TextView)cardView.findViewById(R.id.tv_level)).setText(level);

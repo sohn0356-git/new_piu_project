@@ -3,7 +3,7 @@ package com.example.piu_project;
 public class UserDetail {
     private String level;
     private String achivement;
-    private String youtubeLinkE;
+    private String youtubeLinkP;
     private String youtubeLinkJ;
     private String youtubeLinkN;
     private String unlockCondition;
@@ -11,16 +11,16 @@ public class UserDetail {
     public UserDetail() {
         this.level = "";
         this.achivement = "";
-        this.youtubeLinkE = "";
+        this.youtubeLinkP = "";
         this.youtubeLinkJ = "";
         this.youtubeLinkN = "";
         this.unlockCondition = "";
     }
 
-    public UserDetail(String level, String achivement, String youtubeLinkE, String youtubeLinkJ, String youtubeLinkN, String unlockCondition) {
+    public UserDetail(String level, String achivement, String youtubeLinkP, String youtubeLinkJ, String youtubeLinkN, String unlockCondition) {
         this.level = level;
         this.achivement = achivement;
-        this.youtubeLinkE = youtubeLinkE;
+        this.youtubeLinkP = youtubeLinkP;
         this.youtubeLinkJ = youtubeLinkJ;
         this.youtubeLinkN = youtubeLinkN;
         this.unlockCondition = unlockCondition;
@@ -42,12 +42,12 @@ public class UserDetail {
         this.achivement = achivement;
     }
 
-    public String getYoutubeLinkE() {
-        return youtubeLinkE;
+    public String getYoutubeLinkP() {
+        return youtubeLinkP;
     }
 
-    public void setYoutubeLinkE(String youtubeLinkE) {
-        this.youtubeLinkE = youtubeLinkE;
+    public void setYoutubeLinkP(String youtubeLinkP) {
+        this.youtubeLinkP = youtubeLinkP;
     }
 
     public String getYoutubeLinkJ() {

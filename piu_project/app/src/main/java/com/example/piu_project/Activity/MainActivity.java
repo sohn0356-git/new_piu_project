@@ -178,6 +178,11 @@ public class MainActivity extends BasicActivity {
     }
 
     private void listSetup(){
+//        String[] info = getResources().getStringArray(R.array.name_s07);
+//        for(int i=0;i<info.length;i++){
+//            Log.d(TAG,info[i]);
+//        }
+
         String[] mode_string = getResources().getStringArray(R.array.mode_string);
         for(int i=0;i<mode_string.length;i++){
             listViewAdapter1.addItem(mode_string[i]);

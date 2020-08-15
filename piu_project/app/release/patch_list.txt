@@ -6,3 +6,4 @@
 1.015	- firebase, database 우선순위 조정
 
 1.1	- 사진 캡처기능 추가
+1.11	- SongInfo double 추가 및 URL 연결

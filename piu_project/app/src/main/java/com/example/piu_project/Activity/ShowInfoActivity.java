@@ -81,10 +81,10 @@ public class ShowInfoActivity extends BasicActivity {
         String[] level_s = level.split(String.valueOf(','));
         for(int i=0;i<level_s.length; i++){
             user_Achievement.add(new Pair<>(level_s[i],"A"));
-            String yLinkE = intent.getStringExtra(level_s[i]+"E");
+            String yLinkP = intent.getStringExtra(level_s[i]+"PIU");
             String yLinkJ = intent.getStringExtra(level_s[i]+"J");
             String yLinkN = intent.getStringExtra(level_s[i]+"N");
-            userDetail.add(new UserDetail(level_s[i],"A",yLinkE,yLinkJ,yLinkN,""));
+            userDetail.add(new UserDetail(level_s[i],"A",yLinkP,yLinkJ,yLinkN,""));
         }
 
         final int numberOfColumns = 8;
