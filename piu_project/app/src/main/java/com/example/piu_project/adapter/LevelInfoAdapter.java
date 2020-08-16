@@ -231,7 +231,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             public void onSuccess(Uri uri) {
                 // Got the download URL for 'users/me/profile.png'
                 if(!uri.equals("")) {
-                    Glide.with(activity).load(uri).centerCrop().override(500).into(iv_profile);
+                    Glide.with(activity).load(uri).override(500).into(iv_profile);
                     loaderLayout.setVisibility(View.GONE);
                 }
             }
@@ -239,7 +239,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_profile);
+                Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
                 loaderLayout.setVisibility(View.GONE);
                 Log.e("MSG","There is no picture");
             }
@@ -332,21 +332,23 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         et2.setText(document.get("n_Good").toString());
                         et3.setText(document.get("n_Bad").toString());
                         et4.setText(document.get("n_Miss").toString());
-                        if(document.get("photoUrl")!=null){
+                        if(document.get("photoUrl")==null || document.get("photoUrl").toString().equals("")){
+                            Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
+                        } else{
 //                            showToast(activity,document.get("photoUrl").toString() );
-                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
+                            Glide.with(activity).load(document.get("photoUrl").toString()).override(500).into(iv_profile);
 //                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
                         }
                         loaderLayout.setVisibility(View.GONE);
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
                         loaderLayout.setVisibility(View.GONE);
-                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_profile);
+                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
                         Log.d(TAG, "No such document");
                     }
                 } else {
                     loaderLayout.setVisibility(View.GONE);
-                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_profile);
+                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }

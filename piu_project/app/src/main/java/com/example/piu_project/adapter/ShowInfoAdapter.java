@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -54,7 +55,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
     private TypedArray co_button_on;
     private TypedArray co_button_off;
     private ImageView selectedImg;
-    private String selectedLevel;
+    private String selectedLevel = "-1";
     private FirebaseUser user;
     private ImageView iv_info;
     private String title;
@@ -252,7 +253,18 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
             iv_rank.setVisibility(View.GONE);
         }
         else{
-            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
+            if(selected_idx==0) {
+                iv_rank.setScaleX(1.9f);
+                iv_rank.setScaleY(1.9f);
+            } else if(selected_idx==1) {
+                iv_rank.setScaleX(1.5f);
+                iv_rank.setScaleY(1.5f);
+            }else {
+                iv_rank.setScaleX(1.1f);
+                iv_rank.setScaleY(1.1f);
+
+            }
+            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).override(500).into(iv_rank);
             iv_rank.setVisibility(View.VISIBLE);
         }
     }
@@ -263,13 +275,12 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         CardView cardView = holder.cardView;
         ImageView imageView = cardView.findViewById(R.id.imageView);
         ImageView iv_rank = cardView.findViewById(R.id.iv_rank);
-
         iv_rank.bringToFront();
         infoUpdate(iv_rank,level);
-        if(position==0){
-            selectedImg=imageView;
-            selectedLevel=level;
-        }
+//        if(position==0){
+//            selectedImg=imageView;
+//            selectedLevel="-1";
+//        }
         int level_i = 1;
         if (level.charAt(0) == 'S'){
             if(level.charAt(1)!='P') {

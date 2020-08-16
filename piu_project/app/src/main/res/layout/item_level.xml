@@ -11,6 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/iv_rank"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom|center"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            app:srcCompat="@drawable/rk_ts00" />
+
         <TextView
             android:id="@+id/tv_jLink"
             android:layout_width="wrap_content"
@@ -29,13 +38,6 @@
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/iv_rank"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_gravity="bottom|center"
-            android:visibility="gone" />
-
         <TextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
@@ -46,7 +48,10 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:visibility="visible" />
+
+
     </FrameLayout>
 
 </androidx.cardview.widget.CardView>

@@ -308,7 +308,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 if (requestCode == 5) {
                     profilePath = data.getDataString();
 //                    showToast(LevelInfoActivity.this,profilePath );
-                    Glide.with(this).load(data.getDataString()).centerCrop().override(500).into(iv_profile);
+                    Glide.with(this).load(data.getDataString()).override(500).into(iv_profile);
                     Log.d("Picture Path", data.getDataString());
                 }
 

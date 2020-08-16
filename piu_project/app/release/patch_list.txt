@@ -7,3 +7,4 @@
 
 1.1	- 사진 캡처기능 추가
 1.11	- SongInfo double 추가 및 URL 연결
+1.12	- 사진 크기조절, 사진 overwrite 오류 수정
