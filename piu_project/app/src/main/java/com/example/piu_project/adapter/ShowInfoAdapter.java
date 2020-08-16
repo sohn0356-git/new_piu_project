@@ -69,7 +69,39 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         }
     }
 
+    private void pictureUpdate() {
+        //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection(user.getUid()).document(selectedLevel+title);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        if(document.get("photoUrl")==null || document.get("photoUrl").toString().equals("")){
+                            Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+                        } else{
+//                            showToast(activity,document.get("photoUrl").toString() );
+                            Glide.with(activity).load(document.get("photoUrl").toString()).override(500).into(iv_info);
+//                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
+                        }
+                        loaderLayout.setVisibility(View.GONE);
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        loaderLayout.setVisibility(View.GONE);
+                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    loaderLayout.setVisibility(View.GONE);
+                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
     private void findPicture() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
@@ -78,7 +110,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
             public void onSuccess(Uri uri) {
                 // Got the download URL for 'users/me/profile.png'
                 if(!uri.equals("")) {
-                    Glide.with(activity).load(uri).centerCrop().override(500).into(iv_info);
+                    Glide.with(activity).load(uri).override(500).into(iv_info);
                     loaderLayout.setVisibility(View.GONE);
                 }
             }
@@ -86,7 +118,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_info);
+                Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
                 loaderLayout.setVisibility(View.GONE);
                 Log.e("MSG","There is no picture");
             }
@@ -148,8 +180,8 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 loaderLayout = activity.findViewById(R.id.loaderLyaout);
                 if(newPick) {
                     loaderLayout.setVisibility(View.VISIBLE);
-                    findPicture();
-
+//                    findPicture();
+                    pictureUpdate();
                     level_i = 1;
                     if (selectedLevel.charAt(0) == 'S'){
                         if(selectedLevel.charAt(1)!='P') {
