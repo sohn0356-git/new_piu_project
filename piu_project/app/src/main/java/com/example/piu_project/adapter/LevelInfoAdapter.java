@@ -251,38 +251,73 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
+
                 String charString = constraint.toString();
-                if(charString.isEmpty()) {
+                String option = charString.substring(0, 3);
+                int left = Integer.parseInt(option.substring(2,3));
+                int right = Integer.parseInt(option.substring(1,2));
+                charString = charString.substring(3);
+                Log.d(TAG, "option : " + option + " charString : " + charString);
+                if (charString.isEmpty() && option.equals("n80")) {
                     mFDataset = mUFDataset;
                 } else {
                     ArrayList<SongInfo> filteringList = new ArrayList<>();
-                    for(SongInfo songInfo : mUFDataset) {
-                        if(songInfo.getTitle().toLowerCase().contains(charString.toLowerCase())) {
-                            filteringList.add(songInfo);
+                    if(left>2){
+                        left = left*2-2;
+                    }
+                    if(right>2){
+                        right = right*2-2;
+                    }
+                    for (SongInfo songInfo : mUFDataset) {
+                        if (songInfo.getTitle().toLowerCase().contains(charString.toLowerCase())) {
+                            //sss ss s A A' B B' C C' D D' F F'
+                            //  0  1 2 3 4  5 6  7 8  9 A  B C
+                            //0->0 1->1 2->2 3->4 4->6 5->8 6->10 7->12 8->14
+
+                            int ul = songInfo.getUserLevel();
+                            if(ul==-1){
+                                ul = 14;
+                            }
+                            if(ul>=left && ul<=right) {
+                                if (option.charAt(0) == 'n') {//no option
+                                    filteringList.add(songInfo);
+                                } else if (option.charAt(0) == 'o') {    //on
+                                    if (ul < 4 || ul % 2 != 0){
+                                        filteringList.add(songInfo);
+                                    }
+                                } else {  //off
+                                    if (ul % 2 == 0 && ul > 3) {
+                                        filteringList.add(songInfo);
+                                    }
+                                }
+                            }
                         }
                     }
                     mFDataset = filteringList;
-                    for(int i=0;i<8;i++){
-                        difficultyCount[i]=0;
+                    for (int i = 0; i < 8; i++) {
+                        difficultyCount[i] = 0;
                     }
+                }
+                if (!mFDataset.isEmpty()) {
                     SongInfo songInfo = mFDataset.get(0);
                     int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
                     difficultyCount[selected_difficulty]++;
-                    for(int i=1;i<mFDataset.size();i++){
+                    for (int i = 1; i < mFDataset.size(); i++) {
                         songInfo = mFDataset.get(i);
-                         if(selected_difficulty != Integer.parseInt(songInfo.getDifficulty())){
-                             for(int j=difficultyCount[selected_difficulty];j<5;j++) {
-                                 mFDataset.add(i, new SongInfo(String.valueOf(selected_difficulty)));
-                                 i++;
-                             }
-                             selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
-                         }
-                         difficultyCount[selected_difficulty]++;
+                        if (selected_difficulty != Integer.parseInt(songInfo.getDifficulty())) {
+                            for (int j = difficultyCount[selected_difficulty]; j < 5; j++) {
+                                mFDataset.add(i, new SongInfo(String.valueOf(selected_difficulty)));
+                                i++;
+                            }
+                            selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+                        }
+                        difficultyCount[selected_difficulty]++;
                     }
-                    while(mFDataset.size()%5!=0){
+                    while (mFDataset.size() % 5 != 0) {
                         mFDataset.add(mFDataset.size(), new SongInfo(String.valueOf(selected_difficulty)));
                     }
                 }
+
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = mFDataset;
                 return filterResults;
@@ -385,7 +420,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             cardView.findViewById(R.id.linearLayout).setVisibility(View.GONE);
             cardView.setClickable(false);
         } else {
-
+            cardView.setClickable(true);
             cardView.findViewById(R.id.linearLayout).setVisibility(View.VISIBLE);
             TextView nameTextView = cardView.findViewById(R.id.nameTextView);
             TextView original_name = cardView.findViewById(R.id.original_name);

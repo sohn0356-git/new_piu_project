@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -90,6 +91,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private boolean updating;
     private int setLevel;
     private String level;
+    private String newLevel;
+    private String category;
     private String mode;
     private FirebaseUser user;
     private boolean topScrolled;
@@ -100,16 +103,26 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private EditText et2;
     private EditText et3;
     private EditText et4;
+    private EditText et_search;
     private boolean userUpdate;
     private RecyclerView recyclerView;
     private Spinner spinner;
     private Spinner spinner_level;
+    private Spinner spinner_left;
+    private Spinner spinner_right;
     private RelativeLayout settingBackgroundLayout;
+    private RelativeLayout searchingBackgroundLayout;
+    private RadioButton rb_no, rb_on,rb_off;
+    private ImageView iv_prev;
+    private ImageView iv_next;
+    private ImageView iv_reset;
+    private ImageView iv_search;
+    private Button bt_search;
+    private Button bt_cancel;
     private String title;
     private String profilePath;
     private TextView tv_title;
-    private int selected_idx;
-    private EditText ed_find;
+    private int selected_idx,selected_idx_left,selected_idx_right;
     private int col_cnt;
     private final int numberOfColumns = 5;
     private int [] difficultyCount={0,0,0,0,0,0,0,0};
@@ -119,6 +132,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        selected_idx_left = 7;
+        selected_idx_right = 0;
         super.onCreate(savedInstanceState);
         testcnt=0;
         setContentView(R.layout.activity_levelinfo);
@@ -126,21 +141,49 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         Intent intent = getIntent();
         level = intent.getStringExtra("setLevel");
         mode = intent.getStringExtra("setMode");
+        category = intent.getStringExtra("setCategory");
         setToolbarTitle("LEVEL_"+mode+"_"+level);
         tv_title = (TextView)findViewById(R.id.tv_title);
         et1 = (EditText)findViewById(R.id.editText1);
         et2 = (EditText)findViewById(R.id.editText2);
         et3 = (EditText)findViewById(R.id.editText3);
         et4 = (EditText)findViewById(R.id.editText4);
+        rb_no = (RadioButton)findViewById(R.id.rb_no);
+        rb_on = (RadioButton)findViewById(R.id.rb_on);
+        rb_off = (RadioButton)findViewById(R.id.rb_off);
+        et_search = (EditText)findViewById(R.id.et_search);
+        bt_search=(Button)findViewById(R.id.bt_search);
+        bt_search.setOnClickListener(onClickListener);
+        bt_cancel=(Button)findViewById(R.id.bt_cancel);
+        bt_cancel.setOnClickListener(onClickListener);
+        iv_search=(ImageView)findViewById(R.id.iv_search);
+        iv_search.setOnClickListener(onClickListener);
+        iv_reset=(ImageView)findViewById(R.id.iv_reset);
+        iv_reset.setOnClickListener(onClickListener);
+        iv_prev=(ImageView)findViewById(R.id.iv_prev);
+        iv_prev.setOnClickListener(onClickListener);
+        if(level.equals("01")){
+            iv_prev.setVisibility(View.GONE);
+        }
+        iv_next=(ImageView)findViewById(R.id.iv_next);
+        iv_next.setOnClickListener(onClickListener);
+        if(level.equals("28")){
+            iv_next.setVisibility(View.GONE);
+        }
         iv_capture =(ImageView)(findViewById(R.id.iv_capture));
         iv_capture.setOnClickListener(onClickListener);
         frameLayout = (FrameLayout) findViewById(R.id.container);
         iv_profile =(ImageView)(findViewById(R.id.iv_profile));
         iv_profile.setOnClickListener(onClickListener);
         settingBackgroundLayout = (findViewById(R.id.settingBackgroundLayout));
+        searchingBackgroundLayout = (findViewById(R.id.searchingBackgroundLayout));
+        searchingBackgroundLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchingBackgroundLayout.setVisibility(View.GONE);
+            }
+        });
         findViewById(R.id.bt_check).setOnClickListener(onClickListener);
-        ed_find = (EditText)findViewById(R.id.ed_find);
-        ed_find.addTextChangedListener(this);
         loaderLayout = (RelativeLayout)findViewById(R.id.loaderLyaout2);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -148,26 +191,56 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
+        spinner_left = (Spinner)findViewById(R.id.spinner_left);
+        spinner_right = (Spinner)findViewById(R.id.spinner_right);
 
 
         // 스피너에 보여줄 문자열과 이미지 목록을 작성합니다.
        int[] spinnerImages = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_af00,R.drawable.rk_bn00,R.drawable.rk_bf00,
                                         R.drawable.rk_cn00,R.drawable.rk_cf00,R.drawable.rk_dn00,R.drawable.rk_df00,R.drawable.rk_fn00,R.drawable.rk_ff00};
+        int[] spinnerChoices = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_bn00,R.drawable.rk_cn00,
+                                        R.drawable.rk_dn00,R.drawable.rk_fn00, R.drawable.none};
 
 
         // 어댑터와 스피너를 연결합니다.
 
         CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(LevelInfoActivity.this, spinnerImages);
         spinner_level.setAdapter(customSpinnerAdapter);
-
+        CustomSpinnerAdapter customSpinnerLeftAdapter = new CustomSpinnerAdapter(LevelInfoActivity.this, spinnerChoices);
+        spinner_left.setAdapter(customSpinnerLeftAdapter);
+        CustomSpinnerAdapter customSpinnerRightAdapter = new CustomSpinnerAdapter(LevelInfoActivity.this, spinnerChoices);
+        spinner_right.setAdapter(customSpinnerRightAdapter);
+        spinner_left.setSelection(8);
+        spinner_right.setSelection(0);
         // 스피너에서 아이템 선택시 호출하도록 합니다.
 
-        spinner_level = (Spinner)findViewById(R.id.spinner_level);
         spinner_level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_idx = spinner_level.getSelectedItemPosition();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner_left.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selected_idx_left = spinner_left.getSelectedItemPosition();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner_right.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selected_idx_right = spinner_right.getSelectedItemPosition();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -230,9 +303,11 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
     @Override
     public void onBackPressed() {
-        if(settingBackgroundLayout.getVisibility()==View.VISIBLE) {
+        if (settingBackgroundLayout.getVisibility() == View.VISIBLE) {
             settingBackgroundLayout.setVisibility(View.GONE);
-        }else {
+        } else if (searchingBackgroundLayout.getVisibility() == View.VISIBLE) {
+            searchingBackgroundLayout.setVisibility(View.GONE);
+        } else {
             super.onBackPressed();
             finish();
         }
@@ -256,8 +331,47 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 case R.id.bt_check:
                     loaderLayout.setVisibility(View.VISIBLE);
                     photoUploader2();
-
 //                    settingBackgroundLayout.setVisibility(View.GONE);
+                    break;
+                case R.id.iv_prev:
+                    newLevel = String.valueOf(Integer.parseInt(level)-1);
+                    if(newLevel.length()==1){
+                        newLevel = "0"+newLevel;
+                    }
+                    myStartActivity(LevelInfoActivity.class);
+                    finish();
+                    break;
+                case R.id.iv_next:
+                    newLevel = String.valueOf(Integer.parseInt(level)+1);
+                    if(newLevel.length()==1){
+                        newLevel = "0"+newLevel;
+                    }
+                    myStartActivity(LevelInfoActivity.class);
+                    finish();
+                    break;
+                case R.id.iv_search:
+                    searchingBackgroundLayout.setVisibility(View.VISIBLE);
+                    searchingBackgroundLayout.bringToFront();
+                    break;
+                case R.id.bt_search:
+
+                    CharSequence charSequence="";
+                    if(rb_no.isChecked()){
+                        charSequence="n"+String.valueOf(selected_idx_left)+String.valueOf(selected_idx_right)+et_search.getText();
+                    }else if(rb_on.isChecked()){
+                        charSequence="o"+String.valueOf(selected_idx_left)+String.valueOf(selected_idx_right)+et_search.getText();
+                    }else if(rb_off.isChecked()){
+                        charSequence="f"+String.valueOf(selected_idx_left)+String.valueOf(selected_idx_right)+et_search.getText();
+                    }
+                    levelInfoAdapter.getFilter().filter(charSequence);
+                    searchingBackgroundLayout.setVisibility(View.GONE);
+                    break;
+                case R.id.bt_cancel:
+                    searchingBackgroundLayout.setVisibility(View.GONE);
+                    break;
+                case R.id.iv_reset:
+                    et_search.setText("");
+                    levelInfoAdapter.getFilter().filter("n80");
                     break;
             }
         }
@@ -818,6 +932,9 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
-        startActivityForResult(intent, 0);
+        intent.putExtra("setCategory",category);
+        intent.putExtra("setLevel", newLevel);
+        intent.putExtra("setMode", mode);
+        startActivityForResult(intent, 1);
     }
 }
