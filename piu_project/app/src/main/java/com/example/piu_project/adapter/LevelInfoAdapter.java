@@ -263,9 +263,9 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                 } else {
                     ArrayList<SongInfo> filteringList = new ArrayList<>();
                     if(left>2){
-                        left = left*2-2;
+                        left = left*2-3;
                     }
-                    if(right>2){
+                    if(right> 2){
                         right = right*2-2;
                     }
                     for (SongInfo songInfo : mUFDataset) {
