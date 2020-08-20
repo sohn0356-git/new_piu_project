@@ -403,7 +403,7 @@
                             <TextView
                                 android:id="@+id/textView7"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="30dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="20dp"
                                 android:text="Last record : " />
@@ -411,10 +411,10 @@
                             <ImageView
                                 android:id="@+id/iv_profile"
                                 android:layout_width="match_parent"
-                                android:layout_height="250dp"
+                                android:layout_height="170dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                app:srcCompat="@drawable/ic_add_to_queue_black_24dp" />
+                                app:srcCompat="@drawable/ic_up00" />
 
                         </LinearLayout>
 

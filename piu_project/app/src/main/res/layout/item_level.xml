@@ -21,6 +21,12 @@
             app:srcCompat="@drawable/rk_ts00" />
 
         <TextView
+            android:id="@+id/tv_unlockCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/tv_jLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

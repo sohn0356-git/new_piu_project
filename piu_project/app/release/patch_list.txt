@@ -10,3 +10,5 @@
 1.12	- 사진 크기조절, 사진 overwrite 오류 수정
 1.13	- levelInfo 좌우 전환
 1.14	- levelInfo search 기능추가
+
+1.2	- 앱 아이콘 변경, 자료구조 변경, MyPage기능 구현

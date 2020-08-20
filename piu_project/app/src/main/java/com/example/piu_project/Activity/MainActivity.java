@@ -3,6 +3,7 @@ package com.example.piu_project.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.piu_project.ListItem;
 import com.example.piu_project.R;
@@ -25,11 +27,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 import static com.example.piu_project.Util.showToast;
 
@@ -37,10 +49,14 @@ public class MainActivity extends BasicActivity {
     private static final String TAG = "MainActivity";
     private RelativeLayout settingBackgroundLayout1;
     private RelativeLayout settingBackgroundLayout2;
+    private RelativeLayout loaderLayout;
     private int page = 1;
+    private FirebaseUser user;
     private String level="";
     private String mode="";
     private String category="";
+    public static HashMap<String,Object> allData = new HashMap<>();
+    public static HashMap<String,Object> userData = new HashMap<>();
     private ListView listview1;
     private ListView listview2;
     private ListView listview3;
@@ -52,11 +68,15 @@ public class MainActivity extends BasicActivity {
     private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
 //    private Fragment curFragment;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setToolbarTitle("piu project");
+        loaderLayout = findViewById(R.id.loaderLyaout);
+        loaderLayout.bringToFront();
+
 
         init();
 
@@ -82,6 +102,7 @@ public class MainActivity extends BasicActivity {
         settingBackgroundLayout2.setOnClickListener(onClickListener);
         findViewById(R.id.bt_level).setOnClickListener(onClickListener);
         findViewById(R.id.bt_category).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_myPage).setOnClickListener(onClickListener);
         findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
         findViewById(R.id.bt_set_level).setOnClickListener(onClickListener);
         findViewById(R.id.bt_set_category).setOnClickListener(onClickListener);
@@ -182,6 +203,38 @@ public class MainActivity extends BasicActivity {
 //        for(int i=0;i<info.length;i++){
 //            Log.d(TAG,info[i]);
 //        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection(user.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                userData.put((String)document.getData().get("songInfo"),(Object) document.getData());
+                            }
+                            loaderLayout.setVisibility(View.GONE);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
+        DatabaseReference databaseReference_s = database.getReference("db_song");     //DB 테이블 연결
+        databaseReference_s.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                allData = (HashMap<String,Object>)dataSnapshot.getValue();
+            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //error 발생시
+                Log.e(TAG, String.valueOf(databaseError.toException()));
+            }
+        });
 
         String[] mode_string = getResources().getStringArray(R.array.mode_string);
         for(int i=0;i<mode_string.length;i++){
@@ -303,6 +356,9 @@ public class MainActivity extends BasicActivity {
                     myStartActivity(CategoryInfoActivity.class);
 //                    settingBackgroundLayout2.setVisibility(View.VISIBLE);
 //                    page = 2;
+                    break;
+                case R.id.bt_myPage:
+                    myStartActivity(MyPageActivity.class);
                     break;
                 case R.id.bt_logout:
                     FirebaseAuth.getInstance().signOut();

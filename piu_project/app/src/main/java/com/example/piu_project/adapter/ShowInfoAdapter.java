@@ -81,8 +81,10 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         if(document.get("photoUrl")==null || document.get("photoUrl").toString().equals("")){
-                            Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+//                            Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+                            iv_info.setVisibility(View.GONE);
                         } else{
+                            iv_info.setVisibility(View.VISIBLE);
 //                            showToast(activity,document.get("photoUrl").toString() );
                             Glide.with(activity).load(document.get("photoUrl").toString()).override(500).into(iv_info);
 //                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
@@ -91,12 +93,14 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
                         loaderLayout.setVisibility(View.GONE);
-                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+                        iv_info.setVisibility(View.GONE);
+//                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
                         Log.d(TAG, "No such document");
                     }
                 } else {
                     loaderLayout.setVisibility(View.GONE);
-                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
+                    iv_info.setVisibility(View.GONE);
+//                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_info);
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
@@ -136,6 +140,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         d_button_off = resources.obtainTypedArray(R.array.d_btn_off);
         img_rank = resources.obtainTypedArray(R.array.rank_img);
         user = FirebaseAuth.getInstance().getCurrentUser();
+        iv_info.setVisibility(View.GONE);
     }
 
     @NonNull
@@ -244,7 +249,8 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                     }
                 } else {
                     selectedLevel="None";
-                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_info);
+                    iv_info.setVisibility(View.GONE);
+//                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_info);
                     iv_pLink.setVisibility(View.GONE);
                     iv_jLink.setVisibility(View.GONE);
                     iv_nLink.setVisibility(View.GONE);
@@ -335,7 +341,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 Glide.with(activity).load(d_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
             }
         }
-
+        ((TextView)cardView.findViewById(R.id.tv_unlockCondition)).setText(mDataset.get(position).getunlockCondition());
         ((TextView)cardView.findViewById(R.id.tv_pLink)).setText(mDataset.get(position).getYoutubeLinkP());
         ((TextView)cardView.findViewById(R.id.tv_jLink)).setText(mDataset.get(position).getYoutubeLinkJ());
         ((TextView)cardView.findViewById(R.id.tv_nLink)).setText(mDataset.get(position).getYoutubeLinkN());

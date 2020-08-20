@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">piu_project</string>
+    <string name="app_name">Post it Up</string>
     <string name="please_grant_permission">권한을 허용해 주세요.</string>
 </resources>

@@ -46,6 +46,8 @@ public class CategoryInfoActivity extends BasicActivity {
         setContentView(R.layout.activity_categoryinfo);
         setToolbarTitle("CATEGORY");
 
+
+
         final int numberOfColumns = 1;
         firebaseFirestore = FirebaseFirestore.getInstance();
         categoryInfo = new ArrayList<>();
@@ -158,9 +160,9 @@ public class CategoryInfoActivity extends BasicActivity {
                     String h_category = h.get("category");
                     String h_version = h.get("version");
                     Log.d(TAG, version + ": " + h_version + " " + h.get("title"));
-                    HashMap<String, HashMap<String, HashMap<String, String>>> h2 = (HashMap<String, HashMap<String, HashMap<String, String>>>) snapshot.getValue();
-                    HashMap<String, HashMap<String, String>> youtubelink = h2.get("youtubeLink");
-                    HashMap<String, HashMap<String, String>> stepmaker = h2.get("stepmaker");
+                    HashMap<String, Object> h2 = (HashMap<String, Object>) snapshot.getValue();
+                    HashMap<String, Object> youtubelink = (HashMap<String, Object>)h2.get("youtubeLink");
+                    HashMap<String, String> stepmaker = (HashMap<String, String>) h2.get("stepmaker");
                     if (version.equals("All")) {
                         if (category.equals("All")) {
                             HashMap<String, Long> h3 = (HashMap<String, Long>) snapshot.getValue();

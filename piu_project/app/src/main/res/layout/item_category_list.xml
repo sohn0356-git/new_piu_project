@@ -40,20 +40,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
+                android:fontFamily="@font/nanumsquareroundb"
                 android:text="title" />
 
             <TextView
                 android:id="@+id/tv_artist"
                 android:layout_width="match_parent"
-                android:layout_margin="2dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:fontFamily="@font/nanumsquareroundb"
                 android:text="artist" />
 
             <TextView
                 android:id="@+id/tv_bpm"
                 android:layout_width="match_parent"
-                android:layout_margin="2dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:fontFamily="@font/nanumsquareroundb"
                 android:text="bpm" />
 
         </LinearLayout>

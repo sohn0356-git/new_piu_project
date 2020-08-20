@@ -2,13 +2,17 @@ package com.example.piu_project.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.piu_project.R;
 
@@ -31,11 +35,15 @@ public class BasicActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setToolbarTitle(String title){
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){
             actionBar.setTitle(title);
             tv_title.setText(title);
+            Typeface typeface = getResources().getFont(R.font.nanumsquareroundeb);
+            tv_title.setTypeface(typeface);
+
         }
     }
 }

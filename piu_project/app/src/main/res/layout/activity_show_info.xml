@@ -88,7 +88,7 @@
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/level_s" />
+                    app:srcCompat="@drawable/yt_pp01" />
 
                 <ImageView
                     android:id="@+id/iv_jLink"
@@ -96,7 +96,7 @@
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/level_s" />
+                    app:srcCompat="@drawable/yt_jj02" />
 
                 <ImageView
                     android:id="@+id/iv_nLink"
@@ -104,10 +104,16 @@
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/level_s" />
+                    app:srcCompat="@drawable/yt_nn03" />
+
+
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_unlock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -124,7 +130,7 @@
                     android:id="@+id/iv_info"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    app:srcCompat="@drawable/ic_add_to_queue_black_24dp" />
+                    app:srcCompat="@drawable/ic_up00" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -74,10 +75,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.logging.Level;
 
+import static com.example.piu_project.Activity.MainActivity.allData;
 import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
 
@@ -88,6 +93,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private FirebaseFirestore firebaseFirestore;
     private LevelInfoAdapter levelInfoAdapter;
     private ArrayList<SongInfo> levelInfo;
+    private ArrayList<SongInfo> levelInfo_tmp;
     private boolean updating;
     private int setLevel;
     private String level;
@@ -126,10 +132,13 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private int col_cnt;
     private final int numberOfColumns = 5;
     private int [] difficultyCount={0,0,0,0,0,0,0,0};
+    private int [] S_song_id = {R.array.info_s13};
     private RelativeLayout loaderLayout;
     private FrameLayout frameLayout;
+    public String[] song_number;
     private HashMap<String, String> userLevelList=new HashMap<>();;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         selected_idx_left = 7;
@@ -143,6 +152,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         mode = intent.getStringExtra("setMode");
         category = intent.getStringExtra("setCategory");
         setToolbarTitle("LEVEL_"+mode+"_"+level);
+        song_number = getResources().getStringArray(R.array.info_s13);
         tv_title = (TextView)findViewById(R.id.tv_title);
         et1 = (EditText)findViewById(R.id.editText1);
         et2 = (EditText)findViewById(R.id.editText2);
@@ -188,6 +198,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
+        levelInfo_tmp = new ArrayList<>();
         levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
@@ -779,6 +790,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     }
 
 
+
+
     private void postsUpdate(final boolean clear, int _detailDifficulty) {
         updating = true;
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
@@ -789,6 +802,54 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase database의 data를 GET
                 if (_detailDifficulty == -1) {
+//                    for(int idx = 0; idx<song_number.length;idx++){
+//                        HashMap<String,Object> target = (HashMap<String, Object>) (allData.get(song_number[idx]));
+//                        String song_id_tmp = String.valueOf(target.get("song_id"));
+//                        String artist_tmp = (String)target.get("artist");
+//                        String bpm_tmp = (String)target.get("bpm");
+//                        String title_tmp = (String)target.get("title");
+//                        String category_tmp = (String)target.get("category");
+//                        String version_tmp = (String)target.get("version");
+//                        String level_tmp = (String) (target.get("level"));
+//                        HashMap<String,Object> youtubelink_tmp = (HashMap<String, Object>) (target.get("youtubeLink"));
+//                        HashMap<String,String> stepmaker_tmp = (HashMap<String, String >) (target.get("stepmaker"));
+//                        HashMap<String,String> unlockCondition_tmp = (HashMap<String, String>) (target.get("unlockCondition"));
+//                        HashMap<String,String > detailDifficulty_tmp = (HashMap<String, String>) (target.get("detailDifficulty"));
+//                        String dd = (String)detailDifficulty_tmp.get(mode+level);
+//                        levelInfo_tmp.add(new SongInfo(
+//                                song_id_tmp,
+//                                artist_tmp,
+//                                title_tmp,
+//                                level_tmp,
+//                                bpm_tmp,
+//                                category_tmp,
+//                                version_tmp,
+//                                stepmaker_tmp,
+//                                youtubelink_tmp,
+//                                unlockCondition_tmp,
+//                                dd));
+//                    }
+//                    Collections.sort(levelInfo_tmp, new Comparator() {
+//                        @Override
+//                        public int compare(Object o1, Object o2) {
+//                            return ((SongInfo)o2).getDifficulty().compareTo(((SongInfo)o1).getDifficulty());
+//                        }
+//                    });
+                    for (int j = 0; j < 8; j++) {
+                        difficultyCount[j] = 0;
+                    }
+                    for (int p = 0; p < levelInfo_tmp.size(); p++) {
+                        SongInfo songInfo = levelInfo_tmp.get(p);
+                        int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+                        difficultyCount[selected_difficulty]++;
+                        if (p + 1 != levelInfo_tmp.size() && (!levelInfo_tmp.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+                            levelInfo_tmp.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+                        } else if (p + 1 == levelInfo_tmp.size()) {
+                            while (levelInfo_tmp.size() % 5 != 0) {
+                                levelInfo_tmp.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+                            }
+                        }
+                    }
                     for (int j = 0; j < 8; j++) {
                         difficultyCount[j] = 0;
                     }
@@ -807,6 +868,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     levelInfoAdapter.notifyDataSetChanged();
                 } else {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Log.d(TAG+"test",snapshot.getValue().toString());
+
                         boolean isHere = false;
                         HashMap<String, String> h = (HashMap<String, String>) snapshot.getValue();
                         String[] level_s = h.get("level").split(String.valueOf(','));
@@ -817,14 +880,17 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                         }
                         if (isHere) {
                             int difficulty = 0;
-                            HashMap<String, HashMap<String, HashMap<String, String>>> h2 = (HashMap<String, HashMap<String, HashMap<String, String>>>) snapshot.getValue();
-                            HashMap<String, HashMap<String, String>> youtubelink = h2.get("youtubeLink");
-                            HashMap<String, HashMap<String, String>> stepmaker = h2.get("stepmaker");
+                            HashMap<String, Object> h2 = (HashMap<String, Object>) snapshot.getValue();
+                            HashMap<String, Object> youtubelink = (HashMap<String, Object>)h2.get("youtubeLink");
+                            HashMap<String, String > stepmaker = (HashMap<String, String>)h2.get("stepmaker");
 
 
                             HashMap<String, HashMap<String, String>> h3 = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
                             HashMap<String, String> detailDifficulty = h3.get("detailDifficulty");
                             Log.e("Msg", "error : " + h.get("title"));
+//                            if(h.get("title").equals("트란사칼리아")) {
+//                                Log.d("d","T");
+//                            }
                             difficulty = Integer.parseInt(detailDifficulty.get(mode + level));
                             if (difficulty == _detailDifficulty) {
                                 col_cnt++;

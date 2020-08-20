@@ -71,6 +71,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private ArrayList<SongInfo> mUFDataset;
     private ArrayList<SongInfo> mFDataset;
     private Activity activity;
+
     private EditText et1;
     private EditText et2;
     private EditText et3;
@@ -239,7 +240,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
+                Glide.with(activity).load(R.drawable.ic_up00).override(500).into(iv_profile);
                 loaderLayout.setVisibility(View.GONE);
                 Log.e("MSG","There is no picture");
             }
@@ -269,6 +270,9 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         right = right*2-2;
                     }
                     for (SongInfo songInfo : mUFDataset) {
+                        if(songInfo.getTitle().equals("blank")){
+                            continue;
+                        }
                         if (songInfo.getTitle().toLowerCase().contains(charString.toLowerCase())) {
                             //sss ss s A A' B B' C C' D D' F F'
                             //  0  1 2 3 4  5 6  7 8  9 A  B C
@@ -305,9 +309,11 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                     for (int i = 1; i < mFDataset.size(); i++) {
                         songInfo = mFDataset.get(i);
                         if (selected_difficulty != Integer.parseInt(songInfo.getDifficulty())) {
-                            for (int j = difficultyCount[selected_difficulty]; j < 5; j++) {
-                                mFDataset.add(i, new SongInfo(String.valueOf(selected_difficulty)));
-                                i++;
+                            if(difficultyCount[selected_difficulty]%5!=0) {
+                                for (int j = difficultyCount[selected_difficulty] % 5; j < 5; j++) {
+                                    mFDataset.add(i, new SongInfo(String.valueOf(selected_difficulty)));
+                                    i++;
+                                }
                             }
                             selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
                         }
@@ -368,7 +374,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         et3.setText(document.get("n_Bad").toString());
                         et4.setText(document.get("n_Miss").toString());
                         if(document.get("photoUrl")==null || document.get("photoUrl").toString().equals("")){
-                            Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
+                            Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
                         } else{
 //                            showToast(activity,document.get("photoUrl").toString() );
                             Glide.with(activity).load(document.get("photoUrl").toString()).override(500).into(iv_profile);
@@ -378,12 +384,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
                         loaderLayout.setVisibility(View.GONE);
-                        Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
+                        Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
                         Log.d(TAG, "No such document");
                     }
                 } else {
                     loaderLayout.setVisibility(View.GONE);
-                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).override(500).into(iv_profile);
+                    Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
@@ -531,11 +537,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         intent.putExtra("level", songInfo.getLevel());
         intent.putExtra("title", songInfo.getTitle());
         intent.putExtra("category",songInfo.getCategory());
-        for( HashMap.Entry<String,HashMap<String,String>> elem : songInfo.getYoutubeLink().entrySet() ){
-            for( HashMap.Entry<String,String> yLink : elem.getValue().entrySet() ) {
+        for( HashMap.Entry<String,Object> elem : songInfo.getYoutubeLink().entrySet() ){
+            for( HashMap.Entry<String,String> yLink : ((HashMap<String,String>)elem.getValue()).entrySet() ) {
                 intent.putExtra(elem.getKey()+yLink.getKey(),yLink.getValue());
             }
         }
+
         activity.startActivityForResult(intent, 0);
     }
 }

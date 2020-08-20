@@ -98,8 +98,8 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
         intent.putExtra("level", songInfo.getLevel());
         intent.putExtra("title", songInfo.getTitle());
         intent.putExtra("category",songInfo.getCategory());
-        for( HashMap.Entry<String,HashMap<String,String>> elem : songInfo.getYoutubeLink().entrySet() ){
-            for( HashMap.Entry<String,String> yLink : elem.getValue().entrySet() ) {
+        for( HashMap.Entry<String,Object> elem : songInfo.getYoutubeLink().entrySet() ){
+            for( HashMap.Entry<String,String> yLink : ((HashMap<String,String>)elem.getValue()).entrySet() ) {
                 intent.putExtra(elem.getKey()+yLink.getKey(),yLink.getValue());
             }
         }
