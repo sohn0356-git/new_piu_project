@@ -138,7 +138,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     public String[] song_number;
     private HashMap<String, String> userLevelList=new HashMap<>();;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         selected_idx_left = 7;

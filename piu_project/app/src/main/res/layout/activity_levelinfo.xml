@@ -268,13 +268,34 @@
                         android:orientation="vertical">
 
 
-                        <TextView
-                            android:id="@+id/tv_titleInfo"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_gravity="center"
                             android:gravity="center"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                app:cardCornerRadius="15dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_show"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    app:srcCompat="@mipmap/ic_launcher_round" />
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:id="@+id/tv_titleInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="18sp" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"

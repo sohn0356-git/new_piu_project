@@ -88,6 +88,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private Spinner spinner_level;
     private RelativeLayout settingBackgroundLayout;
     private ImageView[] iv_rank = new ImageView[13];
+    private TextView original_level;
     private Resources resources;
     private TypedArray img_rank;
     private String[] rank =  {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
@@ -141,6 +142,13 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             public void onClick(View v) {
                 title = ((TextView) (v.findViewById(R.id.original_name))).getText().toString();
                 pos = ((TextView) (v.findViewById(R.id.original_position))).getText().toString();
+                original_level = ((TextView) (v.findViewById(R.id.original_level)));
+                String user_level = original_level.getText().toString();
+                String s_id = ((TextView) (v.findViewById(R.id.original_id))).getText().toString();
+                String resName = "@drawable/a_"+String.valueOf(s_id);
+                String packName = activity.getPackageName(); // 패키지명
+                int resID = activity.getResources().getIdentifier(resName, "drawable", packName);
+                ((ImageView)activity.findViewById(R.id.iv_show)).setImageResource(resID);
                 if (!title.equals("")) {
 //                    spinner_level = (Spinner)((activity).findViewById(R.id.spinner_level));
                     ((TextView)((activity).findViewById(R.id.tv_titleInfo))).setText(title);
@@ -181,6 +189,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                     });
                     settingBackgroundLayout.bringToFront();
                     settingBackgroundLayout.setGravity(Gravity.CENTER);
+                    if(user_level.equals("-1")){
+                        ((Spinner)(activity.findViewById(R.id.spinner_level))).setSelection(0);
+                    } else{
+                        ((Spinner)(activity.findViewById(R.id.spinner_level))).setSelection(Integer.parseInt(user_level));
+                    }
+
                     (activity.findViewById(R.id.bt_delete)).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -214,7 +228,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 //            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
 //            iv_rank.setVisibility(View.VISIBLE);
 //        }
-
+        original_level.setText(String.valueOf(selected_idx));
         for (int i = 0; i < 13; i++) {
             if (selected_idx == i) {
                 iv_rank[i].setVisibility(View.VISIBLE);
@@ -431,6 +445,8 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             TextView nameTextView = cardView.findViewById(R.id.nameTextView);
             TextView original_name = cardView.findViewById(R.id.original_name);
             TextView original_pos = cardView.findViewById(R.id.original_position);
+            TextView original_id = cardView.findViewById(R.id.original_id);
+            original_level = cardView.findViewById(R.id.original_level);
             iv_rank[0] = (ImageView)cardView.findViewById(R.id.iv_rank_ts);
             iv_rank[1] = (ImageView)cardView.findViewById(R.id.iv_rank_ds);
             iv_rank[2] = (ImageView)cardView.findViewById(R.id.iv_rank_ss);
@@ -460,6 +476,8 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             String songTitle = songInfo.getTitle();
             original_name.setText(songTitle);
             original_pos.setText(String.valueOf(position));
+            original_id.setText(String.valueOf(song_id));
+            original_level.setText(String.valueOf(t));
             boolean fullSongORshortCut = false;
             nameTextView.setText(songTitle);
             int songTitleLength=0;

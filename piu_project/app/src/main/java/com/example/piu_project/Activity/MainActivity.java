@@ -56,7 +56,7 @@ public class MainActivity extends BasicActivity {
     private String mode="";
     private String category="";
     public static HashMap<String,Object> allData = new HashMap<>();
-    public static HashMap<String,Object> userData = new HashMap<>();
+    public static HashMap<String,Object> userData;
     private ListView listview1;
     private ListView listview2;
     private ListView listview3;
@@ -68,7 +68,6 @@ public class MainActivity extends BasicActivity {
     private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
 //    private Fragment curFragment;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,6 +204,7 @@ public class MainActivity extends BasicActivity {
 //        }
         user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        userData =  new HashMap<>();
         db.collection(user.getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

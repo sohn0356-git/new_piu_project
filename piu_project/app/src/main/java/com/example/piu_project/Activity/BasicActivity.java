@@ -35,7 +35,6 @@ public class BasicActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setToolbarTitle(String title){
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){

@@ -88,7 +88,7 @@
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/yt_pp01" />
+                    app:srcCompat="@drawable/yt_pp02" />
 
                 <ImageView
                     android:id="@+id/iv_jLink"
@@ -104,7 +104,7 @@
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/yt_nn03" />
+                    app:srcCompat="@drawable/yt_nn02" />
 
 
 
