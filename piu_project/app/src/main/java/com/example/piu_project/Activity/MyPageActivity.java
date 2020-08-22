@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,13 +33,51 @@ public class MyPageActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
         setToolbarTitle("내정보");
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
         int cnt_ts=0;
         int cnt_ds=0;
         int cnt_ss=0;
+        Log.d(TAG,userData.toString());
+        TextView tv_email = (TextView)findViewById(R.id.tv_email);
         TextView tv_ts = (TextView)findViewById(R.id.tv_ts);
         TextView tv_ds = (TextView)findViewById(R.id.tv_ds);
         TextView tv_ss = (TextView)findViewById(R.id.tv_ss);
+        Button bt_pwChange = (Button)findViewById(R.id.bt_pwChange);
+        bt_pwChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Email sent.");
+                                }
+                            }
+                        });
+            }
+        });
+
+        Button bt_out = (Button)findViewById(R.id.bt_out);
+        bt_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user.delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "User account deleted.");
+                                }
+                            }
+                        });
+            }
+        });
+
+        tv_email.setText("이메일 : "+email);
 
         for ( HashMap.Entry<String, Object> entry : userData.entrySet() ) {
            String a = ((HashMap<String,String>)entry.getValue()).get("achievement");

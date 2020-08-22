@@ -25,7 +25,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -115,7 +115,7 @@
         </TableLayout>
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/bt_pwChange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="비밀번호 변경" />
@@ -127,7 +127,7 @@
             android:text="로그아웃" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/bt_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="탈퇴" />

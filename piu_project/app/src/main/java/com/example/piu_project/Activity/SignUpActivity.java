@@ -2,6 +2,7 @@ package com.example.piu_project.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -11,13 +12,19 @@ import androidx.annotation.NonNull;
 import com.example.piu_project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
+
+import java.util.List;
 
 import static com.example.piu_project.Util.showToast;
 
 public class SignUpActivity extends BasicActivity {
+    private static final String TAG = "SignUpActivity" ;
     private FirebaseAuth mAuth;
 
     @Override
@@ -38,13 +45,15 @@ public class SignUpActivity extends BasicActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.signUpButton:
+
                     signUp();
                     break;
             }
         }
     };
-
     private void signUp() {
+
+
         String email = ((EditText)findViewById(R.id.emailEditText)).getText().toString();
         String password = ((EditText)findViewById(R.id.passwordEditText)).getText().toString();
         String passwordCheck = ((EditText)findViewById(R.id.passwordCheckEditText)).getText().toString();
@@ -61,7 +70,8 @@ public class SignUpActivity extends BasicActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     showToast(SignUpActivity.this, "회원가입에 성공하였습니다.");
-                                    myStartActivity(MainActivity.class);
+                                    user.sendEmailVerification();
+                                    myStartActivity(LoginActivity.class);
                                 } else {
                                     if(task.getException() != null){
                                         showToast(SignUpActivity.this, task.getException().toString());

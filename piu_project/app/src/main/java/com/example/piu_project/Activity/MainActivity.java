@@ -25,6 +25,7 @@ import com.example.piu_project.R;
 import com.example.piu_project.adapter.ListViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -75,38 +76,12 @@ public class MainActivity extends BasicActivity {
         setToolbarTitle("piu project");
         loaderLayout = findViewById(R.id.loaderLyaout);
         loaderLayout.bringToFront();
-
-
-        init();
-
-    }
-
-
-    private void init(){
-
-        listViewAdapter1 = new ListViewAdapter(itemList1) ;
-        listViewAdapter2 = new ListViewAdapter(itemList2) ;
-        listViewAdapter3 = new ListViewAdapter(itemList3) ;
-        // 리스트뷰 참조 및 Adapter달기
-        listview1 = (ListView) findViewById(R.id.listview1);
-        listview2 = (ListView) findViewById(R.id.listview2);
-        listview3 = (ListView) findViewById(R.id.listview3);
-        listSetup();
-        listview1.setAdapter(listViewAdapter1);
-        listview2.setAdapter(listViewAdapter2);
-        listview3.setAdapter(listViewAdapter3);
-        settingBackgroundLayout1 =findViewById(R.id.settingBackgroundLayout1);
-        settingBackgroundLayout1.setOnClickListener(onClickListener);
-        settingBackgroundLayout2 =findViewById(R.id.settingBackgroundLayout2);
-        settingBackgroundLayout2.setOnClickListener(onClickListener);
-        findViewById(R.id.bt_level).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_category).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_myPage).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_set_level).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_set_category).setOnClickListener(onClickListener);
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser == null) {
+        if (firebaseUser == null || !firebaseUser.isEmailVerified()) {
+            if(firebaseUser!=null) {
+                firebaseUser.sendEmailVerification();
+                showToast(MainActivity.this,"이메일을 인증해주세요!");
+            }
             myStartActivity(LoginActivity.class);
 //        } else {
 //            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseUser.getUid());
@@ -194,7 +169,38 @@ public class MainActivity extends BasicActivity {
 //                    return false;
 //                }
 //            });
+        }else {
+            init();
         }
+
+}
+
+
+    private void init(){
+
+        listViewAdapter1 = new ListViewAdapter(itemList1) ;
+        listViewAdapter2 = new ListViewAdapter(itemList2) ;
+        listViewAdapter3 = new ListViewAdapter(itemList3) ;
+        // 리스트뷰 참조 및 Adapter달기
+        listview1 = (ListView) findViewById(R.id.listview1);
+        listview2 = (ListView) findViewById(R.id.listview2);
+        listview3 = (ListView) findViewById(R.id.listview3);
+        listSetup();
+        listview1.setAdapter(listViewAdapter1);
+        listview2.setAdapter(listViewAdapter2);
+        listview3.setAdapter(listViewAdapter3);
+        settingBackgroundLayout1 =findViewById(R.id.settingBackgroundLayout1);
+        settingBackgroundLayout1.setOnClickListener(onClickListener);
+        settingBackgroundLayout2 =findViewById(R.id.settingBackgroundLayout2);
+        settingBackgroundLayout2.setOnClickListener(onClickListener);
+        findViewById(R.id.bt_level).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_category).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_myPage).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_set_level).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_set_category).setOnClickListener(onClickListener);
+
+
     }
 
     private void listSetup(){
@@ -204,6 +210,7 @@ public class MainActivity extends BasicActivity {
 //        }
         user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         userData =  new HashMap<>();
         db.collection(user.getUid())
                 .get()
@@ -421,6 +428,9 @@ public class MainActivity extends BasicActivity {
         intent.putExtra("setCategory",category);
         intent.putExtra("setLevel", level);
         intent.putExtra("setMode", mode);
+        if(user!=null) {
+            intent.putExtra("email", user.getEmail());
+        }
         startActivityForResult(intent, 1);
     }
     @Override

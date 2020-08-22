@@ -312,9 +312,9 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         }
                     }
                     mFDataset = filteringList;
-                    for (int i = 0; i < 8; i++) {
-                        difficultyCount[i] = 0;
-                    }
+                }
+                for (int i = 0; i < 8; i++) {
+                    difficultyCount[i] = 0;
                 }
                 if (!mFDataset.isEmpty()) {
                     SongInfo songInfo = mFDataset.get(0);

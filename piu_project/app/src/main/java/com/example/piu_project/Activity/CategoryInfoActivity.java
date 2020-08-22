@@ -54,9 +54,9 @@ public class CategoryInfoActivity extends BasicActivity {
         categoryInfoAdapter = new CategoryInfoAdapter(this, categoryInfo,getResources());
         spinner_category = (Spinner)findViewById(R.id.spinner_category);
         spinner_version = (Spinner)findViewById(R.id.spinner_version);
-        int[] si_category = new int[]{R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
+        int[] si_category = new int[]{R.drawable.all_tune, R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
 //        int[] si_category = new int[]{R.drawable.ct_nt00, R.drawable.ct_kp00};
-        int[] si_version = new int[]{R.drawable.first_to_perf, R.drawable.extra_to_prex3, R.drawable.exceed_to_zero, R.drawable.nx_to_nxa, R.drawable.fiesta_to_fiesta2,
+        int[] si_version = new int[]{R.drawable.all_tune, R.drawable.first_to_perf, R.drawable.extra_to_prex3, R.drawable.exceed_to_zero, R.drawable.nx_to_nxa, R.drawable.fiesta_to_fiesta2,
                                 R.drawable.prime, R.drawable.prime2, R.drawable.xx};
         CustomSpinnerAdapter csa_category = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_category);
         spinner_category.setAdapter(csa_category);
