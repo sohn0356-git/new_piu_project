@@ -17,6 +17,16 @@ public class SongInfo {
     private HashMap<String, String> detailDifficulty;
     private HashMap<String, Object> youtubeLink;
 
+//    @Override
+//    public int compareTo(SongInfo s){
+//        int left = Integer.parseInt(this.getDifficulty());
+//        int right = Integer.parseInt(s.getDifficulty());
+//        if(left<right){
+//            return -1;
+//        }else{
+//            return 1;
+//        }
+//    }
 
     public SongInfo(String song_id_tmp, String artist_tmp, String title_tmp, String level_tmp, String bpm_tmp, String category, String version_tmp, HashMap<String, String> stepmaker_tmp, HashMap<String, Object> youtubelink_tmp, HashMap<String, String> unlockCondition_tmp, String dd) {
         this.song_id = Integer.parseInt(song_id_tmp);

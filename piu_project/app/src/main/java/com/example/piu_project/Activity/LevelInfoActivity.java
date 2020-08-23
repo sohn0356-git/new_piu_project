@@ -1,15 +1,10 @@
 package com.example.piu_project.Activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -35,9 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,11 +48,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -67,24 +55,21 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.logging.Level;
 
 import static com.example.piu_project.Activity.MainActivity.allData;
-import static com.example.piu_project.Activity.MainActivity.userData;
-import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
 
 public class LevelInfoActivity extends BasicActivity implements TextWatcher {
@@ -94,7 +79,6 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private FirebaseFirestore firebaseFirestore;
     private LevelInfoAdapter levelInfoAdapter;
     private ArrayList<SongInfo> levelInfo;
-    private ArrayList<SongInfo> levelInfo_tmp;
     private boolean updating;
     private int setLevel;
     private String level;
@@ -133,10 +117,34 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private int col_cnt;
     private final int numberOfColumns = 5;
     private int [] difficultyCount={0,0,0,0,0,0,0,0};
-    private int [] S_song_id = {R.array.info_s13};
+    private int [] S_song_id = {R.array.info_s01,R.array.info_s02,R.array.info_s03,R.array.info_s04,R.array.info_s05,R.array.info_s06,R.array.info_s07,R.array.info_s08,R.array.info_s09,R.array.info_s10,
+                                R.array.info_s11,R.array.info_s12,R.array.info_s13,R.array.info_s14,R.array.info_s15,R.array.info_s16,R.array.info_s17,R.array.info_s18,R.array.info_s19,R.array.info_s20,
+                                R.array.info_s21,R.array.info_s22,R.array.info_s23,R.array.info_s24,R.array.info_s25,R.array.info_s26,R.array.info_null,R.array.info_null};
+    private int [] D_song_id = {R.array.info_null,R.array.info_null,R.array.info_d03,R.array.info_d04,R.array.info_d05,R.array.info_d06,R.array.info_d07,R.array.info_d08,R.array.info_d09,R.array.info_d10,
+                                R.array.info_d11,R.array.info_d12,R.array.info_d13,R.array.info_d14,R.array.info_d15,R.array.info_d16,R.array.info_d17,R.array.info_d18,R.array.info_d19,R.array.info_d20,
+                                R.array.info_d21,R.array.info_d22,R.array.info_d23,R.array.info_d24,R.array.info_d25,R.array.info_d26,R.array.info_d27,R.array.info_d28};
+    private int [] SP_song_id = {R.array.info_sp01,R.array.info_sp02,R.array.info_sp03,R.array.info_sp04,R.array.info_sp05,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_sp10,
+                                 R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_sp15,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,
+                                 R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
+    private int [] DP_song_id = {R.array.info_dp01,R.array.info_dp02,R.array.info_dp03,R.array.info_dp04,R.array.info_dp05,R.array.info_dp06,R.array.info_dp07,R.array.info_dp08,R.array.info_null,R.array.info_null,
+                                 R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_dp20,
+                                 R.array.info_null,R.array.info_null,R.array.info_dp23,R.array.info_dp24,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
+    private int [] S_song_name = {R.array.name_s01,R.array.name_s02,R.array.name_s03,R.array.name_s04,R.array.name_s05,R.array.name_s06,R.array.name_s07,R.array.name_s08,R.array.name_s09,R.array.name_s10,
+            R.array.name_s11,R.array.name_s12,R.array.name_s13,R.array.name_s14,R.array.name_s15,R.array.name_s16,R.array.name_s17,R.array.name_s18,R.array.name_s19,R.array.name_s20,
+            R.array.name_s21,R.array.name_s22,R.array.name_s23,R.array.name_s24,R.array.name_s25,R.array.name_s26,R.array.info_null,R.array.info_null};
+    private int [] D_song_name = {R.array.info_null,R.array.info_null,R.array.name_d03,R.array.name_d04,R.array.name_d05,R.array.name_d06,R.array.name_d07,R.array.name_d08,R.array.name_d09,R.array.name_d10,
+            R.array.name_d11,R.array.name_d12,R.array.name_d13,R.array.name_d14,R.array.name_d15,R.array.name_d16,R.array.name_d17,R.array.name_d18,R.array.name_d19,R.array.name_d20,
+            R.array.name_d21,R.array.name_d22,R.array.name_d23,R.array.name_d24,R.array.name_d25,R.array.name_d26,R.array.name_d27,R.array.name_d28};
+    private int [] SP_song_name = {R.array.name_sp01,R.array.name_sp02,R.array.name_sp03,R.array.name_sp04,R.array.name_sp05,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.name_sp10,
+            R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.name_sp15,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,
+            R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
+    private int [] DP_song_name = {R.array.name_dp01,R.array.name_dp02,R.array.name_dp03,R.array.name_dp04,R.array.name_dp05,R.array.name_dp06,R.array.name_dp07,R.array.name_dp08,R.array.info_null,R.array.info_null,
+            R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.name_dp20,
+            R.array.info_null,R.array.info_null,R.array.name_dp23,R.array.name_dp24,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
     private RelativeLayout loaderLayout;
     private FrameLayout frameLayout;
     public String[] song_number;
+    public String[] song_name;
     private HashMap<String, String> userLevelList=new HashMap<>();;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
 
@@ -153,7 +161,19 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         mode = intent.getStringExtra("setMode");
         category = intent.getStringExtra("setCategory");
         setToolbarTitle("LEVEL_"+mode+"_"+level);
-        song_number = getResources().getStringArray(R.array.info_s13);
+        if(mode.equals("S")) {
+            song_number = getResources().getStringArray(S_song_id[Integer.parseInt(level)-1]);
+            song_name = getResources().getStringArray(S_song_name[Integer.parseInt(level)-1]);
+        } else if(mode.equals("D")) {
+            song_number = getResources().getStringArray(D_song_id[Integer.parseInt(level)-1]);
+            song_name = getResources().getStringArray(D_song_name[Integer.parseInt(level)-1]);
+        } else if(mode.equals("SP")) {
+            song_number = getResources().getStringArray(SP_song_id[Integer.parseInt(level) - 1]);
+            song_name = getResources().getStringArray(SP_song_name[Integer.parseInt(level)-1]);
+        } else if(mode.equals("DP")) {
+            song_number = getResources().getStringArray(DP_song_id[Integer.parseInt(level) - 1]);
+            song_name = getResources().getStringArray(DP_song_name[Integer.parseInt(level)-1]);
+        }
         tv_title = (TextView)findViewById(R.id.tv_title);
         et1 = (EditText)findViewById(R.id.editText1);
         et2 = (EditText)findViewById(R.id.editText2);
@@ -199,7 +219,6 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfo_tmp = new ArrayList<>();
         levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
         spinner_level = (Spinner)findViewById(R.id.spinner_level);
@@ -338,7 +357,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                    myStartActivity(GalleryActivity.class);
                     break;
                 case R.id.iv_capture:
-                    captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
+                    saveFile();
+//                    captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
                     break;
                 case R.id.bt_check:
                     loaderLayout.setVisibility(View.VISIBLE);
@@ -543,7 +563,39 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 });
     }
 
+    private void saveFile(){
+        Log.d("File", "saving");
+        File saveFile = null;
+        if( Build.VERSION.SDK_INT < 29) saveFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/lolSaveFiles/");
+        else saveFile = LevelInfoActivity.this.getExternalFilesDir("/lolSaveFiles/");
 
+        if(!saveFile.exists())
+            saveFile.mkdir();
+        String sdPath = "";
+        String ext = Environment.getExternalStorageState();
+        if(ext.equals(Environment.MEDIA_MOUNTED)){
+            sdPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+CAPTURE_PATH+"/";
+            Log.d("TAG",sdPath);
+        }else{
+            sdPath=getFilesDir()+"";
+            showToast(LevelInfoActivity.this,sdPath);
+        }
+        //디렉토리 없으면 생성
+        File dir = new File(sdPath);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        try {
+            BufferedWriter buf = new BufferedWriter(new FileWriter(saveFile + "/savedSummonerIDList.txt", false));
+
+            buf.append("fdsafadsfadfasdfadsfads");
+            buf.newLine();
+
+            buf.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void captureMyRecyclerView(RecyclerView view, int bgColor, int startPosition, int endPosition) {
         RecyclerView.Adapter adapter = view.getAdapter();
         Bitmap bigBitmap = null;
@@ -795,138 +847,137 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
     private void postsUpdate(final boolean clear, int _detailDifficulty) {
         updating = true;
+
+        for (int idx = 0; idx < song_number.length; idx++) {
+            HashMap<String, Object> target = (HashMap<String, Object>) (allData.get(song_number[idx]));
+            String song_id_tmp = String.valueOf(target.get("song_id"));
+            String artist_tmp = (String) target.get("artist");
+            String bpm_tmp = (String) target.get("bpm");
+            String title_tmp = (String) target.get("title");
+            String category_tmp = (String) target.get("category");
+            String version_tmp = (String) target.get("version");
+            String level_tmp = (String) (target.get("level"));
+            HashMap<String, Object> youtubelink_tmp = (HashMap<String, Object>) (target.get("youtubeLink"));
+            HashMap<String, String> stepmaker_tmp = (HashMap<String, String>) (target.get("stepmaker"));
+            HashMap<String, String> unlockCondition_tmp = (HashMap<String, String>) (target.get("unlockCondition"));
+            HashMap<String, String> detailDifficulty_tmp = (HashMap<String, String>) (target.get("detailDifficulty"));
+            String dd = (String) detailDifficulty_tmp.get(mode + level);
+            levelInfo.add(new SongInfo(
+                    song_id_tmp,
+                    artist_tmp,
+                    title_tmp,
+                    level_tmp,
+                    bpm_tmp,
+                    category_tmp,
+                    version_tmp,
+                    stepmaker_tmp,
+                    youtubelink_tmp,
+                    unlockCondition_tmp,
+                    dd));
+        }
+        Collections.sort(levelInfo, (Comparator<SongInfo>) (o1, o2) -> ((SongInfo)o2).getDifficulty().compareTo(((SongInfo)o1).getDifficulty()));
+        for (int j = 0; j < 8; j++) {
+            difficultyCount[j] = 0;
+        }
+        for (int p = 0; p < levelInfo.size(); p++) {
+            SongInfo songInfo = levelInfo.get(p);
+            int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+            difficultyCount[selected_difficulty]++;
+            if (p + 1 != levelInfo.size() && (!levelInfo.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+                levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+            } else if (p + 1 == levelInfo.size()) {
+                while (levelInfo.size() % 5 != 0) {
+                    levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+                }
+            }
+        }
+        levelInfoAdapter.notifyDataSetChanged();
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
-        DatabaseReference databaseReference_s = database.getReference("db_song");     //DB 테이블 연결
-        databaseReference_s.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //firebase database의 data를 GET
-                if (_detailDifficulty == -1) {
-//                    for(int idx = 0; idx<song_number.length;idx++){
-//                        HashMap<String,Object> target = (HashMap<String, Object>) (allData.get(song_number[idx]));
-//                        String song_id_tmp = String.valueOf(target.get("song_id"));
-//                        String artist_tmp = (String)target.get("artist");
-//                        String bpm_tmp = (String)target.get("bpm");
-//                        String title_tmp = (String)target.get("title");
-//                        String category_tmp = (String)target.get("category");
-//                        String version_tmp = (String)target.get("version");
-//                        String level_tmp = (String) (target.get("level"));
-//                        HashMap<String,Object> youtubelink_tmp = (HashMap<String, Object>) (target.get("youtubeLink"));
-//                        HashMap<String,String> stepmaker_tmp = (HashMap<String, String >) (target.get("stepmaker"));
-//                        HashMap<String,String> unlockCondition_tmp = (HashMap<String, String>) (target.get("unlockCondition"));
-//                        HashMap<String,String > detailDifficulty_tmp = (HashMap<String, String>) (target.get("detailDifficulty"));
-//                        String dd = (String)detailDifficulty_tmp.get(mode+level);
-//                        levelInfo_tmp.add(new SongInfo(
-//                                song_id_tmp,
-//                                artist_tmp,
-//                                title_tmp,
-//                                level_tmp,
-//                                bpm_tmp,
-//                                category_tmp,
-//                                version_tmp,
-//                                stepmaker_tmp,
-//                                youtubelink_tmp,
-//                                unlockCondition_tmp,
-//                                dd));
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
+//        DatabaseReference databaseReference_s = database.getReference("db_song");     //DB 테이블 연결
+//        databaseReference_s.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //firebase database의 data를 GET
+//                if (_detailDifficulty == -1) {
+////
+//
+//                    for (int j = 0; j < 8; j++) {
+//                        difficultyCount[j] = 0;
 //                    }
-//                    Collections.sort(levelInfo_tmp, new Comparator() {
-//                        @Override
-//                        public int compare(Object o1, Object o2) {
-//                            return ((SongInfo)o2).getDifficulty().compareTo(((SongInfo)o1).getDifficulty());
-//                        }
-//                    });
-                    for (int j = 0; j < 8; j++) {
-                        difficultyCount[j] = 0;
-                    }
-                    for (int p = 0; p < levelInfo_tmp.size(); p++) {
-                        SongInfo songInfo = levelInfo_tmp.get(p);
-                        int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
-                        difficultyCount[selected_difficulty]++;
-                        if (p + 1 != levelInfo_tmp.size() && (!levelInfo_tmp.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
-                            levelInfo_tmp.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                        } else if (p + 1 == levelInfo_tmp.size()) {
-                            while (levelInfo_tmp.size() % 5 != 0) {
-                                levelInfo_tmp.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                            }
-                        }
-                    }
-                    for (int j = 0; j < 8; j++) {
-                        difficultyCount[j] = 0;
-                    }
-                    for (int p = 0; p < levelInfo.size(); p++) {
-                        SongInfo songInfo = levelInfo.get(p);
-                        int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
-                        difficultyCount[selected_difficulty]++;
-                        if (p + 1 != levelInfo.size() && (!levelInfo.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
-                            levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                        } else if (p + 1 == levelInfo.size()) {
-                            while (levelInfo.size() % 5 != 0) {
-                                levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
-                            }
-                        }
-                    }
-                    levelInfoAdapter.notifyDataSetChanged();
-                } else {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Log.d(TAG+"test",snapshot.getValue().toString());
-
-                        boolean isHere = false;
-                        HashMap<String, String> h = (HashMap<String, String>) snapshot.getValue();
-                        String[] level_s = h.get("level").split(String.valueOf(','));
-                        for (int i = 0; i < level_s.length; i++) {
-                            if (level_s[i].equals(mode + level)) {
-                                isHere = true;
-                            }
-                        }
-                        if (isHere) {
-                            int difficulty = 0;
-                            HashMap<String, Object> h2 = (HashMap<String, Object>) snapshot.getValue();
-                            HashMap<String, Object> youtubelink = (HashMap<String, Object>)h2.get("youtubeLink");
-                            HashMap<String, String > stepmaker = (HashMap<String, String>)h2.get("stepmaker");
-
-
-                            HashMap<String, HashMap<String, String>> h3 = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
-                            HashMap<String, String> detailDifficulty = h3.get("detailDifficulty");
-                            Log.e("Msg", "error : " + h.get("title"));
-//                            if(h.get("title").equals("트란사칼리아")) {
-//                                Log.d("d","T");
+//                    for (int p = 0; p < levelInfo.size(); p++) {
+//                        SongInfo songInfo = levelInfo.get(p);
+//                        int selected_difficulty = Integer.parseInt(songInfo.getDifficulty());
+//                        difficultyCount[selected_difficulty]++;
+//                        if (p + 1 != levelInfo.size() && (!levelInfo.get(p + 1).getDifficulty().equals(songInfo.getDifficulty()) && difficultyCount[selected_difficulty] % 5 != 0)) {
+//                            levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
+//                        } else if (p + 1 == levelInfo.size()) {
+//                            while (levelInfo.size() % 5 != 0) {
+//                                levelInfo.add(p + 1, new SongInfo(String.valueOf(selected_difficulty)));
 //                            }
-                            difficulty = Integer.parseInt(detailDifficulty.get(mode + level));
-                            if (difficulty == _detailDifficulty) {
-                                col_cnt++;
-                                HashMap<String, Long> h4 = (HashMap<String, Long>) snapshot.getValue();
-                                String s = h4.get("song_id").toString();
-                                levelInfo.add(new SongInfo(
-                                        s,
-                                        h.get("artist"),
-                                        h.get("title"),
-                                        h.get("level"),
-                                        h.get("bpm"),
-                                        h.get("category"),
-                                        h.get("version"),
-                                        stepmaker,
-                                        youtubelink,
-                                        String.valueOf(difficulty)));
-                                if (!userLevelList.isEmpty()){
-                                    String cur = mode + level + h.get("title").toString();
-                                    if (userLevelList.get(cur)!=null) {
-                                        levelInfo.get(levelInfo.size()-1).setUserLevel(userLevelList.get(cur));
-                                    }
-                                }
-                                Log.d("LevelInfoActivity", mode + level + h.get("title").toString()+String.valueOf(userLevelList.size()));
-                                levelInfoAdapter.notifyDataSetChanged();
-                            }
-                        }
-                    }
-                }//리스트 저장 및 새로고침
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                //error 발생시
-                Log.e("LevelInfoActivity", String.valueOf(databaseError.toException()));
-            }
-        });
+//                        }
+//                    }
+//                    levelInfoAdapter.notifyDataSetChanged();
+//                } else {
+//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                        Log.d(TAG+"test",snapshot.getValue().toString());
+//
+//                        boolean isHere = false;
+//                        HashMap<String, String> h = (HashMap<String, String>) snapshot.getValue();
+//                        String[] level_s = h.get("level").split(String.valueOf(','));
+//                        for (int i = 0; i < level_s.length; i++) {
+//                            if (level_s[i].equals(mode + level)) {
+//                                isHere = true;
+//                            }
+//                        }
+//                        if (isHere) {
+//                            int difficulty = 0;
+//                            HashMap<String, Object> h2 = (HashMap<String, Object>) snapshot.getValue();
+//                            HashMap<String, Object> youtubelink = (HashMap<String, Object>)h2.get("youtubeLink");
+//                            HashMap<String, String > stepmaker = (HashMap<String, String>)h2.get("stepmaker");
+//
+//
+//                            HashMap<String, HashMap<String, String>> h3 = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
+//                            HashMap<String, String> detailDifficulty = h3.get("detailDifficulty");
+//                            Log.e("Msg", "error : " + h.get("title"));
+////                            if(h.get("title").equals("트란사칼리아")) {
+////                                Log.d("d","T");
+////                            }
+//                            difficulty = Integer.parseInt(detailDifficulty.get(mode + level));
+//                            if (difficulty == _detailDifficulty) {
+//                                col_cnt++;
+//                                HashMap<String, Long> h4 = (HashMap<String, Long>) snapshot.getValue();
+//                                String s = h4.get("song_id").toString();
+//                                levelInfo.add(new SongInfo(
+//                                        s,
+//                                        h.get("artist"),
+//                                        h.get("title"),
+//                                        h.get("level"),
+//                                        h.get("bpm"),
+//                                        h.get("category"),
+//                                        h.get("version"),
+//                                        stepmaker,
+//                                        youtubelink,
+//                                        String.valueOf(difficulty)));
+//                                if (!userLevelList.isEmpty()){
+//                                    String cur = mode + level + h.get("title").toString();
+//                                    if (userLevelList.get(cur)!=null) {
+//                                        levelInfo.get(levelInfo.size()-1).setUserLevel(userLevelList.get(cur));
+//                                    }
+//                                }
+//                                Log.d("LevelInfoActivity", mode + level + h.get("title").toString()+String.valueOf(userLevelList.size()));
+//                                levelInfoAdapter.notifyDataSetChanged();
+//                            }
+//                        }
+//                    }
+//                }//리스트 저장 및 새로고침
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                //error 발생시
+//                Log.e("LevelInfoActivity", String.valueOf(databaseError.toException()));
+//            }
+//        });
 
 //        CollectionReference collectionReference = firebaseFirestore.collection("user_info");
 //        collectionReference.get()
@@ -982,9 +1033,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                                 Log.d(TAG, "testcnt : " + String.valueOf(testcnt) + document.getId() + " => " + document.getData()+"size : "+String.valueOf(userLevelList.size()));
                             }
                             if(init) {
-                                for (int i = 7; i >= -1; i--) {
-                                    postsUpdate(false, i);
-                                }
+                                postsUpdate(false, -1);
                             }else{
                                 songInfoUpdate();
                             }

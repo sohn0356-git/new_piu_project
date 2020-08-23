@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="name_s04">
+    <item>s04엑스트라바간자</item>
+    <item>s04파이널 오디션 2</item>
+    <item>s04태동</item>
+    <item>s04악몽</item>
+    <item>s04눈을 감아</item>
+    <item>s04펌핑 업</item>
+    <item>s04첫사랑</item>
+    <item>s04무혼</item>
+    <item>s04펌프 점프</item>
+    <item>s04베토벤 바이러스</item>
+    <item>s04치킨 윙</item>
+    <item>s04파이널 오디션 에피소드 1</item>
+    <item>s04겟 유어 그루브 온</item>
+    <item>s04탑 시티</item>
+    <item>s04틸 디 엔드 오브 타임</item>
+    <item>s04오이 오이 오이</item>
+    <item>s04위 윌 밋 어게인</item>
+    <item>s04셋 미 업</item>
+    <item>s04댄스 위드 미</item>
+    <item>s04우편마차</item>
+    <item>s04비</item>
+    <item>s04디 갱</item>
+    <item>s04컴 투 미</item>
+    <item>s04몽키 핑거즈</item>
+    <item>s04블레이징</item>
+    <item>s04엑스트림</item>
+    <item>s04겟 업!</item>
+    <item>s04무혼 2</item>
+    <item>s04비트 오브 더 워 2</item>
+    <item>s04러브 이즈 어 데인저 존 pt.2</item>
+    <item>s04파파 곤잘레스</item>
+    <item>s04점프</item>
+    <item>s04아크 오브 다크니스</item>
+    <item>s04키메라</item>
+    <item>s04두 유 노우 댓-올드 스쿨</item>
+    <item>s04투우사의 노래</item>
+    <item>s04파이널 오디션 에피소드 2-1</item>
+    <item>s04카프리스 오브 오타다</item>
+    <item>s04몽키 핑거즈 2</item>
+    <item>s04디제이 오타다</item>
+    <item>s04마이 드림즈</item>
+    <item>s04토카타</item>
+    <item>s04소서리스 엘리제</item>
+    <item>s04사랑가 -2막-</item>
+    <item>s04데스티네이션</item>
+    <item>s04제네시스</item>
+    <item>s04안녕 윌리엄</item>
+    <item>s04겟 업 (앤 고)</item>
+    <item>s04펌핑 점핑</item>
+    <item>s04테프리스</item>
+    <item>s04클리너</item>
+    <item>s04테이크 아웃</item>
+    <item>s04오버블로우</item>
+    <item>s04가고일</item>
+    <item>s04알레그로 콘 뿌오코</item>
+    <item>s04헝가리 무곡 V</item>
+    <item>s04마왕</item>
+    <item>s04스멜스 라이크 어 초콜릿</item>
+    <item>s04네크로맨시</item>
+    <item>s04하드코어 오브 더 노스</item>
+    <item>s04유토피아</item>
+    <item>s04파사칼리아</item>
+    <item>s04엘리제</item>
+    <item>s04엑시던트</item>
+    <item>s04디</item>
+    <item>s04루시드(PIU Edit)</item>
+    <item>s04로그인</item>
+    <item>s04네메시스</item>
+    <item>s04엘리시움</item>
+    <item>s04실루엣 이펙트</item>
+    <item>s04차이니즈 레스토랑</item>
+    <item>s04아발란치</item>
+    <item>s04레퀴엠</item>
+    <item>s04유 갓 미 크레이지</item>
+    <item>s04B2</item>
+    <item>s04헤스티아</item>
+    <item>s04슈퍼 판타지</item>
+    <item>s04바이올렛 퍼퓸</item>
+    <item>s04레드 스완</item>
+    <item>s04알레그로 피유 모쏘</item>
+    <item>s04마타도르</item>
+    <item>s04까랴위사따</item>
+    <item>s04스타더스트 오버드라이브</item>
+    <item>s04임프린팅</item>
+    <item>s04서든 로맨스 [PIU Edit]</item>
+    <item>s04미토츠다이라</item>
+    <item>s04스마일 다이어리</item>
+    <item>s04신앙 - 1st Desire -</item>
+    <item>s04포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
+    <item>s04프라임</item>
+    <item>s04배드 ∞ 엔드 ∞ 나이트</item>
+    <item>s04퀸 오브 더 레드</item>
+    <item>s04아이디얼라이즈드 로맨스</item>
+    <item>s04저스트 홀드 온 (To All Fighters)</item>
+    <item>s04슈퍼 카프리시오</item>
+    <item>s04실버비트 feat. ChisaUezono</item>
+    <item>s04브레이크 아웃</item>
+    <item>s04사라반드</item>
+    <item>s04가장신자</item>
+    <item>s04아르카나 포스</item>
+    <item>s04트위스트 오브 페이트 (feat. Ruriling)</item>
+    <item>s04HTTP</item>
+    <item>s04레이브 언틸 디 어스 엔드</item>
+    <item>s04에너제틱</item>
+    <item>s04나야 나</item>
+    <item>s04리얼리 리얼리</item>
+    <item>s04스타트 온 레드</item>
+    <item>s04아스테리오스 -리엔트리-</item>
+    <item>s04클루</item>
+    <item>s04웨딩 크래셔</item>
+    <item>s04어린왕자 (Prod. Godic)</item>
+    <item>s04타이밍</item>
+    <item>s04내꺼야 (PICK ME)</item>
+    <item>s041도 없어</item>
+    <item>s04부메랑</item>
+    <item>s04가시나</item>
+    <item>s04뿜뿜</item>
+    <item>s04아주 NICE</item>
+    <item>s04잘가라</item>
+    <item>s04유 앤 아이</item>
+    <item>s04오벨리스크</item>
+    <item>s04탄탄멘</item>
+    <item>s04검은고양이</item>
+    <item>s04풀 문</item>
+    <item>s04옥탑방</item>
+    <item>s04번지 (Fall in Love)</item>
+    <item>s04천년이 지나서</item>
+    <item>s04벌써 12시</item>
+    <item>s04일 더하기 일은 귀요미</item>
+    <item>s04아이 원트 유 - SHORT CUT -</item>
+  </string-array>
+</resources>

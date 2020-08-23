@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="name_s24">
+    <item>s24비메라</item>
+    <item>s24아클루오이아스</item>
+    <item>s24슈브 니구라스</item>
+    <item>s24퍼더</item>
+    <item>s24이스케이프</item>
+    <item>s24리더</item>
+    <item>s24스켑틱</item>
+    <item>s24제로아이즈</item>
+  </string-array>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_d26">
+    <item>song_082</item>
+    <item>song_091</item>
+    <item>song_163</item>
+    <item>song_271</item>
+    <item>song_320</item>
+    <item>song_341</item>
+    <item>song_384</item>
+    <item>song_397</item>
+    <item>song_430</item>
+    <item>song_527</item>
+    <item>song_695</item>
+  </string-array>
+</resources>

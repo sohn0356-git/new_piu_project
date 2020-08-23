@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_dp06">
+    <item>song_037</item>
+    <item>song_038</item>
+    <item>song_039</item>
+    <item>song_048</item>
+    <item>song_055</item>
+    <item>song_065</item>
+    <item>song_069</item>
+    <item>song_095</item>
+    <item>song_104</item>
+    <item>song_114</item>
+    <item>song_138</item>
+    <item>song_172</item>
+    <item>song_175</item>
+    <item>song_371</item>
+  </string-array>
+</resources>

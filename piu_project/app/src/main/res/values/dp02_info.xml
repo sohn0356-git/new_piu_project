@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_dp02">
+    <item>song_101</item>
+    <item>song_115</item>
+    <item>song_131</item>
+    <item>song_165</item>
+    <item>song_232</item>
+    <item>song_246</item>
+    <item>song_265</item>
+    <item>song_268</item>
+    <item>song_269</item>
+    <item>song_282</item>
+    <item>song_285</item>
+    <item>song_295</item>
+    <item>song_298</item>
+    <item>song_330</item>
+    <item>song_340</item>
+    <item>song_355</item>
+    <item>song_405</item>
+    <item>song_415</item>
+    <item>song_416</item>
+    <item>song_430</item>
+    <item>song_3944</item>
+  </string-array>
+</resources>

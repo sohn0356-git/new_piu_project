@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="name_sp03">
+    <item>sp03무혼</item>
+    <item>sp03엠페러</item>
+    <item>sp03포인트 브레이크</item>
+    <item>sp03스 에스 스토리</item>
+    <item>sp03컴 투 미</item>
+    <item>sp03파이널 오디션 3</item>
+    <item>sp03태동 2</item>
+    <item>sp03무혼 2</item>
+    <item>sp03위치 닥터 #1</item>
+    <item>sp03토카타</item>
+    <item>sp03사랑가 -2막-</item>
+    <item>sp03미션 파서블 -블로우 백-</item>
+    <item>sp03요로피쿠 피쿠요로!</item>
+  </string-array>
+</resources>

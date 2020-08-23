@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="name_sp01">
+    <item>sp01프리 스타일</item>
+    <item>sp01첫사랑</item>
+    <item>sp01히글디 피글디</item>
+    <item>sp01젓가락 변주곡</item>
+    <item>sp01제네시스</item>
+    <item>sp01알레그로 콘 뿌오코</item>
+    <item>sp01스멜스 라이크 어 초콜릿</item>
+  </string-array>
+</resources>

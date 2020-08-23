@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
-import static com.example.piu_project.Activity.MainActivity.userData;
+
 
 public class MyAchievementActivity extends BasicActivity {
     private FirebaseAuth mAuth;

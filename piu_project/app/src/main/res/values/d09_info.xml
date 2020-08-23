@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_d09">
+    <item>song_007</item>
+    <item>song_014</item>
+    <item>song_033</item>
+    <item>song_038</item>
+    <item>song_053</item>
+    <item>song_085</item>
+    <item>song_086</item>
+    <item>song_106</item>
+    <item>song_133</item>
+    <item>song_161</item>
+    <item>song_172</item>
+    <item>song_173</item>
+    <item>song_197</item>
+    <item>song_201</item>
+    <item>song_216</item>
+    <item>song_228</item>
+    <item>song_237</item>
+    <item>song_270</item>
+    <item>song_316</item>
+    <item>song_319</item>
+    <item>song_332</item>
+    <item>song_337</item>
+    <item>song_340</item>
+    <item>song_351</item>
+    <item>song_353</item>
+    <item>song_355</item>
+    <item>song_367</item>
+    <item>song_368</item>
+    <item>song_371</item>
+    <item>song_378</item>
+    <item>song_401</item>
+    <item>song_406</item>
+    <item>song_413</item>
+    <item>song_532</item>
+  </string-array>
+</resources>

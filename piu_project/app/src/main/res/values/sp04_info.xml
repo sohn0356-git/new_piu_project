@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_sp04">
+    <item>song_013</item>
+    <item>song_039</item>
+    <item>song_047</item>
+    <item>song_048</item>
+    <item>song_095</item>
+    <item>song_098</item>
+    <item>song_129</item>
+    <item>song_165</item>
+  </string-array>
+</resources>

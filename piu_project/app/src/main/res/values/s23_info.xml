@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_s23">
+    <item>song_082</item>
+    <item>song_115</item>
+    <item>song_124</item>
+    <item>song_128</item>
+    <item>song_158</item>
+    <item>song_163</item>
+    <item>song_199</item>
+    <item>song_227</item>
+    <item>song_251</item>
+    <item>song_254</item>
+    <item>song_300</item>
+    <item>song_301</item>
+    <item>song_322</item>
+    <item>song_344</item>
+    <item>song_385</item>
+    <item>song_397</item>
+    <item>song_399</item>
+    <item>song_430</item>
+    <item>song_432</item>
+    <item>song_529</item>
+    <item>song_533</item>
+    <item>song_695</item>
+    <item>song_3958</item>
+  </string-array>
+</resources>

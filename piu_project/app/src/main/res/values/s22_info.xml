@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_s22">
+    <item>song_020</item>
+    <item>song_074</item>
+    <item>song_088</item>
+    <item>song_089</item>
+    <item>song_105</item>
+    <item>song_131</item>
+    <item>song_136</item>
+    <item>song_171</item>
+    <item>song_172</item>
+    <item>song_205</item>
+    <item>song_208</item>
+    <item>song_235</item>
+    <item>song_249</item>
+    <item>song_262</item>
+    <item>song_271</item>
+    <item>song_273</item>
+    <item>song_305</item>
+    <item>song_316</item>
+    <item>song_318</item>
+    <item>song_321</item>
+    <item>song_374</item>
+    <item>song_382</item>
+    <item>song_389</item>
+    <item>song_394</item>
+    <item>song_400</item>
+    <item>song_433</item>
+    <item>song_436</item>
+    <item>song_516</item>
+    <item>song_524</item>
+    <item>song_527</item>
+    <item>song_693</item>
+    <item>song_694</item>
+    <item>song_698</item>
+    <item>song_700</item>
+    <item>song_708</item>
+    <item>song_3945</item>
+    <item>song_7458</item>
+    <item>song_7459</item>
+  </string-array>
+</resources>

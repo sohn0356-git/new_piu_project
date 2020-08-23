@@ -50,14 +50,11 @@ public class MainActivity extends BasicActivity {
     private static final String TAG = "MainActivity";
     private RelativeLayout settingBackgroundLayout1;
     private RelativeLayout settingBackgroundLayout2;
-    private RelativeLayout loaderLayout;
     private int page = 1;
-    private FirebaseUser user;
     private String level="";
     private String mode="";
     private String category="";
     public static HashMap<String,Object> allData = new HashMap<>();
-    public static HashMap<String,Object> userData;
     private ListView listview1;
     private ListView listview2;
     private ListView listview3;
@@ -74,8 +71,6 @@ public class MainActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setToolbarTitle("piu project");
-        loaderLayout = findViewById(R.id.loaderLyaout);
-        loaderLayout.bringToFront();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser == null || !firebaseUser.isEmailVerified()) {
             if(firebaseUser!=null) {
@@ -208,27 +203,7 @@ public class MainActivity extends BasicActivity {
 //        for(int i=0;i<info.length;i++){
 //            Log.d(TAG,info[i]);
 //        }
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        userData =  new HashMap<>();
-        db.collection(user.getUid())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                userData.put((String)document.getData().get("songInfo"),(Object) document.getData());
-                            }
-                            loaderLayout.setVisibility(View.GONE);
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
         DatabaseReference databaseReference_s = database.getReference("db_song");     //DB 테이블 연결
@@ -428,9 +403,6 @@ public class MainActivity extends BasicActivity {
         intent.putExtra("setCategory",category);
         intent.putExtra("setLevel", level);
         intent.putExtra("setMode", mode);
-        if(user!=null) {
-            intent.putExtra("email", user.getEmail());
-        }
         startActivityForResult(intent, 1);
     }
     @Override

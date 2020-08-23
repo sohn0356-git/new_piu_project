@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_dp07">
+    <item>song_047</item>
+    <item>song_075</item>
+    <item>song_080</item>
+  </string-array>
+</resources>

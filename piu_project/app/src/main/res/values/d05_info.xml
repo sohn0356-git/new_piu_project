@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_d05">
+    <item>song_023</item>
+    <item>song_238</item>
+    <item>song_245</item>
+    <item>song_274</item>
+    <item>song_276</item>
+    <item>song_277</item>
+    <item>song_296</item>
+    <item>song_344</item>
+    <item>song_346</item>
+    <item>song_347</item>
+    <item>song_520</item>
+    <item>song_3948</item>
+  </string-array>
+</resources>
