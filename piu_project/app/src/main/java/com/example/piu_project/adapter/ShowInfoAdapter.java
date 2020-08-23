@@ -173,8 +173,10 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                         Glide.with(activity).load(d_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                     }
                 }
+
                 boolean newPick = !selectedLevel.equals(((TextView)v.findViewById(R.id.tv_level)).getText().toString());
                 selectedImg = v.findViewById(R.id.imageView);
+                String unlockCondition = ((TextView)v.findViewById(R.id.tv_unlockCondition)).getText().toString();
                 String pLink = ((TextView)v.findViewById(R.id.tv_pLink)).getText().toString();
                 String jLink = ((TextView)v.findViewById(R.id.tv_jLink)).getText().toString();
                 String nLink = ((TextView)v.findViewById(R.id.tv_nLink)).getText().toString();
@@ -182,9 +184,14 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 ImageView iv_pLink = (activity).findViewById(R.id.iv_pLink);
                 ImageView iv_jLink = (activity).findViewById(R.id.iv_jLink);
                 ImageView iv_nLink = (activity).findViewById(R.id.iv_nLink);
+                TextView tv_unlock = (activity).findViewById(R.id.tv_unlock);
+
                 loaderLayout = activity.findViewById(R.id.loaderLyaout);
                 if(newPick) {
+
                     loaderLayout.setVisibility(View.VISIBLE);
+                    tv_unlock.setVisibility(View.VISIBLE);
+                    tv_unlock.setText(unlockCondition);
 //                    findPicture();
                     pictureUpdate();
                     level_i = 1;
@@ -248,6 +255,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                         iv_nLink.setVisibility(View.GONE);
                     }
                 } else {
+                    tv_unlock.setVisibility(View.GONE);
                     selectedLevel="None";
                     iv_info.setVisibility(View.GONE);
 //                    Glide.with(activity).load(R.drawable.ic_add_to_queue_black_24dp).centerCrop().override(500).into(iv_info);

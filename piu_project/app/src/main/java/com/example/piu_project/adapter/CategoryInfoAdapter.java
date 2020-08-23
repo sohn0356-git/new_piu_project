@@ -103,6 +103,9 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
                 intent.putExtra(elem.getKey()+yLink.getKey(),yLink.getValue());
             }
         }
+        for( HashMap.Entry<String,String> elem : songInfo.getUnlockCondition().entrySet() ) {
+            intent.putExtra(elem.getKey(),elem.getValue());
+        }
         activity.startActivityForResult(intent, 0);
     }
 }

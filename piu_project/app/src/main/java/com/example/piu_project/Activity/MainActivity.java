@@ -191,7 +191,7 @@ public class MainActivity extends BasicActivity {
         findViewById(R.id.bt_level).setOnClickListener(onClickListener);
         findViewById(R.id.bt_category).setOnClickListener(onClickListener);
         findViewById(R.id.bt_myPage).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+
         findViewById(R.id.bt_set_level).setOnClickListener(onClickListener);
         findViewById(R.id.bt_set_category).setOnClickListener(onClickListener);
 
@@ -342,10 +342,7 @@ public class MainActivity extends BasicActivity {
                 case R.id.bt_myPage:
                     myStartActivity(MyPageActivity.class);
                     break;
-                case R.id.bt_logout:
-                    FirebaseAuth.getInstance().signOut();
-                    myStartActivity(LoginActivity.class);
-                    break;
+
                 case R.id.settingBackgroundLayout1:
                     settingBackgroundLayout1.setVisibility(View.GONE);
                     break;

@@ -48,7 +48,7 @@ public class MyPageActivity extends BasicActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
         String email = user.getEmail();
-
+        findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
         db = FirebaseFirestore.getInstance();
 
         Log.d(TAG,userData.toString());
@@ -103,6 +103,17 @@ public class MyPageActivity extends BasicActivity {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.bt_logout:
+                    FirebaseAuth.getInstance().signOut();
+                    myStartActivity(LoginActivity.class);
+                    break;
+            }
+        }
+    };
 
     private void userUpdate(){
         userData =  new HashMap<>();

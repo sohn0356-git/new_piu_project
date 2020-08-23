@@ -191,4 +191,8 @@ public class SongInfo {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public HashMap<String, String> getUnlockCondition() {
+        return unlockCondition;
+    }
 }

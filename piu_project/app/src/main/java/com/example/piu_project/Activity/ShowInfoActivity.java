@@ -84,7 +84,8 @@ public class ShowInfoActivity extends BasicActivity {
             String yLinkP = intent.getStringExtra(level_s[i]+"PIU");
             String yLinkJ = intent.getStringExtra(level_s[i]+"J");
             String yLinkN = intent.getStringExtra(level_s[i]+"N");
-            userDetail.add(new UserDetail(level_s[i],"A",yLinkP,yLinkJ,yLinkN,""));
+            String unlockCondition = intent.getStringExtra(level_s[i]);
+            userDetail.add(new UserDetail(level_s[i],"A",yLinkP,yLinkJ,yLinkN,unlockCondition));
         }
 
         final int numberOfColumns = 8;
