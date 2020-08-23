@@ -874,7 +874,14 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     youtubelink_tmp,
                     unlockCondition_tmp,
                     dd));
+            if (!userLevelList.isEmpty()){
+                String cur = mode + level + title_tmp;
+                if (userLevelList.get(cur)!=null) {
+                    levelInfo.get(levelInfo.size()-1).setUserLevel(userLevelList.get(cur));
+                }
+            }
         }
+
         Collections.sort(levelInfo, (Comparator<SongInfo>) (o1, o2) -> ((SongInfo)o2).getDifficulty().compareTo(((SongInfo)o1).getDifficulty()));
         for (int j = 0; j < 8; j++) {
             difficultyCount[j] = 0;
