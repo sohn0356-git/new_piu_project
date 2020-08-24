@@ -191,7 +191,11 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
 
                     loaderLayout.setVisibility(View.VISIBLE);
                     tv_unlock.setVisibility(View.VISIBLE);
-                    tv_unlock.setText(unlockCondition);
+                    if(!unlockCondition.equals("")) {
+                        tv_unlock.setText("해금정보 - "+unlockCondition);
+                    } else{
+                        tv_unlock.setText("");
+                    }
 //                    findPicture();
                     pictureUpdate();
                     level_i = 1;

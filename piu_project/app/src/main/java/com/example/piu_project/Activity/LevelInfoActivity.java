@@ -1,7 +1,9 @@
 package com.example.piu_project.Activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.security.keystore.KeyGenParameterSpec;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -30,7 +33,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,6 +68,9 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -143,6 +151,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             R.array.info_null,R.array.info_null,R.array.name_dp23,R.array.name_dp24,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
     private RelativeLayout loaderLayout;
     private FrameLayout frameLayout;
+    private static final int WRITE_REQUEST_CODE = 101;
     public String[] song_number;
     public String[] song_name;
     private HashMap<String, String> userLevelList=new HashMap<>();;
@@ -150,61 +159,62 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         selected_idx_left = 7;
         selected_idx_right = 0;
         super.onCreate(savedInstanceState);
-        testcnt=0;
+        testcnt = 0;
         setContentView(R.layout.activity_levelinfo);
         isGrantStorage = grantExternalStoragePermission();
         Intent intent = getIntent();
         level = intent.getStringExtra("setLevel");
         mode = intent.getStringExtra("setMode");
         category = intent.getStringExtra("setCategory");
-        setToolbarTitle("LEVEL_"+mode+"_"+level);
-        if(mode.equals("S")) {
-            song_number = getResources().getStringArray(S_song_id[Integer.parseInt(level)-1]);
-            song_name = getResources().getStringArray(S_song_name[Integer.parseInt(level)-1]);
-        } else if(mode.equals("D")) {
-            song_number = getResources().getStringArray(D_song_id[Integer.parseInt(level)-1]);
-            song_name = getResources().getStringArray(D_song_name[Integer.parseInt(level)-1]);
-        } else if(mode.equals("SP")) {
+        setToolbarTitle("LEVEL_" + mode + "_" + level);
+        if (mode.equals("S")) {
+            song_number = getResources().getStringArray(S_song_id[Integer.parseInt(level) - 1]);
+            song_name = getResources().getStringArray(S_song_name[Integer.parseInt(level) - 1]);
+        } else if (mode.equals("D")) {
+            song_number = getResources().getStringArray(D_song_id[Integer.parseInt(level) - 1]);
+            song_name = getResources().getStringArray(D_song_name[Integer.parseInt(level) - 1]);
+        } else if (mode.equals("SP")) {
             song_number = getResources().getStringArray(SP_song_id[Integer.parseInt(level) - 1]);
-            song_name = getResources().getStringArray(SP_song_name[Integer.parseInt(level)-1]);
-        } else if(mode.equals("DP")) {
+            song_name = getResources().getStringArray(SP_song_name[Integer.parseInt(level) - 1]);
+        } else if (mode.equals("DP")) {
             song_number = getResources().getStringArray(DP_song_id[Integer.parseInt(level) - 1]);
-            song_name = getResources().getStringArray(DP_song_name[Integer.parseInt(level)-1]);
+            song_name = getResources().getStringArray(DP_song_name[Integer.parseInt(level) - 1]);
         }
-        tv_title = (TextView)findViewById(R.id.tv_title);
-        et1 = (EditText)findViewById(R.id.editText1);
-        et2 = (EditText)findViewById(R.id.editText2);
-        et3 = (EditText)findViewById(R.id.editText3);
-        et4 = (EditText)findViewById(R.id.editText4);
-        rb_no = (RadioButton)findViewById(R.id.rb_no);
-        rb_on = (RadioButton)findViewById(R.id.rb_on);
-        rb_off = (RadioButton)findViewById(R.id.rb_off);
-        et_search = (EditText)findViewById(R.id.et_search);
-        bt_search=(Button)findViewById(R.id.bt_search);
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        et1 = (EditText) findViewById(R.id.editText1);
+        et2 = (EditText) findViewById(R.id.editText2);
+        et3 = (EditText) findViewById(R.id.editText3);
+        et4 = (EditText) findViewById(R.id.editText4);
+        rb_no = (RadioButton) findViewById(R.id.rb_no);
+        rb_on = (RadioButton) findViewById(R.id.rb_on);
+        rb_off = (RadioButton) findViewById(R.id.rb_off);
+        et_search = (EditText) findViewById(R.id.et_search);
+        bt_search = (Button) findViewById(R.id.bt_search);
         bt_search.setOnClickListener(onClickListener);
-        bt_cancel=(Button)findViewById(R.id.bt_cancel);
+        bt_cancel = (Button) findViewById(R.id.bt_cancel);
         bt_cancel.setOnClickListener(onClickListener);
-        iv_search=(ImageView)findViewById(R.id.iv_search);
+        iv_search = (ImageView) findViewById(R.id.iv_search);
         iv_search.setOnClickListener(onClickListener);
-        iv_reset=(ImageView)findViewById(R.id.iv_reset);
+        iv_reset = (ImageView) findViewById(R.id.iv_reset);
         iv_reset.setOnClickListener(onClickListener);
-        iv_prev=(ImageView)findViewById(R.id.iv_prev);
+        iv_prev = (ImageView) findViewById(R.id.iv_prev);
         iv_prev.setOnClickListener(onClickListener);
-        if(level.equals("01")){
+        if (level.equals("01")) {
             iv_prev.setVisibility(View.GONE);
         }
-        iv_next=(ImageView)findViewById(R.id.iv_next);
+        iv_next = (ImageView) findViewById(R.id.iv_next);
         iv_next.setOnClickListener(onClickListener);
-        if(level.equals("28")){
+        if (level.equals("28")) {
             iv_next.setVisibility(View.GONE);
         }
-        iv_capture =(ImageView)(findViewById(R.id.iv_capture));
+        iv_capture = (ImageView) (findViewById(R.id.iv_capture));
         iv_capture.setOnClickListener(onClickListener);
         frameLayout = (FrameLayout) findViewById(R.id.container);
-        iv_profile =(ImageView)(findViewById(R.id.iv_profile));
+        iv_profile = (ImageView) (findViewById(R.id.iv_profile));
         iv_profile.setOnClickListener(onClickListener);
         settingBackgroundLayout = (findViewById(R.id.settingBackgroundLayout));
         searchingBackgroundLayout = (findViewById(R.id.searchingBackgroundLayout));
@@ -215,22 +225,22 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             }
         });
         findViewById(R.id.bt_check).setOnClickListener(onClickListener);
-        loaderLayout = (RelativeLayout)findViewById(R.id.loaderLyaout2);
+        loaderLayout = (RelativeLayout) findViewById(R.id.loaderLyaout2);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         levelInfo = new ArrayList<>();
-        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo,mode,level,getResources(),settingBackgroundLayout);
+        levelInfoAdapter = new LevelInfoAdapter(this, levelInfo, mode, level, getResources(), settingBackgroundLayout);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        spinner_level = (Spinner)findViewById(R.id.spinner_level);
-        spinner_left = (Spinner)findViewById(R.id.spinner_left);
-        spinner_right = (Spinner)findViewById(R.id.spinner_right);
+        spinner_level = (Spinner) findViewById(R.id.spinner_level);
+        spinner_left = (Spinner) findViewById(R.id.spinner_left);
+        spinner_right = (Spinner) findViewById(R.id.spinner_right);
 
 
         // 스피너에 보여줄 문자열과 이미지 목록을 작성합니다.
-       int[] spinnerImages = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_af00,R.drawable.rk_bn00,R.drawable.rk_bf00,
-                                        R.drawable.rk_cn00,R.drawable.rk_cf00,R.drawable.rk_dn00,R.drawable.rk_df00,R.drawable.rk_fn00,R.drawable.rk_ff00};
-        int[] spinnerChoices = new int[]{R.drawable.rk_ts00,R.drawable.rk_ds00,R.drawable.rk_ss00,R.drawable.rk_an00,R.drawable.rk_bn00,R.drawable.rk_cn00,
-                                        R.drawable.rk_dn00,R.drawable.rk_fn00, R.drawable.none};
+        int[] spinnerImages = new int[]{R.drawable.rk_ts00, R.drawable.rk_ds00, R.drawable.rk_ss00, R.drawable.rk_an00, R.drawable.rk_af00, R.drawable.rk_bn00, R.drawable.rk_bf00,
+                R.drawable.rk_cn00, R.drawable.rk_cf00, R.drawable.rk_dn00, R.drawable.rk_df00, R.drawable.rk_fn00, R.drawable.rk_ff00};
+        int[] spinnerChoices = new int[]{R.drawable.rk_ts00, R.drawable.rk_ds00, R.drawable.rk_ss00, R.drawable.rk_an00, R.drawable.rk_bn00, R.drawable.rk_cn00,
+                R.drawable.rk_dn00, R.drawable.rk_fn00, R.drawable.none};
 
 
         // 어댑터와 스피너를 연결합니다.
@@ -251,6 +261,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_idx = spinner_level.getSelectedItemPosition();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -262,6 +273,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_idx_left = spinner_left.getSelectedItemPosition();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -273,6 +285,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_idx_right = spinner_right.getSelectedItemPosition();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -286,41 +299,40 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         recyclerView.setAdapter(levelInfoAdapter);
 
 
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
                 RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-                int firstVisibleItemPosition = ((LinearLayoutManager)layoutManager).findFirstVisibleItemPosition();
+                int firstVisibleItemPosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
 
-                if(newState == 1 && firstVisibleItemPosition == 0){
+                if (newState == 1 && firstVisibleItemPosition == 0) {
                     topScrolled = true;
                 }
-                if(newState == 0 && topScrolled){
+                if (newState == 0 && topScrolled) {
                     topScrolled = false;
                 }
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
                 RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
                 int visibleItemCount = layoutManager.getChildCount();
                 int totalItemCount = layoutManager.getItemCount();
-                int firstVisibleItemPosition = ((LinearLayoutManager)layoutManager).findFirstVisibleItemPosition();
-                int lastVisibleItemPosition = ((LinearLayoutManager)layoutManager).findLastVisibleItemPosition();
+                int firstVisibleItemPosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+                int lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
 
-                if(totalItemCount - 3 <= lastVisibleItemPosition && !updating){
+                if (totalItemCount - 3 <= lastVisibleItemPosition && !updating) {
 //                    for(int i=7;i>=0;i--) {
 //                        postsUpdate(false,i);
 //                    }
 //                    postsUpdate(false,7);
                 }
 
-                if(0 < firstVisibleItemPosition){
+                if (0 < firstVisibleItemPosition) {
                     topScrolled = false;
                 }
             }
@@ -357,7 +369,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                    myStartActivity(GalleryActivity.class);
                     break;
                 case R.id.iv_capture:
-                    saveFile();
+                    captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
+
 //                    captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
                     break;
                 case R.id.bt_check:
@@ -408,6 +421,34 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             }
         }
     };
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        String selectedOutputPath = "";
+        String folderName="TEST";
+        String imageName = mode+level;
+
+            File mediaStorageDir = new File(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName);
+            // Create a storage directory if it does not exist
+            if (!mediaStorageDir.exists()) {
+                if (!mediaStorageDir.mkdirs()) {
+                    Log.d("PhotoEditorSDK", "Failed to create directory");
+                }
+            }
+            // Create a media file name
+            selectedOutputPath = mediaStorageDir.getPath() + File.separator + imageName;
+            Log.d("PhotoEditorSDK", "selected camera path " + selectedOutputPath);
+            File file = new File(selectedOutputPath);
+            try {
+                FileOutputStream out = new FileOutputStream(file);
+                bitmapImage.compress(Bitmap.CompressFormat.JPEG, 80, out);
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        return selectedOutputPath;
+    }
     public File getPrivateAlbumStorageDir(Context context, String albumName) {
         // Get the directory for the app's private pictures directory.
         File file = new File(context.getExternalFilesDir(
@@ -447,18 +488,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //        Log.d("getRealPathFromURI", "getRealPathFromURI: " + cursor.getString(index));
 //        return cursor.getString(index);
 //    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-            if (resultCode == RESULT_OK) {
-                if (requestCode == 5) {
-                    profilePath = data.getDataString();
-//                    showToast(LevelInfoActivity.this,profilePath );
-                    Glide.with(this).load(data.getDataString()).override(500).into(iv_profile);
-                    Log.d("Picture Path", data.getDataString());
-                }
 
-        };
 //        switch (requestCode) {
 //            case 0: {
 //                if (resultCode == Activity.RESULT_OK) {
@@ -468,7 +498,6 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                break;
 //            }
 //        }
-    }
 
 
     @Override
@@ -562,40 +591,50 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     }
                 });
     }
+    private void createFile() { // when you create document, you need to add Intent.ACTION_CREATE_DOCUMENT
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT); // filter to only show openable items.
+        intent.addCategory(Intent.CATEGORY_OPENABLE); // Create a file with the requested Mime type
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TITLE, mode+level+".jpg");
 
-    private void saveFile(){
-        Log.d("File", "saving");
-        File saveFile = null;
-        if( Build.VERSION.SDK_INT < 29) saveFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/lolSaveFiles/");
-        else saveFile = LevelInfoActivity.this.getExternalFilesDir("/lolSaveFiles/");
+        startActivityForResult(intent, WRITE_REQUEST_CODE);
+    }
 
-        if(!saveFile.exists())
-            saveFile.mkdir();
-        String sdPath = "";
-        String ext = Environment.getExternalStorageState();
-        if(ext.equals(Environment.MEDIA_MOUNTED)){
-            sdPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+CAPTURE_PATH+"/";
-            Log.d("TAG",sdPath);
-        }else{
-            sdPath=getFilesDir()+"";
-            showToast(LevelInfoActivity.this,sdPath);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 5) {
+            profilePath = data.getDataString();
+//                    showToast(LevelInfoActivity.this,profilePath );
+            Glide.with(this).load(data.getDataString()).override(500).into(iv_profile);
+            Log.d("Picture Path", data.getDataString());
         }
-        //디렉토리 없으면 생성
-        File dir = new File(sdPath);
-        if(!dir.exists()){
-            dir.mkdir();
+        if (requestCode == WRITE_REQUEST_CODE) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    if (data != null && data.getData() != null) {
+                        writeInFile(data.getData(), "bison is bision");
+                    }
+                    break;
+                case Activity.RESULT_CANCELED:
+                        break;
+
+            }
         }
+    }
+    private void writeInFile(@NonNull Uri uri, @NonNull String text) {
+        OutputStream outputStream;
         try {
-            BufferedWriter buf = new BufferedWriter(new FileWriter(saveFile + "/savedSummonerIDList.txt", false));
-
-            buf.append("fdsafadsfadfasdfadsfads");
-            buf.newLine();
-
-            buf.close();
+            outputStream = getContentResolver().openOutputStream(uri);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(outputStream));
+            bw.write(text);
+            bw.flush();
+            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     private void captureMyRecyclerView(RecyclerView view, int bgColor, int startPosition, int endPosition) {
         RecyclerView.Adapter adapter = view.getAdapter();
         Bitmap bigBitmap = null;
@@ -623,7 +662,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 adapter.onBindViewHolder(holder, i);
                 holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                if(i==0){
+                if (i == 0) {
                     constHeight = holder.itemView.getMeasuredHeight();
                 }
                 holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth() / 5, constHeight);
@@ -645,7 +684,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             bigBitmap = Bitmap.createBitmap(view.getMeasuredWidth(), height / 5, Bitmap.Config.ARGB_8888);
             Canvas bigCanvas = new Canvas(bigBitmap);
             bigCanvas.drawColor(Color.WHITE);
-            int bitmapH =bitmaCache.get(String.valueOf(0)).getHeight();
+            int bitmapH = bitmaCache.get(String.valueOf(0)).getHeight();
             for (int i = 0; i < size + 1; i++) {
                 Bitmap bitmap = bitmaCache.get(String.valueOf(i));
                 bigCanvas.drawBitmap(bitmap, iWidth, iHeight, paint);
@@ -656,27 +695,24 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     bitmap.recycle();
                 }
             }
+
             if (!checkWritable()) {
                 //ask permission
                 ActivityCompat.requestPermissions(LevelInfoActivity.this,
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             } else {
-                String sdPath = "";
-                String ext = Environment.getExternalStorageState();
-                if(ext.equals(Environment.MEDIA_MOUNTED)){
-                    sdPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+CAPTURE_PATH+"/";
-                    Log.d("TAG",sdPath);
-                }else{
-                    sdPath=getFilesDir()+"";
-                    showToast(LevelInfoActivity.this,sdPath);
-                }
                 //디렉토리 없으면 생성
-                File dir = new File(sdPath);
+                File dir = new File(
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PIU_CAPTURE");
                 if(!dir.exists()){
                     dir.mkdir();
+                    if(!dir.exists()) {
+                        showToast(LevelInfoActivity.this, "폴더생성 실패");
+                    }
                 }
-                String file_name = mode+level+".jpg";
-                String string_path = sdPath+file_name;
+
+                String string_path =dir.getAbsolutePath() + "/"+mode+level+".jpg";
+
 
                 try{
                     FileOutputStream out = new FileOutputStream(string_path);
@@ -693,8 +729,6 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
             }
         }
-
-
     }
 
 //    private void captureMyRecyclerView(RecyclerView view, int bgColor, int startPosition, int endPosition) {
@@ -792,7 +826,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         return false;
     }
 
-    public static boolean checkWritable() {
+    public boolean checkWritable() {
         // Retrieving the external storage state
         String state = Environment.getExternalStorageState();
 

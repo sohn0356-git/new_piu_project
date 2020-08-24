@@ -50,6 +50,7 @@ public class MainActivity extends BasicActivity {
     private static final String TAG = "MainActivity";
     private RelativeLayout settingBackgroundLayout1;
     private RelativeLayout settingBackgroundLayout2;
+    private RelativeLayout loaderLayout;
     private int page = 1;
     private String level="";
     private String mode="";
@@ -172,7 +173,9 @@ public class MainActivity extends BasicActivity {
 
 
     private void init(){
-
+        loaderLayout = findViewById(R.id.loaderLyaout);
+        loaderLayout.bringToFront();
+        loaderLayout.setVisibility(View.VISIBLE);
         listViewAdapter1 = new ListViewAdapter(itemList1) ;
         listViewAdapter2 = new ListViewAdapter(itemList2) ;
         listViewAdapter3 = new ListViewAdapter(itemList3) ;
@@ -211,6 +214,7 @@ public class MainActivity extends BasicActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 allData = (HashMap<String,Object>)dataSnapshot.getValue();
+                loaderLayout.setVisibility(View.GONE);
             }
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 //error 발생시

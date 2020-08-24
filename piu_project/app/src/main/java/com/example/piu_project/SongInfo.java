@@ -72,7 +72,7 @@ public class SongInfo {
         }
     }
 
-    public SongInfo(String song_id, String artist, String title, String level, String bpm, String category, String version, HashMap<String, String> stepmaker, HashMap<String, Object> youtubeLink,HashMap<String, String> detailDifficulty) {
+    public SongInfo(String song_id, String artist, String title, String level, String bpm, String category, String version, HashMap<String, String> stepmaker, HashMap<String, Object> youtubeLink,HashMap<String, String> unlockCondition) {
         this.song_id = Integer.parseInt(song_id);
         this.artist = artist;
         this.title = title;
@@ -83,7 +83,7 @@ public class SongInfo {
         this.userLevel = "";
         this.stepmaker = stepmaker;
         this.youtubeLink = youtubeLink;
-        this.detailDifficulty = detailDifficulty;
+        this.unlockCondition = unlockCondition;
     }
     public SongInfo(String song_id, String artist, String title, String level, String bpm, String category, String version, HashMap<String, String> stepmaker, HashMap<String, Object> youtubeLink) {
         this.song_id = Integer.parseInt(song_id);
