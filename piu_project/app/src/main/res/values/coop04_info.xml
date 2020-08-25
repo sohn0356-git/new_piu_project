@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_coop04">
+    <item>song_195</item>
+    <item>song_218</item>
+    <item>song_304</item>
+    <item>song_529</item>
+  </string-array>
+</resources>

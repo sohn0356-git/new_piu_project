@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="level_string_coop">
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+
+    </string-array>
+</resources>

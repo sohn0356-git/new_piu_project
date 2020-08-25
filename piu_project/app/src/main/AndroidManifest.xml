@@ -32,6 +32,8 @@
         <activity android:name=".Activity.MyPageActivity"/>
         <activity android:name=".Activity.MyAchievementActivity"/>
         <activity android:name=".Activity.CategoryInfoActivity"/>
+
     </application>
+
 
 </manifest>

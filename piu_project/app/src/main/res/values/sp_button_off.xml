@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sp_btn_off">
+        <item>@drawable/ff_p01</item>
+        <item>@drawable/ff_p02</item>
+        <item>@drawable/ff_p03</item>
+        <item>@drawable/ff_p04</item>
+        <item>@drawable/ff_p05</item>
+        <item>@drawable/ff_p05</item>
+        <item>@drawable/ff_p05</item>
+        <item>@drawable/ff_p05</item>
+        <item>@drawable/ff_p05</item>
+        <item>@drawable/ff_p10</item>
+        <item>@drawable/ff_p10</item>
+        <item>@drawable/ff_p10</item>
+        <item>@drawable/ff_p10</item>
+        <item>@drawable/ff_p10</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+        <item>@drawable/ff_p15</item>
+    </array>
+</resources>

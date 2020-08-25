@@ -36,6 +36,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,10 +72,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.security.GeneralSecurityException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 
 import static com.example.piu_project.Activity.MainActivity.allData;
@@ -91,7 +94,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private int setLevel;
     private String level;
     private String newLevel;
-    private String category;
+//    private String category;
     private String mode;
     private FirebaseUser user;
     private boolean topScrolled;
@@ -124,6 +127,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private int selected_idx,selected_idx_left,selected_idx_right;
     private int col_cnt;
     private final int numberOfColumns = 5;
+    private FrameLayout fl_cancel;
     private int [] difficultyCount={0,0,0,0,0,0,0,0};
     private int [] S_song_id = {R.array.info_s01,R.array.info_s02,R.array.info_s03,R.array.info_s04,R.array.info_s05,R.array.info_s06,R.array.info_s07,R.array.info_s08,R.array.info_s09,R.array.info_s10,
                                 R.array.info_s11,R.array.info_s12,R.array.info_s13,R.array.info_s14,R.array.info_s15,R.array.info_s16,R.array.info_s17,R.array.info_s18,R.array.info_s19,R.array.info_s20,
@@ -137,6 +141,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private int [] DP_song_id = {R.array.info_dp01,R.array.info_dp02,R.array.info_dp03,R.array.info_dp04,R.array.info_dp05,R.array.info_dp06,R.array.info_dp07,R.array.info_dp08,R.array.info_null,R.array.info_null,
                                  R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_dp20,
                                  R.array.info_null,R.array.info_null,R.array.info_dp23,R.array.info_dp24,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
+    private int [] COOP_song_id = {R.array.info_null,R.array.info_coop02,R.array.info_coop03,R.array.info_coop04,R.array.info_coop05};
     private int [] S_song_name = {R.array.name_s01,R.array.name_s02,R.array.name_s03,R.array.name_s04,R.array.name_s05,R.array.name_s06,R.array.name_s07,R.array.name_s08,R.array.name_s09,R.array.name_s10,
             R.array.name_s11,R.array.name_s12,R.array.name_s13,R.array.name_s14,R.array.name_s15,R.array.name_s16,R.array.name_s17,R.array.name_s18,R.array.name_s19,R.array.name_s20,
             R.array.name_s21,R.array.name_s22,R.array.name_s23,R.array.name_s24,R.array.name_s25,R.array.name_s26,R.array.info_null,R.array.info_null};
@@ -149,6 +154,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private int [] DP_song_name = {R.array.name_dp01,R.array.name_dp02,R.array.name_dp03,R.array.name_dp04,R.array.name_dp05,R.array.name_dp06,R.array.name_dp07,R.array.name_dp08,R.array.info_null,R.array.info_null,
             R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null,R.array.name_dp20,
             R.array.info_null,R.array.info_null,R.array.name_dp23,R.array.name_dp24,R.array.info_null,R.array.info_null,R.array.info_null,R.array.info_null};
+    private int [] COOP_song_name = {R.array.info_null,R.array.name_coop02,R.array.name_coop03,R.array.name_coop04,R.array.name_coop05};
     private RelativeLayout loaderLayout;
     private FrameLayout frameLayout;
     private static final int WRITE_REQUEST_CODE = 101;
@@ -169,8 +175,10 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         Intent intent = getIntent();
         level = intent.getStringExtra("setLevel");
         mode = intent.getStringExtra("setMode");
-        category = intent.getStringExtra("setCategory");
         setToolbarTitle("LEVEL_" + mode + "_" + level);
+
+//        category = intent.getStringExtra("setCategory");
+
         if (mode.equals("S")) {
             song_number = getResources().getStringArray(S_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(S_song_name[Integer.parseInt(level) - 1]);
@@ -183,6 +191,9 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         } else if (mode.equals("DP")) {
             song_number = getResources().getStringArray(DP_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(DP_song_name[Integer.parseInt(level) - 1]);
+        } else {
+            song_number = getResources().getStringArray(COOP_song_id[Integer.parseInt(level) - 1]);
+            song_name = getResources().getStringArray(COOP_song_name[Integer.parseInt(level) - 1]);
         }
         tv_title = (TextView) findViewById(R.id.tv_title);
         et1 = (EditText) findViewById(R.id.editText1);
@@ -203,6 +214,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         iv_reset.setOnClickListener(onClickListener);
         iv_prev = (ImageView) findViewById(R.id.iv_prev);
         iv_prev.setOnClickListener(onClickListener);
+        fl_cancel = (FrameLayout)findViewById(R.id.fl_cancel);
+        fl_cancel.setOnClickListener(onClickListener);
         if (level.equals("01")) {
             iv_prev.setVisibility(View.GONE);
         }
@@ -372,6 +385,9 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
 
 //                    captureMyRecyclerView(recyclerView, 0, 0, recyclerView.getAdapter().getItemCount() - 1);
+                    break;
+                case R.id.fl_cancel:
+                    searchingBackgroundLayout.setVisibility(View.GONE);
                     break;
                 case R.id.bt_check:
                     loaderLayout.setVisibility(View.VISIBLE);
@@ -544,7 +560,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
             }
         }else{
             showToast(LevelInfoActivity.this, "정보를 등록중입니다.");
-            AchievementInfo achievementInfo = new AchievementInfo(mode + level + title,String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), "",user.getUid());
+            AchievementInfo achievementInfo = new AchievementInfo(mode + level + title,String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), "",user.getEmail());
             infoUploader(achievementInfo);
         }
     }
@@ -556,7 +572,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
         title = tv_title.getText().toString();
 
-        AchievementInfo achievementInfo = new AchievementInfo(mode + level + title, String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), profilePath, user.getUid());
+        AchievementInfo achievementInfo = new AchievementInfo(mode + level + title, String.valueOf(selected_idx), et1.getText().toString(), et2.getText().toString(), et3.getText().toString(), et4.getText().toString(), profilePath, user.getEmail());
         infoUploader(achievementInfo);
 
     }
@@ -635,6 +651,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         }
     }
 
+
     private void captureMyRecyclerView(RecyclerView view, int bgColor, int startPosition, int endPosition) {
         RecyclerView.Adapter adapter = view.getAdapter();
         Bitmap bigBitmap = null;
@@ -702,30 +719,66 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             } else {
                 //디렉토리 없으면 생성
-                File dir = new File(
-                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PIU_CAPTURE");
+//                File dir = new File(
+//                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "PIU_CAPTURE");
+//                if(!dir.exists()){
+//                    dir.mkdir();
+//                    if(!dir.exists()) {
+//                        showToast(LevelInfoActivity.this, "폴더생성 실패");
+//                    }
+//                }
+
+                File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(),"/PIU_CAPTURE");
                 if(!dir.exists()){
-                    dir.mkdir();
-                    if(!dir.exists()) {
+                    if(!dir.mkdirs()) {
                         showToast(LevelInfoActivity.this, "폴더생성 실패");
                     }
                 }
 
-                String string_path =dir.getAbsolutePath() + "/"+mode+level+".jpg";
+                long now = System.currentTimeMillis();
+                // 현재시간을 date 변수에 저장한다.
+                Date date = new Date(now);
+                // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
+                SimpleDateFormat sdfNow = new SimpleDateFormat("HH-mm-ss");
+                // nowDate 변수에 값을 저장한다.
+                String formatDate = sdfNow.format(date);
 
+                String string_path = dir.getAbsolutePath() + "/" + mode + level + formatDate + ".png";
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 
+                OutputStream fOut = null;
+                File file = new File(path, mode + level + formatDate + ".png"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
                 try{
-                    FileOutputStream out = new FileOutputStream(string_path);
-                    bigBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    fOut = new FileOutputStream(file);
+                    Bitmap pictureBitmap = bigBitmap;// obtaining the Bitmap
+                    pictureBitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+                    fOut.flush(); // Not really required
+                    fOut.close(); // do not forget to close the stream
+                    MediaStore.Images.Media.insertImage(getContentResolver(),bigBitmap,mode + level + formatDate + ".png",null);
                     showToast(LevelInfoActivity.this, "capture success");
-                    out.close();
-                }catch(FileNotFoundException exception){
+                }catch (FileNotFoundException exception) {
                     showToast(LevelInfoActivity.this, "die1.");
                     Log.e("FileNotFoundException", exception.getMessage());
-                }catch(IOException exception){
+                } catch (IOException exception) {
                     Log.e("IOException", exception.getMessage());
                     showToast(LevelInfoActivity.this, "die2.");
                 }
+
+
+
+
+//                try {
+//                    FileOutputStream out = new FileOutputStream(string_path);
+//                    bigBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+//                    showToast(LevelInfoActivity.this, "capture success");
+//                    out.close();
+//                } catch (FileNotFoundException exception) {
+//                    showToast(LevelInfoActivity.this, "die1.");
+//                    Log.e("FileNotFoundException", exception.getMessage());
+//                } catch (IOException exception) {
+//                    Log.e("IOException", exception.getMessage());
+//                    showToast(LevelInfoActivity.this, "die2.");
+//                }
 
             }
         }
@@ -1089,7 +1142,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
-        intent.putExtra("setCategory",category);
+//        intent.putExtra("setCategory",category);
         intent.putExtra("setLevel", newLevel);
         intent.putExtra("setMode", mode);
         startActivityForResult(intent, 1);

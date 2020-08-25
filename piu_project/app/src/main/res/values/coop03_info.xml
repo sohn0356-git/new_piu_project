@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="info_coop03">
+    <item>song_166</item>
+    <item>song_169</item>
+    <item>song_208</item>
+    <item>song_227</item>
+    <item>song_235</item>
+    <item>song_289</item>
+    <item>song_292</item>
+    <item>song_372</item>
+    <item>song_428</item>
+    <item>song_530</item>
+    <item>song_3952</item>
+    <item>song_7462</item>
+  </string-array>
+</resources>

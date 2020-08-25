@@ -60,10 +60,18 @@ public class MainActivity extends BasicActivity {
     private ListView listview2;
     private ListView listview3;
     private ListViewAdapter listViewAdapter1;
-    private ListViewAdapter listViewAdapter2;
+    private ListViewAdapter listViewAdapter_s;
+    private ListViewAdapter listViewAdapter_d;
+    private ListViewAdapter listViewAdapter_sp;
+    private ListViewAdapter listViewAdapter_dp;
+    private ListViewAdapter listViewAdapter_coop;
     private ListViewAdapter listViewAdapter3;
     private ArrayList<ListItem> itemList1 = new ArrayList<ListItem>() ;
-    private ArrayList<ListItem> itemList2 = new ArrayList<ListItem>() ;
+    private ArrayList<ListItem> itemList_s = new ArrayList<ListItem>() ;
+    private ArrayList<ListItem> itemList_d = new ArrayList<ListItem>() ;
+    private ArrayList<ListItem> itemList_sp = new ArrayList<ListItem>() ;
+    private ArrayList<ListItem> itemList_dp = new ArrayList<ListItem>() ;
+    private ArrayList<ListItem> itemList_coop = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
 //    private Fragment curFragment;
 
@@ -71,7 +79,7 @@ public class MainActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setToolbarTitle("piu project");
+        setToolbarTitle("Pump it Up");
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser == null || !firebaseUser.isEmailVerified()) {
             if(firebaseUser!=null) {
@@ -177,7 +185,11 @@ public class MainActivity extends BasicActivity {
         loaderLayout.bringToFront();
         loaderLayout.setVisibility(View.VISIBLE);
         listViewAdapter1 = new ListViewAdapter(itemList1) ;
-        listViewAdapter2 = new ListViewAdapter(itemList2) ;
+        listViewAdapter_s = new ListViewAdapter(itemList_s) ;
+        listViewAdapter_d = new ListViewAdapter(itemList_d) ;
+        listViewAdapter_sp = new ListViewAdapter(itemList_sp) ;
+        listViewAdapter_dp = new ListViewAdapter(itemList_dp) ;
+        listViewAdapter_coop = new ListViewAdapter(itemList_coop) ;
         listViewAdapter3 = new ListViewAdapter(itemList3) ;
         // 리스트뷰 참조 및 Adapter달기
         listview1 = (ListView) findViewById(R.id.listview1);
@@ -185,7 +197,6 @@ public class MainActivity extends BasicActivity {
         listview3 = (ListView) findViewById(R.id.listview3);
         listSetup();
         listview1.setAdapter(listViewAdapter1);
-        listview2.setAdapter(listViewAdapter2);
         listview3.setAdapter(listViewAdapter3);
         settingBackgroundLayout1 =findViewById(R.id.settingBackgroundLayout1);
         settingBackgroundLayout1.setOnClickListener(onClickListener);
@@ -226,9 +237,25 @@ public class MainActivity extends BasicActivity {
         for(int i=0;i<mode_string.length;i++){
             listViewAdapter1.addItem(mode_string[i]);
         }
-        String[] level_string = getResources().getStringArray(R.array.level_string);
+        String[] level_string = getResources().getStringArray(R.array.level_string_s);
         for(int i=0;i<level_string.length;i++){
-            listViewAdapter2.addItem(level_string[i]);
+            listViewAdapter_s.addItem(level_string[i]);
+        }
+        level_string = getResources().getStringArray(R.array.level_string_d);
+        for(int i=0;i<level_string.length;i++){
+            listViewAdapter_d.addItem(level_string[i]);
+        }
+        level_string = getResources().getStringArray(R.array.level_string_sp);
+        for(int i=0;i<level_string.length;i++){
+            listViewAdapter_sp.addItem(level_string[i]);
+        }
+        level_string = getResources().getStringArray(R.array.level_string_dp);
+        for(int i=0;i<level_string.length;i++){
+            listViewAdapter_dp.addItem(level_string[i]);
+        }
+        level_string = getResources().getStringArray(R.array.level_string_coop);
+        for(int i=0;i<level_string.length;i++){
+            listViewAdapter_coop.addItem(level_string[i]);
         }
         String[] category_string = getResources().getStringArray(R.array.category_string);
         for(int i=0;i<category_string.length;i++){
@@ -244,6 +271,17 @@ public class MainActivity extends BasicActivity {
                 }else {
                     mode = tb.getText().toString();
                     tb.setChecked(true);
+                    if(mode.equals("Single")){
+                        listview2.setAdapter(listViewAdapter_s);
+                    }else if(mode.equals("Double")){
+                        listview2.setAdapter(listViewAdapter_d);
+                    }else if(mode.equals("SinglePerformance")){
+                        listview2.setAdapter(listViewAdapter_sp);
+                    }else if(mode.equals("DoublePerformance")){
+                        listview2.setAdapter(listViewAdapter_dp);
+                    } else if(mode.equals("Coop")){
+                        listview2.setAdapter(listViewAdapter_coop);
+                    }
                 }
             }
         });
@@ -399,9 +437,9 @@ public class MainActivity extends BasicActivity {
             mode = "DP";
         }
         else{
-            mode = "C";
+            mode = "Coop";
         }
-        intent.putExtra("setCategory",category);
+//        intent.putExtra("setCategory",category);
         intent.putExtra("setLevel", level);
         intent.putExtra("setMode", mode);
         startActivityForResult(intent, 1);

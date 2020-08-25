@@ -52,8 +52,12 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
     private TypedArray s_button_off;
     private TypedArray d_button_on;
     private TypedArray d_button_off;
-    private TypedArray co_button_on;
-    private TypedArray co_button_off;
+    private TypedArray sp_button_on;
+    private TypedArray sp_button_off;
+    private TypedArray dp_button_on;
+    private TypedArray dp_button_off;
+    private TypedArray coop_button_on;
+    private TypedArray coop_button_off;
     private ImageView selectedImg;
     private String selectedLevel = "-1";
     private FirebaseUser user;
@@ -138,6 +142,12 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         s_button_off = resources.obtainTypedArray(R.array.s_btn_off);
         d_button_on = resources.obtainTypedArray(R.array.d_btn_on);
         d_button_off = resources.obtainTypedArray(R.array.d_btn_off);
+        sp_button_on = resources.obtainTypedArray(R.array.sp_btn_on);
+        sp_button_off = resources.obtainTypedArray(R.array.sp_btn_off);
+        dp_button_on = resources.obtainTypedArray(R.array.dp_btn_on);
+        dp_button_off = resources.obtainTypedArray(R.array.dp_btn_off);
+        coop_button_on = resources.obtainTypedArray(R.array.coop_btn_on);
+        coop_button_off = resources.obtainTypedArray(R.array.coop_btn_off);
         img_rank = resources.obtainTypedArray(R.array.rank_img);
         user = FirebaseAuth.getInstance().getCurrentUser();
         iv_info.setVisibility(View.GONE);
@@ -155,23 +165,33 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 if (selectedLevel.charAt(0) == 'S'){
                     if(selectedLevel.charAt(1) != 'P') {
                         level_i = parseInt(selectedLevel.substring(1));
+                    }else{
+                        level_i = parseInt(selectedLevel.substring(2));
                     }
                 } else if (selectedLevel.charAt(0) == 'D'){
                     if(selectedLevel.charAt(1) != 'P') {
                         level_i = parseInt(selectedLevel.substring(1));
+                    }else{
+                        level_i = parseInt(selectedLevel.substring(2));
                     }
-                }else{
-
+                }else if(selectedLevel.charAt(0)=='C'){
+                    level_i = parseInt(selectedLevel.substring(4));
                 }
                 if (selectedLevel.charAt(0) == 'S') {
                     if(selectedLevel.charAt(1) != 'P') {
                         Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    }else{
+                        Glide.with(activity).load(sp_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                     }
                 }
-                if (selectedLevel.charAt(0) == 'D') {
+                else if (selectedLevel.charAt(0) == 'D') {
                     if(selectedLevel.charAt(1) != 'P') {
                         Glide.with(activity).load(d_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                    }else{
+                        Glide.with(activity).load(dp_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                     }
+                }else if(selectedLevel.charAt(0)=='C'){
+                    Glide.with(activity).load(coop_button_off.getResourceId(level_i-1, 0)).centerCrop().override(500).into(selectedImg);
                 }
 
                 boolean newPick = !selectedLevel.equals(((TextView)v.findViewById(R.id.tv_level)).getText().toString());
@@ -202,23 +222,33 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                     if (selectedLevel.charAt(0) == 'S'){
                         if(selectedLevel.charAt(1)!='P') {
                             level_i = parseInt(selectedLevel.substring(1));
+                        }else{
+                            level_i = parseInt(selectedLevel.substring(2));
                         }
                     } else if (selectedLevel.charAt(0) == 'D') {
                         if (selectedLevel.charAt(1) != 'P') {
                             level_i = parseInt(selectedLevel.substring(1));
+                        }else{
+                            level_i = parseInt(selectedLevel.substring(2));
                         }
-                    }else{
-
+                    }else if(selectedLevel.charAt(0)=='C'){
+                        level_i = parseInt(selectedLevel.substring(4));
                     }
                     if (selectedLevel.charAt(0) == 'S'){
                         if(selectedLevel.charAt(1)!='P') {
                             Glide.with(activity).load(s_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                        }else{
+                            Glide.with(activity).load(sp_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                         }
                     }
-                    if (selectedLevel.charAt(0) == 'D'){
+                    else if (selectedLevel.charAt(0) == 'D'){
                         if(selectedLevel.charAt(1)!='P') {
                             Glide.with(activity).load(d_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
+                        }else{
+                            Glide.with(activity).load(dp_button_on.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(selectedImg);
                         }
+                    }else if(selectedLevel.charAt(0)=='C'){
+                        Glide.with(activity).load(coop_button_on.getResourceId(level_i-1, 0)).centerCrop().override(500).into(selectedImg);
                     }
 
 
@@ -335,23 +365,32 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
         if (level.charAt(0) == 'S'){
             if(level.charAt(1)!='P') {
                 level_i = parseInt(level.substring(1));
+            }else{
+                level_i = parseInt(level.substring(2));
             }
         } else if (level.charAt(0) == 'D'){
             if(level.charAt(1)!='P') {
                 level_i = parseInt(level.substring(1));
+            }else{
+                level_i = parseInt(level.substring(2));
             }
         }else{
-
+            level_i = parseInt(level.substring(4));
         }
         if (level.charAt(0) == 'S'){
             if(level.charAt(1)!='P') {
                 Glide.with(activity).load(s_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
+            }else{
+                Glide.with(activity).load(sp_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
             }
-        }
-        if (level.charAt(0) == 'D'){
+        }else if (level.charAt(0) == 'D'){
             if(level.charAt(1)!='P') {
                 Glide.with(activity).load(d_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
+            }else{
+                Glide.with(activity).load(dp_button_off.getResourceId(level_i - 1, 0)).centerCrop().override(500).into(imageView);
             }
+        }else if(level.charAt(0)=='C'){
+            Glide.with(activity).load(coop_button_off.getResourceId(level_i-1, 0)).centerCrop().override(500).into(imageView);
         }
         ((TextView)cardView.findViewById(R.id.tv_unlockCondition)).setText(mDataset.get(position).getunlockCondition());
         ((TextView)cardView.findViewById(R.id.tv_pLink)).setText(mDataset.get(position).getYoutubeLinkP());

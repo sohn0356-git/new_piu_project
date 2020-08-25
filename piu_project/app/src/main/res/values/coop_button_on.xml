@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="coop_btn_on">
+        <item>@drawable/on_c02</item>
+        <item>@drawable/on_c02</item>
+        <item>@drawable/on_c03</item>
+        <item>@drawable/on_c04</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+        <item>@drawable/on_c05</item>
+    </array>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="dp_btn_on">
+        <item>@drawable/on_b01</item>
+        <item>@drawable/on_b02</item>
+        <item>@drawable/on_b03</item>
+        <item>@drawable/on_b04</item>
+        <item>@drawable/on_b05</item>
+        <item>@drawable/on_b06</item>
+        <item>@drawable/on_b07</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b08</item>
+        <item>@drawable/on_b20</item>
+        <item>@drawable/on_b20</item>
+        <item>@drawable/on_b20</item>
+        <item>@drawable/on_b23</item>
+        <item>@drawable/on_b24</item>
+        <item>@drawable/on_b24</item>
+        <item>@drawable/on_b24</item>
+        <item>@drawable/on_b24</item>
+        <item>@drawable/on_b24</item>
+    </array>
+</resources>

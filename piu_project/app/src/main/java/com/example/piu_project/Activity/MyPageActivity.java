@@ -15,10 +15,13 @@ import androidx.annotation.RequiresApi;
 
 import com.example.piu_project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -38,6 +41,7 @@ public class MyPageActivity extends BasicActivity {
     private TextView tv_ds;
     private TextView tv_ss;
     private TextView tv_email;
+    private String email;
     private static final String TAG = "MyPageActivity";
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -47,8 +51,7 @@ public class MyPageActivity extends BasicActivity {
         setToolbarTitle("내정보");
         user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
-        String email = user.getEmail();
-        findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+        email = user.getEmail();
         db = FirebaseFirestore.getInstance();
 
         Log.d(TAG,userData.toString());
@@ -58,38 +61,9 @@ public class MyPageActivity extends BasicActivity {
         tv_ts = (TextView)findViewById(R.id.tv_ts);
         tv_ds = (TextView)findViewById(R.id.tv_ds);
         tv_ss = (TextView)findViewById(R.id.tv_ss);
-        Button bt_pwChange = (Button)findViewById(R.id.bt_pwChange);
-        bt_pwChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "Email sent.");
-                                }
-                            }
-                        });
-            }
-        });
-
-        Button bt_out = (Button)findViewById(R.id.bt_out);
-        bt_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user.delete()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "User account deleted.");
-                                }
-                            }
-                        });
-            }
-        });
+        findViewById(R.id.bt_pwChange).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_logout).setOnClickListener(onClickListener);
+        findViewById(R.id.bt_out).setOnClickListener(onClickListener);
         userUpdate();
 
         tv_email.setText("이메일 : "+email);
@@ -110,6 +84,34 @@ public class MyPageActivity extends BasicActivity {
                 case R.id.bt_logout:
                     FirebaseAuth.getInstance().signOut();
                     myStartActivity(LoginActivity.class);
+                    break;
+                case R.id.bt_pwChange:
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    auth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "Email sent.");
+                                        showToast(MyPageActivity.this,"패스워드 변경 메일을 발송하였습니다.");
+                                    }
+                                }
+                            });
+                    break;
+                case R.id.bt_out:
+
+                    user.delete()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseAuth.getInstance().signOut();
+                                        Log.d(TAG, "User account deleted.");
+                                        myStartActivity(LoginActivity.class);
+                                        finish();
+                                    }
+                                }
+                            });
                     break;
             }
         }

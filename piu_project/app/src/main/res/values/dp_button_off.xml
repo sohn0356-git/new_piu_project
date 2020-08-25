@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="dp_btn_off">
+        <item>@drawable/ff_b01</item>
+        <item>@drawable/ff_b02</item>
+        <item>@drawable/ff_b03</item>
+        <item>@drawable/ff_b04</item>
+        <item>@drawable/ff_b05</item>
+        <item>@drawable/ff_b06</item>
+        <item>@drawable/ff_b07</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b08</item>
+        <item>@drawable/ff_b20</item>
+        <item>@drawable/ff_b20</item>
+        <item>@drawable/ff_b20</item>
+        <item>@drawable/ff_b23</item>
+        <item>@drawable/ff_b24</item>
+        <item>@drawable/ff_b24</item>
+        <item>@drawable/ff_b24</item>
+        <item>@drawable/ff_b24</item>
+        <item>@drawable/ff_b24</item>
+    </array>
+</resources>
