@@ -15,7 +15,7 @@
         layout="@layout/view_loader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,7 +130,8 @@
             android:id="@+id/bt_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="탈퇴" />
+            android:text="탈퇴"
+            android:visibility="gone" />
 
     </LinearLayout>
 

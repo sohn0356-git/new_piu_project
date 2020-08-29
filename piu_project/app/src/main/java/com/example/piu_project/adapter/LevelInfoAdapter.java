@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
 import android.util.Log;
@@ -59,12 +62,14 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.example.piu_project.Util.INTENT_PATH;
 import static com.example.piu_project.Util.showToast;
+import static com.example.piu_project.Activity.MainActivity.userData;
 
 public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.MainViewHolder> implements Filterable {
     private static final String TAG = "LevelInfoActivity";
@@ -142,6 +147,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             public void onClick(View v) {
                 title = ((TextView) (v.findViewById(R.id.original_name))).getText().toString();
                 pos = ((TextView) (v.findViewById(R.id.original_position))).getText().toString();
+                ((TextView)(activity).findViewById(R.id.tv_position)).setText(pos);
                 original_level = ((TextView) (v.findViewById(R.id.original_level)));
                 String user_level = original_level.getText().toString();
                 String s_id = ((TextView) (v.findViewById(R.id.original_id))).getText().toString();
@@ -195,15 +201,15 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         ((Spinner)(activity.findViewById(R.id.spinner_level))).setSelection(Integer.parseInt(user_level));
                     }
 
-                    (activity.findViewById(R.id.bt_delete)).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            infoDelete(title);
-                            setRank(-1);
-                            mFDataset.get(Integer.parseInt(pos)).setUserLevel("");
-                            settingBackgroundLayout.setVisibility(View.GONE);
-                        }
-                    });
+//                    (activity.findViewById(R.id.bt_delete)).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            infoDelete(title);
+//                            setRank(-1);
+//                            mFDataset.get(Integer.parseInt(pos)).setUserLevel("");
+//                            settingBackgroundLayout.setVisibility(View.GONE);
+//                        }
+//                    });
                     (activity.findViewById(R.id.bt_gotoInfo)).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -361,6 +367,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -374,40 +381,60 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 
     private void infoUpdate(String title) {
         //Date date = userList.size() == 0 || clear ? new Date() : userList.get(userList.size() - 1).getCreatedAt();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection(user.getUid()).document(mode+level+title);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        et1.setText(document.get("n_Great").toString());
-                        et2.setText(document.get("n_Good").toString());
-                        et3.setText(document.get("n_Bad").toString());
-                        et4.setText(document.get("n_Miss").toString());
-                        if(document.get("photoUrl")==null || document.get("photoUrl").toString().equals("")){
-                            Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
-                        } else{
+        if(userData.get(mode+level+title)!=null) {
+            et1.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Great"));
+            et2.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Good"));
+            et3.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Bad"));
+            et4.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Miss"));
+            String path = ((HashMap<String,String>)userData.get(mode+level+title)).get("photoUrl");
+            if (path.equals("")) {
+                Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
+            } else {
 //                            showToast(activity,document.get("photoUrl").toString() );
-                            Glide.with(activity).load(document.get("photoUrl").toString()).override(500).into(iv_profile);
+                loadImageFromStorage(path);
 //                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
-                        }
-                        loaderLayout.setVisibility(View.GONE);
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        loaderLayout.setVisibility(View.GONE);
-                        Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    loaderLayout.setVisibility(View.GONE);
-                    Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
             }
-        });
+            loaderLayout.setVisibility(View.GONE);
+            Log.d(TAG, "DocumentSnapshot data: " + path);
+        } else {
+            loaderLayout.setVisibility(View.GONE);
+            Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
+            Log.d(TAG, "No such document");
+        }
+
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        DocumentReference docRef = db.collection(user.getUid()).document(mode+level+title);
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        et1.setText(document.get("n_Great").toString());
+//                        et2.setText(document.get("n_Good").toString());
+//                        et3.setText(document.get("n_Bad").toString());
+//                        et4.setText(document.get("n_Miss").toString());
+//                        if(document.get("photoUrl")==null || document.get("photoUrl").toString().equals("")){
+//                            Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
+//                        } else{
+////                            showToast(activity,document.get("photoUrl").toString() );
+//                            loadImageFromStorage(document.get("photoUrl").toString());
+////                            Glide.with(activity).load(document.get("photoUrl").toString()).centerCrop().override(500).into(iv_profile);
+//                        }
+//                        loaderLayout.setVisibility(View.GONE);
+//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                    } else {
+//                        loaderLayout.setVisibility(View.GONE);
+//                        Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
+//                        Log.d(TAG, "No such document");
+//                    }
+//                } else {
+//                    loaderLayout.setVisibility(View.GONE);
+//                    Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
+//                    Log.d(TAG, "get failed with ", task.getException());
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -470,9 +497,6 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             String packName = activity.getPackageName(); // 패키지명
             int resID = activity.getResources().getIdentifier(resName, "drawable", packName);
             photoImageVIew.setImageResource(resID);
-//            if (song_id != 0) {
-//                Glide.with(activity).load(album_info.getResourceId(song_id - 1, 0)).centerCrop().override(500).into(photoImageVIew);
-//            }
             String songTitle = songInfo.getTitle();
             original_name.setText(songTitle);
             original_pos.setText(String.valueOf(position));
@@ -537,7 +561,40 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 //            nameTextView.setBreakStrategy()
         }
     }
+    public int exifOrientationToDegrees(int exifOrientation) {
+        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
+            return 90;
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
+            return 180;
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
+            return 270;
+        }
+        return 0;
+    }
+    private void loadImageFromStorage(String path)
+    {
+        try {
+            File f=new File(path);
+//            showToast(activity,f.getAbsolutePath());
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            ExifInterface exif = new ExifInterface(path);
+            int exifOrientation = exif.getAttributeInt(
+            ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int exifDegree = exifOrientationToDegrees(exifOrientation);
 
+            Matrix rotateMatrix = new Matrix();
+            rotateMatrix.postRotate(exifDegree); //-360~360
+            Bitmap sideInversionImg = Bitmap.createBitmap(b, 0, 0,b.getWidth(), b.getHeight(), rotateMatrix, false);
+            iv_profile.setImageBitmap(sideInversionImg);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     @Override
     public int getItemCount() {
         return mFDataset.size();

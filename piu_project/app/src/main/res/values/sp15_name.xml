@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_sp15">
-    <item>sp15펌트리스 8비트 ver.</item>
-    <item>sp15엑스트라바간자 - SHORT CUT -</item>
+  <string-array name="name_SP15">
+    <item>SP15펌트리스 8비트 ver.</item>
+    <item>SP15엑스트라바간자 - SHORT CUT -</item>
   </string-array>
 </resources>

@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_dp02">
-    <item>dp02펌트리스 꽈트로</item>
-    <item>dp02파이널 오디션 에피소드 2-X</item>
-    <item>dp02아리랑</item>
-    <item>dp02리얼리티</item>
-    <item>dp02엘리시움</item>
-    <item>dp02슈퍼 판타지</item>
-    <item>dp02코스미컬 리듬</item>
-    <item>dp02밀키 웨이 갤럭시</item>
-    <item>dp02필 마이 해피니스</item>
-    <item>dp02배드 애플!! feat. Nomico</item>
-    <item>dp02포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
-    <item>dp02저스트 홀드 온 (To All Fighters)</item>
-    <item>dp02라이크 미</item>
-    <item>dp02아르카나 포스</item>
-    <item>dp02어웨이크닝</item>
-    <item>dp02V3</item>
-    <item>dp02포세이돈</item>
-    <item>dp02가시나</item>
-    <item>dp02뿜뿜</item>
-    <item>dp02디멘트 ~에프터 레전드~</item>
-    <item>dp02스냅핑</item>
+  <string-array name="name_DP02">
+    <item>DP02펌트리스 꽈트로</item>
+    <item>DP02파이널 오디션 에피소드 2-X</item>
+    <item>DP02아리랑</item>
+    <item>DP02리얼리티</item>
+    <item>DP02엘리시움</item>
+    <item>DP02슈퍼 판타지</item>
+    <item>DP02코스미컬 리듬</item>
+    <item>DP02밀키 웨이 갤럭시</item>
+    <item>DP02필 마이 해피니스</item>
+    <item>DP02배드 애플!! feat. Nomico</item>
+    <item>DP02포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
+    <item>DP02저스트 홀드 온 (To All Fighters)</item>
+    <item>DP02라이크 미</item>
+    <item>DP02아르카나 포스</item>
+    <item>DP02어웨이크닝</item>
+    <item>DP02V3</item>
+    <item>DP02포세이돈</item>
+    <item>DP02가시나</item>
+    <item>DP02뿜뿜</item>
+    <item>DP02디멘트 ~에프터 레전드~</item>
+    <item>DP02별이 빛나는 밤</item>
+    <item>DP02스냅핑</item>
+    <item>DP02금혼식</item>
+    <item>DP02브로큰 카르마 (PIU Edit)</item>
   </string-array>
 </resources>

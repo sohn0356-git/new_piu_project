@@ -1,76 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d21">
-    <item>d21또다른 진심</item>
-    <item>d21베토벤 바이러스</item>
-    <item>d21슬램</item>
-    <item>d21러브 이즈 어 데인저 존</item>
-    <item>d21윌 오 더 위스프</item>
-    <item>d21펌프 미 아마데우스</item>
-    <item>d21무혼 2</item>
-    <item>d21월광</item>
-    <item>d21위치 닥터 #1</item>
-    <item>d21투우사의 노래</item>
-    <item>d21러브 이즈 어 댄저 존 2 - FULL SONG -</item>
-    <item>d21비트 오브 더 워 2 - FULL SONG -</item>
-    <item>d21카프리스 오브 오타다</item>
-    <item>d21패스터 Z</item>
-    <item>d21파이널 오디션 에피소드 2-X</item>
-    <item>d21진공</item>
-    <item>d21아리랑</item>
-    <item>d21팬텀 -인터메조-</item>
-    <item>d21미션 파서블 -블로우 백-</item>
-    <item>d21스타 커맨드</item>
-    <item>d21이그니스 패터스(DM Ashura 믹스) - SHORT CUT -</item>
-    <item>d21에프 에프 에프 - SHORT CUT -</item>
-    <item>d21레드 스노우</item>
-    <item>d21필 마이 해피니스</item>
-    <item>d21임프린팅</item>
-    <item>d21방과 후 스트라이드</item>
-    <item>d21요그 소토스 - SHORT CUT -</item>
-    <item>d21트리튬</item>
-    <item>d21갓 모드 feat. skizzo</item>
-    <item>d21사라반드</item>
-    <item>d21트위스트 오브 페이트 (feat. Ruriling)</item>
-    <item>d21트래블 투 퓨처</item>
-    <item>d21V3</item>
-    <item>d21사월</item>
-    <item>d21킵 온!</item>
-    <item>d21고딕 레조넌스</item>
-    <item>d21히페리온 - SHORT CUT -</item>
-    <item>d21가장신자 - SHORT CUT -</item>
-    <item>d21클럽 나이트</item>
-    <item>d211949</item>
-    <item>d21아이 원트 유</item>
-    <item>d21아이스 오브 데스</item>
-    <item>d21김치 핑거즈</item>
-    <item>d21날아올라</item>
-    <item>d21밤</item>
-    <item>d21잘가라</item>
-    <item>d218 6</item>
-    <item>d21이미지네이션</item>
-    <item>d21알레그로 콘 뿌오코 - FULL SONG -</item>
-    <item>d21파파시토 (feat. KuTiNA)</item>
-    <item>d21디 엔드 오브 더 월드 ft. Skizzo</item>
-    <item>d21가시나 - FULL SONG -</item>
-    <item>d21포세이돈 - SHORT CUT -</item>
-    <item>d21컨플릭트</item>
-    <item>d21프렌드</item>
-    <item>d21오르비트 스테빌라이저</item>
-    <item>d21캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
-    <item>d21팔랑크스 &quot;RS2018 edit&quot;</item>
-    <item>d21립톤 스트라이크</item>
-    <item>d21위키드 레전드</item>
-    <item>d21히트</item>
-    <item>d21천년이 지나서</item>
-    <item>d21트란사칼리아</item>
-    <item>d21인디스트럭터블</item>
-    <item>d21싸이클링!</item>
-    <item>d21디스트릭트 1</item>
-    <item>d21데인저 &amp; 데인저</item>
-    <item>d21파이어 누들 챌린지</item>
-    <item>d21일 더하기 일은 귀요미</item>
-    <item>d21잘가라 - FULL SONG -</item>
-    <item>d21아이 원트 유 - SHORT CUT -</item>
+  <string-array name="name_D21">
+    <item>D21또다른 진심</item>
+    <item>D21베토벤 바이러스</item>
+    <item>D21슬램</item>
+    <item>D21러브 이즈 어 데인저 존</item>
+    <item>D21윌 오 더 위스프</item>
+    <item>D21펌프 미 아마데우스</item>
+    <item>D21무혼 2</item>
+    <item>D21월광</item>
+    <item>D21위치 닥터 #1</item>
+    <item>D21투우사의 노래</item>
+    <item>D21러브 이즈 어 댄저 존 2 - FULL SONG -</item>
+    <item>D21비트 오브 더 워 2 - FULL SONG -</item>
+    <item>D21카프리스 오브 오타다</item>
+    <item>D21패스터 Z</item>
+    <item>D21파이널 오디션 에피소드 2-X</item>
+    <item>D21진공</item>
+    <item>D21아리랑</item>
+    <item>D21팬텀 -인터메조-</item>
+    <item>D21미션 파서블 -블로우 백-</item>
+    <item>D21스타 커맨드</item>
+    <item>D21이그니스 패터스(DM Ashura 믹스) - SHORT CUT -</item>
+    <item>D21에프 에프 에프 - SHORT CUT -</item>
+    <item>D21레드 스노우</item>
+    <item>D21필 마이 해피니스</item>
+    <item>D21임프린팅</item>
+    <item>D21방과 후 스트라이드</item>
+    <item>D21요그 소토스 - SHORT CUT -</item>
+    <item>D21트리튬</item>
+    <item>D21갓 모드 feat. skizzo</item>
+    <item>D21사라반드</item>
+    <item>D21트위스트 오브 페이트 (feat. Ruriling)</item>
+    <item>D21트래블 투 퓨처</item>
+    <item>D21V3</item>
+    <item>D21사월</item>
+    <item>D21킵 온!</item>
+    <item>D21고딕 레조넌스</item>
+    <item>D21히페리온 - SHORT CUT -</item>
+    <item>D21가장신자 - SHORT CUT -</item>
+    <item>D21클럽 나이트</item>
+    <item>D211949</item>
+    <item>D21아이 원트 유</item>
+    <item>D21아이스 오브 데스</item>
+    <item>D21김치 핑거즈</item>
+    <item>D21날아올라</item>
+    <item>D21밤</item>
+    <item>D21잘가라</item>
+    <item>D218 6</item>
+    <item>D21이미지네이션</item>
+    <item>D21디멘트 ~에프터 레전드~</item>
+    <item>D21알레그로 콘 뿌오코 - FULL SONG -</item>
+    <item>D21파파시토 (feat. KuTiNA)</item>
+    <item>D21디 엔드 오브 더 월드 ft. Skizzo</item>
+    <item>D21가시나 - FULL SONG -</item>
+    <item>D21포세이돈 - SHORT CUT -</item>
+    <item>D21컨플릭트</item>
+    <item>D21프렌드</item>
+    <item>D21오르비트 스테빌라이저</item>
+    <item>D21캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
+    <item>D21팔랑크스 &quot;RS2018 edit&quot;</item>
+    <item>D21립톤 스트라이크</item>
+    <item>D21위키드 레전드</item>
+    <item>D21히트</item>
+    <item>D21천년이 지나서</item>
+    <item>D21트란사칼리아</item>
+    <item>D21인디스트럭터블</item>
+    <item>D21싸이클링!</item>
+    <item>D21디스트릭트 1</item>
+    <item>D21데인저 &amp; 데인저</item>
+    <item>D21파이어 누들 챌린지</item>
+    <item>D21일 더하기 일은 귀요미</item>
+    <item>D21잘가라 - FULL SONG -</item>
+    <item>D21아이 원트 유 - SHORT CUT -</item>
+    <item>D21헤드리스 치킨</item>
+    <item>D21오버 더 호라이즌</item>
   </string-array>
 </resources>

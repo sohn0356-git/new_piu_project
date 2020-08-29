@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s22">
-    <item>s22미스터 라푸스</item>
-    <item>s22러브 이즈 어 데인저 존 pt.2</item>
-    <item>s22파이널 오디션 에피소드 2-1</item>
-    <item>s22파이널 오디션 에피소드 2-2</item>
-    <item>s22반야-P 기타 리믹스</item>
-    <item>s22아리랑</item>
-    <item>s22팬텀 -인터메조-</item>
-    <item>s22가고일</item>
-    <item>s22알레그로 콘 뿌오코</item>
-    <item>s22이그니스 패터스(DM Ashura 믹스)</item>
-    <item>s22에프 에프 에프</item>
-    <item>s22아발란치</item>
-    <item>s22히아신스</item>
-    <item>s22로봇 배틀</item>
-    <item>s22아클루오이아스</item>
-    <item>s22비디오 아웃 씨</item>
-    <item>s22신앙 - 1st Desire - [FULL SONG]</item>
-    <item>s22헬파이어</item>
-    <item>s22크로스 오버 feat. LyuU</item>
-    <item>s22퍼더</item>
-    <item>s22베들램</item>
-    <item>s22불카누스</item>
-    <item>s22사월 - SHORT CUT -</item>
-    <item>s22클럽 나이트</item>
-    <item>s22스켑틱</item>
-    <item>s22데사파레세르</item>
-    <item>s22니알라토텝 - SHORT CUT -</item>
-    <item>s22캉-캉 ~Orpheus in The Party Mix~</item>
-    <item>s22컨플릭트</item>
-    <item>s22디그니티</item>
-    <item>s22풀 문</item>
-    <item>s22크로스 소울</item>
-    <item>s22팔랑크스 &quot;RS2018 edit&quot;</item>
-    <item>s22립톤 스트라이크</item>
-    <item>s22우라늄</item>
-    <item>s22인디스트럭터블</item>
-    <item>s22아이올라이트 스카이</item>
-    <item>s22금혼식</item>
+  <string-array name="name_S22">
+    <item>S22미스터 라푸스</item>
+    <item>S22러브 이즈 어 데인저 존 pt.2</item>
+    <item>S22파이널 오디션 에피소드 2-1</item>
+    <item>S22파이널 오디션 에피소드 2-2</item>
+    <item>S22반야-P 기타 리믹스</item>
+    <item>S22아리랑</item>
+    <item>S22팬텀 -인터메조-</item>
+    <item>S22가고일</item>
+    <item>S22알레그로 콘 뿌오코</item>
+    <item>S22이그니스 패터스(DM Ashura 믹스)</item>
+    <item>S22에프 에프 에프</item>
+    <item>S22아발란치</item>
+    <item>S22히아신스</item>
+    <item>S22로봇 배틀</item>
+    <item>S22아클루오이아스</item>
+    <item>S22비디오 아웃 씨</item>
+    <item>S22신앙 - 1st Desire - [FULL SONG]</item>
+    <item>S22헬파이어</item>
+    <item>S22크로스 오버 feat. LyuU</item>
+    <item>S22퍼더</item>
+    <item>S22베들램</item>
+    <item>S22불카누스</item>
+    <item>S22사월 - SHORT CUT -</item>
+    <item>S22클럽 나이트</item>
+    <item>S22스켑틱</item>
+    <item>S22데사파레세르</item>
+    <item>S22니알라토텝 - SHORT CUT -</item>
+    <item>S22캉-캉 ~Orpheus in The Party Mix~</item>
+    <item>S22컨플릭트</item>
+    <item>S22디그니티</item>
+    <item>S22풀 문</item>
+    <item>S22크로스 소울</item>
+    <item>S22팔랑크스 &quot;RS2018 edit&quot;</item>
+    <item>S22립톤 스트라이크</item>
+    <item>S22우라늄</item>
+    <item>S22인디스트럭터블</item>
+    <item>S22아이올라이트 스카이</item>
+    <item>S22금혼식</item>
+    <item>S22파괴</item>
+    <item>S22클레마티스 랩소디아</item>
   </string-array>
 </resources>

@@ -1,90 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d17">
-    <item>d17또다른 진심</item>
-    <item>d17터키 행진곡</item>
-    <item>d17사랑가</item>
-    <item>d17미스터 라푸스</item>
-    <item>d17펌프 점프</item>
-    <item>d17치킨 윙</item>
-    <item>d17라젠스키 캉캉</item>
-    <item>d17엠페러</item>
-    <item>d17러브 이즈 어 데인저 존</item>
-    <item>d17윈터</item>
-    <item>d17디 갱</item>
-    <item>d17파이널 오디션 3</item>
-    <item>d17몽키 핑거즈</item>
-    <item>d17제이 봉</item>
-    <item>d17캐논 디</item>
-    <item>d17러브 이즈 어 데인저 존 pt.2</item>
-    <item>d17위치 닥터 #1</item>
-    <item>d17머니 핑거즈</item>
-    <item>d17블레이즈 이모션</item>
-    <item>d17사람들은 몰랐다네</item>
-    <item>d17토카타</item>
-    <item>d17소서리스 엘리제</item>
-    <item>d17테크 -클럽 코펜하겐-</item>
-    <item>d17팬텀 -인터메조-</item>
-    <item>d17펌핑 점핑</item>
-    <item>d17러브 이즈 어 데인져 존 - SHORT CUT -</item>
-    <item>d17윈터 - SHORT CUT -</item>
-    <item>d17무혼 2 - SHORT CUT -</item>
-    <item>d17위치 닥터 - SHORT CUT -</item>
-    <item>d17NX 오프닝 - SHORT CUT -</item>
-    <item>d17버터플라이</item>
-    <item>d17헝가리 무곡 V</item>
-    <item>d17스멜스 라이크 어 초콜릿</item>
-    <item>d17오버블로우 - SHORT CUT -</item>
-    <item>d17파반느</item>
-    <item>d17ㅁㄴㅇㄹ</item>
-    <item>d17모노리스</item>
-    <item>d17트라이브 어택커</item>
-    <item>d17슈샤</item>
-    <item>d17VVV</item>
-    <item>d17엘리제</item>
-    <item>d17이그니스 패터스(DM Ashura 믹스)</item>
-    <item>d17유 갓 미 락킹</item>
-    <item>d17팔로우 미</item>
-    <item>d17유 갓 미 락킹 - SHORT CUT -</item>
-    <item>d17포인트 제로 원</item>
-    <item>d17라그나로크</item>
-    <item>d17레미니센스</item>
-    <item>d17스마일 다이어리</item>
-    <item>d17브레이크 잇 다운</item>
-    <item>d17슈퍼 판타지 - SHORT CUT -</item>
-    <item>d17실루엣 이펙트 - SHORT CUT -</item>
-    <item>d17스타더스트 오버드라이브 - SHORT CUT -</item>
-    <item>d17갓 모드 feat. skizzo</item>
-    <item>d17퍼더</item>
-    <item>d17아르카나 포스</item>
-    <item>d17트위스트 오브 페이트 (feat. Ruriling)</item>
-    <item>d17어웨이크닝</item>
-    <item>d17크로스타임</item>
-    <item>d17유령의 축제 2 (Sneak)</item>
-    <item>d17블랙 드래곤</item>
-    <item>d17사월</item>
-    <item>d17슈퍼 스타일린</item>
-    <item>d17킵 온!</item>
-    <item>d17아이 원트 유</item>
-    <item>d17아이스 오브 데스</item>
-    <item>d17한 (ㅡ)</item>
-    <item>d17유 앤 아이</item>
-    <item>d17오벨리스크</item>
-    <item>d17레이지 오브 파이어</item>
-    <item>d17니힐리즘 - 어나더 버전 -</item>
-    <item>d17XX 오프닝 - SHORT CUT -</item>
-    <item>d17디 엔드 오브 더 월드 ft. Skizzo</item>
-    <item>d17포가튼 뱀파이어</item>
-    <item>d17별이 빛나는 밤</item>
-    <item>d17디그니티</item>
-    <item>d17프렌드</item>
-    <item>d17라이징 스타</item>
-    <item>d17테일즈 오브 펌프니아</item>
-    <item>d17캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
-    <item>d17립톤 스트라이크</item>
-    <item>d17우라늄</item>
-    <item>d17디스트릭트 1</item>
-    <item>d17아이올라이트 스카이</item>
-    <item>d17일 더하기 일은 귀요미</item>
+  <string-array name="name_D17">
+    <item>D17또다른 진심</item>
+    <item>D17터키 행진곡</item>
+    <item>D17사랑가</item>
+    <item>D17미스터 라푸스</item>
+    <item>D17펌프 점프</item>
+    <item>D17치킨 윙</item>
+    <item>D17라젠스키 캉캉</item>
+    <item>D17엠페러</item>
+    <item>D17러브 이즈 어 데인저 존</item>
+    <item>D17윈터</item>
+    <item>D17디 갱</item>
+    <item>D17파이널 오디션 3</item>
+    <item>D17몽키 핑거즈</item>
+    <item>D17제이 봉</item>
+    <item>D17캐논 디</item>
+    <item>D17러브 이즈 어 데인저 존 pt.2</item>
+    <item>D17위치 닥터 #1</item>
+    <item>D17머니 핑거즈</item>
+    <item>D17블레이즈 이모션</item>
+    <item>D17사람들은 몰랐다네</item>
+    <item>D17토카타</item>
+    <item>D17소서리스 엘리제</item>
+    <item>D17테크 -클럽 코펜하겐-</item>
+    <item>D17팬텀 -인터메조-</item>
+    <item>D17펌핑 점핑</item>
+    <item>D17러브 이즈 어 데인져 존 - SHORT CUT -</item>
+    <item>D17윈터 - SHORT CUT -</item>
+    <item>D17무혼 2 - SHORT CUT -</item>
+    <item>D17위치 닥터 - SHORT CUT -</item>
+    <item>D17NX 오프닝 - SHORT CUT -</item>
+    <item>D17버터플라이</item>
+    <item>D17헝가리 무곡 V</item>
+    <item>D17스멜스 라이크 어 초콜릿</item>
+    <item>D17오버블로우 - SHORT CUT -</item>
+    <item>D17파반느</item>
+    <item>D17ㅁㄴㅇㄹ</item>
+    <item>D17모노리스</item>
+    <item>D17트라이브 어택커</item>
+    <item>D17슈샤</item>
+    <item>D17VVV</item>
+    <item>D17엘리제</item>
+    <item>D17이그니스 패터스(DM Ashura 믹스)</item>
+    <item>D17유 갓 미 락킹</item>
+    <item>D17팔로우 미</item>
+    <item>D17유 갓 미 락킹 - SHORT CUT -</item>
+    <item>D17포인트 제로 원</item>
+    <item>D17라그나로크</item>
+    <item>D17레미니센스</item>
+    <item>D17스마일 다이어리</item>
+    <item>D17브레이크 잇 다운</item>
+    <item>D17슈퍼 판타지 - SHORT CUT -</item>
+    <item>D17실루엣 이펙트 - SHORT CUT -</item>
+    <item>D17스타더스트 오버드라이브 - SHORT CUT -</item>
+    <item>D17갓 모드 feat. skizzo</item>
+    <item>D17퍼더</item>
+    <item>D17아르카나 포스</item>
+    <item>D17트위스트 오브 페이트 (feat. Ruriling)</item>
+    <item>D17어웨이크닝</item>
+    <item>D17크로스타임</item>
+    <item>D17유령의 축제 2 (Sneak)</item>
+    <item>D17블랙 드래곤</item>
+    <item>D17사월</item>
+    <item>D17슈퍼 스타일린</item>
+    <item>D17킵 온!</item>
+    <item>D17아이 원트 유</item>
+    <item>D17아이스 오브 데스</item>
+    <item>D17한 (ㅡ)</item>
+    <item>D17유 앤 아이</item>
+    <item>D17오벨리스크</item>
+    <item>D17레이지 오브 파이어</item>
+    <item>D17니힐리즘 - 어나더 버전 -</item>
+    <item>D17XX 오프닝 - SHORT CUT -</item>
+    <item>D17디 엔드 오브 더 월드 ft. Skizzo</item>
+    <item>D17포가튼 뱀파이어</item>
+    <item>D17별이 빛나는 밤</item>
+    <item>D17디그니티</item>
+    <item>D17프렌드</item>
+    <item>D17라이징 스타</item>
+    <item>D17테일즈 오브 펌프니아</item>
+    <item>D17캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
+    <item>D17립톤 스트라이크</item>
+    <item>D17우라늄</item>
+    <item>D17디스트릭트 1</item>
+    <item>D17아이올라이트 스카이</item>
+    <item>D17일 더하기 일은 귀요미</item>
+    <item>D17헤드리스 치킨</item>
   </string-array>
 </resources>

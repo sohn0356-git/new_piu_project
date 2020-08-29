@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_sp02">
-    <item>sp02눈을 감아</item>
-    <item>sp02사랑가</item>
-    <item>sp02펌프 점프</item>
-    <item>sp02엔</item>
-    <item>sp02마이 웨이</item>
-    <item>sp02오이 오이 오이</item>
-    <item>sp02잼 오 비트</item>
-    <item>sp02엑스트리</item>
-    <item>sp02유 갓 투 노우</item>
-    <item>sp02인터퍼런스</item>
-    <item>sp02버터플라이</item>
-    <item>sp02오버블로우</item>
-    <item>sp02위 갓 투 노우</item>
-    <item>sp02가고일</item>
-    <item>sp02헝가리 무곡 V</item>
-    <item>sp02엑스 레이브</item>
-    <item>sp02네이티브</item>
-    <item>sp02네크로맨시</item>
-    <item>sp02파반느</item>
+  <string-array name="name_SP02">
+    <item>SP02눈을 감아</item>
+    <item>SP02사랑가</item>
+    <item>SP02펌프 점프</item>
+    <item>SP02엔</item>
+    <item>SP02마이 웨이</item>
+    <item>SP02오이 오이 오이</item>
+    <item>SP02잼 오 비트</item>
+    <item>SP02엑스트리</item>
+    <item>SP02유 갓 투 노우</item>
+    <item>SP02인터퍼런스</item>
+    <item>SP02버터플라이</item>
+    <item>SP02오버블로우</item>
+    <item>SP02위 갓 투 노우</item>
+    <item>SP02가고일</item>
+    <item>SP02헝가리 무곡 V</item>
+    <item>SP02엑스 레이브</item>
+    <item>SP02네이티브</item>
+    <item>SP02네크로맨시</item>
+    <item>SP02파반느</item>
   </string-array>
 </resources>

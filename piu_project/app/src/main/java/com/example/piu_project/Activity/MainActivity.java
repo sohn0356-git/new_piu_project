@@ -55,7 +55,10 @@ public class MainActivity extends BasicActivity {
     private String level="";
     private String mode="";
     private String category="";
+    private boolean cloudDown=false;
+    private boolean databaseDown=false;
     public static HashMap<String,Object> allData = new HashMap<>();
+    public static HashMap<String,Object> userData =  new HashMap<>();
     private ListView listview1;
     private ListView listview2;
     private ListView listview3;
@@ -65,6 +68,7 @@ public class MainActivity extends BasicActivity {
     private ListViewAdapter listViewAdapter_sp;
     private ListViewAdapter listViewAdapter_dp;
     private ListViewAdapter listViewAdapter_coop;
+    private ListViewAdapter listViewAdapter_null;
     private ListViewAdapter listViewAdapter3;
     private ArrayList<ListItem> itemList1 = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_s = new ArrayList<ListItem>() ;
@@ -72,7 +76,9 @@ public class MainActivity extends BasicActivity {
     private ArrayList<ListItem> itemList_sp = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_dp = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_coop = new ArrayList<ListItem>() ;
+    private ArrayList<ListItem> itemList_null = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
+    private ToggleButton tb_clicked;
 //    private Fragment curFragment;
 
     @Override
@@ -189,6 +195,7 @@ public class MainActivity extends BasicActivity {
         listViewAdapter_d = new ListViewAdapter(itemList_d) ;
         listViewAdapter_sp = new ListViewAdapter(itemList_sp) ;
         listViewAdapter_dp = new ListViewAdapter(itemList_dp) ;
+        listViewAdapter_null = new ListViewAdapter(itemList_null);
         listViewAdapter_coop = new ListViewAdapter(itemList_coop) ;
         listViewAdapter3 = new ListViewAdapter(itemList3) ;
         // 리스트뷰 참조 및 Adapter달기
@@ -212,11 +219,14 @@ public class MainActivity extends BasicActivity {
 
     }
 
-    private void listSetup(){
+    private void listSetup() {
 //        String[] info = getResources().getStringArray(R.array.name_s07);
 //        for(int i=0;i<info.length;i++){
 //            Log.d(TAG,info[i]);
 //        }
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        userData = new HashMap<>();
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();                      //Firebase database와 연동;
@@ -224,9 +234,24 @@ public class MainActivity extends BasicActivity {
         databaseReference_s.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                allData = (HashMap<String,Object>)dataSnapshot.getValue();
-                loaderLayout.setVisibility(View.GONE);
+                allData = (HashMap<String, Object>) dataSnapshot.getValue();
+                db.collection(user.getUid())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                        userData.put((String) document.getData().get("songInfo"), (Object) document.getData());
+                                    }
+                                    loaderLayout.setVisibility(View.GONE);
+                                }
+                            }
+                        });
             }
+
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 //error 발생시
                 Log.e(TAG, String.valueOf(databaseError.toException()));
@@ -234,52 +259,54 @@ public class MainActivity extends BasicActivity {
         });
 
         String[] mode_string = getResources().getStringArray(R.array.mode_string);
-        for(int i=0;i<mode_string.length;i++){
+        for (int i = 0; i < mode_string.length; i++) {
             listViewAdapter1.addItem(mode_string[i]);
+
         }
         String[] level_string = getResources().getStringArray(R.array.level_string_s);
-        for(int i=0;i<level_string.length;i++){
+        for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_s.addItem(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_d);
-        for(int i=0;i<level_string.length;i++){
+        for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_d.addItem(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_sp);
-        for(int i=0;i<level_string.length;i++){
+        for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_sp.addItem(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_dp);
-        for(int i=0;i<level_string.length;i++){
+        for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_dp.addItem(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_coop);
-        for(int i=0;i<level_string.length;i++){
+        for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_coop.addItem(level_string[i]);
         }
         String[] category_string = getResources().getStringArray(R.array.category_string);
-        for(int i=0;i<category_string.length;i++){
+        for (int i = 0; i < category_string.length; i++) {
             listViewAdapter3.addItem(category_string[i]);
         }
 
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToggleButton tb = (ToggleButton)((LinearLayout)view).getChildAt(0);
-                if(tb.isChecked()){
-                    mode="";
-                }else {
+                ToggleButton tb = (ToggleButton) ((LinearLayout) view).getChildAt(0);
+                tb_clicked = tb;
+                if (tb.isChecked()) {
+                    mode = "";
+                } else {
                     mode = tb.getText().toString();
                     tb.setChecked(true);
-                    if(mode.equals("Single")){
+                    if (mode.equals("Single")) {
                         listview2.setAdapter(listViewAdapter_s);
-                    }else if(mode.equals("Double")){
+                    } else if (mode.equals("Double")) {
                         listview2.setAdapter(listViewAdapter_d);
-                    }else if(mode.equals("SinglePerformance")){
+                    } else if (mode.equals("SinglePerformance")) {
                         listview2.setAdapter(listViewAdapter_sp);
-                    }else if(mode.equals("DoublePerformance")){
+                    } else if (mode.equals("DoublePerformance")) {
                         listview2.setAdapter(listViewAdapter_dp);
-                    } else if(mode.equals("Coop")){
+                    } else if (mode.equals("Coop")) {
                         listview2.setAdapter(listViewAdapter_coop);
                     }
                 }
@@ -287,16 +314,17 @@ public class MainActivity extends BasicActivity {
         });
         listview1.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int scrollState) {}
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+            }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                for(int i = 0;i<visibleItemCount;i++){
-                    if(firstVisibleItem+i<totalItemCount){
+                for (int i = 0; i < visibleItemCount; i++) {
+                    if (firstVisibleItem + i < totalItemCount) {
                         ToggleButton tb = ((ToggleButton) ((LinearLayout) view.getChildAt(i)).getChildAt(0));
-                        if(tb.getText().toString().equals(mode)) {
+                        if (tb.getText().toString().equals(mode)) {
                             tb.setChecked(true);
-                        }else{
+                        } else {
                             tb.setChecked(false);
                         }
                     }
@@ -306,10 +334,10 @@ public class MainActivity extends BasicActivity {
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToggleButton tb = (ToggleButton)((LinearLayout)view).getChildAt(0);
-                if(tb.isChecked()){
-                    level="";
-                }else {
+                ToggleButton tb = (ToggleButton) ((LinearLayout) view).getChildAt(0);
+                if (tb.isChecked()) {
+                    level = "";
+                } else {
                     level = tb.getText().toString();
                     tb.setChecked(true);
                 }
@@ -317,16 +345,17 @@ public class MainActivity extends BasicActivity {
         });
         listview2.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int scrollState) {}
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+            }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                for(int i = 0;i<visibleItemCount;i++){
-                    if(firstVisibleItem+i<totalItemCount){
+                for (int i = 0; i < visibleItemCount; i++) {
+                    if (firstVisibleItem + i < totalItemCount) {
                         ToggleButton tb = ((ToggleButton) ((LinearLayout) view.getChildAt(i)).getChildAt(0));
-                        if(tb.getText().toString().equals(level)) {
+                        if (tb.getText().toString().equals(level)) {
                             tb.setChecked(true);
-                        }else{
+                        } else {
                             tb.setChecked(false);
                         }
                     }
@@ -336,13 +365,13 @@ public class MainActivity extends BasicActivity {
         listview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToggleButton tb = (ToggleButton)((LinearLayout)view).getChildAt(0);
-                if(tb.isChecked()){
-                    category="";
+                ToggleButton tb = (ToggleButton) ((LinearLayout) view).getChildAt(0);
+                if (tb.isChecked()) {
+                    category = "";
                     tb.setChecked(false);
-                }else {
-                    for(int i=0;i<3;i++) {
-                        ((ToggleButton)((LinearLayout)listview3.getChildAt(i)).getChildAt(0)).setChecked(false);
+                } else {
+                    for (int i = 0; i < 3; i++) {
+                        ((ToggleButton) ((LinearLayout) listview3.getChildAt(i)).getChildAt(0)).setChecked(false);
                     }
                     category = tb.getText().toString();
                     tb.setChecked(true);
@@ -351,16 +380,17 @@ public class MainActivity extends BasicActivity {
         });
         listview3.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int scrollState) {}
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+            }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                for(int i = 0;i<visibleItemCount;i++){
-                    if(firstVisibleItem+i<totalItemCount){
+                for (int i = 0; i < visibleItemCount; i++) {
+                    if (firstVisibleItem + i < totalItemCount) {
                         ToggleButton tb = ((ToggleButton) ((LinearLayout) view.getChildAt(i)).getChildAt(0));
-                        if(tb.getText().toString().equals(category)) {
+                        if (tb.getText().toString().equals(category)) {
                             tb.setChecked(true);
-                        }else{
+                        } else {
                             tb.setChecked(false);
                         }
                     }
@@ -373,15 +403,21 @@ public class MainActivity extends BasicActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.bt_level:
+
                     settingBackgroundLayout1.setVisibility(View.VISIBLE);
                     page = 1;
                     break;
                 case R.id.bt_category:
+                    tb_clicked.setChecked(false);
+                    listview2.setAdapter(listViewAdapter_null);
                     myStartActivity(CategoryInfoActivity.class);
 //                    settingBackgroundLayout2.setVisibility(View.VISIBLE);
 //                    page = 2;
                     break;
                 case R.id.bt_myPage:
+                    tb_clicked.setChecked(false);
+                    listViewAdapter1.notifyDataSetChanged();
+                    listview2.setAdapter(listViewAdapter_null);
                     myStartActivity(MyPageActivity.class);
                     break;
 
@@ -395,6 +431,8 @@ public class MainActivity extends BasicActivity {
                             if(mode.equals("")||level.equals("")){
                                 showToast(MainActivity.this, "정보를 다 입력해주세요!");
                             } else {
+                                tb_clicked.setChecked(false);
+                                listview2.setAdapter(listViewAdapter_null);
                                 settingBackgroundLayout1.setVisibility(View.GONE);
                                 myStartActivity(LevelInfoActivity.class);
                                 mode = "";

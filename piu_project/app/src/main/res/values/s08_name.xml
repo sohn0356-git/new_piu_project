@@ -1,97 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s08">
-    <item>s08또다른 진심</item>
-    <item>s08엑스트라바간자</item>
-    <item>s08태동</item>
-    <item>s08그녀는 피자를 좋아해</item>
-    <item>s08오! 로사!</item>
-    <item>s08사랑가</item>
-    <item>s08무혼</item>
-    <item>s08롤링 크리스마스</item>
-    <item>s08파이널 오디션 에피소드 1</item>
-    <item>s08닥터 엠</item>
-    <item>s08엠페러</item>
-    <item>s08마이 웨이</item>
-    <item>s08오이 오이 오이</item>
-    <item>s08위 윌 밋 어게인</item>
-    <item>s08우편마차</item>
-    <item>s08파이널 오디션 3</item>
-    <item>s08겟 업!</item>
-    <item>s08제이 봉</item>
-    <item>s08하이 바이</item>
-    <item>s08무혼 2</item>
-    <item>s08월광</item>
-    <item>s08파파 곤잘레스</item>
-    <item>s08위치 닥터 #1</item>
-    <item>s08아크 오브 다크니스</item>
-    <item>s08파이널 오디션 에피소드 2-1</item>
-    <item>s08파이널 오디션 에피소드 2-2</item>
-    <item>s08카프리스 오브 오타다</item>
-    <item>s08몽키 핑거즈 2</item>
-    <item>s08머니 핑거즈</item>
-    <item>s08디제이 오타다</item>
-    <item>s08케이.오.에이 : Alice In Wonderworld</item>
-    <item>s08파이널 오디션 에피소드 2-X</item>
-    <item>s08터키 바이러스</item>
-    <item>s08펌트리스 8비트 ver.</item>
-    <item>s08소서리스 엘리제</item>
-    <item>s08유 갓 투 노우</item>
-    <item>s08파파 헬로이징</item>
-    <item>s08러브 이즈 어 데인져 존 pt.2 - SHORT CUT -</item>
-    <item>s08펌트리스 8비트 ver. - SHORT CUT -</item>
-    <item>s08리얼리티</item>
-    <item>s08버터플라이</item>
-    <item>s08위 갓 투 노우</item>
-    <item>s08헝가리 무곡 V</item>
-    <item>s08조나단의 꿈</item>
-    <item>s08유 갓 미 락킹</item>
-    <item>s08윈드밀</item>
-    <item>s08여래아</item>
-    <item>s08엘리시움</item>
-    <item>s08바이올렛 퍼퓸</item>
-    <item>s08블레이즈 이모션 (Band version)</item>
-    <item>s08무브 댓 바디!</item>
-    <item>s08스콜피온 킹</item>
-    <item>s08코스미컬 리듬</item>
-    <item>s08소라 노 시라베</item>
-    <item>s08라스트 리버스</item>
-    <item>s08트리튬</item>
-    <item>s08갓 모드 feat. skizzo</item>
-    <item>s08브레이크 아웃</item>
-    <item>s08패싱 라이더</item>
-    <item>s08앵귀시드 언메이킹</item>
-    <item>s08업 앤 업 (Produced by AWAL)</item>
-    <item>s08왈츠 오브 도지</item>
-    <item>s08허쉬</item>
-    <item>s08블랙 드래곤</item>
-    <item>s08BS파워 익스플로전</item>
-    <item>s08스타트 온 레드</item>
-    <item>s08타임 어택 &lt;블루&gt;</item>
-    <item>s08비주얼 드림 II (인 픽션)</item>
-    <item>s08크리스마스의 기억</item>
-    <item>s08베들램</item>
-    <item>s08어 사이트 데 라 루</item>
-    <item>s08클루</item>
-    <item>s08클럽 나이트</item>
-    <item>s08라 그랑드 루즈</item>
-    <item>s08한 (ㅡ)</item>
-    <item>s08사랑을 했다</item>
-    <item>s08밤</item>
-    <item>s08니힐리즘 - 어나더 버전 -</item>
-    <item>s08캉-캉 ~Orpheus in The Party Mix~</item>
-    <item>s08디 엔드 오브 더 월드 ft. Skizzo</item>
-    <item>s08포가튼 뱀파이어</item>
-    <item>s08별이 빛나는 밤</item>
-    <item>s08판매왕</item>
-    <item>s08크로스 소울</item>
-    <item>s08야누스</item>
-    <item>s08라라</item>
-    <item>s08스위트로닉</item>
-    <item>s08인디스트럭터블</item>
-    <item>s08아드레날린 블래스터</item>
-    <item>s08봉봉쇼콜라</item>
-    <item>s08데인저 &amp; 데인저</item>
-    <item>s08일 더하기 일은 귀요미</item>
+  <string-array name="name_S08">
+    <item>S08또다른 진심</item>
+    <item>S08엑스트라바간자</item>
+    <item>S08태동</item>
+    <item>S08그녀는 피자를 좋아해</item>
+    <item>S08오! 로사!</item>
+    <item>S08사랑가</item>
+    <item>S08무혼</item>
+    <item>S08롤링 크리스마스</item>
+    <item>S08파이널 오디션 에피소드 1</item>
+    <item>S08닥터 엠</item>
+    <item>S08엠페러</item>
+    <item>S08마이 웨이</item>
+    <item>S08오이 오이 오이</item>
+    <item>S08위 윌 밋 어게인</item>
+    <item>S08우편마차</item>
+    <item>S08파이널 오디션 3</item>
+    <item>S08겟 업!</item>
+    <item>S08제이 봉</item>
+    <item>S08하이 바이</item>
+    <item>S08무혼 2</item>
+    <item>S08월광</item>
+    <item>S08파파 곤잘레스</item>
+    <item>S08위치 닥터 #1</item>
+    <item>S08아크 오브 다크니스</item>
+    <item>S08파이널 오디션 에피소드 2-1</item>
+    <item>S08파이널 오디션 에피소드 2-2</item>
+    <item>S08카프리스 오브 오타다</item>
+    <item>S08몽키 핑거즈 2</item>
+    <item>S08머니 핑거즈</item>
+    <item>S08디제이 오타다</item>
+    <item>S08케이.오.에이 : Alice In Wonderworld</item>
+    <item>S08파이널 오디션 에피소드 2-X</item>
+    <item>S08터키 바이러스</item>
+    <item>S08펌트리스 8비트 ver.</item>
+    <item>S08소서리스 엘리제</item>
+    <item>S08유 갓 투 노우</item>
+    <item>S08파파 헬로이징</item>
+    <item>S08러브 이즈 어 데인져 존 pt.2 - SHORT CUT -</item>
+    <item>S08펌트리스 8비트 ver. - SHORT CUT -</item>
+    <item>S08리얼리티</item>
+    <item>S08버터플라이</item>
+    <item>S08위 갓 투 노우</item>
+    <item>S08헝가리 무곡 V</item>
+    <item>S08조나단의 꿈</item>
+    <item>S08유 갓 미 락킹</item>
+    <item>S08윈드밀</item>
+    <item>S08여래아</item>
+    <item>S08엘리시움</item>
+    <item>S08바이올렛 퍼퓸</item>
+    <item>S08블레이즈 이모션 (Band version)</item>
+    <item>S08무브 댓 바디!</item>
+    <item>S08스콜피온 킹</item>
+    <item>S08코스미컬 리듬</item>
+    <item>S08소라 노 시라베</item>
+    <item>S08라스트 리버스</item>
+    <item>S08트리튬</item>
+    <item>S08갓 모드 feat. skizzo</item>
+    <item>S08브레이크 아웃</item>
+    <item>S08패싱 라이더</item>
+    <item>S08앵귀시드 언메이킹</item>
+    <item>S08업 앤 업 (Produced by AWAL)</item>
+    <item>S08왈츠 오브 도지</item>
+    <item>S08허쉬</item>
+    <item>S08블랙 드래곤</item>
+    <item>S08BS파워 익스플로전</item>
+    <item>S08스타트 온 레드</item>
+    <item>S08타임 어택 &lt;블루&gt;</item>
+    <item>S08비주얼 드림 II (인 픽션)</item>
+    <item>S08크리스마스의 기억</item>
+    <item>S08베들램</item>
+    <item>S08어 사이트 데 라 루</item>
+    <item>S08클루</item>
+    <item>S08클럽 나이트</item>
+    <item>S08라 그랑드 루즈</item>
+    <item>S08한 (ㅡ)</item>
+    <item>S08사랑을 했다</item>
+    <item>S08밤</item>
+    <item>S08니힐리즘 - 어나더 버전 -</item>
+    <item>S08캉-캉 ~Orpheus in The Party Mix~</item>
+    <item>S08디 엔드 오브 더 월드 ft. Skizzo</item>
+    <item>S08포가튼 뱀파이어</item>
+    <item>S08별이 빛나는 밤</item>
+    <item>S08판매왕</item>
+    <item>S08크로스 소울</item>
+    <item>S08야누스</item>
+    <item>S08라라</item>
+    <item>S08스위트로닉</item>
+    <item>S08인디스트럭터블</item>
+    <item>S08아드레날린 블래스터</item>
+    <item>S08봉봉쇼콜라</item>
+    <item>S08데인저 &amp; 데인저</item>
+    <item>S08일 더하기 일은 귀요미</item>
+    <item>S08파괴</item>
   </string-array>
 </resources>

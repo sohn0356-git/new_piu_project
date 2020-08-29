@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s23">
-    <item>s23키메라</item>
-    <item>s23파이널 오디션 에피소드 2-X</item>
-    <item>s23소서리스 엘리제</item>
-    <item>s23진공</item>
-    <item>s23비메라 - SHORT CUT -</item>
-    <item>s23클리너</item>
-    <item>s23VVV</item>
-    <item>s23요그 소토스</item>
-    <item>s231950</item>
-    <item>s23어나이얼레이터 메소드</item>
-    <item>s23아발란퀴엠</item>
-    <item>s23패러독스</item>
-    <item>s23다람쥐 헌 쳇바퀴에 타고파</item>
-    <item>s23굿 나이트</item>
-    <item>s23가고일 - FULL SONG -</item>
-    <item>s231949</item>
-    <item>s23니알라토텝</item>
-    <item>s23디멘트 ~에프터 레전드~</item>
-    <item>s23알레그로 콘 뿌오코 - FULL SONG -</item>
-    <item>s23하트 래빗 코스터</item>
-    <item>s23프렌드</item>
-    <item>s23프라임 타임</item>
-    <item>s23파이어 누들 챌린지</item>
+  <string-array name="name_S23">
+    <item>S23키메라</item>
+    <item>S23파이널 오디션 에피소드 2-X</item>
+    <item>S23소서리스 엘리제</item>
+    <item>S23진공</item>
+    <item>S23비메라 - SHORT CUT -</item>
+    <item>S23클리너</item>
+    <item>S23VVV</item>
+    <item>S23요그 소토스</item>
+    <item>S231950</item>
+    <item>S23어나이얼레이터 메소드</item>
+    <item>S23아발란퀴엠</item>
+    <item>S23패러독스</item>
+    <item>S23다람쥐 헌 쳇바퀴에 타고파</item>
+    <item>S23굿 나이트</item>
+    <item>S23가고일 - FULL SONG -</item>
+    <item>S231949</item>
+    <item>S23니알라토텝</item>
+    <item>S23디멘트 ~에프터 레전드~</item>
+    <item>S23알레그로 콘 뿌오코 - FULL SONG -</item>
+    <item>S23하트 래빗 코스터</item>
+    <item>S23프렌드</item>
+    <item>S23프라임 타임</item>
+    <item>S23파이어 누들 챌린지</item>
+    <item>S23에러코드: 0</item>
   </string-array>
 </resources>

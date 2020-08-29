@@ -1,92 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_dp04">
-    <item>dp04첫사랑</item>
-    <item>dp04펌프 점프</item>
-    <item>dp04마이 웨이</item>
-    <item>dp04셋 미 업</item>
-    <item>dp04댄스 위드 미</item>
-    <item>dp04유 갓 투 노우</item>
-    <item>dp04테크 -클럽 코펜하겐-</item>
-    <item>dp04네메시스</item>
-    <item>dp04캇코이</item>
-    <item>dp04실루엣 이펙트</item>
-    <item>dp04레퀴엠</item>
-    <item>dp04유 갓 미 크레이지</item>
-    <item>dp04암피트리온</item>
-    <item>dp04바이올렛 퍼퓸</item>
-    <item>dp04레드 스완</item>
-    <item>dp04히아신스</item>
-    <item>dp04알레그로 피유 모쏘</item>
-    <item>dp04어나이얼레이터 메소드</item>
-    <item>dp04포인트 제로 원</item>
-    <item>dp04레드 스노우</item>
-    <item>dp04유 어게인 마이 러브</item>
-    <item>dp04까랴위사따</item>
-    <item>dp04비디오 아웃 씨</item>
-    <item>dp04요로피쿠 피쿠요로!</item>
-    <item>dp04임프린팅</item>
-    <item>dp04서든 로맨스 [PIU Edit]</item>
-    <item>dp04미토츠다이라</item>
-    <item>dp04소라 노 시라베</item>
-    <item>dp04아이, 유레테...</item>
-    <item>dp04잡동사니 이노센스</item>
-    <item>dp04연애용자</item>
-    <item>dp04배드 ∞ 엔드 ∞ 나이트</item>
-    <item>dp04하이퍼큐브</item>
-    <item>dp04슈퍼 카프리시오</item>
-    <item>dp04헬파이어</item>
-    <item>dp04트리튬</item>
-    <item>dp04크로스 오버 feat. LyuU</item>
-    <item>dp04갓 모드 feat. skizzo</item>
-    <item>dp04사라반드</item>
-    <item>dp04알레그로 퓨리오소</item>
-    <item>dp04헤이 유</item>
-    <item>dp04트위스트 오브 페이트 (feat. Ruriling)</item>
-    <item>dp04HTTP</item>
-    <item>dp04이스케이프</item>
-    <item>dp04문 라이트 댄스</item>
-    <item>dp04꺼림칙한</item>
-    <item>dp04허쉬</item>
-    <item>dp04히페리온</item>
-    <item>dp04블랙 드래곤</item>
-    <item>dp04슈퍼 스타일린</item>
-    <item>dp04크리스마스의 기억</item>
-    <item>dp04인피니티</item>
-    <item>dp04고딕 레조넌스</item>
-    <item>dp04베들램</item>
-    <item>dp04클루</item>
-    <item>dp04킬뎀!</item>
-    <item>dp04도나텔로</item>
-    <item>dp04시즈 마이 데이</item>
-    <item>dp04웨딩 크래셔</item>
-    <item>dp041949</item>
-    <item>dp04니알라토텝</item>
-    <item>dp04스켑틱</item>
-    <item>dp04퍼센트 엑스</item>
-    <item>dp04배니쉬</item>
-    <item>dp04김치 핑거즈</item>
-    <item>dp04타이밍</item>
-    <item>dp04한 (ㅡ)</item>
-    <item>dp04사랑을 했다</item>
-    <item>dp04밤</item>
-    <item>dp04아주 NICE</item>
-    <item>dp04블랙스완</item>
-    <item>dp04니힐리즘 - 어나더 버전 -</item>
-    <item>dp04포가튼 뱀파이어</item>
-    <item>dp04컨플릭트</item>
-    <item>dp04탄탄멘</item>
-    <item>dp04판매왕</item>
-    <item>dp04프렌드</item>
-    <item>dp04까르멘 버스</item>
-    <item>dp04크로스 소울</item>
-    <item>dp04립톤 스트라이크</item>
-    <item>dp04위키드 레전드</item>
-    <item>dp04히트</item>
-    <item>dp04번지 (Fall in Love)</item>
-    <item>dp04우라늄</item>
-    <item>dp04유어 마인드</item>
-    <item>dp04스위트로닉</item>
-    <item>dp04싸이클링!</item>
+  <string-array name="name_DP04">
+    <item>DP04첫사랑</item>
+    <item>DP04펌프 점프</item>
+    <item>DP04마이 웨이</item>
+    <item>DP04셋 미 업</item>
+    <item>DP04댄스 위드 미</item>
+    <item>DP04유 갓 투 노우</item>
+    <item>DP04테크 -클럽 코펜하겐-</item>
+    <item>DP04네메시스</item>
+    <item>DP04캇코이</item>
+    <item>DP04실루엣 이펙트</item>
+    <item>DP04레퀴엠</item>
+    <item>DP04유 갓 미 크레이지</item>
+    <item>DP04암피트리온</item>
+    <item>DP04바이올렛 퍼퓸</item>
+    <item>DP04레드 스완</item>
+    <item>DP04히아신스</item>
+    <item>DP04알레그로 피유 모쏘</item>
+    <item>DP04어나이얼레이터 메소드</item>
+    <item>DP04포인트 제로 원</item>
+    <item>DP04레드 스노우</item>
+    <item>DP04유 어게인 마이 러브</item>
+    <item>DP04까랴위사따</item>
+    <item>DP04비디오 아웃 씨</item>
+    <item>DP04요로피쿠 피쿠요로!</item>
+    <item>DP04임프린팅</item>
+    <item>DP04서든 로맨스 [PIU Edit]</item>
+    <item>DP04미토츠다이라</item>
+    <item>DP04소라 노 시라베</item>
+    <item>DP04아이, 유레테...</item>
+    <item>DP04잡동사니 이노센스</item>
+    <item>DP04연애용자</item>
+    <item>DP04배드 ∞ 엔드 ∞ 나이트</item>
+    <item>DP04하이퍼큐브</item>
+    <item>DP04슈퍼 카프리시오</item>
+    <item>DP04헬파이어</item>
+    <item>DP04트리튬</item>
+    <item>DP04크로스 오버 feat. LyuU</item>
+    <item>DP04갓 모드 feat. skizzo</item>
+    <item>DP04사라반드</item>
+    <item>DP04알레그로 퓨리오소</item>
+    <item>DP04헤이 유</item>
+    <item>DP04트위스트 오브 페이트 (feat. Ruriling)</item>
+    <item>DP04HTTP</item>
+    <item>DP04이스케이프</item>
+    <item>DP04문 라이트 댄스</item>
+    <item>DP04꺼림칙한</item>
+    <item>DP04허쉬</item>
+    <item>DP04히페리온</item>
+    <item>DP04블랙 드래곤</item>
+    <item>DP04슈퍼 스타일린</item>
+    <item>DP04크리스마스의 기억</item>
+    <item>DP04인피니티</item>
+    <item>DP04고딕 레조넌스</item>
+    <item>DP04베들램</item>
+    <item>DP04클루</item>
+    <item>DP04킬뎀!</item>
+    <item>DP04도나텔로</item>
+    <item>DP04시즈 마이 데이</item>
+    <item>DP04웨딩 크래셔</item>
+    <item>DP041949</item>
+    <item>DP04니알라토텝</item>
+    <item>DP04스켑틱</item>
+    <item>DP04퍼센트 엑스</item>
+    <item>DP04배니쉬</item>
+    <item>DP04김치 핑거즈</item>
+    <item>DP04타이밍</item>
+    <item>DP04한 (ㅡ)</item>
+    <item>DP04사랑을 했다</item>
+    <item>DP04밤</item>
+    <item>DP04아주 NICE</item>
+    <item>DP04블랙스완</item>
+    <item>DP04니힐리즘 - 어나더 버전 -</item>
+    <item>DP04포가튼 뱀파이어</item>
+    <item>DP04컨플릭트</item>
+    <item>DP04탄탄멘</item>
+    <item>DP04판매왕</item>
+    <item>DP04프렌드</item>
+    <item>DP04까르멘 버스</item>
+    <item>DP04크로스 소울</item>
+    <item>DP04립톤 스트라이크</item>
+    <item>DP04위키드 레전드</item>
+    <item>DP04히트</item>
+    <item>DP04번지 (Fall in Love)</item>
+    <item>DP04천년이 지나서</item>
+    <item>DP04우라늄</item>
+    <item>DP04유어 마인드</item>
+    <item>DP04스위트로닉</item>
+    <item>DP04싸이클링!</item>
+    <item>DP04디스트릭트 1</item>
+    <item>DP04아드레날린 블래스터</item>
+    <item>DP04듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
   </string-array>
 </resources>

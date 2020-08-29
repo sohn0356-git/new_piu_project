@@ -79,6 +79,7 @@
     <item>song_416</item>
     <item>song_424</item>
     <item>song_426</item>
+    <item>song_430</item>
     <item>song_431</item>
     <item>song_517</item>
     <item>song_521</item>
@@ -97,5 +98,10 @@
     <item>song_3958</item>
     <item>song_7460</item>
     <item>song_7462</item>
+    <item>song_7468</item>
+    <item>song_7469</item>
+    <item>song_7471</item>
+    <item>song_7472</item>
+    <item>song_7473</item>
   </string-array>
 </resources>

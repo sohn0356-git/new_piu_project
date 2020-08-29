@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d11">
-    <item>d11파이널 오디션 2</item>
-    <item>d11사랑가</item>
-    <item>d11베토벤 바이러스</item>
-    <item>d11닥터 엠</item>
-    <item>d11월광</item>
-    <item>d11터키 바이러스</item>
-    <item>d11터키 행진곡 -미니멀튠즈-</item>
-    <item>d11겟 업 (앤 고)</item>
-    <item>d11엑스 레이브</item>
-    <item>d11바로크 바이러스</item>
-    <item>d11러브 이즈 어 데인저 존(Cranky 믹스)</item>
-    <item>d11엑시던트</item>
-    <item>d11루시드(PIU Edit)</item>
-    <item>d11아발란치</item>
-    <item>d11헤스티아</item>
-    <item>d11슈퍼 판타지</item>
-    <item>d11설탕음모론</item>
-    <item>d11락 더 하우스</item>
-    <item>d11포인트 제로 원</item>
-    <item>d11밀키 웨이 갤럭시</item>
-    <item>d11신앙 - 1st Desire -</item>
-    <item>d11소라 노 시라베</item>
-    <item>d11잡동사니 이노센스</item>
-    <item>d11배드 ∞ 엔드 ∞ 나이트</item>
-    <item>d11라이크 미</item>
-    <item>d11배드 애플!! feat. Nomico - FULL SONG -</item>
-    <item>d11슈퍼 카프리시오</item>
-    <item>d11사라반드</item>
-    <item>d11우츠시요 노 카제 feat. Kana</item>
-    <item>d11체이스 미</item>
-    <item>d11크로스타임</item>
-    <item>d11유령의 축제 2 (Sneak)</item>
-    <item>d11헬릭스</item>
-    <item>d11히페리온</item>
-    <item>d11블랙 드래곤</item>
-    <item>d11아이스 오브 데스</item>
-    <item>d11어린왕자 (Prod. Godic)</item>
-    <item>d11타이밍</item>
-    <item>d11밤</item>
-    <item>d11오벨리스크</item>
-    <item>d11파파시토 (feat. KuTiNA)</item>
-    <item>d11파이어 오브 데스티니</item>
-    <item>d11포가튼 뱀파이어</item>
-    <item>d11라이징 스타</item>
-    <item>d11립톤 스트라이크</item>
-    <item>d11히트</item>
-    <item>d11번지 (Fall in Love)</item>
-    <item>d11우라늄</item>
-    <item>d11싸이클링!</item>
-    <item>d11아이올라이트 스카이</item>
+  <string-array name="name_D11">
+    <item>D11파이널 오디션 2</item>
+    <item>D11사랑가</item>
+    <item>D11베토벤 바이러스</item>
+    <item>D11닥터 엠</item>
+    <item>D11월광</item>
+    <item>D11터키 바이러스</item>
+    <item>D11터키 행진곡 -미니멀튠즈-</item>
+    <item>D11겟 업 (앤 고)</item>
+    <item>D11엑스 레이브</item>
+    <item>D11바로크 바이러스</item>
+    <item>D11러브 이즈 어 데인저 존(Cranky 믹스)</item>
+    <item>D11엑시던트</item>
+    <item>D11루시드(PIU Edit)</item>
+    <item>D11아발란치</item>
+    <item>D11헤스티아</item>
+    <item>D11슈퍼 판타지</item>
+    <item>D11설탕음모론</item>
+    <item>D11락 더 하우스</item>
+    <item>D11포인트 제로 원</item>
+    <item>D11밀키 웨이 갤럭시</item>
+    <item>D11신앙 - 1st Desire -</item>
+    <item>D11소라 노 시라베</item>
+    <item>D11잡동사니 이노센스</item>
+    <item>D11배드 ∞ 엔드 ∞ 나이트</item>
+    <item>D11라이크 미</item>
+    <item>D11배드 애플!! feat. Nomico - FULL SONG -</item>
+    <item>D11슈퍼 카프리시오</item>
+    <item>D11사라반드</item>
+    <item>D11우츠시요 노 카제 feat. Kana</item>
+    <item>D11체이스 미</item>
+    <item>D11크로스타임</item>
+    <item>D11유령의 축제 2 (Sneak)</item>
+    <item>D11헬릭스</item>
+    <item>D11히페리온</item>
+    <item>D11블랙 드래곤</item>
+    <item>D11아이스 오브 데스</item>
+    <item>D11어린왕자 (Prod. Godic)</item>
+    <item>D11타이밍</item>
+    <item>D11밤</item>
+    <item>D11오벨리스크</item>
+    <item>D11파파시토 (feat. KuTiNA)</item>
+    <item>D11파이어 오브 데스티니</item>
+    <item>D11포가튼 뱀파이어</item>
+    <item>D11라이징 스타</item>
+    <item>D11립톤 스트라이크</item>
+    <item>D11히트</item>
+    <item>D11번지 (Fall in Love)</item>
+    <item>D11우라늄</item>
+    <item>D11싸이클링!</item>
+    <item>D11아이올라이트 스카이</item>
+    <item>D11스타드림 (feat. Romelon)</item>
   </string-array>
 </resources>

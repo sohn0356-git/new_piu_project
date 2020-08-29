@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d10">
-    <item>d10무혼</item>
-    <item>d10카프리스 오브 오타다</item>
-    <item>d10머니</item>
-    <item>d10기타 맨</item>
-    <item>d10블레이즈 이모션</item>
-    <item>d10케이.오.에이 : Alice In Wonderworld</item>
-    <item>d10윈터 - SHORT CUT -</item>
-    <item>d10네이티브</item>
-    <item>d10ㅁㄴㅇㄹ</item>
-    <item>d10조나단의 꿈</item>
-    <item>d10트라이브 어택커</item>
-    <item>d10로그인</item>
-    <item>d10여래아</item>
-    <item>d10엘리시움</item>
-    <item>d10차이니즈 레스토랑</item>
-    <item>d10바이올렛 퍼퓸</item>
-    <item>d10무브 댓 바디!</item>
-    <item>d10스콜피온 킹</item>
-    <item>d10캄파넬라</item>
-    <item>d10코스미컬 리듬</item>
-    <item>d10레미니센스</item>
-    <item>d10아마이 유우와쿠 데인저러스</item>
-    <item>d10미토츠다이라</item>
-    <item>d10배드 애플!! feat. Nomico</item>
-    <item>d10포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
-    <item>d10방과 후 스트라이드</item>
-    <item>d10아이디얼라이즈드 로맨스</item>
-    <item>d10하이퍼큐브</item>
-    <item>d10트리튬</item>
-    <item>d10패싱 라이더</item>
-    <item>d10아르카나 포스</item>
-    <item>d10헤이 유</item>
-    <item>d10트위스트 오브 페이트 (feat. Ruriling)</item>
-    <item>d10HTTP</item>
-    <item>d10타임 어택 &lt;블루&gt;</item>
-    <item>d10비주얼 드림 II (인 픽션)</item>
-    <item>d10인피니티</item>
-    <item>d10클루</item>
-    <item>d10폴른 엔젤</item>
-    <item>d10오블리터레이션</item>
-    <item>d10날아올라</item>
-    <item>d10잘가라</item>
-    <item>d10레이지 오브 파이어</item>
-    <item>d10아디오스</item>
-    <item>d10유어 마인드</item>
-    <item>d10스위트로닉</item>
-    <item>d10봉봉쇼콜라</item>
-    <item>d10데인저 &amp; 데인저</item>
+  <string-array name="name_D10">
+    <item>D10무혼</item>
+    <item>D10카프리스 오브 오타다</item>
+    <item>D10머니</item>
+    <item>D10기타 맨</item>
+    <item>D10블레이즈 이모션</item>
+    <item>D10케이.오.에이 : Alice In Wonderworld</item>
+    <item>D10윈터 - SHORT CUT -</item>
+    <item>D10네이티브</item>
+    <item>D10ㅁㄴㅇㄹ</item>
+    <item>D10조나단의 꿈</item>
+    <item>D10트라이브 어택커</item>
+    <item>D10로그인</item>
+    <item>D10여래아</item>
+    <item>D10엘리시움</item>
+    <item>D10차이니즈 레스토랑</item>
+    <item>D10바이올렛 퍼퓸</item>
+    <item>D10무브 댓 바디!</item>
+    <item>D10스콜피온 킹</item>
+    <item>D10캄파넬라</item>
+    <item>D10코스미컬 리듬</item>
+    <item>D10레미니센스</item>
+    <item>D10아마이 유우와쿠 데인저러스</item>
+    <item>D10미토츠다이라</item>
+    <item>D10배드 애플!! feat. Nomico</item>
+    <item>D10포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
+    <item>D10방과 후 스트라이드</item>
+    <item>D10아이디얼라이즈드 로맨스</item>
+    <item>D10하이퍼큐브</item>
+    <item>D10트리튬</item>
+    <item>D10패싱 라이더</item>
+    <item>D10아르카나 포스</item>
+    <item>D10헤이 유</item>
+    <item>D10트위스트 오브 페이트 (feat. Ruriling)</item>
+    <item>D10HTTP</item>
+    <item>D10타임 어택 &lt;블루&gt;</item>
+    <item>D10비주얼 드림 II (인 픽션)</item>
+    <item>D10인피니티</item>
+    <item>D10클루</item>
+    <item>D10폴른 엔젤</item>
+    <item>D10오블리터레이션</item>
+    <item>D10날아올라</item>
+    <item>D10잘가라</item>
+    <item>D10레이지 오브 파이어</item>
+    <item>D10아디오스</item>
+    <item>D10유어 마인드</item>
+    <item>D10스위트로닉</item>
+    <item>D10봉봉쇼콜라</item>
+    <item>D10데인저 &amp; 데인저</item>
   </string-array>
 </resources>

@@ -1,101 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_dp03">
-    <item>dp03파이널 오디션</item>
-    <item>dp03프리 스타일</item>
-    <item>dp03베토벤 바이러스</item>
-    <item>dp03엠페러</item>
-    <item>dp03틸 디 엔드 오브 타임</item>
-    <item>dp03오이 오이 오이</item>
-    <item>dp03엑스트리</item>
-    <item>dp03사랑가 -2막-</item>
-    <item>dp03진공</item>
-    <item>dp03겟 업 (앤 고)</item>
-    <item>dp03팬텀 -인터메조-</item>
-    <item>dp03인터퍼런스</item>
-    <item>dp03버터플라이</item>
-    <item>dp03오버블로우</item>
-    <item>dp03위 갓 투 노우</item>
-    <item>dp03네이티브</item>
-    <item>dp03스멜스 라이크 어 초콜릿</item>
-    <item>dp03네크로맨시</item>
-    <item>dp03유 갓 미 락킹</item>
-    <item>dp03라티노 바이러스</item>
-    <item>dp03차이니즈 레스토랑</item>
-    <item>dp03포스 오브 라</item>
-    <item>dp03B2</item>
-    <item>dp03메테오라이즈</item>
-    <item>dp03헤스티아</item>
-    <item>dp03리키지 볼티지</item>
-    <item>dp03리무버블 디스코</item>
-    <item>dp03블레이즈 이모션 (Band version)</item>
-    <item>dp031950</item>
-    <item>dp03무브 댓 바디!</item>
-    <item>dp03락 더 하우스</item>
-    <item>dp03스콜피온 킹</item>
-    <item>dp03더 레볼루션</item>
-    <item>dp03셀피쉬니스</item>
-    <item>dp03돌리 키스</item>
-    <item>dp03마타도르</item>
-    <item>dp03라그나로크</item>
-    <item>dp03아클루오이아스</item>
-    <item>dp03스타더스트 오버드라이브</item>
-    <item>dp03레미니센스</item>
-    <item>dp03아마이 유우와쿠 데인저러스</item>
-    <item>dp03세츠나 트립</item>
-    <item>dp03프라임</item>
-    <item>dp03퀸 오브 더 레드</item>
-    <item>dp03라스트 리버스</item>
-    <item>dp03슈브 니구라스</item>
-    <item>dp03퍼더</item>
-    <item>dp03실버비트 feat. ChisaUezono</item>
-    <item>dp03가장신자</item>
-    <item>dp03오버블로우2</item>
-    <item>dp03패싱 라이더</item>
-    <item>dp03앵귀시드 언메이킹</item>
-    <item>dp03트래블 투 퓨처</item>
-    <item>dp03왈츠 오브 도지</item>
-    <item>dp03체이스 미</item>
-    <item>dp03굿 나이트</item>
-    <item>dp03에너제틱</item>
-    <item>dp03뷰티플</item>
-    <item>dp03나야 나</item>
-    <item>dp03리얼리 리얼리</item>
-    <item>dp03하트 어택</item>
-    <item>dp03크로스타임</item>
-    <item>dp03스타트 온 레드</item>
-    <item>dp03타임 어택 &lt;블루&gt;</item>
-    <item>dp03매지컬 베케이션</item>
-    <item>dp03비주얼 드림 II (인 픽션)</item>
-    <item>dp03사월</item>
-    <item>dp03킵 온!</item>
-    <item>dp03아스테리오스 -리엔트리-</item>
-    <item>dp03폴른 엔젤</item>
-    <item>dp03마카롱 데이</item>
-    <item>dp03아이스 오브 데스</item>
-    <item>dp03날아올라</item>
-    <item>dp03내꺼야 (PICK ME)</item>
-    <item>dp031도 없어</item>
-    <item>dp03부메랑</item>
-    <item>dp03잘가라</item>
-    <item>dp03유 앤 아이</item>
-    <item>dp038 6</item>
-    <item>dp03오벨리스크</item>
-    <item>dp03레이지 오브 파이어</item>
-    <item>dp03로키</item>
-    <item>dp03캉-캉 ~Orpheus in The Party Mix~</item>
-    <item>dp03파파시토 (feat. KuTiNA)</item>
-    <item>dp03파이어 오브 데스티니</item>
-    <item>dp03디 엔드 오브 더 월드 ft. Skizzo</item>
-    <item>dp03라이징 스타</item>
-    <item>dp03테일즈 오브 펌프니아</item>
-    <item>dp03오르비트 스테빌라이저</item>
-    <item>dp03풀 문</item>
-    <item>dp03팔랑크스 &lt;RS2018 edit&gt;</item>
-    <item>dp03야누스</item>
-    <item>dp03아디오스</item>
-    <item>dp03옥탑방</item>
-    <item>dp03라라</item>
-    <item>dp03트란사칼리아</item>
+  <string-array name="name_DP03">
+    <item>DP03파이널 오디션</item>
+    <item>DP03프리 스타일</item>
+    <item>DP03베토벤 바이러스</item>
+    <item>DP03엠페러</item>
+    <item>DP03틸 디 엔드 오브 타임</item>
+    <item>DP03오이 오이 오이</item>
+    <item>DP03엑스트리</item>
+    <item>DP03사랑가 -2막-</item>
+    <item>DP03진공</item>
+    <item>DP03겟 업 (앤 고)</item>
+    <item>DP03팬텀 -인터메조-</item>
+    <item>DP03인터퍼런스</item>
+    <item>DP03버터플라이</item>
+    <item>DP03오버블로우</item>
+    <item>DP03위 갓 투 노우</item>
+    <item>DP03네이티브</item>
+    <item>DP03스멜스 라이크 어 초콜릿</item>
+    <item>DP03네크로맨시</item>
+    <item>DP03유 갓 미 락킹</item>
+    <item>DP03라티노 바이러스</item>
+    <item>DP03차이니즈 레스토랑</item>
+    <item>DP03포스 오브 라</item>
+    <item>DP03B2</item>
+    <item>DP03메테오라이즈</item>
+    <item>DP03헤스티아</item>
+    <item>DP03리키지 볼티지</item>
+    <item>DP03리무버블 디스코</item>
+    <item>DP03블레이즈 이모션 (Band version)</item>
+    <item>DP031950</item>
+    <item>DP03무브 댓 바디!</item>
+    <item>DP03락 더 하우스</item>
+    <item>DP03스콜피온 킹</item>
+    <item>DP03더 레볼루션</item>
+    <item>DP03셀피쉬니스</item>
+    <item>DP03돌리 키스</item>
+    <item>DP03마타도르</item>
+    <item>DP03라그나로크</item>
+    <item>DP03아클루오이아스</item>
+    <item>DP03스타더스트 오버드라이브</item>
+    <item>DP03레미니센스</item>
+    <item>DP03아마이 유우와쿠 데인저러스</item>
+    <item>DP03세츠나 트립</item>
+    <item>DP03프라임</item>
+    <item>DP03퀸 오브 더 레드</item>
+    <item>DP03라스트 리버스</item>
+    <item>DP03슈브 니구라스</item>
+    <item>DP03퍼더</item>
+    <item>DP03실버비트 feat. ChisaUezono</item>
+    <item>DP03가장신자</item>
+    <item>DP03오버블로우2</item>
+    <item>DP03패싱 라이더</item>
+    <item>DP03앵귀시드 언메이킹</item>
+    <item>DP03트래블 투 퓨처</item>
+    <item>DP03왈츠 오브 도지</item>
+    <item>DP03체이스 미</item>
+    <item>DP03굿 나이트</item>
+    <item>DP03에너제틱</item>
+    <item>DP03뷰티플</item>
+    <item>DP03나야 나</item>
+    <item>DP03리얼리 리얼리</item>
+    <item>DP03하트 어택</item>
+    <item>DP03크로스타임</item>
+    <item>DP03스타트 온 레드</item>
+    <item>DP03타임 어택 &lt;블루&gt;</item>
+    <item>DP03매지컬 베케이션</item>
+    <item>DP03비주얼 드림 II (인 픽션)</item>
+    <item>DP03사월</item>
+    <item>DP03킵 온!</item>
+    <item>DP03아스테리오스 -리엔트리-</item>
+    <item>DP03폴른 엔젤</item>
+    <item>DP03마카롱 데이</item>
+    <item>DP03아이스 오브 데스</item>
+    <item>DP03날아올라</item>
+    <item>DP03내꺼야 (PICK ME)</item>
+    <item>DP031도 없어</item>
+    <item>DP03부메랑</item>
+    <item>DP03잘가라</item>
+    <item>DP03유 앤 아이</item>
+    <item>DP038 6</item>
+    <item>DP03오벨리스크</item>
+    <item>DP03레이지 오브 파이어</item>
+    <item>DP03로키</item>
+    <item>DP03캉-캉 ~Orpheus in The Party Mix~</item>
+    <item>DP03파파시토 (feat. KuTiNA)</item>
+    <item>DP03파이어 오브 데스티니</item>
+    <item>DP03디 엔드 오브 더 월드 ft. Skizzo</item>
+    <item>DP03라이징 스타</item>
+    <item>DP03테일즈 오브 펌프니아</item>
+    <item>DP03오르비트 스테빌라이저</item>
+    <item>DP03풀 문</item>
+    <item>DP03팔랑크스 &lt;RS2018 edit&gt;</item>
+    <item>DP03야누스</item>
+    <item>DP03아디오스</item>
+    <item>DP03옥탑방</item>
+    <item>DP03라라</item>
+    <item>DP03트란사칼리아</item>
+    <item>DP03봉봉쇼콜라</item>
+    <item>DP03데인저 &amp; 데인저</item>
+    <item>DP03포인트 제로 2</item>
+    <item>DP03아이올라이트 스카이</item>
+    <item>DP03벌써 12시</item>
+    <item>DP03일 더하기 일은 귀요미</item>
   </string-array>
 </resources>

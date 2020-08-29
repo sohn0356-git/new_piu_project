@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s13">
-    <item>s13서울구경</item>
-    <item>s13프리 스타일</item>
-    <item>s13오! 로사!</item>
-    <item>s13사랑가</item>
-    <item>s13파이널 오디션 에피소드 1</item>
-    <item>s13미션 파서블</item>
-    <item>s13포인트 브레이크</item>
-    <item>s13틸 디 엔드 오브 타임</item>
-    <item>s13오이 오이 오이</item>
-    <item>s13위 윌 밋 어게인</item>
-    <item>s13셋 미 업</item>
-    <item>s13우편마차</item>
-    <item>s13컴 투 미</item>
-    <item>s13태동 2</item>
-    <item>s13트림 북 오브 더 워</item>
-    <item>s13반야 클래식 리믹스</item>
-    <item>s13점프</item>
-    <item>s13기타 맨</item>
-    <item>s13두 잇 레게 스타일</item>
-    <item>s13펌핑 점핑</item>
-    <item>s13러브 이즈 어 데인져 존 - SHORT CUT -</item>
-    <item>s13버터플라이</item>
-    <item>s13잣</item>
-    <item>s13레이디버그</item>
-    <item>s13러브 이즈 어 데인저 존(Cranky 믹스)</item>
-    <item>s13힙노시스 (SynthWulf 믹스)</item>
-    <item>s13윈드밀</item>
-    <item>s13여래아</item>
-    <item>s13멘탈 라이더</item>
-    <item>s13바이올렛 퍼퓸</item>
-    <item>s13히아신스</item>
-    <item>s13로봇 배틀</item>
-    <item>s13배드 애플!! feat. Nomico</item>
-    <item>s13아이, 유레테...</item>
-    <item>s13세츠나 트립</item>
-    <item>s13배드 ∞ 엔드 ∞ 나이트</item>
-    <item>s13요그 소토스 - SHORT CUT -</item>
-    <item>s13라스트 리버스</item>
-    <item>s13갓 모드 feat. skizzo</item>
-    <item>s13에너제틱</item>
-    <item>s13리얼리 리얼리</item>
-    <item>s13스텝</item>
-    <item>s13저스트 키딘</item>
-    <item>s13도나텔로</item>
-    <item>s13라 그랑드 루즈</item>
-    <item>s13어린왕자 (Prod. Godic)</item>
-    <item>s13뿜뿜</item>
-    <item>s13유 앤 아이</item>
-    <item>s13캉-캉 ~Orpheus in The Party Mix~</item>
-    <item>s13파파시토 (feat. KuTiNA)</item>
-    <item>s13포가튼 뱀파이어</item>
-    <item>s13오르비트 스테빌라이저</item>
-    <item>s13아디오스</item>
-    <item>s13옥탑방</item>
-    <item>s13인디스트럭터블</item>
+  <string-array name="name_S13">
+    <item>S13서울구경</item>
+    <item>S13프리 스타일</item>
+    <item>S13오! 로사!</item>
+    <item>S13사랑가</item>
+    <item>S13파이널 오디션 에피소드 1</item>
+    <item>S13미션 파서블</item>
+    <item>S13포인트 브레이크</item>
+    <item>S13틸 디 엔드 오브 타임</item>
+    <item>S13오이 오이 오이</item>
+    <item>S13위 윌 밋 어게인</item>
+    <item>S13셋 미 업</item>
+    <item>S13우편마차</item>
+    <item>S13컴 투 미</item>
+    <item>S13태동 2</item>
+    <item>S13트림 북 오브 더 워</item>
+    <item>S13반야 클래식 리믹스</item>
+    <item>S13점프</item>
+    <item>S13기타 맨</item>
+    <item>S13두 잇 레게 스타일</item>
+    <item>S13펌핑 점핑</item>
+    <item>S13러브 이즈 어 데인져 존 - SHORT CUT -</item>
+    <item>S13버터플라이</item>
+    <item>S13잣</item>
+    <item>S13레이디버그</item>
+    <item>S13러브 이즈 어 데인저 존(Cranky 믹스)</item>
+    <item>S13힙노시스 (SynthWulf 믹스)</item>
+    <item>S13윈드밀</item>
+    <item>S13여래아</item>
+    <item>S13멘탈 라이더</item>
+    <item>S13바이올렛 퍼퓸</item>
+    <item>S13히아신스</item>
+    <item>S13로봇 배틀</item>
+    <item>S13배드 애플!! feat. Nomico</item>
+    <item>S13아이, 유레테...</item>
+    <item>S13세츠나 트립</item>
+    <item>S13배드 ∞ 엔드 ∞ 나이트</item>
+    <item>S13요그 소토스 - SHORT CUT -</item>
+    <item>S13라스트 리버스</item>
+    <item>S13갓 모드 feat. skizzo</item>
+    <item>S13에너제틱</item>
+    <item>S13리얼리 리얼리</item>
+    <item>S13스텝</item>
+    <item>S13저스트 키딘</item>
+    <item>S13도나텔로</item>
+    <item>S13라 그랑드 루즈</item>
+    <item>S13어린왕자 (Prod. Godic)</item>
+    <item>S13뿜뿜</item>
+    <item>S13유 앤 아이</item>
+    <item>S13캉-캉 ~Orpheus in The Party Mix~</item>
+    <item>S13파파시토 (feat. KuTiNA)</item>
+    <item>S13포가튼 뱀파이어</item>
+    <item>S13오르비트 스테빌라이저</item>
+    <item>S13아디오스</item>
+    <item>S13옥탑방</item>
+    <item>S13인디스트럭터블</item>
   </string-array>
 </resources>

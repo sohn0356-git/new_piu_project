@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d05">
-    <item>d05롤링 크리스마스</item>
-    <item>d05유 갓 미 크레이지</item>
-    <item>d05리무버블 디스코</item>
-    <item>d05스타더스트 오버드라이브</item>
-    <item>d05아마이 유우와쿠 데인저러스</item>
-    <item>d05요로피쿠 피쿠요로!</item>
-    <item>d05브레이크 잇 다운</item>
-    <item>d05굿 나이트</item>
-    <item>d05뷰티플</item>
-    <item>d05나야 나</item>
-    <item>d05포가튼 뱀파이어</item>
-    <item>d05스위트로닉 - SHORT CUT -</item>
+  <string-array name="name_D05">
+    <item>D05롤링 크리스마스</item>
+    <item>D05유 갓 미 크레이지</item>
+    <item>D05리무버블 디스코</item>
+    <item>D05스타더스트 오버드라이브</item>
+    <item>D05아마이 유우와쿠 데인저러스</item>
+    <item>D05요로피쿠 피쿠요로!</item>
+    <item>D05브레이크 잇 다운</item>
+    <item>D05굿 나이트</item>
+    <item>D05뷰티플</item>
+    <item>D05나야 나</item>
+    <item>D05포가튼 뱀파이어</item>
+    <item>D05스위트로닉 - SHORT CUT -</item>
   </string-array>
 </resources>

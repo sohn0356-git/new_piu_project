@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d24">
-    <item>d24비</item>
-    <item>d24캐논 D - FULL SONG -</item>
-    <item>d24건 락</item>
-    <item>d24파이널 오디션 에피소드 2-2</item>
-    <item>d24위엑닥바</item>
-    <item>d24반야-P 기타 리믹스</item>
-    <item>d24파이널 오디션 에피소드 2-X</item>
-    <item>d24소서리스 엘리제</item>
-    <item>d24에프 에프 에프</item>
-    <item>d24멘탈 라이더</item>
-    <item>d24요그 소토스</item>
-    <item>d24히아신스</item>
-    <item>d24어나이얼레이터 메소드</item>
-    <item>d24로봇 배틀</item>
-    <item>d24아클루오이아스</item>
-    <item>d24임프린팅</item>
-    <item>d24잡동사니 이노센스</item>
-    <item>d24신앙 - 1st Desire - [FULL SONG]</item>
-    <item>d24다람쥐 헌 쳇바퀴에 타고파</item>
-    <item>d24사라반드</item>
-    <item>d24굿 나이트</item>
-    <item>d24V3</item>
-    <item>d24베들램</item>
-    <item>d24어 사이트 데 라 루</item>
-    <item>d24불카누스</item>
-    <item>d24니알라토텝 - SHORT CUT -</item>
-    <item>d24컨플릭트</item>
-    <item>d24디그니티</item>
-    <item>d24풀 문</item>
-    <item>d24크로스 소울</item>
-    <item>d24우라늄</item>
-    <item>d24밤 - FULL SONG -</item>
-    <item>d24아이올라이트 스카이</item>
-    <item>d24금혼식</item>
+  <string-array name="name_D24">
+    <item>D24비</item>
+    <item>D24캐논 D - FULL SONG -</item>
+    <item>D24건 락</item>
+    <item>D24파이널 오디션 에피소드 2-2</item>
+    <item>D24위엑닥바</item>
+    <item>D24반야-P 기타 리믹스</item>
+    <item>D24파이널 오디션 에피소드 2-X</item>
+    <item>D24소서리스 엘리제</item>
+    <item>D24에프 에프 에프</item>
+    <item>D24멘탈 라이더</item>
+    <item>D24요그 소토스</item>
+    <item>D24히아신스</item>
+    <item>D24어나이얼레이터 메소드</item>
+    <item>D24로봇 배틀</item>
+    <item>D24아클루오이아스</item>
+    <item>D24임프린팅</item>
+    <item>D24잡동사니 이노센스</item>
+    <item>D24신앙 - 1st Desire - [FULL SONG]</item>
+    <item>D24다람쥐 헌 쳇바퀴에 타고파</item>
+    <item>D24사라반드</item>
+    <item>D24굿 나이트</item>
+    <item>D24V3</item>
+    <item>D24베들램</item>
+    <item>D24어 사이트 데 라 루</item>
+    <item>D24불카누스</item>
+    <item>D24디멘트 ~에프터 레전드~</item>
+    <item>D24니알라토텝 - SHORT CUT -</item>
+    <item>D24컨플릭트</item>
+    <item>D24디그니티</item>
+    <item>D24풀 문</item>
+    <item>D24크로스 소울</item>
+    <item>D24우라늄</item>
+    <item>D24밤 - FULL SONG -</item>
+    <item>D24아이올라이트 스카이</item>
+    <item>D24금혼식</item>
+    <item>D24파괴</item>
+    <item>D24에러코드: 0</item>
   </string-array>
 </resources>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_dp06">
-    <item>dp06마이 웨이</item>
-    <item>dp06포인트 브레이크</item>
-    <item>dp06스트리트 쇼 다운</item>
-    <item>dp06댄스 위드 미</item>
-    <item>dp06컴 투 미</item>
-    <item>dp06무혼 2</item>
-    <item>dp06반야 힙합 리믹스</item>
-    <item>dp06무혼 1.5</item>
-    <item>dp06잼 오 비트</item>
-    <item>dp06토카타</item>
-    <item>dp06펌핑 점핑</item>
-    <item>dp06알레그로 콘 뿌오코</item>
-    <item>dp06엑스 레이브</item>
-    <item>dp06라 그랑 블루</item>
+  <string-array name="name_DP06">
+    <item>DP06마이 웨이</item>
+    <item>DP06포인트 브레이크</item>
+    <item>DP06스트리트 쇼 다운</item>
+    <item>DP06댄스 위드 미</item>
+    <item>DP06컴 투 미</item>
+    <item>DP06무혼 2</item>
+    <item>DP06반야 힙합 리믹스</item>
+    <item>DP06무혼 1.5</item>
+    <item>DP06잼 오 비트</item>
+    <item>DP06토카타</item>
+    <item>DP06펌핑 점핑</item>
+    <item>DP06알레그로 콘 뿌오코</item>
+    <item>DP06엑스 레이브</item>
+    <item>DP06라 그랑 블루</item>
   </string-array>
 </resources>

@@ -1,146 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d18">
-    <item>d18또다른 진심</item>
-    <item>d18파이널 오디션</item>
-    <item>d18엑스트라바간자</item>
-    <item>d18파이널 오디션 2</item>
-    <item>d18베토벤 바이러스</item>
-    <item>d18닥터 엠</item>
-    <item>d18마이 웨이</item>
-    <item>d18스트리트 쇼 다운</item>
-    <item>d18헬로</item>
-    <item>d18겟 업!</item>
-    <item>d18파파 곤잘레스</item>
-    <item>d18점프</item>
-    <item>d18아크 오브 다크니스</item>
-    <item>d18건 락</item>
-    <item>d18투우사의 노래</item>
-    <item>d18미운오리새끼</item>
-    <item>d18비메라</item>
-    <item>d18무혼 1.5</item>
-    <item>d18카프리스 오브 오타다</item>
-    <item>d18블레이즈 이모션</item>
-    <item>d18케이.오.에이 : Alice In Wonderworld</item>
-    <item>d18마이 드림즈</item>
-    <item>d18사람들은 펌핑업을 몰랐다네</item>
-    <item>d18미운 오리 토카타</item>
-    <item>d18유 갓 투 노우</item>
-    <item>d18제네시스</item>
-    <item>d18터키 행진곡 -미니멀튠즈-</item>
-    <item>d18미션 파서블 -블로우 백-</item>
-    <item>d18파이널 오디션 2 - SHORT CUT -</item>
-    <item>d18익시드2 오프닝 - SHORT CUT -</item>
-    <item>d18케이.오.에이 : 엘리스 인 원더월드 - SHORT CUT -</item>
-    <item>d18인터퍼런스</item>
-    <item>d18오버블로우</item>
-    <item>d18위 갓 투 노우</item>
-    <item>d18알레그로 콘 뿌오코</item>
-    <item>d18네이티브</item>
-    <item>d18에브리바디 갓 투 노우</item>
-    <item>d18인터퍼런스 - FULL SONG -</item>
-    <item>d18엑스 레이브 - SHORT CUT -</item>
-    <item>d18유토피아</item>
-    <item>d18팝 더 트랙</item>
-    <item>d18파사칼리아</item>
-    <item>d18바로크 바이러스</item>
-    <item>d18이그니스 패터스(DM Ashura 믹스)</item>
-    <item>d18유니크</item>
-    <item>d18디</item>
-    <item>d18윈드밀</item>
-    <item>d18파사칼리아 - SHORT CUT -</item>
-    <item>d18요그 소토스</item>
-    <item>d18모멘트 데이</item>
-    <item>d18레퀴엠</item>
-    <item>d18유 갓 미 크레이지</item>
-    <item>d18메테오라이즈</item>
-    <item>d18리키지 볼티지</item>
-    <item>d18슈퍼 판타지</item>
-    <item>d18바이올렛 퍼퓸</item>
-    <item>d18블레이즈 이모션 (Band version)</item>
-    <item>d18무브 댓 바디!</item>
-    <item>d18락 더 하우스</item>
-    <item>d18레드 스노우</item>
-    <item>d18셀피쉬니스</item>
-    <item>d18코스미컬 리듬</item>
-    <item>d18밀키 웨이 갤럭시</item>
-    <item>d18필 마이 해피니스</item>
-    <item>d18배드 애플!! feat. Nomico</item>
-    <item>d18신앙 - 1st Desire -</item>
-    <item>d18포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
-    <item>d18아이, 유레테...</item>
-    <item>d18연애용자</item>
-    <item>d18프라임</item>
-    <item>d18배드 ∞ 엔드 ∞ 나이트</item>
-    <item>d18아이디얼라이즈드 로맨스</item>
-    <item>d18저스트 홀드 온 (To All Fighters)</item>
-    <item>d18배드 애플!! feat. Nomico - FULL SONG -</item>
-    <item>d18셀피쉬니스 - SHORT CUT -</item>
-    <item>d18무브 댓 바디! - SHORT CUT -</item>
-    <item>d18라스트 리버스</item>
-    <item>d18슈브 니구라스</item>
-    <item>d18실버비트 feat. ChisaUezono</item>
-    <item>d18브레이크 아웃</item>
-    <item>d18사라반드</item>
-    <item>d18앵귀시드 언메이킹</item>
-    <item>d18우츠시요 노 카제 feat. Kana</item>
-    <item>d18업 앤 업 (Produced by AWAL)</item>
-    <item>d18트래블 투 퓨처</item>
-    <item>d18레이브 언틸 디 어스 엔드</item>
-    <item>d18왈츠 오브 도지</item>
-    <item>d18체이스 미</item>
-    <item>d18뷰티플</item>
-    <item>d18나야 나</item>
-    <item>d18스텝</item>
-    <item>d18저스트 키딘</item>
-    <item>d18하트 어택</item>
-    <item>d18V3</item>
-    <item>d18히페리온</item>
-    <item>d18스타트 온 레드</item>
-    <item>d18매지컬 베케이션</item>
-    <item>d18아스테리오스 -리엔트리-</item>
-    <item>d18라 그랑 블루</item>
-    <item>d18클루</item>
-    <item>d18도나텔로</item>
-    <item>d18사라반드 - SHORT CUT -</item>
-    <item>d18사월 - SHORT CUT -</item>
-    <item>d18프라임2 오프닝 - SHORT CUT -</item>
-    <item>d18클럽 나이트</item>
-    <item>d18마카롱 데이</item>
-    <item>d18배니쉬</item>
-    <item>d18타이밍</item>
-    <item>d18내꺼야 (PICK ME)</item>
-    <item>d181도 없어</item>
-    <item>d18뿜뿜</item>
-    <item>d18밤</item>
-    <item>d18아주 NICE</item>
-    <item>d18잘가라</item>
-    <item>d188 6</item>
-    <item>d18제로아이즈</item>
-    <item>d18뿜뿜 - FULL SONG -</item>
-    <item>d18캉-캉 ~Orpheus in The Party Mix~</item>
-    <item>d18파파시토 (feat. KuTiNA)</item>
-    <item>d18파이어 오브 데스티니</item>
-    <item>d18별이 빛나는 밤 - FULL SONG -</item>
-    <item>d18디그니티 - FULL SONG -</item>
-    <item>d18하트 래빗 코스터</item>
-    <item>d18검은고양이</item>
-    <item>d18오르비트 스테빌라이저</item>
-    <item>d18크로스 소울</item>
-    <item>d18팔랑크스 &quot;RS2018 edit&quot;</item>
-    <item>d18위키드 레전드</item>
-    <item>d18아디오스</item>
-    <item>d18히트</item>
-    <item>d18옥탑방</item>
-    <item>d18번지 (Fall in Love)</item>
-    <item>d18유어 마인드</item>
-    <item>d18트란사칼리아</item>
-    <item>d18스냅핑</item>
-    <item>d18스위트로닉 - SHORT CUT -</item>
-    <item>d18아드레날린 블래스터</item>
-    <item>d18봉봉쇼콜라</item>
-    <item>d18데인저 &amp; 데인저</item>
-    <item>d18벌써 12시</item>
-    <item>d18잘가라 - FULL SONG -</item>
+  <string-array name="name_D18">
+    <item>D18또다른 진심</item>
+    <item>D18파이널 오디션</item>
+    <item>D18엑스트라바간자</item>
+    <item>D18파이널 오디션 2</item>
+    <item>D18베토벤 바이러스</item>
+    <item>D18닥터 엠</item>
+    <item>D18마이 웨이</item>
+    <item>D18스트리트 쇼 다운</item>
+    <item>D18헬로</item>
+    <item>D18겟 업!</item>
+    <item>D18파파 곤잘레스</item>
+    <item>D18점프</item>
+    <item>D18아크 오브 다크니스</item>
+    <item>D18건 락</item>
+    <item>D18투우사의 노래</item>
+    <item>D18미운오리새끼</item>
+    <item>D18비메라</item>
+    <item>D18무혼 1.5</item>
+    <item>D18카프리스 오브 오타다</item>
+    <item>D18블레이즈 이모션</item>
+    <item>D18케이.오.에이 : Alice In Wonderworld</item>
+    <item>D18마이 드림즈</item>
+    <item>D18사람들은 펌핑업을 몰랐다네</item>
+    <item>D18미운 오리 토카타</item>
+    <item>D18유 갓 투 노우</item>
+    <item>D18제네시스</item>
+    <item>D18터키 행진곡 -미니멀튠즈-</item>
+    <item>D18미션 파서블 -블로우 백-</item>
+    <item>D18파이널 오디션 2 - SHORT CUT -</item>
+    <item>D18익시드2 오프닝 - SHORT CUT -</item>
+    <item>D18케이.오.에이 : 엘리스 인 원더월드 - SHORT CUT -</item>
+    <item>D18인터퍼런스</item>
+    <item>D18오버블로우</item>
+    <item>D18위 갓 투 노우</item>
+    <item>D18알레그로 콘 뿌오코</item>
+    <item>D18네이티브</item>
+    <item>D18에브리바디 갓 투 노우</item>
+    <item>D18인터퍼런스 - FULL SONG -</item>
+    <item>D18엑스 레이브 - SHORT CUT -</item>
+    <item>D18유토피아</item>
+    <item>D18팝 더 트랙</item>
+    <item>D18파사칼리아</item>
+    <item>D18바로크 바이러스</item>
+    <item>D18이그니스 패터스(DM Ashura 믹스)</item>
+    <item>D18유니크</item>
+    <item>D18디</item>
+    <item>D18윈드밀</item>
+    <item>D18파사칼리아 - SHORT CUT -</item>
+    <item>D18요그 소토스</item>
+    <item>D18모멘트 데이</item>
+    <item>D18레퀴엠</item>
+    <item>D18유 갓 미 크레이지</item>
+    <item>D18메테오라이즈</item>
+    <item>D18리키지 볼티지</item>
+    <item>D18슈퍼 판타지</item>
+    <item>D18바이올렛 퍼퓸</item>
+    <item>D18블레이즈 이모션 (Band version)</item>
+    <item>D18무브 댓 바디!</item>
+    <item>D18락 더 하우스</item>
+    <item>D18레드 스노우</item>
+    <item>D18셀피쉬니스</item>
+    <item>D18코스미컬 리듬</item>
+    <item>D18밀키 웨이 갤럭시</item>
+    <item>D18필 마이 해피니스</item>
+    <item>D18배드 애플!! feat. Nomico</item>
+    <item>D18신앙 - 1st Desire -</item>
+    <item>D18포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
+    <item>D18아이, 유레테...</item>
+    <item>D18연애용자</item>
+    <item>D18프라임</item>
+    <item>D18배드 ∞ 엔드 ∞ 나이트</item>
+    <item>D18아이디얼라이즈드 로맨스</item>
+    <item>D18저스트 홀드 온 (To All Fighters)</item>
+    <item>D18배드 애플!! feat. Nomico - FULL SONG -</item>
+    <item>D18셀피쉬니스 - SHORT CUT -</item>
+    <item>D18무브 댓 바디! - SHORT CUT -</item>
+    <item>D18라스트 리버스</item>
+    <item>D18슈브 니구라스</item>
+    <item>D18실버비트 feat. ChisaUezono</item>
+    <item>D18브레이크 아웃</item>
+    <item>D18사라반드</item>
+    <item>D18앵귀시드 언메이킹</item>
+    <item>D18우츠시요 노 카제 feat. Kana</item>
+    <item>D18업 앤 업 (Produced by AWAL)</item>
+    <item>D18트래블 투 퓨처</item>
+    <item>D18레이브 언틸 디 어스 엔드</item>
+    <item>D18왈츠 오브 도지</item>
+    <item>D18체이스 미</item>
+    <item>D18뷰티플</item>
+    <item>D18나야 나</item>
+    <item>D18스텝</item>
+    <item>D18저스트 키딘</item>
+    <item>D18하트 어택</item>
+    <item>D18V3</item>
+    <item>D18히페리온</item>
+    <item>D18스타트 온 레드</item>
+    <item>D18매지컬 베케이션</item>
+    <item>D18아스테리오스 -리엔트리-</item>
+    <item>D18라 그랑 블루</item>
+    <item>D18클루</item>
+    <item>D18도나텔로</item>
+    <item>D18사라반드 - SHORT CUT -</item>
+    <item>D18사월 - SHORT CUT -</item>
+    <item>D18프라임2 오프닝 - SHORT CUT -</item>
+    <item>D18클럽 나이트</item>
+    <item>D18마카롱 데이</item>
+    <item>D18배니쉬</item>
+    <item>D18타이밍</item>
+    <item>D18내꺼야 (PICK ME)</item>
+    <item>D181도 없어</item>
+    <item>D18뿜뿜</item>
+    <item>D18밤</item>
+    <item>D18아주 NICE</item>
+    <item>D18잘가라</item>
+    <item>D188 6</item>
+    <item>D18제로아이즈</item>
+    <item>D18뿜뿜 - FULL SONG -</item>
+    <item>D18캉-캉 ~Orpheus in The Party Mix~</item>
+    <item>D18파파시토 (feat. KuTiNA)</item>
+    <item>D18파이어 오브 데스티니</item>
+    <item>D18별이 빛나는 밤 - FULL SONG -</item>
+    <item>D18디그니티 - FULL SONG -</item>
+    <item>D18하트 래빗 코스터</item>
+    <item>D18검은고양이</item>
+    <item>D18오르비트 스테빌라이저</item>
+    <item>D18크로스 소울</item>
+    <item>D18팔랑크스 &quot;RS2018 edit&quot;</item>
+    <item>D18위키드 레전드</item>
+    <item>D18아디오스</item>
+    <item>D18히트</item>
+    <item>D18옥탑방</item>
+    <item>D18번지 (Fall in Love)</item>
+    <item>D18유어 마인드</item>
+    <item>D18트란사칼리아</item>
+    <item>D18스냅핑</item>
+    <item>D18스위트로닉 - SHORT CUT -</item>
+    <item>D18아드레날린 블래스터</item>
+    <item>D18봉봉쇼콜라</item>
+    <item>D18데인저 &amp; 데인저</item>
+    <item>D18벌써 12시</item>
+    <item>D18잘가라 - FULL SONG -</item>
+    <item>D18조깅</item>
+    <item>D18하우스플랜</item>
   </string-array>
 </resources>

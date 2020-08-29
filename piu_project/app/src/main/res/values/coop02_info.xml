@@ -65,6 +65,7 @@
     <item>song_405</item>
     <item>song_406</item>
     <item>song_407</item>
+    <item>song_410</item>
     <item>song_411</item>
     <item>song_413</item>
     <item>song_414</item>
@@ -93,5 +94,7 @@
     <item>song_3945</item>
     <item>song_3953</item>
     <item>song_3956</item>
+    <item>song_7469</item>
+    <item>song_7471</item>
   </string-array>
 </resources>

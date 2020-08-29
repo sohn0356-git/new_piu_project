@@ -1,123 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s07">
-    <item>s07파이널 오디션</item>
-    <item>s07리피토먼트 리믹스</item>
-    <item>s07파이널 오디션 2</item>
-    <item>s07태동</item>
-    <item>s07터키 행진곡</item>
-    <item>s07베토벤 바이러스</item>
-    <item>s07파이널 오디션 에피소드 1</item>
-    <item>s07러브 이즈 어 데인저 존</item>
-    <item>s07미션 파서블</item>
-    <item>s07스트리트 쇼 다운</item>
-    <item>s07윈터</item>
-    <item>s07부크</item>
-    <item>s07우편마차</item>
-    <item>s07비</item>
-    <item>s07헬로</item>
-    <item>s07엑스트림</item>
-    <item>s07제이 봉</item>
-    <item>s07캐논 디</item>
-    <item>s07반야 힙합 리믹스</item>
-    <item>s07러브 이즈 어 데인저 존 pt.2</item>
-    <item>s07팬텀</item>
-    <item>s07점프</item>
-    <item>s07무혼 1.5</item>
-    <item>s07패스터 Z</item>
-    <item>s07펌트리스 꽈트로</item>
-    <item>s07기타 맨</item>
-    <item>s07잼 오 비트</item>
-    <item>s07블레이즈 이모션</item>
-    <item>s07캐논X.1</item>
-    <item>s07토카타</item>
-    <item>s07사람들은 펌핑업을 몰랐다네</item>
-    <item>s07엑스트리</item>
-    <item>s07유 갓 투 노우</item>
-    <item>s07데스티네이션</item>
-    <item>s07제네시스</item>
-    <item>s07겟 업 (앤 고)</item>
-    <item>s07팬텀 -인터메조-</item>
-    <item>s07테프리스</item>
-    <item>s07클리너</item>
-    <item>s07테이크 아웃</item>
-    <item>s07오버블로우</item>
-    <item>s07왓 해픈드</item>
-    <item>s07가고일</item>
-    <item>s07알레그로 콘 뿌오코</item>
-    <item>s07네크로맨시</item>
-    <item>s07하드코어 오브 더 노스</item>
-    <item>s07유토피아</item>
-    <item>s07팝 더 트랙</item>
-    <item>s07파사칼리아</item>
-    <item>s07엘리제</item>
-    <item>s07엑시던트</item>
-    <item>s07디</item>
-    <item>s07루시드(PIU Edit)</item>
-    <item>s07로그인</item>
-    <item>s07네메시스</item>
-    <item>s07캇코이</item>
-    <item>s07라티노 바이러스</item>
-    <item>s07실루엣 이펙트</item>
-    <item>s07차이니즈 레스토랑</item>
-    <item>s07포스 오브 라</item>
-    <item>s07레퀴엠</item>
-    <item>s07B2</item>
-    <item>s07헤스티아</item>
-    <item>s07암피트리온</item>
-    <item>s07슈퍼 판타지</item>
-    <item>s07레드 스완</item>
-    <item>s07어나이얼레이터 메소드</item>
-    <item>s07락 더 하우스</item>
-    <item>s07레드 스노우</item>
-    <item>s07더 레볼루션</item>
-    <item>s07마타도르</item>
-    <item>s07라그나로크</item>
-    <item>s07까랴위사따</item>
-    <item>s07임프린팅</item>
-    <item>s07스마일 다이어리</item>
-    <item>s07신앙 - 1st Desire -</item>
-    <item>s07프라임</item>
-    <item>s07퀸 오브 더 레드</item>
-    <item>s07아이디얼라이즈드 로맨스</item>
-    <item>s07저스트 홀드 온 (To All Fighters)</item>
-    <item>s07브레이크 잇 다운</item>
-    <item>s07슈퍼 카프리시오</item>
-    <item>s07헬파이어</item>
-    <item>s07크로스 오버 feat. LyuU</item>
-    <item>s07실버비트 feat. ChisaUezono</item>
-    <item>s07브링 백 더 비트</item>
-    <item>s07사라반드</item>
-    <item>s07가장신자</item>
-    <item>s07우츠시요 노 카제 feat. Kana</item>
-    <item>s07HTTP</item>
-    <item>s07트래블 투 퓨처</item>
-    <item>s07레이브 언틸 디 어스 엔드</item>
-    <item>s07어웨이크닝</item>
-    <item>s07리얼리 리얼리</item>
-    <item>s07문 라이트 댄스</item>
-    <item>s07스텝</item>
-    <item>s07하트 어택</item>
-    <item>s07크로스타임</item>
-    <item>s07헬릭스</item>
-    <item>s07슈퍼 스타일린</item>
-    <item>s07라 그랑 블루</item>
-    <item>s07고딕 레조넌스</item>
-    <item>s07프라임2 오프닝 - SHORT CUT -</item>
-    <item>s07오블리터레이션</item>
-    <item>s07아이 원트 유</item>
-    <item>s07아이스 오브 데스</item>
-    <item>s07어린왕자 (Prod. Godic)</item>
-    <item>s07타이밍</item>
-    <item>s07유 앤 아이</item>
-    <item>s07오벨리스크</item>
-    <item>s07레이지 오브 파이어</item>
-    <item>s07탄탄멘</item>
-    <item>s07번지 (Fall in Love)</item>
-    <item>s07천년이 지나서</item>
-    <item>s07싸이클링!</item>
-    <item>s07듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
-    <item>s07아이올라이트 스카이</item>
-    <item>s07아이 원트 유 - SHORT CUT -</item>
+  <string-array name="name_S07">
+    <item>S07파이널 오디션</item>
+    <item>S07리피토먼트 리믹스</item>
+    <item>S07파이널 오디션 2</item>
+    <item>S07태동</item>
+    <item>S07터키 행진곡</item>
+    <item>S07베토벤 바이러스</item>
+    <item>S07파이널 오디션 에피소드 1</item>
+    <item>S07러브 이즈 어 데인저 존</item>
+    <item>S07미션 파서블</item>
+    <item>S07스트리트 쇼 다운</item>
+    <item>S07윈터</item>
+    <item>S07부크</item>
+    <item>S07우편마차</item>
+    <item>S07비</item>
+    <item>S07헬로</item>
+    <item>S07엑스트림</item>
+    <item>S07제이 봉</item>
+    <item>S07캐논 디</item>
+    <item>S07반야 힙합 리믹스</item>
+    <item>S07러브 이즈 어 데인저 존 pt.2</item>
+    <item>S07팬텀</item>
+    <item>S07점프</item>
+    <item>S07무혼 1.5</item>
+    <item>S07패스터 Z</item>
+    <item>S07펌트리스 꽈트로</item>
+    <item>S07기타 맨</item>
+    <item>S07잼 오 비트</item>
+    <item>S07블레이즈 이모션</item>
+    <item>S07캐논X.1</item>
+    <item>S07토카타</item>
+    <item>S07사람들은 펌핑업을 몰랐다네</item>
+    <item>S07엑스트리</item>
+    <item>S07유 갓 투 노우</item>
+    <item>S07데스티네이션</item>
+    <item>S07제네시스</item>
+    <item>S07겟 업 (앤 고)</item>
+    <item>S07팬텀 -인터메조-</item>
+    <item>S07테프리스</item>
+    <item>S07클리너</item>
+    <item>S07테이크 아웃</item>
+    <item>S07오버블로우</item>
+    <item>S07왓 해픈드</item>
+    <item>S07가고일</item>
+    <item>S07알레그로 콘 뿌오코</item>
+    <item>S07네크로맨시</item>
+    <item>S07하드코어 오브 더 노스</item>
+    <item>S07유토피아</item>
+    <item>S07팝 더 트랙</item>
+    <item>S07파사칼리아</item>
+    <item>S07엘리제</item>
+    <item>S07엑시던트</item>
+    <item>S07디</item>
+    <item>S07루시드(PIU Edit)</item>
+    <item>S07로그인</item>
+    <item>S07네메시스</item>
+    <item>S07캇코이</item>
+    <item>S07라티노 바이러스</item>
+    <item>S07실루엣 이펙트</item>
+    <item>S07차이니즈 레스토랑</item>
+    <item>S07포스 오브 라</item>
+    <item>S07레퀴엠</item>
+    <item>S07B2</item>
+    <item>S07헤스티아</item>
+    <item>S07암피트리온</item>
+    <item>S07슈퍼 판타지</item>
+    <item>S07레드 스완</item>
+    <item>S07어나이얼레이터 메소드</item>
+    <item>S07락 더 하우스</item>
+    <item>S07레드 스노우</item>
+    <item>S07더 레볼루션</item>
+    <item>S07마타도르</item>
+    <item>S07라그나로크</item>
+    <item>S07까랴위사따</item>
+    <item>S07임프린팅</item>
+    <item>S07스마일 다이어리</item>
+    <item>S07신앙 - 1st Desire -</item>
+    <item>S07프라임</item>
+    <item>S07퀸 오브 더 레드</item>
+    <item>S07아이디얼라이즈드 로맨스</item>
+    <item>S07저스트 홀드 온 (To All Fighters)</item>
+    <item>S07브레이크 잇 다운</item>
+    <item>S07슈퍼 카프리시오</item>
+    <item>S07헬파이어</item>
+    <item>S07크로스 오버 feat. LyuU</item>
+    <item>S07실버비트 feat. ChisaUezono</item>
+    <item>S07브링 백 더 비트</item>
+    <item>S07사라반드</item>
+    <item>S07가장신자</item>
+    <item>S07우츠시요 노 카제 feat. Kana</item>
+    <item>S07HTTP</item>
+    <item>S07트래블 투 퓨처</item>
+    <item>S07레이브 언틸 디 어스 엔드</item>
+    <item>S07어웨이크닝</item>
+    <item>S07리얼리 리얼리</item>
+    <item>S07문 라이트 댄스</item>
+    <item>S07스텝</item>
+    <item>S07하트 어택</item>
+    <item>S07크로스타임</item>
+    <item>S07헬릭스</item>
+    <item>S07슈퍼 스타일린</item>
+    <item>S07라 그랑 블루</item>
+    <item>S07고딕 레조넌스</item>
+    <item>S07프라임2 오프닝 - SHORT CUT -</item>
+    <item>S07오블리터레이션</item>
+    <item>S07아이 원트 유</item>
+    <item>S07아이스 오브 데스</item>
+    <item>S07어린왕자 (Prod. Godic)</item>
+    <item>S07타이밍</item>
+    <item>S07유 앤 아이</item>
+    <item>S07오벨리스크</item>
+    <item>S07레이지 오브 파이어</item>
+    <item>S07탄탄멘</item>
+    <item>S07번지 (Fall in Love)</item>
+    <item>S07천년이 지나서</item>
+    <item>S07싸이클링!</item>
+    <item>S07듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
+    <item>S07아이올라이트 스카이</item>
+    <item>S07아이 원트 유 - SHORT CUT -</item>
   </string-array>
 </resources>

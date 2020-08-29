@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s25">
-    <item>s25진공 청소기</item>
-    <item>s251950</item>
-    <item>s25슈브소토스</item>
+  <string-array name="name_S25">
+    <item>S25진공 청소기</item>
+    <item>S251950</item>
+    <item>S25슈브소토스</item>
+    <item>S25에러코드: 0</item>
   </string-array>
 </resources>

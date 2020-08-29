@@ -1,85 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s20">
-    <item>s20태동</item>
-    <item>s20미스터 라푸스</item>
-    <item>s20치킨 윙</item>
-    <item>s20라젠스키 캉캉</item>
-    <item>s20파이널 오디션 에피소드 1</item>
-    <item>s20부크</item>
-    <item>s20캐논 디</item>
-    <item>s20건 락</item>
-    <item>s20비트 오브 더 워 2 - FULL SONG -</item>
-    <item>s20비트 더 고스트</item>
-    <item>s20패스터 Z</item>
-    <item>s20기타 맨</item>
-    <item>s20캐논X.1</item>
-    <item>s20카프리스 오브 디제이 오타다</item>
-    <item>s20엑스트리</item>
-    <item>s20유 갓 투 노우</item>
-    <item>s20데스티네이션</item>
-    <item>s20파이널 오디션 에피소드 2-X - SHORT CUT -</item>
-    <item>s20러브 이즈 어 데인져 존 - SHORT CUT -</item>
-    <item>s20치킨 윙 - SHORT CUT -</item>
-    <item>s20위치 닥터 - SHORT CUT -</item>
-    <item>s20테이크 아웃</item>
-    <item>s20오버블로우</item>
-    <item>s20위 갓 투 노우</item>
-    <item>s20네이티브</item>
-    <item>s20네크로맨시</item>
-    <item>s20진공 청소기</item>
-    <item>s20잣</item>
-    <item>s20러브 이즈 어 데인저 존(Cranky 믹스)</item>
-    <item>s20힙노시스 (SynthWulf 믹스)</item>
-    <item>s20로그인</item>
-    <item>s20인피니티 리믹스</item>
-    <item>s20매드 사이언스</item>
-    <item>s20슈퍼 판타지</item>
-    <item>s201950</item>
-    <item>s20무브 댓 바디!</item>
-    <item>s20포인트 제로 원</item>
-    <item>s20라그나로크</item>
-    <item>s20까랴위사따</item>
-    <item>s20포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
-    <item>s20잡동사니 이노센스</item>
-    <item>s20아발란퀴엠</item>
-    <item>s20트리튬</item>
-    <item>s20갓 모드 feat. skizzo</item>
-    <item>s20사라반드</item>
-    <item>s20가장신자</item>
-    <item>s20아르카나 포스</item>
-    <item>s20알레그로 퓨리오소</item>
-    <item>s20우츠시요 노 카제 feat. Kana</item>
-    <item>s20체이스 미</item>
-    <item>s20굿 나이트</item>
-    <item>s20유령의 축제 2 (Sneak)</item>
-    <item>s20블랙 드래곤</item>
-    <item>s20라 그랑 블루</item>
-    <item>s20고딕 레조넌스</item>
-    <item>s20가고일 - FULL SONG -</item>
-    <item>s20히페리온 - SHORT CUT -</item>
-    <item>s20가장신자 - SHORT CUT -</item>
-    <item>s20라 그랑드 루즈</item>
-    <item>s20아이스 오브 데스</item>
-    <item>s20포세이돈</item>
-    <item>s20배니쉬</item>
-    <item>s20김치 핑거즈</item>
-    <item>s20날아올라</item>
-    <item>s208 6</item>
-    <item>s20데사파레세르</item>
-    <item>s20파파시토 (feat. KuTiNA)</item>
-    <item>s20파이어 오브 데스티니</item>
-    <item>s20디 엔드 오브 더 월드 ft. Skizzo</item>
-    <item>s20가시나 - FULL SONG -</item>
-    <item>s20디그니티</item>
-    <item>s20탄탄멘</item>
-    <item>s20풀 문</item>
-    <item>s20크로스 소울</item>
-    <item>s20야누스</item>
-    <item>s20천년이 지나서</item>
-    <item>s20싸이클링!</item>
-    <item>s20듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
-    <item>s20파이어 누들 챌린지</item>
-    <item>s20아이올라이트 스카이</item>
+  <string-array name="name_S20">
+    <item>S20태동</item>
+    <item>S20미스터 라푸스</item>
+    <item>S20치킨 윙</item>
+    <item>S20라젠스키 캉캉</item>
+    <item>S20파이널 오디션 에피소드 1</item>
+    <item>S20부크</item>
+    <item>S20캐논 디</item>
+    <item>S20건 락</item>
+    <item>S20비트 오브 더 워 2 - FULL SONG -</item>
+    <item>S20비트 더 고스트</item>
+    <item>S20패스터 Z</item>
+    <item>S20기타 맨</item>
+    <item>S20캐논X.1</item>
+    <item>S20카프리스 오브 디제이 오타다</item>
+    <item>S20엑스트리</item>
+    <item>S20유 갓 투 노우</item>
+    <item>S20데스티네이션</item>
+    <item>S20파이널 오디션 에피소드 2-X - SHORT CUT -</item>
+    <item>S20러브 이즈 어 데인져 존 - SHORT CUT -</item>
+    <item>S20치킨 윙 - SHORT CUT -</item>
+    <item>S20위치 닥터 - SHORT CUT -</item>
+    <item>S20테이크 아웃</item>
+    <item>S20오버블로우</item>
+    <item>S20위 갓 투 노우</item>
+    <item>S20네이티브</item>
+    <item>S20네크로맨시</item>
+    <item>S20진공 청소기</item>
+    <item>S20잣</item>
+    <item>S20러브 이즈 어 데인저 존(Cranky 믹스)</item>
+    <item>S20힙노시스 (SynthWulf 믹스)</item>
+    <item>S20로그인</item>
+    <item>S20인피니티 리믹스</item>
+    <item>S20매드 사이언스</item>
+    <item>S20슈퍼 판타지</item>
+    <item>S201950</item>
+    <item>S20무브 댓 바디!</item>
+    <item>S20포인트 제로 원</item>
+    <item>S20라그나로크</item>
+    <item>S20까랴위사따</item>
+    <item>S20포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
+    <item>S20잡동사니 이노센스</item>
+    <item>S20아발란퀴엠</item>
+    <item>S20트리튬</item>
+    <item>S20갓 모드 feat. skizzo</item>
+    <item>S20사라반드</item>
+    <item>S20가장신자</item>
+    <item>S20아르카나 포스</item>
+    <item>S20알레그로 퓨리오소</item>
+    <item>S20우츠시요 노 카제 feat. Kana</item>
+    <item>S20체이스 미</item>
+    <item>S20굿 나이트</item>
+    <item>S20유령의 축제 2 (Sneak)</item>
+    <item>S20블랙 드래곤</item>
+    <item>S20라 그랑 블루</item>
+    <item>S20고딕 레조넌스</item>
+    <item>S20가고일 - FULL SONG -</item>
+    <item>S20히페리온 - SHORT CUT -</item>
+    <item>S20가장신자 - SHORT CUT -</item>
+    <item>S20라 그랑드 루즈</item>
+    <item>S20아이스 오브 데스</item>
+    <item>S20포세이돈</item>
+    <item>S20배니쉬</item>
+    <item>S20김치 핑거즈</item>
+    <item>S20날아올라</item>
+    <item>S208 6</item>
+    <item>S20데사파레세르</item>
+    <item>S20파파시토 (feat. KuTiNA)</item>
+    <item>S20파이어 오브 데스티니</item>
+    <item>S20디 엔드 오브 더 월드 ft. Skizzo</item>
+    <item>S20가시나 - FULL SONG -</item>
+    <item>S20디그니티</item>
+    <item>S20탄탄멘</item>
+    <item>S20풀 문</item>
+    <item>S20크로스 소울</item>
+    <item>S20야누스</item>
+    <item>S20천년이 지나서</item>
+    <item>S20싸이클링!</item>
+    <item>S20듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
+    <item>S20파이어 누들 챌린지</item>
+    <item>S20아이올라이트 스카이</item>
+    <item>S20오버 더 호라이즌</item>
   </string-array>
 </resources>

@@ -1,100 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d19">
-    <item>d19님과함께</item>
-    <item>d19미스 에스 스토리</item>
-    <item>d19부크</item>
-    <item>d19비트 오브 더 워</item>
-    <item>d19파이널 오디션 3</item>
-    <item>d19펌프 미 아마데우스</item>
-    <item>d19하이 바이</item>
-    <item>d19무혼 2</item>
-    <item>d19위치 닥터</item>
-    <item>d19팬텀</item>
-    <item>d19두 유 노우 댓-올드 스쿨</item>
-    <item>d19파이널 오디션 에피소드 2-2</item>
-    <item>d19몽키 핑거즈 2</item>
-    <item>d19기타 맨</item>
-    <item>d19젓가락 변주곡 - FULL SONG -</item>
-    <item>d19엑스트리</item>
-    <item>d19겟 업 (앤 고)</item>
-    <item>d19팬텀 -인터메조-</item>
-    <item>d19반야 프로덕션 클래식 리믹스</item>
-    <item>d19비메라 - SHORT CUT -</item>
-    <item>d19데스티네이션 - SHORT CUT -</item>
-    <item>d19테프리스</item>
-    <item>d19테이크 아웃</item>
-    <item>d19오버블로우</item>
-    <item>d19네크로맨시</item>
-    <item>d19테이크 아웃 - SHORT CUT -</item>
-    <item>d19조나단의 꿈</item>
-    <item>d19VVV</item>
-    <item>d19힙노시스 (SynthWulf 믹스)</item>
-    <item>d19로그인</item>
-    <item>d19멘탈 라이더</item>
-    <item>d19인피니티 리믹스</item>
-    <item>d19캇코이</item>
-    <item>d19라티노 바이러스</item>
-    <item>d19차이니즈 레스토랑</item>
-    <item>d19아발란치</item>
-    <item>d19B2</item>
-    <item>d19히아신스</item>
-    <item>d19알레그로 피유 모쏘</item>
-    <item>d19로봇 배틀</item>
-    <item>d19더 레볼루션</item>
-    <item>d19마타도르</item>
-    <item>d19스타더스트 오버드라이브</item>
-    <item>d19레미니센스</item>
-    <item>d19서든 로맨스 [PIU Edit]</item>
-    <item>d19미토츠다이라</item>
-    <item>d19스마일 다이어리</item>
-    <item>d19세츠나 트립</item>
-    <item>d19퀸 오브 더 레드</item>
-    <item>d19하이퍼큐브</item>
-    <item>d19라이크 미</item>
-    <item>d19무브 댓 바디! - FULL SONG -</item>
-    <item>d19포 시즌스 오브 론리네스 verβ feat. Sariyajin - FULL SONG -</item>
-    <item>d19신앙 - 1st Desire - [FULL SONG]</item>
-    <item>d19슈퍼 카프리시오</item>
-    <item>d19헬파이어</item>
-    <item>d19트리튬</item>
-    <item>d19크로스 오버 feat. LyuU</item>
-    <item>d19브링 백 더 비트</item>
-    <item>d19가장신자</item>
-    <item>d19오버블로우2</item>
-    <item>d19HTTP</item>
-    <item>d19이스케이프</item>
-    <item>d19굿 나이트</item>
-    <item>d19에너제틱</item>
-    <item>d19문 라이트 댄스</item>
-    <item>d19헬릭스</item>
-    <item>d19블랙 드래곤</item>
-    <item>d19비주얼 드림 II (인 픽션)</item>
-    <item>d19인피니티</item>
-    <item>d19어 사이트 데 라 루</item>
-    <item>d19레드라인</item>
-    <item>d19킬뎀!</item>
-    <item>d19시즈 마이 데이</item>
-    <item>d19웨딩 크래셔</item>
-    <item>d19오블리터레이션</item>
-    <item>d19퍼센트 엑스</item>
-    <item>d19라 그랑드 루즈</item>
-    <item>d19어린왕자 (Prod. Godic)</item>
-    <item>d19날아올라</item>
-    <item>d19가시나</item>
-    <item>d19붕붕 (Feat. 식케이) (Prod. GroovyRoom)</item>
-    <item>d19레이지 오브 파이어</item>
-    <item>d19로키</item>
-    <item>d19니힐리즘 - 어나더 버전 -</item>
-    <item>d19데사파레세르</item>
-    <item>d19메테오 사이언스 (GADGET mix)</item>
-    <item>d19파파시토 (feat. KuTiNA)</item>
-    <item>d19디그니티</item>
-    <item>d19판매왕</item>
-    <item>d19라이징 스타</item>
-    <item>d19캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
-    <item>d19야누스</item>
-    <item>d19한 (一) - FULL SONG -</item>
-    <item>d19스위트로닉</item>
+  <string-array name="name_D19">
+    <item>D19님과함께</item>
+    <item>D19미스 에스 스토리</item>
+    <item>D19부크</item>
+    <item>D19비트 오브 더 워</item>
+    <item>D19파이널 오디션 3</item>
+    <item>D19펌프 미 아마데우스</item>
+    <item>D19하이 바이</item>
+    <item>D19무혼 2</item>
+    <item>D19위치 닥터</item>
+    <item>D19팬텀</item>
+    <item>D19두 유 노우 댓-올드 스쿨</item>
+    <item>D19파이널 오디션 에피소드 2-2</item>
+    <item>D19몽키 핑거즈 2</item>
+    <item>D19기타 맨</item>
+    <item>D19젓가락 변주곡 - FULL SONG -</item>
+    <item>D19엑스트리</item>
+    <item>D19겟 업 (앤 고)</item>
+    <item>D19팬텀 -인터메조-</item>
+    <item>D19반야 프로덕션 클래식 리믹스</item>
+    <item>D19비메라 - SHORT CUT -</item>
+    <item>D19데스티네이션 - SHORT CUT -</item>
+    <item>D19테프리스</item>
+    <item>D19테이크 아웃</item>
+    <item>D19오버블로우</item>
+    <item>D19네크로맨시</item>
+    <item>D19테이크 아웃 - SHORT CUT -</item>
+    <item>D19조나단의 꿈</item>
+    <item>D19VVV</item>
+    <item>D19힙노시스 (SynthWulf 믹스)</item>
+    <item>D19로그인</item>
+    <item>D19멘탈 라이더</item>
+    <item>D19인피니티 리믹스</item>
+    <item>D19캇코이</item>
+    <item>D19라티노 바이러스</item>
+    <item>D19차이니즈 레스토랑</item>
+    <item>D19아발란치</item>
+    <item>D19B2</item>
+    <item>D19히아신스</item>
+    <item>D19알레그로 피유 모쏘</item>
+    <item>D19로봇 배틀</item>
+    <item>D19더 레볼루션</item>
+    <item>D19마타도르</item>
+    <item>D19스타더스트 오버드라이브</item>
+    <item>D19레미니센스</item>
+    <item>D19서든 로맨스 [PIU Edit]</item>
+    <item>D19미토츠다이라</item>
+    <item>D19스마일 다이어리</item>
+    <item>D19세츠나 트립</item>
+    <item>D19퀸 오브 더 레드</item>
+    <item>D19하이퍼큐브</item>
+    <item>D19라이크 미</item>
+    <item>D19무브 댓 바디! - FULL SONG -</item>
+    <item>D19포 시즌스 오브 론리네스 verβ feat. Sariyajin - FULL SONG -</item>
+    <item>D19신앙 - 1st Desire - [FULL SONG]</item>
+    <item>D19슈퍼 카프리시오</item>
+    <item>D19헬파이어</item>
+    <item>D19트리튬</item>
+    <item>D19크로스 오버 feat. LyuU</item>
+    <item>D19브링 백 더 비트</item>
+    <item>D19가장신자</item>
+    <item>D19오버블로우2</item>
+    <item>D19HTTP</item>
+    <item>D19이스케이프</item>
+    <item>D19굿 나이트</item>
+    <item>D19에너제틱</item>
+    <item>D19문 라이트 댄스</item>
+    <item>D19헬릭스</item>
+    <item>D19블랙 드래곤</item>
+    <item>D19비주얼 드림 II (인 픽션)</item>
+    <item>D19인피니티</item>
+    <item>D19어 사이트 데 라 루</item>
+    <item>D19레드라인</item>
+    <item>D19킬뎀!</item>
+    <item>D19시즈 마이 데이</item>
+    <item>D19웨딩 크래셔</item>
+    <item>D19오블리터레이션</item>
+    <item>D19퍼센트 엑스</item>
+    <item>D19라 그랑드 루즈</item>
+    <item>D19어린왕자 (Prod. Godic)</item>
+    <item>D19날아올라</item>
+    <item>D19가시나</item>
+    <item>D19사랑을 했다</item>
+    <item>D19붕붕 (Feat. 식케이) (Prod. GroovyRoom)</item>
+    <item>D19레이지 오브 파이어</item>
+    <item>D19로키</item>
+    <item>D19니힐리즘 - 어나더 버전 -</item>
+    <item>D19데사파레세르</item>
+    <item>D19메테오 사이언스 (GADGET mix)</item>
+    <item>D19파파시토 (feat. KuTiNA)</item>
+    <item>D19디그니티</item>
+    <item>D19판매왕</item>
+    <item>D19라이징 스타</item>
+    <item>D19캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
+    <item>D19야누스</item>
+    <item>D19한 (一) - FULL SONG -</item>
+    <item>D19스위트로닉</item>
+    <item>D19파괴</item>
+    <item>D19클레마티스 랩소디아</item>
+    <item>D19스타드림 (feat. Romelon)</item>
   </string-array>
 </resources>

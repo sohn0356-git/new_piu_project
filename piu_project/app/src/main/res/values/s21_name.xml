@@ -1,76 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s21">
-    <item>s21엑스트라바간자</item>
-    <item>s21그녀는 피자를 좋아해</item>
-    <item>s21치킨 윙</item>
-    <item>s21엑스트라 반야 리믹스</item>
-    <item>s21비트 오브 더 워</item>
-    <item>s21캐논 디</item>
-    <item>s21비트 오브 더 워 2</item>
-    <item>s21위치 닥터</item>
-    <item>s21러브 이즈 어 댄저 존 2 Try To B.P.M</item>
-    <item>s21파이널 오디션 에피소드 2-1</item>
-    <item>s21파이널 오디션 에피소드 2-2</item>
-    <item>s21위엑닥바</item>
-    <item>s21반야-P 클래식 리믹스</item>
-    <item>s21캐논X.1</item>
-    <item>s21소서리스 엘리제</item>
-    <item>s21진공</item>
-    <item>s21엠.에스.군 리믹스 파트.6</item>
-    <item>s21비메라 - SHORT CUT -</item>
-    <item>s21네이팜</item>
-    <item>s21클리너</item>
-    <item>s21왓 해픈드</item>
-    <item>s21클리너 - SHORT CUT -</item>
-    <item>s21모노리스</item>
-    <item>s21하드코어 오브 더 노스</item>
-    <item>s21드림 투 나이트메어</item>
-    <item>s21엘리제</item>
-    <item>s21러브 이즈 어 데인저 존(Cranky 믹스)</item>
-    <item>s21윈드밀</item>
-    <item>s21멘탈 라이더</item>
-    <item>s21이그니스 패터스(DM Ashura 믹스) - SHORT CUT -</item>
-    <item>s21요그 소토스</item>
-    <item>s21리키지 볼티지</item>
-    <item>s21마타도르</item>
-    <item>s21임프린팅</item>
-    <item>s21신앙 - 1st Desire -</item>
-    <item>s21프라임</item>
-    <item>s21저스트 홀드 온 (To All Fighters)</item>
-    <item>s21베토벤 인플루엔자</item>
-    <item>s21패러독스</item>
-    <item>s21요그 소토스 - SHORT CUT -</item>
-    <item>s21슈브 니구라스</item>
-    <item>s21HTTP</item>
-    <item>s21이스케이프</item>
-    <item>s21BS파워 익스플로전</item>
-    <item>s21킵 온!</item>
-    <item>s21인피니티</item>
-    <item>s21도나텔로</item>
-    <item>s21리더</item>
-    <item>s21가고일 - FULL SONG -</item>
-    <item>s21슈브 니구라스 - SHORT CUT -</item>
-    <item>s21웨딩 크래셔</item>
-    <item>s211949</item>
-    <item>s21니알라토텝</item>
-    <item>s21유 앤 아이</item>
-    <item>s21제로아이즈</item>
-    <item>s21로키</item>
-    <item>s21니힐리즘 - 어나더 버전 -</item>
-    <item>s21메테오 사이언스 (GADGET mix)</item>
-    <item>s218 6 - FULL SONG -</item>
-    <item>s21포세이돈 - SHORT CUT -</item>
-    <item>s21하트 래빗 코스터</item>
-    <item>s21판매왕</item>
-    <item>s21프렌드</item>
-    <item>s21까르멘 버스</item>
-    <item>s21오르비트 스테빌라이저</item>
-    <item>s21프라임 타임</item>
-    <item>s21유어 마인드</item>
-    <item>s21아드레날린 블래스터</item>
-    <item>s21포인트 제로 2</item>
-    <item>s21밤 - FULL SONG -</item>
-    <item>s21브로큰 카르마 (PIU EDIT)</item>
+  <string-array name="name_S21">
+    <item>S21엑스트라바간자</item>
+    <item>S21그녀는 피자를 좋아해</item>
+    <item>S21치킨 윙</item>
+    <item>S21엑스트라 반야 리믹스</item>
+    <item>S21비트 오브 더 워</item>
+    <item>S21캐논 디</item>
+    <item>S21비트 오브 더 워 2</item>
+    <item>S21위치 닥터</item>
+    <item>S21러브 이즈 어 댄저 존 2 Try To B.P.M</item>
+    <item>S21파이널 오디션 에피소드 2-1</item>
+    <item>S21파이널 오디션 에피소드 2-2</item>
+    <item>S21위엑닥바</item>
+    <item>S21반야-P 클래식 리믹스</item>
+    <item>S21캐논X.1</item>
+    <item>S21소서리스 엘리제</item>
+    <item>S21진공</item>
+    <item>S21엠.에스.군 리믹스 파트.6</item>
+    <item>S21비메라 - SHORT CUT -</item>
+    <item>S21네이팜</item>
+    <item>S21클리너</item>
+    <item>S21왓 해픈드</item>
+    <item>S21클리너 - SHORT CUT -</item>
+    <item>S21모노리스</item>
+    <item>S21하드코어 오브 더 노스</item>
+    <item>S21드림 투 나이트메어</item>
+    <item>S21엘리제</item>
+    <item>S21러브 이즈 어 데인저 존(Cranky 믹스)</item>
+    <item>S21윈드밀</item>
+    <item>S21멘탈 라이더</item>
+    <item>S21이그니스 패터스(DM Ashura 믹스) - SHORT CUT -</item>
+    <item>S21요그 소토스</item>
+    <item>S21리키지 볼티지</item>
+    <item>S21마타도르</item>
+    <item>S21임프린팅</item>
+    <item>S21신앙 - 1st Desire -</item>
+    <item>S21프라임</item>
+    <item>S21저스트 홀드 온 (To All Fighters)</item>
+    <item>S21베토벤 인플루엔자</item>
+    <item>S21패러독스</item>
+    <item>S21요그 소토스 - SHORT CUT -</item>
+    <item>S21슈브 니구라스</item>
+    <item>S21HTTP</item>
+    <item>S21이스케이프</item>
+    <item>S21BS파워 익스플로전</item>
+    <item>S21킵 온!</item>
+    <item>S21인피니티</item>
+    <item>S21도나텔로</item>
+    <item>S21리더</item>
+    <item>S21가고일 - FULL SONG -</item>
+    <item>S21슈브 니구라스 - SHORT CUT -</item>
+    <item>S21웨딩 크래셔</item>
+    <item>S211949</item>
+    <item>S21니알라토텝</item>
+    <item>S21유 앤 아이</item>
+    <item>S21제로아이즈</item>
+    <item>S21로키</item>
+    <item>S21디멘트 ~에프터 레전드~</item>
+    <item>S21니힐리즘 - 어나더 버전 -</item>
+    <item>S21메테오 사이언스 (GADGET mix)</item>
+    <item>S218 6 - FULL SONG -</item>
+    <item>S21포세이돈 - SHORT CUT -</item>
+    <item>S21하트 래빗 코스터</item>
+    <item>S21판매왕</item>
+    <item>S21프렌드</item>
+    <item>S21까르멘 버스</item>
+    <item>S21오르비트 스테빌라이저</item>
+    <item>S21프라임 타임</item>
+    <item>S21유어 마인드</item>
+    <item>S21아드레날린 블래스터</item>
+    <item>S21포인트 제로 2</item>
+    <item>S21밤 - FULL SONG -</item>
+    <item>S21브로큰 카르마 (PIU EDIT)</item>
+    <item>S21스타드림 (feat. Romelon)</item>
+    <item>S21헤드리스 치킨</item>
+    <item>S21바로크 바이러스 - FULL SONG -</item>
   </string-array>
 </resources>

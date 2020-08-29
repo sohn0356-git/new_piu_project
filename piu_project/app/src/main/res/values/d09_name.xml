@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d09">
-    <item>d09터키 행진곡</item>
-    <item>d09그녀는 피자를 좋아해</item>
-    <item>d09겟 유어 그루브 온</item>
-    <item>d09포인트 브레이크</item>
-    <item>d09헬로</item>
-    <item>d09건 락</item>
-    <item>d09투우사의 노래</item>
-    <item>d09머니 핑거즈</item>
-    <item>d09안녕 윌리엄</item>
-    <item>d09테프리스</item>
-    <item>d09알레그로 콘 뿌오코</item>
-    <item>d09헝가리 무곡 V</item>
-    <item>d09유토피아</item>
-    <item>d09팝 더 트랙</item>
-    <item>d09팔로우 미</item>
-    <item>d09모멘트 데이</item>
-    <item>d09레퀴엠</item>
-    <item>d09라그나로크</item>
-    <item>d09헬파이어</item>
-    <item>d09갓 모드 feat. skizzo</item>
-    <item>d09앵귀시드 언메이킹</item>
-    <item>d09업 앤 업 (Produced by AWAL)</item>
-    <item>d09어웨이크닝</item>
-    <item>d09저스트 키딘</item>
-    <item>d09하트 어택</item>
-    <item>d09V3</item>
-    <item>d09슈퍼 스타일린</item>
-    <item>d09크리스마스의 기억</item>
-    <item>d09라 그랑 블루</item>
-    <item>d09킬뎀!</item>
-    <item>d09퍼센트 엑스</item>
-    <item>d09배니쉬</item>
-    <item>d091도 없어</item>
-    <item>d09판매왕</item>
+  <string-array name="name_D09">
+    <item>D09터키 행진곡</item>
+    <item>D09그녀는 피자를 좋아해</item>
+    <item>D09겟 유어 그루브 온</item>
+    <item>D09포인트 브레이크</item>
+    <item>D09헬로</item>
+    <item>D09건 락</item>
+    <item>D09투우사의 노래</item>
+    <item>D09머니 핑거즈</item>
+    <item>D09안녕 윌리엄</item>
+    <item>D09테프리스</item>
+    <item>D09알레그로 콘 뿌오코</item>
+    <item>D09헝가리 무곡 V</item>
+    <item>D09유토피아</item>
+    <item>D09팝 더 트랙</item>
+    <item>D09팔로우 미</item>
+    <item>D09모멘트 데이</item>
+    <item>D09레퀴엠</item>
+    <item>D09라그나로크</item>
+    <item>D09헬파이어</item>
+    <item>D09갓 모드 feat. skizzo</item>
+    <item>D09앵귀시드 언메이킹</item>
+    <item>D09업 앤 업 (Produced by AWAL)</item>
+    <item>D09어웨이크닝</item>
+    <item>D09저스트 키딘</item>
+    <item>D09하트 어택</item>
+    <item>D09V3</item>
+    <item>D09슈퍼 스타일린</item>
+    <item>D09크리스마스의 기억</item>
+    <item>D09라 그랑 블루</item>
+    <item>D09킬뎀!</item>
+    <item>D09퍼센트 엑스</item>
+    <item>D09배니쉬</item>
+    <item>D091도 없어</item>
+    <item>D09판매왕</item>
   </string-array>
 </resources>

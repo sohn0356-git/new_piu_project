@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_d25">
-    <item>d25윌 오 더 위스프</item>
-    <item>d25카프리스 오브 디제이 오타다</item>
-    <item>d25진공</item>
-    <item>d25클리너</item>
-    <item>d25이그니스 패터스(DM Ashura 믹스)</item>
-    <item>d25요그 소토스</item>
-    <item>d25아발란치</item>
-    <item>d251950</item>
-    <item>d25저스트 홀드 온 (To All Fighters)</item>
-    <item>d25아발란퀴엠</item>
-    <item>d25패러독스</item>
-    <item>d25퍼더</item>
-    <item>d25가고일 - FULL SONG -</item>
-    <item>d25체이스 미 - FULL SONG -</item>
-    <item>d25니알라토텝</item>
-    <item>d25스켑틱</item>
-    <item>d25유 앤 아이</item>
-    <item>d25제로아이즈</item>
-    <item>d25알레그로 콘 뿌오코 - FULL SONG -</item>
-    <item>d25하트 래빗 코스터</item>
-    <item>d25프렌드</item>
-    <item>d25캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
-    <item>d25파이어 누들 챌린지</item>
+  <string-array name="name_D25">
+    <item>D25윌 오 더 위스프</item>
+    <item>D25카프리스 오브 디제이 오타다</item>
+    <item>D25진공</item>
+    <item>D25클리너</item>
+    <item>D25이그니스 패터스(DM Ashura 믹스)</item>
+    <item>D25요그 소토스</item>
+    <item>D25아발란치</item>
+    <item>D251950</item>
+    <item>D25저스트 홀드 온 (To All Fighters)</item>
+    <item>D25아발란퀴엠</item>
+    <item>D25패러독스</item>
+    <item>D25퍼더</item>
+    <item>D25가고일 - FULL SONG -</item>
+    <item>D25체이스 미 - FULL SONG -</item>
+    <item>D25니알라토텝</item>
+    <item>D25스켑틱</item>
+    <item>D25유 앤 아이</item>
+    <item>D25제로아이즈</item>
+    <item>D25알레그로 콘 뿌오코 - FULL SONG -</item>
+    <item>D25하트 래빗 코스터</item>
+    <item>D25프렌드</item>
+    <item>D25캉-캉 ~Orpheus in The Party Mix~ - SHORT CUT -</item>
+    <item>D25파이어 누들 챌린지</item>
   </string-array>
 </resources>

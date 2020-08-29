@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_dp07">
-    <item>dp07셋 미 업</item>
-    <item>dp07팬텀</item>
-    <item>dp07위치 닥터 #1</item>
+  <string-array name="name_DP07">
+    <item>DP07셋 미 업</item>
+    <item>DP07팬텀</item>
+    <item>DP07위치 닥터 #1</item>
   </string-array>
 </resources>

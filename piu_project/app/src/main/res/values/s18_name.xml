@@ -1,137 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="name_s18">
-    <item>s18파이널 오디션</item>
-    <item>s18리피토먼트 리믹스</item>
-    <item>s18터키 행진곡</item>
-    <item>s18무혼</item>
-    <item>s18슬램</item>
-    <item>s18마리아</item>
-    <item>s18디 갱</item>
-    <item>s18비트 오브 더 워</item>
-    <item>s18펌프 미 아마데우스</item>
-    <item>s18엑스트림</item>
-    <item>s18월광</item>
-    <item>s18팬텀</item>
-    <item>s18키메라</item>
-    <item>s18파이널 오디션 에피소드 2-1</item>
-    <item>s18파이널 오디션 에피소드 2-2</item>
-    <item>s18비트 더 고스트</item>
-    <item>s18펌트리스 꽈트로</item>
-    <item>s18마이 드림즈</item>
-    <item>s18닥터 케이오에이</item>
-    <item>s18소서리스 엘리제</item>
-    <item>s18제네시스</item>
-    <item>s18반야 프로덕션 클래식 리믹스</item>
-    <item>s18반야 프로덕션 클래식 리믹스 2</item>
-    <item>s18파이널 오디션 3 - SHORT CUT -</item>
-    <item>s18무혼 2 - SHORT CUT -</item>
-    <item>s18인터퍼런스</item>
-    <item>s18오버블로우</item>
-    <item>s18가고일</item>
-    <item>s18헝가리 무곡 V</item>
-    <item>s18마왕</item>
-    <item>s18인터퍼런스 - FULL SONG -</item>
-    <item>s18테이크 아웃 - SHORT CUT -</item>
-    <item>s18오버블로우 - SHORT CUT -</item>
-    <item>s18조나단의 꿈</item>
-    <item>s18VVV</item>
-    <item>s18팝 더 트랙</item>
-    <item>s18엘리제</item>
-    <item>s18에프 에프 에프</item>
-    <item>s18엑시던트</item>
-    <item>s18디</item>
-    <item>s18유 갓 미 락킹</item>
-    <item>s18로그인</item>
-    <item>s18와라유도인?</item>
-    <item>s18팝 더 트랙 - SHORT CUT -</item>
-    <item>s18에프 에프 에프 - SHORT CUT -</item>
-    <item>s18유니크 - SHORT CUT -</item>
-    <item>s18모멘트 데이</item>
-    <item>s18네메시스</item>
-    <item>s18캇코이</item>
-    <item>s18실루엣 이펙트</item>
-    <item>s18차이니즈 레스토랑</item>
-    <item>s18유 갓 미 크레이지</item>
-    <item>s18B2</item>
-    <item>s18암피트리온</item>
-    <item>s18레드 스완</item>
-    <item>s18히아신스</item>
-    <item>s18설탕음모론</item>
-    <item>s18로봇 배틀</item>
-    <item>s18마타도르</item>
-    <item>s18밀키 웨이 갤럭시</item>
-    <item>s18라그나로크</item>
-    <item>s18스타더스트 오버드라이브</item>
-    <item>s18레미니센스</item>
-    <item>s18미토츠다이라</item>
-    <item>s18신앙 - 1st Desire -</item>
-    <item>s18소라 노 시라베</item>
-    <item>s18세츠나 트립</item>
-    <item>s18프라임</item>
-    <item>s18퀸 오브 더 레드</item>
-    <item>s18아이디얼라이즈드 로맨스</item>
-    <item>s18라이크 미</item>
-    <item>s18베토벤 인플루엔자</item>
-    <item>s18무브 댓 바디! - FULL SONG -</item>
-    <item>s18신앙 - 1st Desire - [FULL SONG]</item>
-    <item>s18요그 소토스 - SHORT CUT -</item>
-    <item>s18실루엣 이펙트 - SHORT CUT -</item>
-    <item>s18락 더 하우스 - SHORT CUT -</item>
-    <item>s18헬파이어</item>
-    <item>s18크로스 오버 feat. LyuU</item>
-    <item>s18갓 모드 feat. skizzo</item>
-    <item>s18퍼더</item>
-    <item>s18실버비트 feat. ChisaUezono</item>
-    <item>s18가장신자</item>
-    <item>s18오버블로우2</item>
-    <item>s18이스케이프</item>
-    <item>s18하트 어택</item>
-    <item>s18크로스타임</item>
-    <item>s18유령의 축제 2 (Sneak)</item>
-    <item>s18헬릭스</item>
-    <item>s18히페리온</item>
-    <item>s18타임 어택 &lt;블루&gt;</item>
-    <item>s18매지컬 베케이션</item>
-    <item>s18비주얼 드림 II (인 픽션)</item>
-    <item>s18킵 온!</item>
-    <item>s18라 그랑 블루</item>
-    <item>s18인피니티</item>
-    <item>s18고딕 레조넌스</item>
-    <item>s18베들램</item>
-    <item>s18클루</item>
-    <item>s18레드라인</item>
-    <item>s18킬뎀!</item>
-    <item>s18시즈 마이 데이</item>
-    <item>s18리더</item>
-    <item>s18슈브 니구라스 - SHORT CUT -</item>
-    <item>s18클럽 나이트</item>
-    <item>s18웨딩 크래셔</item>
-    <item>s18니알라토텝</item>
-    <item>s18스켑틱</item>
-    <item>s18어린왕자 (Prod. Godic)</item>
-    <item>s18날아올라</item>
-    <item>s18가시나</item>
-    <item>s18밤</item>
-    <item>s18붕붕 (Feat. 식케이) (Prod. GroovyRoom)</item>
-    <item>s18레이지 오브 파이어</item>
-    <item>s18니힐리즘 - 어나더 버전 -</item>
-    <item>s18알레그로 콘 뿌오코 - FULL SONG -</item>
-    <item>s18데사파레세르</item>
-    <item>s18메테오 사이언스 (GADGET mix)</item>
-    <item>s18웨딩 크래셔 - SHORT CUT -</item>
-    <item>s18파이어 오브 데스티니</item>
-    <item>s18포가튼 뱀파이어</item>
-    <item>s18포세이돈 - SHORT CUT -</item>
-    <item>s18판매왕</item>
-    <item>s18까르멘 버스</item>
-    <item>s18천년이 지나서</item>
-    <item>s18한 (一) - FULL SONG -</item>
-    <item>s18스위트로닉</item>
-    <item>s18스위트로닉 - SHORT CUT -</item>
-    <item>s18아드레날린 블래스터</item>
-    <item>s18듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
-    <item>s181도 없어 - FULL SONG -</item>
-    <item>s18밤 - FULL SONG -</item>
+  <string-array name="name_S18">
+    <item>S18파이널 오디션</item>
+    <item>S18리피토먼트 리믹스</item>
+    <item>S18터키 행진곡</item>
+    <item>S18무혼</item>
+    <item>S18슬램</item>
+    <item>S18마리아</item>
+    <item>S18디 갱</item>
+    <item>S18비트 오브 더 워</item>
+    <item>S18펌프 미 아마데우스</item>
+    <item>S18엑스트림</item>
+    <item>S18월광</item>
+    <item>S18팬텀</item>
+    <item>S18키메라</item>
+    <item>S18파이널 오디션 에피소드 2-1</item>
+    <item>S18파이널 오디션 에피소드 2-2</item>
+    <item>S18비트 더 고스트</item>
+    <item>S18펌트리스 꽈트로</item>
+    <item>S18마이 드림즈</item>
+    <item>S18닥터 케이오에이</item>
+    <item>S18소서리스 엘리제</item>
+    <item>S18제네시스</item>
+    <item>S18반야 프로덕션 클래식 리믹스</item>
+    <item>S18반야 프로덕션 클래식 리믹스 2</item>
+    <item>S18파이널 오디션 3 - SHORT CUT -</item>
+    <item>S18무혼 2 - SHORT CUT -</item>
+    <item>S18인터퍼런스</item>
+    <item>S18오버블로우</item>
+    <item>S18가고일</item>
+    <item>S18헝가리 무곡 V</item>
+    <item>S18마왕</item>
+    <item>S18인터퍼런스 - FULL SONG -</item>
+    <item>S18테이크 아웃 - SHORT CUT -</item>
+    <item>S18오버블로우 - SHORT CUT -</item>
+    <item>S18조나단의 꿈</item>
+    <item>S18VVV</item>
+    <item>S18팝 더 트랙</item>
+    <item>S18엘리제</item>
+    <item>S18에프 에프 에프</item>
+    <item>S18엑시던트</item>
+    <item>S18디</item>
+    <item>S18유 갓 미 락킹</item>
+    <item>S18로그인</item>
+    <item>S18와라유도인?</item>
+    <item>S18팝 더 트랙 - SHORT CUT -</item>
+    <item>S18에프 에프 에프 - SHORT CUT -</item>
+    <item>S18유니크 - SHORT CUT -</item>
+    <item>S18모멘트 데이</item>
+    <item>S18네메시스</item>
+    <item>S18캇코이</item>
+    <item>S18실루엣 이펙트</item>
+    <item>S18차이니즈 레스토랑</item>
+    <item>S18유 갓 미 크레이지</item>
+    <item>S18B2</item>
+    <item>S18암피트리온</item>
+    <item>S18레드 스완</item>
+    <item>S18히아신스</item>
+    <item>S18설탕음모론</item>
+    <item>S18로봇 배틀</item>
+    <item>S18마타도르</item>
+    <item>S18밀키 웨이 갤럭시</item>
+    <item>S18라그나로크</item>
+    <item>S18스타더스트 오버드라이브</item>
+    <item>S18레미니센스</item>
+    <item>S18미토츠다이라</item>
+    <item>S18신앙 - 1st Desire -</item>
+    <item>S18소라 노 시라베</item>
+    <item>S18세츠나 트립</item>
+    <item>S18프라임</item>
+    <item>S18퀸 오브 더 레드</item>
+    <item>S18아이디얼라이즈드 로맨스</item>
+    <item>S18라이크 미</item>
+    <item>S18베토벤 인플루엔자</item>
+    <item>S18무브 댓 바디! - FULL SONG -</item>
+    <item>S18신앙 - 1st Desire - [FULL SONG]</item>
+    <item>S18요그 소토스 - SHORT CUT -</item>
+    <item>S18실루엣 이펙트 - SHORT CUT -</item>
+    <item>S18락 더 하우스 - SHORT CUT -</item>
+    <item>S18헬파이어</item>
+    <item>S18크로스 오버 feat. LyuU</item>
+    <item>S18갓 모드 feat. skizzo</item>
+    <item>S18퍼더</item>
+    <item>S18실버비트 feat. ChisaUezono</item>
+    <item>S18가장신자</item>
+    <item>S18오버블로우2</item>
+    <item>S18이스케이프</item>
+    <item>S18하트 어택</item>
+    <item>S18크로스타임</item>
+    <item>S18유령의 축제 2 (Sneak)</item>
+    <item>S18헬릭스</item>
+    <item>S18히페리온</item>
+    <item>S18타임 어택 &lt;블루&gt;</item>
+    <item>S18매지컬 베케이션</item>
+    <item>S18비주얼 드림 II (인 픽션)</item>
+    <item>S18킵 온!</item>
+    <item>S18라 그랑 블루</item>
+    <item>S18인피니티</item>
+    <item>S18고딕 레조넌스</item>
+    <item>S18베들램</item>
+    <item>S18클루</item>
+    <item>S18레드라인</item>
+    <item>S18킬뎀!</item>
+    <item>S18시즈 마이 데이</item>
+    <item>S18리더</item>
+    <item>S18슈브 니구라스 - SHORT CUT -</item>
+    <item>S18클럽 나이트</item>
+    <item>S18웨딩 크래셔</item>
+    <item>S18니알라토텝</item>
+    <item>S18스켑틱</item>
+    <item>S18어린왕자 (Prod. Godic)</item>
+    <item>S18날아올라</item>
+    <item>S18가시나</item>
+    <item>S18밤</item>
+    <item>S18붕붕 (Feat. 식케이) (Prod. GroovyRoom)</item>
+    <item>S18레이지 오브 파이어</item>
+    <item>S18디멘트 ~에프터 레전드~</item>
+    <item>S18니힐리즘 - 어나더 버전 -</item>
+    <item>S18알레그로 콘 뿌오코 - FULL SONG -</item>
+    <item>S18데사파레세르</item>
+    <item>S18메테오 사이언스 (GADGET mix)</item>
+    <item>S18웨딩 크래셔 - SHORT CUT -</item>
+    <item>S18파이어 오브 데스티니</item>
+    <item>S18포가튼 뱀파이어</item>
+    <item>S18포세이돈 - SHORT CUT -</item>
+    <item>S18판매왕</item>
+    <item>S18까르멘 버스</item>
+    <item>S18천년이 지나서</item>
+    <item>S18한 (一) - FULL SONG -</item>
+    <item>S18스위트로닉</item>
+    <item>S18스위트로닉 - SHORT CUT -</item>
+    <item>S18아드레날린 블래스터</item>
+    <item>S18듀얼 레이싱 &lt;레드 vs 블루&gt;</item>
+    <item>S181도 없어 - FULL SONG -</item>
+    <item>S18밤 - FULL SONG -</item>
+    <item>S18클레마티스 랩소디아</item>
+    <item>S18스타드림 (feat. Romelon)</item>
+    <item>S18조깅</item>
   </string-array>
 </resources>
