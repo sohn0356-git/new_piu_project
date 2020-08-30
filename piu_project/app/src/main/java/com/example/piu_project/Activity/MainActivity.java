@@ -42,6 +42,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Objects;
 
 import static com.example.piu_project.Util.showToast;
@@ -78,7 +79,17 @@ public class MainActivity extends BasicActivity {
     private ArrayList<ListItem> itemList_coop = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_null = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
-    private ToggleButton tb_clicked;
+    public static LinkedList<String> lv_single_prev = new LinkedList<>();
+    public static LinkedList<String> lv_double_prev = new LinkedList<>();
+    public static LinkedList<String> lv_single_pf_prev = new LinkedList<>();
+    public static LinkedList<String> lv_double_pf_prev = new LinkedList<>();
+    public static LinkedList<String> lv_coop_prev = new LinkedList<>();
+    public static LinkedList<String> lv_single_next = new LinkedList<>();
+    public static LinkedList<String> lv_double_next = new LinkedList<>();
+    public static LinkedList<String> lv_single_pf_next = new LinkedList<>();
+    public static LinkedList<String> lv_double_pf_next = new LinkedList<>();
+    public static LinkedList<String> lv_coop_next = new LinkedList<>();
+
 //    private Fragment curFragment;
 
     @Override
@@ -224,6 +235,7 @@ public class MainActivity extends BasicActivity {
 //        for(int i=0;i<info.length;i++){
 //            Log.d(TAG,info[i]);
 //        }
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userData = new HashMap<>();
@@ -266,22 +278,32 @@ public class MainActivity extends BasicActivity {
         String[] level_string = getResources().getStringArray(R.array.level_string_s);
         for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_s.addItem(level_string[i]);
+            lv_single_prev.addFirst(level_string[i]);
+            lv_single_next.add(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_d);
         for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_d.addItem(level_string[i]);
+            lv_double_prev.addFirst(level_string[i]);
+            lv_double_next.add(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_sp);
         for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_sp.addItem(level_string[i]);
+            lv_single_pf_prev.addFirst(level_string[i]);
+            lv_single_pf_next.add(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_dp);
         for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_dp.addItem(level_string[i]);
+            lv_double_pf_prev.addFirst(level_string[i]);
+            lv_double_pf_next.add(level_string[i]);
         }
         level_string = getResources().getStringArray(R.array.level_string_coop);
         for (int i = 0; i < level_string.length; i++) {
             listViewAdapter_coop.addItem(level_string[i]);
+            lv_coop_prev.addFirst(level_string[i]);
+            lv_coop_next.add(level_string[i]);
         }
         String[] category_string = getResources().getStringArray(R.array.category_string);
         for (int i = 0; i < category_string.length; i++) {
@@ -292,7 +314,7 @@ public class MainActivity extends BasicActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ToggleButton tb = (ToggleButton) ((LinearLayout) view).getChildAt(0);
-                tb_clicked = tb;
+
                 if (tb.isChecked()) {
                     mode = "";
                 } else {
@@ -408,14 +430,12 @@ public class MainActivity extends BasicActivity {
                     page = 1;
                     break;
                 case R.id.bt_category:
-                    tb_clicked.setChecked(false);
                     listview2.setAdapter(listViewAdapter_null);
                     myStartActivity(CategoryInfoActivity.class);
 //                    settingBackgroundLayout2.setVisibility(View.VISIBLE);
 //                    page = 2;
                     break;
                 case R.id.bt_myPage:
-                    tb_clicked.setChecked(false);
                     listViewAdapter1.notifyDataSetChanged();
                     listview2.setAdapter(listViewAdapter_null);
                     myStartActivity(MyPageActivity.class);
@@ -431,7 +451,6 @@ public class MainActivity extends BasicActivity {
                             if(mode.equals("")||level.equals("")){
                                 showToast(MainActivity.this, "정보를 다 입력해주세요!");
                             } else {
-                                tb_clicked.setChecked(false);
                                 listview2.setAdapter(listViewAdapter_null);
                                 settingBackgroundLayout1.setVisibility(View.GONE);
                                 myStartActivity(LevelInfoActivity.class);
@@ -461,6 +480,7 @@ public class MainActivity extends BasicActivity {
             }
         }
     };
+
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
         if(mode.equals("Single")){

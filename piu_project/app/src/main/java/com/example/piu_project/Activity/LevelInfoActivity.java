@@ -89,9 +89,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 import static com.example.piu_project.Activity.MainActivity.allData;
 import static com.example.piu_project.Activity.MainActivity.userData;
+import static com.example.piu_project.Activity.MainActivity.lv_single_prev;
+import static com.example.piu_project.Activity.MainActivity.lv_double_prev;
+import static com.example.piu_project.Activity.MainActivity.lv_single_pf_prev;
+import static com.example.piu_project.Activity.MainActivity.lv_double_pf_prev;
+import static com.example.piu_project.Activity.MainActivity.lv_coop_prev;
+import static com.example.piu_project.Activity.MainActivity.lv_single_next;
+import static com.example.piu_project.Activity.MainActivity.lv_double_next;
+import static com.example.piu_project.Activity.MainActivity.lv_single_pf_next;
+import static com.example.piu_project.Activity.MainActivity.lv_double_pf_next;
+import static com.example.piu_project.Activity.MainActivity.lv_coop_next;
+
 import static com.example.piu_project.Util.showToast;
 
 public class LevelInfoActivity extends BasicActivity implements TextWatcher {
@@ -178,7 +191,10 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
     private static final int WRITE_REQUEST_CODE = 101;
     public String[] song_number;
     public String[] song_name;
-    private HashMap<String, String> userLevelList=new HashMap<>();;
+    private String prev_level;
+    private String next_level;
+    private HashMap<String, String> userLevelList=new HashMap<>();
+    private ListIterator<String> iterator_prev,iterator_next;
     private String[] rank = {"SSS", "SS", "S", "A (Break on)", "A (Break off)", "B (Break on)", "B (Break off)", "C (Break on)", "C (Break off)", "D(Break on)", "D (Break off)", "F or Game Over", "No Play"};
 
     @Override
@@ -192,25 +208,67 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         Intent intent = getIntent();
         level = intent.getStringExtra("setLevel");
         mode = intent.getStringExtra("setMode");
-        setToolbarTitle("LEVEL_" + mode + "_" + level);
+
 
 //        category = intent.getStringExtra("setCategory");
 
         if (mode.equals("S")) {
             song_number = getResources().getStringArray(S_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(S_song_name[Integer.parseInt(level) - 1]);
+
+            iterator_prev=lv_single_prev.listIterator();
+            iterator_next=lv_single_next.listIterator();
+            setToolbarTitle("Single Lv." + level);
+
         } else if (mode.equals("D")) {
+            iterator_prev=lv_double_prev.listIterator();
+            iterator_next=lv_double_next.listIterator();
             song_number = getResources().getStringArray(D_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(D_song_name[Integer.parseInt(level) - 1]);
+            setToolbarTitle("Double Lv." + level);
+
         } else if (mode.equals("SP")) {
+            iterator_prev=lv_single_pf_prev.listIterator();
+            iterator_next=lv_single_pf_next.listIterator();
             song_number = getResources().getStringArray(SP_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(SP_song_name[Integer.parseInt(level) - 1]);
+            setToolbarTitle("Single Perf. Lv." + level);
+
         } else if (mode.equals("DP")) {
+            iterator_prev=lv_double_pf_prev.listIterator();
+            iterator_next=lv_double_pf_next.listIterator();
             song_number = getResources().getStringArray(DP_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(DP_song_name[Integer.parseInt(level) - 1]);
+            setToolbarTitle("Double Perf. Lv." + level);
+
         } else {
+            iterator_prev=lv_coop_prev.listIterator();
+            iterator_next=lv_coop_next.listIterator();
             song_number = getResources().getStringArray(COOP_song_id[Integer.parseInt(level) - 1]);
             song_name = getResources().getStringArray(COOP_song_name[Integer.parseInt(level) - 1]);
+            setToolbarTitle("Co-op " + level);
+        }
+
+        while(iterator_prev.hasNext()){
+            if(iterator_prev.next().equals(level)){
+                break;
+            }
+        }
+        if(iterator_prev.hasNext()){
+            prev_level = iterator_prev.next();
+        }else{
+            prev_level="-1";
+        }
+
+        while(iterator_next.hasNext()){
+            if(iterator_next.next().equals(level)){
+                break;
+            }
+        }
+        if(iterator_next.hasNext()){
+            next_level = iterator_next.next();
+        }else{
+            next_level="-1";
         }
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_position = (TextView)findViewById(R.id.tv_position);
@@ -235,12 +293,12 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         fl_cancel = (FrameLayout)findViewById(R.id.fl_cancel);
         fl_cancel.setOnClickListener(onClickListener);
         findViewById(R.id.bt_delete).setOnClickListener(onClickListener);
-        if (level.equals("01")) {
+        if (prev_level.equals("-1")) {
             iv_prev.setVisibility(View.GONE);
         }
         iv_next = (ImageView) findViewById(R.id.iv_next);
         iv_next.setOnClickListener(onClickListener);
-        if (level.equals("28")) {
+        if (next_level.equals("-1")) {
             iv_next.setVisibility(View.GONE);
         }
         iv_capture = (ImageView) (findViewById(R.id.iv_capture));
@@ -474,17 +532,19 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                    settingBackgroundLayout.setVisibility(View.GONE);
                     break;
                 case R.id.iv_prev:
-                    newLevel = String.valueOf(Integer.parseInt(level)-1);
-                    if(newLevel.length()==1){
-                        newLevel = "0"+newLevel;
+                    if(!prev_level.equals("-1")) {
+                        newLevel = prev_level;
+                    }else{
+                        newLevel = level;
                     }
                     myStartActivity(LevelInfoActivity.class);
                     finish();
                     break;
                 case R.id.iv_next:
-                    newLevel = String.valueOf(Integer.parseInt(level)+1);
-                    if(newLevel.length()==1){
-                        newLevel = "0"+newLevel;
+                    if(!next_level.equals("-1")) {
+                        newLevel = next_level;
+                    }else{
+                        newLevel = level;
                     }
                     myStartActivity(LevelInfoActivity.class);
                     finish();

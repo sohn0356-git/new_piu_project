@@ -175,7 +175,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                         level_i = parseInt(selectedLevel.substring(2));
                     }
                 }else if(selectedLevel.charAt(0)=='C'){
-                    level_i = parseInt(selectedLevel.substring(4));
+                    level_i = parseInt(selectedLevel.substring(5));
                 }
                 if (selectedLevel.charAt(0) == 'S') {
                     if(selectedLevel.charAt(1) != 'P') {
@@ -232,7 +232,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                             level_i = parseInt(selectedLevel.substring(2));
                         }
                     }else if(selectedLevel.charAt(0)=='C'){
-                        level_i = parseInt(selectedLevel.substring(4));
+                        level_i = parseInt(selectedLevel.substring(5));
                     }
                     if (selectedLevel.charAt(0) == 'S'){
                         if(selectedLevel.charAt(1)!='P') {
@@ -375,7 +375,7 @@ public class ShowInfoAdapter extends RecyclerView.Adapter<ShowInfoAdapter.Galler
                 level_i = parseInt(level.substring(2));
             }
         }else{
-            level_i = parseInt(level.substring(4));
+            level_i = parseInt(level.substring(5));
         }
         if (level.charAt(0) == 'S'){
             if(level.charAt(1)!='P') {
