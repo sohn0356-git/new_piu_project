@@ -386,7 +386,12 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             et2.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Good"));
             et3.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Bad"));
             et4.setText(((HashMap<String,String>)userData.get(mode+level+title)).get("n_Miss"));
-            String path = ((HashMap<String,String>)userData.get(mode+level+title)).get("photoUrl");
+            String path;
+            if(((HashMap<String,String>)userData.get(mode+level+title)).get("photoUrl")==null){
+                path = "";
+            }else{
+                path = ((HashMap<String,String>)userData.get(mode+level+title)).get("photoUrl");
+            }
             if (path.equals("")) {
                 Glide.with(activity).load(R.drawable.ic_up00).centerInside().override(500).into(iv_profile);
             } else {

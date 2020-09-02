@@ -52,17 +52,14 @@ public class MainActivity extends BasicActivity {
     private RelativeLayout settingBackgroundLayout1;
     private RelativeLayout settingBackgroundLayout2;
     private RelativeLayout loaderLayout;
-    private int page = 1;
     private String level="";
     private String mode="";
-    private String category="";
     private boolean cloudDown=false;
     private boolean databaseDown=false;
     public static HashMap<String,Object> allData = new HashMap<>();
     public static HashMap<String,Object> userData =  new HashMap<>();
     private ListView listview1;
     private ListView listview2;
-    private ListView listview3;
     private ListViewAdapter listViewAdapter1;
     private ListViewAdapter listViewAdapter_s;
     private ListViewAdapter listViewAdapter_d;
@@ -70,7 +67,6 @@ public class MainActivity extends BasicActivity {
     private ListViewAdapter listViewAdapter_dp;
     private ListViewAdapter listViewAdapter_coop;
     private ListViewAdapter listViewAdapter_null;
-    private ListViewAdapter listViewAdapter3;
     private ArrayList<ListItem> itemList1 = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_s = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_d = new ArrayList<ListItem>() ;
@@ -78,7 +74,6 @@ public class MainActivity extends BasicActivity {
     private ArrayList<ListItem> itemList_dp = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_coop = new ArrayList<ListItem>() ;
     private ArrayList<ListItem> itemList_null = new ArrayList<ListItem>() ;
-    private ArrayList<ListItem> itemList3 = new ArrayList<ListItem>() ;
     public static LinkedList<String> lv_single_prev = new LinkedList<>();
     public static LinkedList<String> lv_double_prev = new LinkedList<>();
     public static LinkedList<String> lv_single_pf_prev = new LinkedList<>();
@@ -208,14 +203,11 @@ public class MainActivity extends BasicActivity {
         listViewAdapter_dp = new ListViewAdapter(itemList_dp) ;
         listViewAdapter_null = new ListViewAdapter(itemList_null);
         listViewAdapter_coop = new ListViewAdapter(itemList_coop) ;
-        listViewAdapter3 = new ListViewAdapter(itemList3) ;
         // 리스트뷰 참조 및 Adapter달기
         listview1 = (ListView) findViewById(R.id.listview1);
         listview2 = (ListView) findViewById(R.id.listview2);
-        listview3 = (ListView) findViewById(R.id.listview3);
         listSetup();
         listview1.setAdapter(listViewAdapter1);
-        listview3.setAdapter(listViewAdapter3);
         settingBackgroundLayout1 =findViewById(R.id.settingBackgroundLayout1);
         settingBackgroundLayout1.setOnClickListener(onClickListener);
         settingBackgroundLayout2 =findViewById(R.id.settingBackgroundLayout2);
@@ -225,7 +217,6 @@ public class MainActivity extends BasicActivity {
         findViewById(R.id.bt_myPage).setOnClickListener(onClickListener);
 
         findViewById(R.id.bt_set_level).setOnClickListener(onClickListener);
-        findViewById(R.id.bt_set_category).setOnClickListener(onClickListener);
 
 
     }
@@ -305,16 +296,12 @@ public class MainActivity extends BasicActivity {
             lv_coop_prev.addFirst(level_string[i]);
             lv_coop_next.add(level_string[i]);
         }
-        String[] category_string = getResources().getStringArray(R.array.category_string);
-        for (int i = 0; i < category_string.length; i++) {
-            listViewAdapter3.addItem(category_string[i]);
-        }
 
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ToggleButton tb = (ToggleButton) ((LinearLayout) view).getChildAt(0);
-
+                level="";
                 if (tb.isChecked()) {
                     mode = "";
                 } else {
@@ -384,50 +371,13 @@ public class MainActivity extends BasicActivity {
                 }
             }
         });
-        listview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToggleButton tb = (ToggleButton) ((LinearLayout) view).getChildAt(0);
-                if (tb.isChecked()) {
-                    category = "";
-                    tb.setChecked(false);
-                } else {
-                    for (int i = 0; i < 3; i++) {
-                        ((ToggleButton) ((LinearLayout) listview3.getChildAt(i)).getChildAt(0)).setChecked(false);
-                    }
-                    category = tb.getText().toString();
-                    tb.setChecked(true);
-                }
-            }
-        });
-        listview3.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                for (int i = 0; i < visibleItemCount; i++) {
-                    if (firstVisibleItem + i < totalItemCount) {
-                        ToggleButton tb = ((ToggleButton) ((LinearLayout) view.getChildAt(i)).getChildAt(0));
-                        if (tb.getText().toString().equals(category)) {
-                            tb.setChecked(true);
-                        } else {
-                            tb.setChecked(false);
-                        }
-                    }
-                }
-            }
-        });
     }
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.bt_level:
-
                     settingBackgroundLayout1.setVisibility(View.VISIBLE);
-                    page = 1;
                     break;
                 case R.id.bt_category:
                     listview2.setAdapter(listViewAdapter_null);
@@ -459,24 +409,6 @@ public class MainActivity extends BasicActivity {
 
                         }
                             break;
-
-                case R.id.bt_set_category:
-
-//                            if(category.equals("")){
-//                                showToast(MainActivity.this, "정보를 다 입력해주세요!");
-//                            } else {
-//                                settingBackgroundLayout2.setVisibility(View.GONE);
-//
-//                                category="";
-//                            }
-//                            break;
-//                    LevelInfoFragment levelInfoFragment = new LevelInfoFragment();
-//                    levelInfoFragment.SetLevel(setLevel);
-//                    curFragment = levelInfoFragment;
-//                    getSupportFragmentManager().beginTransaction()
-//                            .replace(R.id.container, levelInfoFragment)
-//                            .commit();
-                    break;
             }
         }
     };
@@ -494,10 +426,9 @@ public class MainActivity extends BasicActivity {
         else if(mode.equals("DoublePerformance")){
             mode = "DP";
         }
-        else{
+        else if(mode.equals("Coop")){
             mode = "Coop";
         }
-//        intent.putExtra("setCategory",category);
         intent.putExtra("setLevel", level);
         intent.putExtra("setMode", mode);
         startActivityForResult(intent, 1);

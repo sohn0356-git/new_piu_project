@@ -512,6 +512,8 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                     break;
                 case R.id.bt_check:
                     loaderLayout2.setVisibility(View.VISIBLE);
+                    loaderLayout2.bringToFront();
+                    settingBackgroundLayout.setVisibility(View.GONE);
                     title= tv_title.getText().toString();
                     if(!profilePath.equals("")) {
                         String save_folder = getString(R.string.app_name);
@@ -758,7 +760,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                         profilePath="";
                         spinner_level.setSelection(0);
                         showToast(LevelInfoActivity.this, "정보 등록을 성공하였습니다.");
-                        settingBackgroundLayout.setVisibility(View.GONE);
+                        loaderLayout2.setVisibility(View.GONE);
                         userLevelListUpdate(false);
 
                     }
@@ -950,12 +952,12 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
 //                    }
 //                }
 
-                File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(),"/PIU_CAPTURE");
-                if(!dir.exists()){
-                    if(!dir.mkdirs()) {
-                        showToast(LevelInfoActivity.this, "폴더생성 실패");
-                    }
-                }
+//                File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(),"/PIU_CAPTURE");
+//                if(!dir.exists()){
+//                    if(!dir.mkdirs()) {
+//                        showToast(LevelInfoActivity.this, "폴더생성 실패");
+//                    }
+//                }
 
                 long now = System.currentTimeMillis();
                 // 현재시간을 date 변수에 저장한다.
@@ -965,26 +967,35 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 // nowDate 변수에 값을 저장한다.
                 String formatDate = sdfNow.format(date);
 
-                String string_path = dir.getAbsolutePath() + "/" + mode + level + formatDate + ".png";
+//                String string_path = dir.getAbsolutePath() + "/" + mode + level + formatDate + ".png";
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 
                 OutputStream fOut = null;
+                OutputStream fOut2 = null;
+//                File file2 = new File(string_path);
                 File file = new File(path, mode + level + formatDate + ".png"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
-                try{
-                    fOut = new FileOutputStream(file);
-                    Bitmap pictureBitmap = bigBitmap;// obtaining the Bitmap
-                    pictureBitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
-                    fOut.flush(); // Not really required
-                    fOut.close(); // do not forget to close the stream
-                    MediaStore.Images.Media.insertImage(getContentResolver(),bigBitmap,mode + level + formatDate + ".png",null);
-                    showToast(LevelInfoActivity.this, "capture success");
-                }catch (FileNotFoundException exception) {
-                    showToast(LevelInfoActivity.this, "die1.");
-                    Log.e("FileNotFoundException", exception.getMessage());
-                } catch (IOException exception) {
-                    Log.e("IOException", exception.getMessage());
-                    showToast(LevelInfoActivity.this, "die2.");
-                }
+                MediaStore.Images.Media.insertImage(getContentResolver(),bigBitmap,mode + level + formatDate + ".png",null);
+                showToast(LevelInfoActivity.this, "capture success");
+//                try{
+//                    fOut = new FileOutputStream(file);
+//                    fOut2 = new FileOutputStream(file2);
+//                    Bitmap pictureBitmap = bigBitmap;// obtaining the Bitmap
+//                    Bitmap pictureBitmap2 = bigBitmap;// obtaining the Bitmap
+//                    pictureBitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+//                    pictureBitmap2.compress(Bitmap.CompressFormat.JPEG, 85, fOut2); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+//                    fOut.flush(); // Not really required
+//                    fOut.close();
+//                    fOut2.flush(); // Not really required
+//                    fOut2.close();// do not forget to close the stream
+//                    MediaStore.Images.Media.insertImage(getContentResolver(),bigBitmap,mode + level + formatDate + ".png",null);
+//                    showToast(LevelInfoActivity.this, "capture success");
+//                }catch (FileNotFoundException exception) {
+//                    showToast(LevelInfoActivity.this, "die1.");
+//                    Log.e("FileNotFoundException", exception.getMessage());
+//                } catch (IOException exception) {
+//                    Log.e("IOException", exception.getMessage());
+//                    showToast(LevelInfoActivity.this, "die2.");
+//                }
 
 
 

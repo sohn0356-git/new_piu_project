@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -39,11 +41,14 @@ public class CategoryInfoActivity extends BasicActivity {
     private String category="All";
     private String version = "All";
     public String[] song_number;
+    private FrameLayout fl_cancel_ct;
     private Spinner spinner_version;
     private Spinner spinner_category;
+    private Spinner spinner_search;
     private String[] categoryList = new String[]{"All","K-pop", "Original", "World music", "J-music", "Xross", "Shortcut", "Remix", "Full song"};
     private String[] versionList = new String[]{"All","1st_to_perf", "Extra_to_prex3", "Exceed_to_zero", "Nx_to_nxa", "Fiesta_to_fiesta2", "Prime", "Prime2", "XX"};
     private boolean topScrolled;
+    private RelativeLayout searchingBackgroundLayout_ct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +60,25 @@ public class CategoryInfoActivity extends BasicActivity {
         song_number = getResources().getStringArray(R.array.info_all);
         final int numberOfColumns = 1;
         firebaseFirestore = FirebaseFirestore.getInstance();
+        searchingBackgroundLayout_ct = (RelativeLayout)findViewById(R.id.searchingBackgroundLayout_ct);
+        searchingBackgroundLayout_ct.setOnClickListener(onClickListener);
+        fl_cancel_ct = (FrameLayout)findViewById(R.id.fl_cancel_ct);
+        fl_cancel_ct.setOnClickListener(onClickListener);
+        findViewById(R.id.iv_search_ct).setOnClickListener(onClickListener);
         categoryInfo = new ArrayList<>();
         categoryInfoAdapter = new CategoryInfoAdapter(this, categoryInfo,getResources());
         spinner_category = (Spinner)findViewById(R.id.spinner_category);
         spinner_version = (Spinner)findViewById(R.id.spinner_version);
+        spinner_search = (Spinner)findViewById(R.id.spinner_search);
         int[] si_category = new int[]{R.drawable.ct_al00, R.drawable.ct_kp00, R.drawable.ct_or00, R.drawable.ct_wm00, R.drawable.ct_jm00, R.drawable.ct_xr00, R.drawable.ct_sc00, R.drawable.ct_re00, R.drawable.ct_fs00};
 //        int[] si_category = new int[]{R.drawable.ct_nt00, R.drawable.ct_kp00};
         int[] si_version = new int[]{R.drawable.ic_sz00, R.drawable.first_to_perf, R.drawable.extra_to_prex3, R.drawable.exceed_to_zero, R.drawable.nx_to_nxa, R.drawable.fiesta_to_fiesta2,
                                 R.drawable.prime, R.drawable.prime2, R.drawable.xx};
+        int[] si_search = new int[]{R.drawable.ct_title,R.drawable.ct_artist};
         CustomSpinnerAdapter csa_category = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_category);
         spinner_category.setAdapter(csa_category);
         // 스피너에서 아이템 선택시 호출하도록 합니다.
-
-
         spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 category = categoryList[spinner_category.getSelectedItemPosition()];
@@ -82,7 +91,6 @@ public class CategoryInfoActivity extends BasicActivity {
         });
         CustomSpinnerAdapter csa_version = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_version);
         spinner_version.setAdapter(csa_version);
-
         // 스피너에서 아이템 선택시 호출하도록 합니다.
         spinner_version.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -90,6 +98,20 @@ public class CategoryInfoActivity extends BasicActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 version = versionList[spinner_version.getSelectedItemPosition()];
                 postsUpdate(false);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        CustomSpinnerAdapter csa_search = new CustomSpinnerAdapter(CategoryInfoActivity.this, si_search);
+        spinner_search.setAdapter(csa_search);
+        // 스피너에서 아이템 선택시 호출하도록 합니다.
+        spinner_search.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -141,6 +163,30 @@ public class CategoryInfoActivity extends BasicActivity {
             }
         });
         postsUpdate(false);
+    }
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.fl_cancel_ct:
+                    searchingBackgroundLayout_ct.setVisibility(View.GONE);
+                    break;
+                case R.id.iv_search_ct:
+                    searchingBackgroundLayout_ct.setVisibility(View.VISIBLE);
+                    searchingBackgroundLayout_ct.bringToFront();
+                    break;
+
+            }
+        }
+    };
+    @Override
+    public void onBackPressed() {
+        if (searchingBackgroundLayout_ct.getVisibility() == View.VISIBLE) {
+            searchingBackgroundLayout_ct.setVisibility(View.GONE);
+        } else {
+            super.onBackPressed();
+            finish();
+        }
     }
 
     @Override
