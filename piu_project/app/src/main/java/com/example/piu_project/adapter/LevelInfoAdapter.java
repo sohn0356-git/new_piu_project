@@ -85,7 +85,6 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private String mode;
     private String title;
     private String pos;
-    private int target_rank;
     private ImageView iv_profile;
     private RelativeLayout loaderLayout;
     private FirebaseUser user;
@@ -93,6 +92,8 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
     private Spinner spinner_level;
     private RelativeLayout settingBackgroundLayout;
     private ImageView[] iv_rank = new ImageView[13];
+    private ImageView[] target_ranks = new ImageView[13];
+    private TextView target_level;
     private TextView original_level;
     private Resources resources;
     private TypedArray img_rank;
@@ -145,11 +146,13 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 title = ((TextView) (v.findViewById(R.id.original_name))).getText().toString();
+
                 pos = ((TextView) (v.findViewById(R.id.original_position))).getText().toString();
                 ((TextView)(activity).findViewById(R.id.tv_position)).setText(pos);
-                original_level = ((TextView) (v.findViewById(R.id.original_level)));
-                String user_level = original_level.getText().toString();
+                target_level = ((TextView) (v.findViewById(R.id.original_level)));
+                String user_level = target_level.getText().toString();
                 String s_id = ((TextView) (v.findViewById(R.id.original_id))).getText().toString();
                 String resName = "@drawable/a_"+String.valueOf(s_id);
                 String packName = activity.getPackageName(); // 패키지명
@@ -159,19 +162,19 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 //                    spinner_level = (Spinner)((activity).findViewById(R.id.spinner_level));
                     ((TextView)((activity).findViewById(R.id.tv_titleInfo))).setText(title);
 //                    spinner_level.setSelection(0);
-                    iv_rank[0] = (ImageView)v.findViewById(R.id.iv_rank_ts);
-                    iv_rank[1] = (ImageView)v.findViewById(R.id.iv_rank_ds);
-                    iv_rank[2] = (ImageView)v.findViewById(R.id.iv_rank_ss);
-                    iv_rank[3] = (ImageView)v.findViewById(R.id.iv_rank_an);
-                    iv_rank[4] = (ImageView)v.findViewById(R.id.iv_rank_af);
-                    iv_rank[5] = (ImageView)v.findViewById(R.id.iv_rank_bn);
-                    iv_rank[6] = (ImageView)v.findViewById(R.id.iv_rank_bf);
-                    iv_rank[7] = (ImageView)v.findViewById(R.id.iv_rank_cn);
-                    iv_rank[8] = (ImageView)v.findViewById(R.id.iv_rank_cf);
-                    iv_rank[9] = (ImageView)v.findViewById(R.id.iv_rank_dn);
-                    iv_rank[10] = (ImageView)v.findViewById(R.id.iv_rank_df);
-                    iv_rank[11] = (ImageView)v.findViewById(R.id.iv_rank_fn);
-                    iv_rank[12] = (ImageView)v.findViewById(R.id.iv_rank_ff);
+                    target_ranks[0] = (ImageView)v.findViewById(R.id.iv_rank_ts);
+                    target_ranks[1] = (ImageView)v.findViewById(R.id.iv_rank_ds);
+                    target_ranks[2] = (ImageView)v.findViewById(R.id.iv_rank_ss);
+                    target_ranks[3] = (ImageView)v.findViewById(R.id.iv_rank_an);
+                    target_ranks[4] = (ImageView)v.findViewById(R.id.iv_rank_af);
+                    target_ranks[5] = (ImageView)v.findViewById(R.id.iv_rank_bn);
+                    target_ranks[6] = (ImageView)v.findViewById(R.id.iv_rank_bf);
+                    target_ranks[7] = (ImageView)v.findViewById(R.id.iv_rank_cn);
+                    target_ranks[8] = (ImageView)v.findViewById(R.id.iv_rank_cf);
+                    target_ranks[9] = (ImageView)v.findViewById(R.id.iv_rank_dn);
+                    target_ranks[10] = (ImageView)v.findViewById(R.id.iv_rank_df);
+                    target_ranks[11] = (ImageView)v.findViewById(R.id.iv_rank_fn);
+                    target_ranks[12] = (ImageView)v.findViewById(R.id.iv_rank_ff);
                     et1 = (EditText) (activity).findViewById(R.id.editText1);
                     et2 = (EditText) (activity).findViewById(R.id.editText2);
                     et3 = (EditText) (activity).findViewById(R.id.editText3);
@@ -234,6 +237,26 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
 //            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
 //            iv_rank.setVisibility(View.VISIBLE);
 //        }
+        Log.d(TAG, title+" set Rank");
+        target_level.setText(String.valueOf(selected_idx));
+        for (int i = 0; i < 13; i++) {
+            if (selected_idx == i) {
+                target_ranks[i].setVisibility(View.VISIBLE);
+            } else {
+                target_ranks[i].setVisibility(View.GONE);
+            }
+
+        }
+    }
+    public void setRanked(int selected_idx) {
+//        if(selected_idx==-1){
+////            iv_rank.setVisibility(View.GONE);
+//        }
+//        else{
+//            Glide.with(activity).load(img_rank.getResourceId(selected_idx,0)).centerCrop().override(500).into(iv_rank);
+//            iv_rank.setVisibility(View.VISIBLE);
+//        }
+        Log.d(TAG, title+" set Rank");
         original_level.setText(String.valueOf(selected_idx));
         for (int i = 0; i < 13; i++) {
             if (selected_idx == i) {
@@ -476,6 +499,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             cardView.findViewById(R.id.linearLayout).setVisibility(View.VISIBLE);
             TextView nameTextView = cardView.findViewById(R.id.nameTextView);
             TextView original_name = cardView.findViewById(R.id.original_name);
+            Log.d(TAG, original_name.getText().toString());
             TextView original_pos = cardView.findViewById(R.id.original_position);
             TextView original_id = cardView.findViewById(R.id.original_id);
             original_level = cardView.findViewById(R.id.original_level);
@@ -495,7 +519,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
             ImageView photoImageVIew = cardView.findViewById(R.id.photoImageVIew);
 
             int t = songInfo.getUserLevel();
-            setRank(t);
+            setRanked(t);
 
             int song_id = mFDataset.get(position).getSong_id();
             String resName = "@drawable/a_"+String.valueOf(song_id);

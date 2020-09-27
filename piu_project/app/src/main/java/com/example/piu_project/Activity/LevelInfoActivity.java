@@ -494,6 +494,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
                 case R.id.bt_delete:
                     title= tv_title.getText().toString();
                     infoDelete(title);
+                    Log.d(TAG, title+" delete Rank");
                     levelInfoAdapter.setRank(-1);
                     levelInfo.get(Integer.parseInt(tv_position.getText().toString())).setUserLevel("");
                     if(((HashMap<String,String>)userData.get(mode+level+title))!=null) {
@@ -748,6 +749,7 @@ public class LevelInfoActivity extends BasicActivity implements TextWatcher {
         userData.put(mode+level+title,hashMap_tmp);
         userUpdate = true;
         userLevelList.clear();
+        Log.d(TAG, title+" update Rank");
         levelInfoAdapter.setRank(selected_idx);
         Log.d(TAG, "clear");
         loaderLayout2.setVisibility(View.GONE);
