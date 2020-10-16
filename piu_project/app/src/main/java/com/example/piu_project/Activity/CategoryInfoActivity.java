@@ -203,6 +203,9 @@ public class CategoryInfoActivity extends BasicActivity {
             String artist_tmp = (String) target.get("artist");
             String bpm_tmp = (String) target.get("bpm");
             String title_tmp = (String) target.get("title");
+            if(title_tmp.equals("헤드리스 치킨")){
+                updating=true;
+            }
             String category_tmp = (String) target.get("category");
             String version_tmp = (String) target.get("version");
             String level_tmp = (String) (target.get("level"));
