@@ -295,7 +295,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-
+                int unFiltered_cnt = 0;
                 String charString = constraint.toString();
                 String option = charString.substring(0, 3);
                 int left = Integer.parseInt(option.substring(2,3));
@@ -316,6 +316,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         if(songInfo.getTitle().equals("blank")){
                             continue;
                         }
+                        unFiltered_cnt++;
                         if (songInfo.getTitle().toLowerCase().contains(charString.toLowerCase())) {
                             //sss ss s A A' B B' C C' D D' F F'
                             //  0  1 2 3 4  5 6  7 8  9 A  B C
@@ -341,6 +342,7 @@ public class LevelInfoAdapter extends RecyclerView.Adapter<LevelInfoAdapter.Main
                         }
                     }
                     mFDataset = filteringList;
+                    showToast(activity,String.valueOf(unFiltered_cnt)+"개 중 "+String.valueOf(mFDataset.size())+"개가 표시됩니다." );
                 }
                 for (int i = 0; i < 8; i++) {
                     difficultyCount[i] = 0;
