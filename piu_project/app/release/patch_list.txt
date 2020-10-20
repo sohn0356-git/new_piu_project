@@ -23,3 +23,4 @@
 	  검색해서 검색조건에 아무것도 안나오게 한다음에 캡처 누르면 팅김
 	  사진 포함한 리절트 올린다음에 리절트 수정하면 사진 사라져있음
 1.28	- levelInfo empty space skip, 사진 url null일 경우도 예외처리, setrank오류 제어
+1.29	- filter적용시 적용된 갯수 toast
