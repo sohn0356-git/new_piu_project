@@ -1,6 +1,6 @@
 # <img src="./icon.png" height = "80" width="80"> PIU Project 
 
-> Post It Up의 약자
+> Post It Up 의 약자
 
 ## 개요
 * 리듬 게임 [Pump It Up(이하 PIU라 한다)](http://www.piugame.com/piu.xx/)의 보조 안드로이드 어플리케이션
