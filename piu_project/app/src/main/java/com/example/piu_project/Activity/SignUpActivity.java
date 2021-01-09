@@ -62,6 +62,7 @@ public class SignUpActivity extends BasicActivity {
             if(password.equals(passwordCheck)){
                 final RelativeLayout loaderLayout = findViewById(R.id.loaderLyaout);
                 loaderLayout.setVisibility(View.VISIBLE);
+
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override

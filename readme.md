@@ -1,4 +1,4 @@
-# <img src="./icon.png" height = "80" width="80"> PIU Project 
+# <img src="./md-images/icon.png" height = "80" width="80"> PIU Project 
 
 > Post It Up Project의 약자
 
@@ -14,9 +14,13 @@
 		* 사진을 클릭하면 해당하는 곡을 플레이하며 얻은 성취도를 사진과 함께 서버에 업로드 할 수 있다.
 			* 이 때 곡의 사진 하단에 플레이어의 성취도 정보가 함께 보여진다.
 
+	<img src="./md-images/level_example.jpg" height = "300" width="300" align="center">
+
 　
 
 * PIU에서 나오는 곡을 Category와 Version에 따라 분류하고 사용자에게 보여준다.
+
+	<img src="./md-images/category_example.jpg" height = "300" width="300" align="center">
 
 　
 

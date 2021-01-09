@@ -188,8 +188,7 @@ public class MainActivity extends BasicActivity {
         }else {
             init();
         }
-
-}
+    }
 
 
     private void init(){

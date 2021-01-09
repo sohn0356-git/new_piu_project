@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:paddingTop="6dp"
+        android:layout_marginLeft="50dp"
         app:srcCompat="@drawable/ic_navigate_before_black_24dp" />
 
     <ImageView
@@ -25,7 +26,7 @@
         android:layout_height="30dp"
         android:layout_above="@id/container"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
+
         app:srcCompat="@drawable/ic_search_black_24dp" />
 
     <ImageView
@@ -35,6 +36,14 @@
         android:layout_above="@id/container"
         android:layout_toLeftOf="@id/iv_search"
         app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <ImageView
+        android:id="@+id/iv_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/container"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/ic_baseline_menu_24" />
 
     <ImageView
         android:id="@+id/iv_reset"
@@ -50,8 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="0dp"
         android:paddingTop="6dp"
+        android:layout_marginRight="50dp"
         app:srcCompat="@drawable/ic_navigate_next_black_24dp"
         tools:visibility="visible" />
 
