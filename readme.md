@@ -1,4 +1,4 @@
-# PIU Project <img src="./icon.png" height = "80" width="80">
+# <img src="./icon.png" height = "80" width="80"> PIU Project 
 
 > Post It Up의 약자
 
