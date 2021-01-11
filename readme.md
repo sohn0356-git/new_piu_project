@@ -5,7 +5,7 @@
 ## 개요
 * 리듬 게임 [Pump It Up(이하 PIU라 한다)](http://www.piugame.com/piu.xx/)의 보조 안드로이드 어플리케이션
 * 2020.02부터 개발을 시작하여 현재도 기능 추가 및 유지보수 중
-* [손경주](https://sohn0356-git.github.io), [임준혁](https://blog.naver.com/yimjunhyuck), [홍준표] 3명이 개발
+* [손경주](https://sohn0356-git.github.io), [임준혁](https://blog.naver.com/yimjunhyuck), 홍준표 3명이 개발
 
 
 ## 기능
