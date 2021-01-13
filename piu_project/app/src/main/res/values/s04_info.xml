@@ -61,8 +61,10 @@
     <item>song_174</item>
     <item>song_177</item>
     <item>song_178</item>
+    <item>song_190</item>
     <item>song_194</item>
     <item>song_197</item>
+    <item>song_201</item>
     <item>song_202</item>
     <item>song_204</item>
     <item>song_210</item>
@@ -79,10 +81,12 @@
     <item>song_238</item>
     <item>song_239</item>
     <item>song_242</item>
+    <item>song_243</item>
     <item>song_246</item>
     <item>song_247</item>
     <item>song_248</item>
     <item>song_253</item>
+    <item>song_260</item>
     <item>song_267</item>
     <item>song_272</item>
     <item>song_274</item>
@@ -113,6 +117,7 @@
     <item>song_370</item>
     <item>song_376</item>
     <item>song_395</item>
+    <item>song_403</item>
     <item>song_408</item>
     <item>song_409</item>
     <item>song_412</item>
@@ -133,5 +138,6 @@
     <item>song_7460</item>
     <item>song_7462</item>
     <item>song_7465</item>
+    <item>song_7480</item>
   </string-array>
 </resources>

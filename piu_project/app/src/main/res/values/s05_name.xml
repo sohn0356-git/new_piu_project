@@ -39,6 +39,7 @@
     <item>S05여래아</item>
     <item>S05메테오라이즈</item>
     <item>S05매드 사이언스</item>
+    <item>S05히아신스</item>
     <item>S05무브 댓 바디!</item>
     <item>S05스콜피온 킹</item>
     <item>S05요로피쿠 피쿠요로!</item>
@@ -79,5 +80,7 @@
     <item>S05아드레날린 블래스터</item>
     <item>S05조깅</item>
     <item>S05헤드리스 치킨</item>
+    <item>S05 브레인 파워</item>
+    <item>S05더 레버리</item>
   </string-array>
 </resources>

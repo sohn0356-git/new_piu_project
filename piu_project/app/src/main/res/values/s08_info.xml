@@ -9,6 +9,7 @@
     <item>song_018</item>
     <item>song_019</item>
     <item>song_023</item>
+    <item>song_028</item>
     <item>song_029</item>
     <item>song_031</item>
     <item>song_032</item>
@@ -94,5 +95,8 @@
     <item>song_3955</item>
     <item>song_7462</item>
     <item>song_7467</item>
+    <item>song_7479</item>
+    <item>song_7481</item>
+    <item>song_7482</item>
   </string-array>
 </resources>

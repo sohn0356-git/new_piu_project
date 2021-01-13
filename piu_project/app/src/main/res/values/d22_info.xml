@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string-array name="info_d22">
+    <item>song_023</item>
     <item>song_027</item>
     <item>song_028</item>
     <item>song_029</item>
@@ -41,6 +42,7 @@
     <item>song_258</item>
     <item>song_263</item>
     <item>song_267</item>
+    <item>song_272</item>
     <item>song_285</item>
     <item>song_295</item>
     <item>song_304</item>
@@ -75,5 +77,6 @@
     <item>song_3957</item>
     <item>song_7469</item>
     <item>song_7470</item>
+    <item>song_7482</item>
   </string-array>
 </resources>

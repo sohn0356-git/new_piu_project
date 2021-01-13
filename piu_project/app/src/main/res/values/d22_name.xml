@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string-array name="name_D22">
+    <item>D22롤링 크리스마스</item>
     <item>D22치킨 윙</item>
     <item>D22라젠스키 캉캉</item>
     <item>D22파이널 오디션 에피소드 1</item>
@@ -41,6 +42,7 @@
     <item>D22포인트 제로 원</item>
     <item>D22더 레볼루션</item>
     <item>D22마타도르</item>
+    <item>D22까랴위사따</item>
     <item>D22포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
     <item>D22저스트 홀드 온 (To All Fighters)</item>
     <item>D22배드 애플!! feat. Nomico - FULL SONG -</item>
@@ -75,5 +77,6 @@
     <item>D22포인트 제로 2</item>
     <item>D22스타드림 (feat. Romelon)</item>
     <item>D22조깅</item>
+    <item>D22갓 모드 2.0 feat. Skizzo</item>
   </string-array>
 </resources>

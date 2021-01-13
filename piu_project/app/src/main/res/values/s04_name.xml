@@ -61,8 +61,10 @@
     <item>S04마왕</item>
     <item>S04스멜스 라이크 어 초콜릿</item>
     <item>S04네크로맨시</item>
+    <item>S04조나단의 꿈</item>
     <item>S04하드코어 오브 더 노스</item>
     <item>S04유토피아</item>
+    <item>S04팝 더 트랙</item>
     <item>S04파사칼리아</item>
     <item>S04엘리제</item>
     <item>S04엑시던트</item>
@@ -79,10 +81,12 @@
     <item>S04유 갓 미 크레이지</item>
     <item>S04B2</item>
     <item>S04헤스티아</item>
+    <item>S04암피트리온</item>
     <item>S04슈퍼 판타지</item>
     <item>S04바이올렛 퍼퓸</item>
     <item>S04레드 스완</item>
     <item>S04알레그로 피유 모쏘</item>
+    <item>S04캄파넬라</item>
     <item>S04마타도르</item>
     <item>S04까랴위사따</item>
     <item>S04스타더스트 오버드라이브</item>
@@ -113,6 +117,7 @@
     <item>S04아스테리오스 -리엔트리-</item>
     <item>S04클루</item>
     <item>S04웨딩 크래셔</item>
+    <item>S04마카롱 데이</item>
     <item>S04어린왕자 (Prod. Godic)</item>
     <item>S04타이밍</item>
     <item>S04내꺼야 (PICK ME)</item>
@@ -133,5 +138,6 @@
     <item>S04벌써 12시</item>
     <item>S04일 더하기 일은 귀요미</item>
     <item>S04아이 원트 유 - SHORT CUT -</item>
+    <item>S04라이프 이즈 피아노</item>
   </string-array>
 </resources>

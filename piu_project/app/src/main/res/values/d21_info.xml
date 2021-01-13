@@ -27,6 +27,7 @@
     <item>song_269</item>
     <item>song_278</item>
     <item>song_290</item>
+    <item>song_296</item>
     <item>song_307</item>
     <item>song_317</item>
     <item>song_319</item>
@@ -70,10 +71,13 @@
     <item>song_3952</item>
     <item>song_3955</item>
     <item>song_3958</item>
+    <item>song_7458</item>
     <item>song_7462</item>
     <item>song_7464</item>
     <item>song_7465</item>
     <item>song_7471</item>
     <item>song_7472</item>
+    <item>song_7480</item>
+    <item>song_7481</item>
   </string-array>
 </resources>
