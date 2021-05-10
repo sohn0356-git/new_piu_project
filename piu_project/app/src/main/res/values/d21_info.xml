@@ -20,6 +20,7 @@
     <item>song_131</item>
     <item>song_136</item>
     <item>song_137</item>
+    <item>song_173</item>
     <item>song_200</item>
     <item>song_223</item>
     <item>song_224</item>
@@ -79,5 +80,9 @@
     <item>song_7472</item>
     <item>song_7480</item>
     <item>song_7481</item>
+    <item>song_7486</item>
+    <item>song_7487</item>
+    <item>song_7489</item>
+    <item>song_7490</item>
   </string-array>
 </resources>
