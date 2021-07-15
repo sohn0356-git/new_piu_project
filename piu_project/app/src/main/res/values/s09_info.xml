@@ -3,7 +3,9 @@
   <string-array name="info_s09">
     <item>song_002</item>
     <item>song_005</item>
+    <item>song_012</item>
     <item>song_014</item>
+    <item>song_015</item>
     <item>song_019</item>
     <item>song_024</item>
     <item>song_026</item>
@@ -92,5 +94,6 @@
     <item>song_7470</item>
     <item>song_7473</item>
     <item>song_7485</item>
+    <item>song_7501</item>
   </string-array>
 </resources>

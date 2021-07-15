@@ -3,7 +3,9 @@
   <string-array name="name_S09">
     <item>S09파이널 오디션</item>
     <item>S09파이널 오디션 2</item>
+    <item>S09프리 스타일</item>
     <item>S09그녀는 피자를 좋아해</item>
+    <item>S09펌핑 업</item>
     <item>S09무혼</item>
     <item>S09올 아이 원트 포 크리스마스</item>
     <item>S09슬램</item>
@@ -92,5 +94,6 @@
     <item>S09조깅</item>
     <item>S09하우스플랜</item>
     <item>S09야근</item>
+    <item>S09시간의 회랑 라비린스</item>
   </string-array>
 </resources>

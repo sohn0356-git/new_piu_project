@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string-array name="name_D22">
+    <item>D22리피토먼트 리믹스</item>
+    <item>D22미스터 라푸스</item>
     <item>D22롤링 크리스마스</item>
     <item>D22치킨 윙</item>
     <item>D22라젠스키 캉캉</item>
@@ -52,6 +54,7 @@
     <item>D22앵귀시드 언메이킹</item>
     <item>D22이스케이프</item>
     <item>D22굿 나이트</item>
+    <item>D22크로스타임</item>
     <item>D22아스테리오스 -리엔트리-</item>
     <item>D22클루</item>
     <item>D22레드라인</item>
@@ -71,6 +74,7 @@
     <item>D22디그니티 - FULL SONG -</item>
     <item>D22하트 래빗 코스터</item>
     <item>D22까르멘 버스</item>
+    <item>D22팔랑크스 \&quot;RS2018 edit\&quot;</item>
     <item>D22야누스</item>
     <item>D22인디스트럭터블</item>
     <item>D22아드레날린 블래스터</item>
@@ -79,5 +83,6 @@
     <item>D22스타드림 (feat. Romelon)</item>
     <item>D22조깅</item>
     <item>D22갓 모드 2.0 feat. Skizzo</item>
+    <item>D22시간의 회랑 라비린스</item>
   </string-array>
 </resources>

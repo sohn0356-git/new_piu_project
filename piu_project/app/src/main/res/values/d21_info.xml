@@ -37,6 +37,7 @@
     <item>song_338</item>
     <item>song_355</item>
     <item>song_366</item>
+    <item>song_367</item>
     <item>song_369</item>
     <item>song_373</item>
     <item>song_392</item>
@@ -60,6 +61,7 @@
     <item>song_524</item>
     <item>song_533</item>
     <item>song_692</item>
+    <item>song_695</item>
     <item>song_696</item>
     <item>song_698</item>
     <item>song_700</item>
@@ -84,5 +86,7 @@
     <item>song_7487</item>
     <item>song_7489</item>
     <item>song_7490</item>
+    <item>song_7499</item>
+    <item>song_7502</item>
   </string-array>
 </resources>

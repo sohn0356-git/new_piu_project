@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string-array name="name_Coop02">
+    <item>Coop02또다른 진심</item>
     <item>Coop02터키 행진곡</item>
     <item>Coop02오! 로사!</item>
     <item>Coop02롤링 크리스마스</item>
@@ -11,6 +12,7 @@
     <item>Coop02캐논 디</item>
     <item>Coop02러브 이즈 어 댄져존 pt.2 어나더</item>
     <item>Coop02키메라</item>
+    <item>Coop02사람들은 몰랐다네</item>
     <item>Coop02펌트리스 8비트 ver.</item>
     <item>Coop02소서리스 엘리제</item>
     <item>Coop02테프리스</item>
@@ -39,6 +41,7 @@
     <item>Coop02캄파넬라</item>
     <item>Coop02유 어게인 마이 러브</item>
     <item>Coop02레미니센스</item>
+    <item>Coop02요로피쿠 피쿠요로!</item>
     <item>Coop02배드 애플!! feat. Nomico</item>
     <item>Coop02소라 노 시라베</item>
     <item>Coop02포 시즌스 오브 론리네스 verβ feat. Sariyajin</item>
@@ -86,6 +89,7 @@
     <item>Coop02파파시토 (feat. KuTiNA)</item>
     <item>Coop02파이어 오브 데스티니</item>
     <item>Coop02포가튼 뱀파이어</item>
+    <item>Coop02별이 빛나는 밤</item>
     <item>Coop02컨플릭트</item>
     <item>Coop02판매왕</item>
     <item>Coop02라이징 스타</item>
@@ -101,5 +105,6 @@
     <item>Coop02스타드림 (feat. Romelon)</item>
     <item>Coop02헤드리스 치킨</item>
     <item>Coop02크로싱 델타</item>
+    <item>Coop02슈가 플럼</item>
   </string-array>
 </resources>

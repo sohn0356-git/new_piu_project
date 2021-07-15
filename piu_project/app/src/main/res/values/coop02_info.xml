@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string-array name="info_coop02">
+    <item>song_001</item>
     <item>song_007</item>
     <item>song_016</item>
     <item>song_023</item>
@@ -11,6 +12,7 @@
     <item>song_066</item>
     <item>song_079</item>
     <item>song_082</item>
+    <item>song_110</item>
     <item>song_122</item>
     <item>song_124</item>
     <item>song_161</item>
@@ -39,6 +41,7 @@
     <item>song_260</item>
     <item>song_261</item>
     <item>song_275</item>
+    <item>song_277</item>
     <item>song_282</item>
     <item>song_284</item>
     <item>song_285</item>
@@ -86,6 +89,7 @@
     <item>song_517</item>
     <item>song_518</item>
     <item>song_520</item>
+    <item>song_523</item>
     <item>song_524</item>
     <item>song_532</item>
     <item>song_534</item>
@@ -101,5 +105,6 @@
     <item>song_7469</item>
     <item>song_7471</item>
     <item>song_7489</item>
+    <item>song_7497</item>
   </string-array>
 </resources>
