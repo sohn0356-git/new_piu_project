@@ -82,6 +82,7 @@
     <item>song_420</item>
     <item>song_421</item>
     <item>song_422</item>
+    <item>song_423</item>
     <item>song_426</item>
     <item>song_427</item>
     <item>song_429</item>
@@ -104,7 +105,9 @@
     <item>song_3956</item>
     <item>song_7469</item>
     <item>song_7471</item>
+    <item>song_7479</item>
     <item>song_7489</item>
     <item>song_7497</item>
+    <item>song_7504</item>
   </string-array>
 </resources>

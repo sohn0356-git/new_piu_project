@@ -3,9 +3,11 @@
   <string-array name="info_d23">
     <item>song_014</item>
     <item>song_020</item>
+    <item>song_025</item>
     <item>song_026</item>
     <item>song_029</item>
     <item>song_054</item>
+    <item>song_060</item>
     <item>song_062</item>
     <item>song_066</item>
     <item>song_070</item>
@@ -31,6 +33,7 @@
     <item>song_215</item>
     <item>song_220</item>
     <item>song_237</item>
+    <item>song_257</item>
     <item>song_259</item>
     <item>song_273</item>
     <item>song_274</item>
@@ -72,5 +75,7 @@
     <item>song_7498</item>
     <item>song_7500</item>
     <item>song_7502</item>
+    <item>song_7504</item>
+    <item>song_7506</item>
   </string-array>
 </resources>
